@@ -1,0 +1,173 @@
+
+\begin{tikzpicture}[
+    scale=0.75
+    ]
+    
+    % SDLC blocks
+    \coordinate(a1) at (10.0, 10.0);
+    \coordinate(a2) at (10.3, 10.5);
+    \coordinate(a3) at (10.0, 11.0);
+    \coordinate(a4) at (12.8, 11.0);
+    \coordinate(a5) at (13.1, 10.5);
+    \coordinate(a6) at (12.8, 10.0);
+    \fill[scw-yellow] (a1) -- (a2) -- (a3) -- (a4) -- (a5) -- (a6) -- cycle;
+    \node[black] at (11.5,10.5) {\sffamily Plan};
+    
+    \coordinate(b1) at (13.0, 10.0);
+    \coordinate(b2) at (13.3, 10.5);
+    \coordinate(b3) at (13.0, 11.0);
+    \coordinate(b4) at (15.8, 11.0);
+    \coordinate(b5) at (16.1, 10.5);
+    \coordinate(b6) at (15.8, 10.0);
+    \fill[scw-yellow] (b1) -- (b2) -- (b3) -- (b4) -- (b5) -- (b6) -- cycle;
+    \node[black] at (14.5,10.5) {\sffamily Develop};
+    
+    \coordinate(c1) at (16.0, 10.0);
+    \coordinate(c2) at (16.3, 10.5);
+    \coordinate(c3) at (16.0, 11.0);
+    \coordinate(c4) at (18.8, 11.0);
+    \coordinate(c5) at (19.1, 10.5);
+    \coordinate(c6) at (18.8, 10.0);
+    \fill[scw-yellow] (c1) -- (c2) -- (c3) -- (c4) -- (c5) -- (c6) -- cycle;
+    \node[black] at (17.5,10.5) {\sffamily Build};
+    
+    \coordinate(d1) at (19.0, 10.0);
+    \coordinate(d2) at (19.3, 10.5);
+    \coordinate(d3) at (19.0, 11.0);
+    \coordinate(d4) at (21.8, 11.0);
+    \coordinate(d5) at (22.1, 10.5);
+    \coordinate(d6) at (21.8, 10.0);
+    \fill[scw-yellow] (d1) -- (d2) -- (d3) -- (d4) -- (d5) -- (d6) -- cycle;
+    \node[black] at (20.5,10.5) {\sffamily Test};
+    
+    \coordinate(e1) at (22.0, 10.0);
+    \coordinate(e2) at (22.3, 10.5);
+    \coordinate(e3) at (22.0, 11.0);
+    \coordinate(e4) at (24.8, 11.0);
+    \coordinate(e5) at (25.1, 10.5);
+    \coordinate(e6) at (24.8, 10.0);
+    \fill[scw-yellow] (e1) -- (e2) -- (e3) -- (e4) -- (e5) -- (e6) -- cycle;
+    \node[black] at (23.5,10.5) {\sffamily Release};
+    
+    % arrows -- last to first
+    % 5th arrow
+        %triangle
+    \coordinate(i1) at (24.3, 9.2); 
+    \coordinate(i2) at (24.1, 9.0); 
+    \coordinate(i3) at (24.3, 8.8); 
+    
+    \coordinate(i4) at (24.3, 8.9); 
+    \coordinate(i5) at (24.8, 8.9); 
+        % top
+    \coordinate(i6) at (24.8, 9.9); 
+    \coordinate(i7) at (24.6, 9.9); 
+    
+    \coordinate(i8) at (24.6, 9.1); 
+    \coordinate(i9) at (24.3, 9.1); 
+    
+    \fill[scw-orange] (i1) -- (i2) -- (i3) -- (i4) -- (i5) -- (i6) -- (i7) -- (i8) -- (i9) -- cycle;
+    
+    % horizontal
+    \coordinate(i10) at (24.15, 9.1); 
+    \coordinate(i20) at (24.05, 9.0); 
+    \coordinate(i30) at (24.15, 8.9); 
+    \coordinate(i40) at (21.85, 8.9); 
+    \coordinate(i50) at (21.85, 9.1); 
+    \fill[scw-orange] (i10) -- (i20) -- (i30) -- (i40) -- (i50) -- cycle;
+    
+    
+    % 4th arrow
+        %triangle
+    \coordinate(j1) at (21.3, 9.2); 
+    \coordinate(j2) at (21.1, 9.0); 
+    \coordinate(j3) at (21.3, 8.8); 
+    
+    \coordinate(j4) at (21.3, 8.9); 
+    \coordinate(j5) at (21.8, 8.9); 
+        % top
+    \coordinate(j6) at (21.8, 9.9); 
+    \coordinate(j7) at (21.6, 9.9); 
+    
+    \coordinate(j8) at (21.6, 9.1); 
+    \coordinate(j9) at (21.3, 9.1); 
+    
+    \fill[scw-orange] (j1) -- (j2) -- (j3) -- (j4) -- (j5) -- (j6) -- (j7) -- (j8) -- (j9) -- cycle;
+    % horizontal
+    \coordinate(i10) at (21.15, 9.1); 
+    \coordinate(i20) at (21.05, 9.0); 
+    \coordinate(i30) at (21.15, 8.9); 
+    \coordinate(i40) at (18.85, 8.9); 
+    \coordinate(i50) at (18.85, 9.1); 
+    \fill[scw-orange] (i10) -- (i20) -- (i30) -- (i40) -- (i50) -- cycle;
+    
+    % 3th arrow
+        %triangle
+    \coordinate(j1) at (18.3, 9.2); 
+    \coordinate(j2) at (18.1, 9.0); 
+    \coordinate(j3) at (18.3, 8.8); 
+    \coordinate(j4) at (18.3, 8.9); 
+    \coordinate(j5) at (18.8, 8.9); 
+    \coordinate(j6) at (18.8, 9.9); 
+    \coordinate(j7) at (18.6, 9.9); 
+    \coordinate(j8) at (18.6, 9.1); 
+    \coordinate(j9) at (18.3, 9.1); 
+    \fill[scw-orange] (j1) -- (j2) -- (j3) -- (j4) -- (j5) -- (j6) -- (j7) -- (j8) -- (j9) -- cycle;
+    % horizontal
+    \coordinate(i10) at (18.15, 9.1); 
+    \coordinate(i20) at (18.05, 9.0); 
+    \coordinate(i30) at (18.15, 8.9); 
+    \coordinate(i40) at (15.85, 8.9); 
+    \coordinate(i50) at (15.85, 9.1); 
+    \fill[scw-orange] (i10) -- (i20) -- (i30) -- (i40) -- (i50) -- cycle;
+   
+    
+    % 3th arrow
+        %triangle
+    \coordinate(j1) at (15.3, 9.2); 
+    \coordinate(j2) at (15.1, 9.0); 
+    \coordinate(j3) at (15.3, 8.8); 
+    \coordinate(j4) at (15.3, 8.9); 
+    \coordinate(j5) at (15.8, 8.9); 
+    \coordinate(j6) at (15.8, 9.9); 
+    \coordinate(j7) at (15.6, 9.9); 
+    \coordinate(j8) at (15.6, 9.1); 
+    \coordinate(j9) at (15.3, 9.1); 
+    \fill[scw-orange] (j1) -- (j2) -- (j3) -- (j4) -- (j5) -- (j6) -- (j7) -- (j8) -- (j9) -- cycle;
+    
+    % horizontal and back up
+        %arrow ending top right
+    \coordinate(i10) at (15.15, 9.1); 
+    \coordinate(i20) at (15.05, 9.0); 
+    \coordinate(i30) at (15.15, 8.9); 
+    
+    \coordinate(i40) at (13.6, 8.9); 
+    \coordinate(i50) at (13.6, 9.7); 
+        % top   
+    \coordinate(i60) at (13.5, 9.7); 
+    \coordinate(i70) at (13.7, 9.9); 
+    \coordinate(i80) at (13.9, 9.7); 
+    
+    \coordinate(i90) at (13.8, 9.7); 
+    \coordinate(i100) at (13.8, 9.1); 
+    \fill[scw-orange] (i10) -- (i20) -- (i30) -- (i40) -- (i50) -- (i60) -- (i70) -- (i80) -- (i90) -- (i100) -- cycle ;
+    
+    \node[scw-orange, below] at   (15.3, 9) {\footnotesize Security problems};
+    \node[scw-teal, below] at (12.3, 9) {\footnotesize Guidelines};
+    
+    % preventative arrow
+        %arrow point
+    \coordinate(p1) at (13, 9.7); 
+    \coordinate(p2) at (13.2, 9.9); 
+    \coordinate(p3) at (13.4, 9.7); 
+    \coordinate(p4) at (13.3, 9.7); 
+    \coordinate(p5) at (13.3, 8.9); 
+    \coordinate(p6) at (11.3, 8.9); 
+    \coordinate(p7) at (11.3, 9.9); 
+    \coordinate(p8) at (11.5, 9.9); 
+    \coordinate(p9) at (11.5, 9.1); 
+    \coordinate(p10) at (13.1, 9.1); 
+    \coordinate(p11) at (13.1, 9.7); 
+    
+    \fill[scw-teal] (p1) -- (p2) -- (p3) -- (p4) -- (p5) -- (p6) -- (p7) -- (p8) -- (p9) -- (p10) -- (p11) -- cycle;
+    
+\end{tikzpicture}

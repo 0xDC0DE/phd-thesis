@@ -1,0 +1,719 @@
+\documentclass[a4paper,11pt,english]{book}
+
+%%%%%%%%%%%%%%%%
+% USE PACKAGES
+%%%%%%%%%%%%%%%%
+
+% PHD TEMPLATE 
+%%%%%%%%%%%%%%
+
+% Differences between digital and print versions
+\usepackage{ifthen}
+\newboolean{ForDigital}
+\setboolean{ForDigital}{false}
+\newboolean{ForPrint}
+\setboolean{ForPrint}{true}
+
+\usepackage{00-setup/phd}
+
+% speed up compile time
+
+% page size according to UGent/FEA requirements
+\usepackage[papersize={16cm,24cm},%
+            layoutsize={16cm,24cm},%
+            hmargin={2cm,2cm},%
+            vmargin={2.35cm,2cm},%
+            showcrop]{geometry}
+            
+\setlength{\headheight}{13.59999pt}
+
+% PAGE FORMATTING
+%%%%%%%%%%%%%%%%%%https://www.overleaf.com/project/5f43c21894a28f00014435d1
+% show cropmarks in print
+\ifthenelse{\boolean{ForPrint}}{%
+  \usepackage[a4,center,noinfo]{crop}
+}{}
+
+% TEXT FORMATTING
+%%%%%%%%%%%%%%%%%%
+
+% underfull and overfull boxes
+\usepackage[breaklinks]{hyperref}
+
+% adding stuff
+%\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{float}
+%\usepackage{ulem}
+\usepackage[acronym]{glossaries}
+%\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+%\usepackage[normalem]{ulem}
+\usepackage{csquotes}
+\usepackage{epigraph}
+\usepackage{titlesec} %for better \part
+
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}
+[display]
+{\LARGE\bfseries \sffamily}
+{\partname \space \thepart \vspace{5pt}}
+{0pt}
+{\huge \bfseries \sffamily}
+%
+\titlespacing*{\part}{0pt}{0pt}{20pt}
+
+% change font for sections etc, \normalfont -> \sffamily
+\titleformat{\section}
+{\sffamily\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\sffamily\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\sffamily\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]
+{\sffamily\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]
+{\sffamily\normalsize\bfseries}{\thesubparagraph}{1em}{}
+
+
+% LISTINGS
+%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Writing algorithms
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+% TABLES AND FIGURES
+%%%%%%%%%%%%%%%%%%
+%\usepackage{graphicx}
+%\usepackage{layouts}
+\usepackage{tabularx,ragged2e} % better for wide columns
+
+%sideways table
+%\usepackage{adjustbox}
+% long tables spanning multiple pages
+\usepackage{longtable}
+
+% superscripts in table leave some more whitespace
+\usepackage{array, makecell}
+\usepackage{cellspace} %
+\setlength\cellspacetoplimit{4pt}
+\setlength\cellspacebottomlimit{4pt}
+
+% if you want to speed up things:
+% comment out when compiling for print
+\usepackage[draft]{graphicx}	
+
+\usepackage{multirow}
+\usepackage{float}				% positie figuren etc.
+\usepackage{caption}	        % captions
+%\usepackage{subfig}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{rotating}           %rotate large screenshots 90 degrees and rotate tables
+% put captions next to figure
+%this is for subcaptions to avoid overfull float for L1-L3 screenshots
+\newcommand{\sidebysidecaption}[4]{%
+  \begin{minipage}{#1}
+    #3
+  \end{minipage}
+  \hfill%
+  \begin{minipage}{#2}
+    \vspace*{0pt}
+    #4
+\end{minipage}%
+}
+
+\usepackage{colortbl}
+
+% align column in table on decimal point
+\usepackage{siunitx}
+
+% superscript in table
+\usepackage{cellspace} %
+\setlength\cellspacetoplimit{5pt}
+\setlength\cellspacebottomlimit{4pt}
+
+% sideways table for appendix B
+\usepackage{lscape}
+
+% STYLE
+%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\usepackage{glossaries}
+\usepackage[english,dutch]{babel}
+\usepackage[babel]{microtype}
+\usepackage{enumitem}
+% SCW Google font
+\usepackage{fontspec}
+\setsansfont{RedHatDisplay}[
+    Path=00-setup/fonts/redhatdisplay/,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+% Ugent Panno font --> F that font, I don't like it
+%\setmainfont{UGentPannoText}[
+%    Path=00-setup/fonts/ugent-panno/,
+%    Extension = .ttf,
+%    UprightFont=*-Normal,
+%    BoldFont=*-SemiBold,
+%]
+%\setmainfont{Arial}
+
+% MATH
+%%%%%%%%%%%%%%%%%%
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+% automatically scaling absolute value symbols
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% sideways fractions
+\usepackage{xfrac}
+\usepackage{nicefrac}
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+% GRAPHS
+%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgfplots}
+ \pgfplotsset{
+        table/search path={data},
+    }
+\pgfplotsset{compat=1.16}
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\usepackage{fp}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newcommand{\drawticks}{
+        \foreach \x in {0,...,5} {
+            \pgfmathparse{0.5*\x+0.25}
+            \pgfmathresult \let\xpoint\pgfmathresult;
+            \node[thick,black] at (-\xpoint,0.25) {\x};
+        }
+        \foreach [count=\y] \letter in {A,B,...,J} {
+            \pgfmathparse{0.5*\y-0.25}
+            \pgfmathresult \let\ypoint\pgfmathresult;
+            \node[thick,black,rotate=-90] at (0.25,-\ypoint) {\letter};
+        }
+}
+
+% COLORS
+%%%%%%%%%%%%%%%%%%
+
+%\definecolor{prim}{HTML}{f38b00}
+%\definecolor{sec}{HTML}{1B998B}
+%\definecolor{tert}{HTML}{5C7AFF}
+%\definecolor{quad}{HTML}{950952}
+%\definecolor{quint}{HTML}{4E3822}
+%
+%\definecolor{same}{HTML}{5C7AFF}
+%\definecolor{bad}{HTML}{f38b00}
+%\definecolor{good}{HTML}{1B998B}
+%\definecolor{own}{HTML}{950952}
+%SCW colors
+\definecolor{scw-blue-black}{HTML}{000017}
+\definecolor{scw-charcoal}{HTML}{2b2b36}
+\definecolor{scw-orange}{HTML}{f79200}
+\definecolor{scw-orange-darker}{HTML}{D57E00}
+\definecolor{scw-yellow}{HTML}{ffbe12}
+\definecolor{scw-white}{HTML}{ffffff}
+\definecolor{scw-ivory}{HTML}{ebebe4}
+\definecolor{scw-red}{HTML}{e2533d}
+\definecolor{scw-sky-blue}{HTML}{90d4db}
+\definecolor{scw-sky-blue-darker}{HTML}{78AFB4}
+\definecolor{scw-teal}{HTML}{15bbb9}
+\definecolor{chinese-violet}{HTML}{8D6B94}
+\definecolor{olive-drab-3}{HTML}{849324}
+\definecolor{apple-green}{HTML}{7FB800}
+\definecolor{scw-teal-darker}{HTML}{129997}
+
+% map to colors being used
+\colorlet{prim}{scw-orange}
+\colorlet{sec}{scw-teal}
+\colorlet{tert}{scw-yellow}
+\colorlet{quad}{scw-teal}
+\colorlet{quint}{scw-red}
+
+\colorlet{same}{scw-teal}
+\colorlet{bad}{scw-red}
+\colorlet{good}{apple-green}
+\colorlet{own}{scw-orange}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,shapes,backgrounds}
+\usetikzlibrary{positioning,arrows.meta,quotes}
+\usepackage{pgfplots}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COLORFUL LISTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmonofont{JetBrainsMono}[
+    Path=00-setup/fonts/jetbrainsmono/,
+    Scale=0.85,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+\lstset{
+    %text colors
+    language=Java,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{scw-orange-darker}\bfseries,
+    stringstyle=\color{scw-teal-darker}\bfseries,
+    commentstyle=\color{sec},
+    morecomment=[s][\color{quad}]{/**}{*/},
+    % line numbers
+    numbers=left,
+    stepnumber=1,
+    numberstyle=\bfseries\tiny\color{scw-red},
+    % frame color
+    frame=l,
+    framesep=0.5mm,
+    framexleftmargin=1mm,
+    rulecolor=\color{scw-red},
+    % additional options
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+    captionpos=b
+}
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  %morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{scw-teal-darker}\bfseries,
+  identifierstyle=\color{scw-red}\bfseries,
+  keywordstyle=\color{scw-orange}\bfseries,
+  morekeywords={xmlns,version,type,android,label,theme,allowBackup,usesCleartextTraffic}% list your attributes here
+}
+\lstdefinelanguage{YAML}
+{
+  morestring=[b]",
+  %morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{scw-teal-darker}\bfseries,
+  keywordstyle=\color{scw-orange-darker}\bfseries,
+  morekeywords={search,methodcall,name,type,args,containsUntrustedInput,trustedSources,1}% list your attributes here
+}
+
+\usepackage[colorinlistoftodos]{todonotes}
+
+% Take away summary 
+\usepackage{tcolorbox}
+\newcommand{\summarybox}[1]
+{
+\vspace{5mm}
+\begin{tcolorbox}[colback=scw-sky-blue!5,colframe=scw-teal,title={If nothing else, take away from this chapter...},coltitle=scw-charcoal,fonttitle=\sffamily\large]
+#1
+\end{tcolorbox}
+}
+
+\tcbuselibrary{skins}
+\newcounter{battlecardcounter}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newenvironment{battlecardenviro}{
+    \noindent\smallskip
+    \refstepcounter{battlecardcounter}
+    }{\smallskip}
+
+\newcommand{\battlecard}[7]
+{
+\begin{battlecardenviro}
+\begin{tcolorbox}[colback=scw-orange!5,colframe=scw-orange!70,
+title={#1 \hfill\circled{\thebattlecardcounter}\\
+\footnotesize{#2}},
+coltitle=scw-charcoal,fonttitle=\sffamily\large]
+\small{#3}
+\tcblower
+\small{
+\begin{tabular}{p{1.5cm}p{2cm}p{1.5cm}p{4cm}}
+\textbf{Type} & #4 & \textbf{SDLC} & #5\\
+\textbf{Speed} & #6 & \textbf{Fix} & #7\\ 
+\end{tabular}
+}
+\end{tcolorbox}
+\end{battlecardenviro}
+}
+
+
+\newcommand{\smallbattlecard}[3]
+{
+\begin{battlecardenviro}
+\begin{tcolorbox}[colback=scw-orange!5,colframe=scw-orange!70,
+title={#1 \hfill\circled{\thebattlecardcounter}\\
+\footnotesize{#2}},
+coltitle=scw-charcoal,fonttitle=\sffamily\large]
+\small{#3}
+\end{tcolorbox}
+\end{battlecardenviro}
+}
+% Colorful algorithms
+%\AtBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
+\SetNlSty{bfseries}{\color{scw-orange}}{}
+\newcommand{\mykwsty}[1]{\textbf{\textcolor{scw-red}{#1}}}
+\SetKwSty{mykwsty}
+\newcommand{\myargsty}[1]{\textit{\textcolor{scw-teal-darker}{#1}}}
+\SetArgSty{myargsty}
+\SetFuncArgSty{myargsty}
+
+
+% Graphics
+\graphicspath{{./03-education/figures/}{./04-tools/figures/}}
+
+% Acronyms
+%%%%%%%%%%%%%%%%
+
+\newacronym{ide}{IDE}{Integrated Development Environment}
+\newacronym{cicd}{CICD}{Continuous Integration and Continuous Delivery}
+\newacronym{ci}{CI}{Continuous Integration}
+\newacronym{cd}{CD}{Continuous Delivery}
+\newacronym{its}{ITS}{Intelligent Tutoring System}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{owasp}{OWASP}{Open Web Application Security Project}
+\newacronym{esapi}{ESAPI}{Enterprise Security API}
+\newacronym{cwe}{CWE}{Common Weakness Enumeration}
+\newacronym{irt}{IRT}{Item Response Theory}
+\newacronym{irf}{IRF}{Item Response Function}
+\newacronym{ctt}{CTT}{Classical Test Theory}
+\newacronym[longplural={Computerized Adaptive Tests}]{cat}{CAT}{Computerized Adaptive Test}
+\newacronym[longplural={Fixed Item Tests}]{fit}{FIT}{Fixed Item Test}
+\newacronym{scw}{SCW}{Secure Code Warrior}
+\newacronym{1pl}{1PL}{one-parameter logistic model}
+\newacronym{2pl}{2PL}{two-parameter logistic model}
+\newacronym{3pl}{3PL}{three-parameter logistic model}
+\newacronym{4pl}{4PL}{four-parameter logistic model}
+\newacronym{sql}{SQL}{Structured Query Language}
+\newacronym{xml}{XML}{Extensible Markup Language}
+\newacronym{mvc}{MVC}{Model View Controller}
+\newacronym{ee}{EE}{Enterprise Edition}
+\newacronym{jsp}{JSP}{JavaServer Pages}
+\newacronym{bbc}{BBC}{The British Broadcasting Corporation}
+\newacronym{cf}{CF}{Collaborative Filtering}
+\newacronym{jml}{JML}{Joint Maximum Likelihood}
+\newacronym{cml}{CML}{Conditional Maximum Likelihood}
+\newacronym{mml}{MML}{Marginal Maximum Likelihood}
+\newacronym{em}{EM}{Expectation-Maximization}
+\newacronym{wle}{WLE}{Weighted Likelihood Estimator}
+\newacronym{vlaio}{VLAIO}{Vlaams Agentschap Innoveren \& Ondernemen \textit{(English: Flanders Innovation \& Entrepreneurship)}}
+\newacronym{yaml}{YAML}{YAML Ain't Markup Language}
+\newacronym{esf}{ESF}{European Social Fund}
+\newacronym{oeno}{O\&O}{Onderzoek \& Ontwikkeling \textit{(English: Research \& Development)}}
+\newacronym{iwt}{IWT}{Innovatie door Wetenschap en Technologie}
+\newacronym{id}{id}{identifier}
+\newacronym{gdpr}{GDPR}{General Data Protection Regulation}
+\newacronym{xss}{XSS}{Cross-Site Scripting}
+\newacronym{csrf}{CSRF}{Cross Site Request Forgery}
+\newacronym{sdlc}{SDLC}{Software Development Life Cycle}
+\newacronym{url}{URL}{Uniform Resource Locator}
+\newacronym{ui}{UI}{User Interface}
+\newacronym{ux}{UX}{User Experience}
+\newacronym{os}{OS}{Operating System}
+\newacronym{gui}{GUI}{Graphical User Interface}
+\newacronym{ast}{AST}{Abstract Syntax Tree}
+\newacronym{sdk}{SDK}{Software Development Kit}
+\newacronym{aws}{AWS}{Amazon Web Services}
+\newacronym{html}{HTML}{Hyper Text Markup Language}
+\newacronym{efp}{EFP}{Effective False Positive}
+\newacronym{jdk}{JDK}{Java Development Kit}
+\newacronym{erp}{ERP}{Enterprise Resource Planning}
+\newacronym{anova}{ANOVA}{Analysis Of Variance}
+\newacronym{http}{HTTP}{Hyper Text Transfer Protocol}
+\newacronym{jsf}{JSF}{JavaServer Faces}
+\newacronym{rmse}{RMSE}{Root Mean Squared Error}
+\newacronym{mae}{MAE}{Mean Absolute Error}
+\newacronym{nmae}{NMAE}{Normalized Mean Absolute Error}
+\newacronym{fcp}{FCP}{Fraction of Concordant Pairs}
+\newacronym{msd}{MSD}{Mean Squared Difference}
+\newacronym{knn}{k-NN}{k-nearest neighbours}
+\newacronym{pmf}{PMF}{Probabilistic Matrix Factorization}
+\newacronym{nmf}{NMF}{Non-negative Matrix Factorization}
+\newacronym{nnmf}{NNMF}{Non-negative Matrix Factorization}
+\newacronym{svd}{SVD}{Singular Value Decomposition}
+\newacronym{xxe}{XXE}{XML External Entity}
+\newacronym{cve}{CVE}{Common Vulnerabilities and ExpPrivacy and trustosures}
+\newacronym{cvss}{CVSS}{Common Vulnerability Scoring System}
+\newacronym{sca}{SCA}{Software Component Analysis}
+\newacronym{saas}{SaaS}{Software as a Service}
+\newacronym{mate}{MATE}{Man-At-The-End}
+\newacronym{sbom}{SBOM}{Software Bill of Materials}
+\newacronym{us}{US}{United States}
+\newacronym{eo}{EO}{Executive Order}
+\newacronym{eu}{EU}{European Union}
+\newacronym{ec}{EC}{European Commission}
+\newacronym{roi}{ROI}{Return on Investment}
+\newacronym{nist}{NIST}{National Institute of Standards and Technology}
+\newacronym{iso}{ISO}{International Organization for Standardization}
+\newacronym{iec}{IEC}{International Electrotechnical Commission}
+
+
+% Glossary entries
+%%%%%%%%%%%%%%%%
+
+\newglossaryentry{appsec}
+{
+    name=AppSec,
+    description={Application security team. This term emphasizes the context of security regarding software applications, in contrast with network security}
+}
+\newglossaryentry{dev}
+{
+    name=Dev,
+    description={Development team. This team writes the code of the application}
+}
+\newglossaryentry{ops}
+{
+    name=Ops,
+    description={Operations team. This team is responsible for running the code so that the application is available to customers}
+}
+
+\newglossaryentry{devops}
+{
+    name=DevOps,
+    description={Contraction between Dev and Ops, a more or less unified team of developers and operators}
+}
+
+\newglossaryentry{sec}
+{
+        name=Sec,
+        description={Security team, in the context of this book used to indicate the application security team. This team has access to the code and is responsible for evaluating and monitoring its security}
+}
+
+\newglossaryentry{devsecops}
+{
+    name=DevSecOps,
+    description={Contraction between Dev, Sec, and Ops, a more or less unified team of developers, security experts, and operators}
+}
+
+\newglossaryentry{vulnerability}
+{
+    name=vulnerability,
+    plural={vulnerabilities},
+    description={A security problem for which it has been proven an exploit exists}
+}
+
+\newglossaryentry{exploit}
+{
+    name=exploit,
+    plural={exploit},
+    description={A sequence of commands, inputs, or other manipulations that can take advantage of a security problem and cause harm to the stakeholders of the application}
+}
+
+\newglossaryentry{bug}
+{
+    name=bug,
+    plural={bugs},
+    description={A mistake made by the developer in one or multiple lines of code that can lead to unwanted behaviour. They can usually be detected with automated tools.}
+}
+
+\newglossaryentry{flaw}
+{
+    name=flaw,
+    plural={flaws},
+    description={A mistake in the design of the application that can lead to unwanted behaviour. They are mistakes in the functional structure of the application that are much harder to detect automatically than security bugs}
+}
+
+\newglossaryentry{bugtracker}
+{
+    name=bug tracking system,
+    plural={bug tracking systems},
+    description={A software application used to keep track of reported bugs in software development projects. Often this is not a standalone application but part of an issue tracking system}
+}
+
+\newglossaryentry{issue}
+{
+    name=issue,
+    plural={issues},
+    description={A unit of work to accomplish an improvement in a software development system. An issue can be a bug, a requested feature, documentation, and more}
+}
+
+\newglossaryentry{issuetracker}
+{
+    name=issue tracking system,
+    plural={issue tracking systems},
+    description={A software application used to maintain lists of issues. Issue trackers often have features to prioritize, group, and tag issues to facilitate project planning}
+}
+
+\newglossaryentry{security problem}
+{
+    name=security problem,
+    plural={security problems},
+    description={Overlapping term for security bugs and security flaws}
+}
+
+\newglossaryentry{security defect}
+{
+    name=security defect,
+    plural={security defects},
+    description={A security problem that has not yet been proven to lead to a vulnerability}
+}
+
+\newglossaryentry{code repository}
+{
+    name=code repository,
+    plural={code repositories},
+    description={A software application and a data structure to store the code and metadata of a software project. It facilitates cooperation of teams and makes it easy to maintain different versions of the code}
+}
+
+\newglossaryentry{slack}
+{
+    name=slack,
+    description={A popular business communication platform that consists of persistent chat rooms organized by topic, private groups, and direct messaging.}
+}
+
+\makeglossaries
+
+%%%%%%%%%%%%%%%%
+% PHD START
+%%%%%%%%%%%%%%%%
+\title{Paved path methodology: a developer-friendly workflow to software security}
+\author{Pieter De Cremer}
+\date{August 2020}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. COVER PAGE                                                 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagenumbering{alph}
+% Cover page provided by the decanate
+%\inputpdf[pages=-]{01-cover/final.pdf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. FRONTMATTER                                                
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+\pagestyle{fancyplain}
+\pagenumbering{Roman}
+
+\cleardoublepage
+
+\parskip 1mm
+\input{01-frontmatter/jury}
+\parskip 0mm
+\newpage
+
+\cleardoublepage
+
+\parskip 1mm
+\input{01-frontmatter/ack}
+\parskip 0mm
+\newpage
+
+\cleardoublepage
+
+\parskip 1mm
+\input{01-frontmatter/abstract-dutch}
+\parskip 0mm
+\newpage
+\glsresetall
+
+\cleardoublepage
+
+\selectlanguage{english}
+
+\parskip 1mm
+\input{01-frontmatter/abstract}
+\parskip 0mm
+\newpage
+\glsresetall
+
+\cleardoublepage
+
+\microtypesetup{protrusion=false}
+
+\tableofcontents
+
+\listoftables
+
+\listoffigures
+
+\microtypesetup{protrusion=true}
+
+% style for acronyms that includes dots
+\newglossarystyle{dottedlocations}{%
+  \glossarystyle{list}%
+  \renewcommand*{\glossaryentryfield}[5]{%
+    \item[\glsentryitem{##1}\glstarget{##1}{##2}] ##3.%
+      \unskip\leaders\hbox to 2.9mm{\hss.}\hfill##5}%
+  \renewcommand*{\glsgroupskip}{}%
+}
+\setglossarystyle{dottedlocations}
+\printglossary[title={Acronyms}, type=\acronymtype]
+\markboth{\sffamily ACRONYMS}{\sffamily ACRONYMS}
+
+\printglossary[title={Glossary}]
+\markboth{\sffamily GLOSSARY}{\sffamily GLOSSARY}
+
+
+%TODO: figure this out
+%\markboth{\MakeUppercase\nomname}{\MakeUppercase\nomname}
+%\printnomenclature
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2. MAIN MATTER                                                
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\glsresetall % Some acronyms are first expanded in the list of figures 
+\mainmatter
+\todo[inline]{read and add commas where appropriate}
+\todo[inline]{also check for indirect wording: "this means that X" -> X}
+\todo[inline]{rule -> recipe where needed}
+\todo[inline]{his/her -> their}
+\todo[inline]{not "very", not "much", no contractions (e.g. don't --> do not)}
+\todo[inline]{we -> I where appropriate}
+\todo[inline]{quickfix or quick fix --> quick-fix}
+\todo[inline]{check thousands notation throughout document: use commas, not dots}
+\todo[inline]{read and pay attention to introducing of terms like, "item", "rating"}
+\todo[inline]{clear page after summary box where necessary?}
+\input{02-vision/vision}
+\input{03-education/education}
+\input{04-tools/tools}
+
+\appendix
+\input{06-appendices/00-scoring}
+% it's just too long, and nobody cares anyway
+%\input{06-appendices/01-categories}
+\input{06-appendices/04-pairups}
+\input{06-appendices/06-its-metrics}
+\input{06-appendices/03-patterns}
+\input{06-appendices/02-scopes}
+\input{06-appendices/07-battlecards}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3. BACK MATTER                                                
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
+
+
+

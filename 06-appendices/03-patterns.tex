@@ -1,0 +1,196 @@
+\chapter{Bad code patterns}
+\label{app:patterns}
+
+\begin{sidewaystable}
+\centering
+\caption[Bad code patterns]{Bad code patterns, their transitions, and resulting approved pattern.}
+%\begin{tabular}{|m{4cm}|m{6cm}|m{4.5cm}|m{4cm}|}
+\begin{tabularx}{\textheight}{|*{4}{>{\RaggedRight\arraybackslash}X|}}
+ \multicolumn{1}{>{\centering\arraybackslash}X}{\textbf{Related \newline{vulnerabilities}}} & 
+ \multicolumn{1}{>{\centering\arraybackslash}X}{\textbf{Bad pattern}} & 
+ \multicolumn{1}{>{\centering\arraybackslash}X}{\textbf{Transition}} & 
+ \multicolumn{1}{>{\centering\arraybackslash}X}{\textbf{Approved pattern}}\\
+ \cline{1-4}
+ 
+ \multirow{5}{\hsize}{Injection flaws (SQL, NoSQL, OS command, GraphQL, LDAP), log forging, XSS} & 
+ \multirow{5}{\hsize}{Polluting trusted data} &
+ \multirow{3}{\hsize}{Extract untrusted data} & 
+ \multirow{3}{\hsize}{Separated untrusted data} \\
+ 
+ &
+ &
+ &
+ \\
+ &
+ &
+ &
+ \\
+ \cline{3-4}
+ 
+ & 
+ &
+ \multirow{2}{\hsize}{Constrain value} & 
+ \multirow{2}{\hsize}{Constrained untrusted data} \\
+ 
+ &
+ &
+ &
+ \\
+ \cline{1-4}
+ 
+ \multirow{5}{\hsize}{XXE, sensitive data exposure, insecure configuration, insecure deserialization} & 
+ \multirow{2}{\hsize}{Missing object configuration} & 
+ \multirow{2}{\hsize}{Configure} & 
+ \multirow{3}{\hsize}{Approved object configuration} \\
+ 
+ &
+ &
+ &
+ \\
+ \cline{2-3}
+ 
+ &
+ \multirow{3}{\hsize}{Insecure object configuration}&
+ Correct configuration &
+ \\
+ \cline{3-4}
+ 
+ &
+ &
+ \multirow{2}{\hsize}{Remove configuration} &
+ \multirow{2}{\hsize}{Approved implicit object configuration}\\
+ 
+ &
+ &
+ &
+ \\
+ \cline{1-4}
+ 
+ 
+ \multirow{4}{\hsize}{Insecure deserialization, security misconfiguration, broken access control} &
+ \multirow{2}{\hsize}{Missing annotation} &
+ \multirow{2}{\hsize}{Annotate} &
+ \multirow{4}{\hsize}{Approved annotation} \\
+ 
+ &
+ &
+ &
+ \\
+ \cline{2-3}
+ 
+ &
+ \multirow{2}{\hsize}{Disapproved annotation} &
+ \multirow{2}{\hsize}{Correct annotation} & 
+ \\
+ 
+ &
+ &
+ &
+ \\
+ \cline{1-4}
+ 
+ \multirow{5}{\hsize}{OS command injection, XEE, security misconfiguration, open redirects, insecure data storage} &
+ \multirow{2}{\hsize}{Missing action} &
+ \multirow{2}{\hsize}{Add action} &
+ \multirow{4}{\hsize}{Approved actions} \\
+ 
+ &
+ &
+ &
+ \\
+ \cline{2-3}
+ 
+ &
+ \multirow{3}{\hsize}{Calling a disapproved action}&
+ \multirow{2}{\hsize}{Replace with alternative}&
+ \\
+ 
+ &
+ &
+ &
+ \\
+ \cline{3-4}
+ 
+ &
+ &
+ Remove action&
+ --- \\
+ \cline{1-4}
+ 
+\end{tabularx}
+\end{sidewaystable}
+
+%\begin{sidewaystable}
+%\centering
+%\caption[Quality related bad code patterns]{Quality related bad code patterns, their transitions, and resulting approved pattern.}
+%\begin{tabularx}{\textheight}{|{>{\RaggedRight\arraybackslash}X|>{\hsize=.5\hsize}X|>{\RaggedRight\arraybackslash}X|}}
+%\multicolumn{1}{>{\centering\arraybackslash}X}{\textbf{Bad pattern}} & 
+%\multicolumn{1}{>{\centering\arraybackslash}X}{\textbf{Transition}} & 
+%\multicolumn{1}{>{\centering\arraybackslash}X}{\textbf{Approved pattern}}\\
+%\cline{1-3}
+%
+%Neglecting naming conventions & 
+%Rename & 
+%Following naming conventions \\
+%\cline{1-3}
+%
+%\multirow{3}{\hsize}{Neglecting structural conventions} &
+%Add method &
+%\multirow{3}{\hsize}{Following structural conventions} \\
+%\cline{2-2}
+%
+%&
+%Add super &
+%\\
+%\cline{2-2}
+%
+%&
+%Add field &
+%\\
+%\cline{1-3}
+%
+%Code duplication & 
+%Remove & 
+%--- \\
+%\cline{1-3}
+% 
+%\end{tabularx}
+%\end{sidewaystable}
+
+\begin{sidewaystable}
+\centering
+\caption[Quality related bad code patterns]{Quality related bad code patterns, their transitions, and resulting approved pattern.}
+\begin{tabular}{|l|l|l|}
+\multicolumn{1}{l}{\textbf{Bad pattern}}&
+\multicolumn{1}{l}{\textbf{Transition}}&
+\multicolumn{1}{l}{\textbf{Approved pattern}}\\
+\cline{1-3}
+
+Neglecting naming conventions & 
+Rename & 
+Following naming conventions \\
+\cline{1-3}
+
+\multirow{3}{*}{Neglecting structural conventions} &
+Add method &
+\multirow{3}{*}{Following structural conventions} \\
+\cline{2-2}
+
+&
+Add super &
+\\
+\cline{2-2}
+
+&
+Add field &
+\\
+\cline{1-3}
+
+Code duplication & 
+Remove & 
+--- \\
+\cline{1-3}
+ 
+
+\end{tabular}
+\end{sidewaystable}

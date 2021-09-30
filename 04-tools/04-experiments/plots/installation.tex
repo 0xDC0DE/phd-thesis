@@ -1,0 +1,56 @@
+%Time needed for users with marketplace:
+%120,300,90, 478,123,37, 140
+%Time needed for users without marketplace:
+%306,181,128
+
+\begin{tikzpicture}[scale=0.9]
+
+    \begin{axis}[
+        width=10cm, height=3cm,
+        xmin=36, xmax=478,
+        ymin=-1, ymax=1,
+        y axis line style={draw=none},
+        x axis line style={color=gray},
+        xtick pos=bottom,
+        grid=none,
+        ytick pos=left,
+        ytick={0,1},
+        xtick={37,478},
+        yticklabels = {
+            Without marketplace,
+            With marketplace
+        },
+        y tick label style={color=gray},
+        x tick label style={color=gray},
+        scatter/classes={%
+            a={mark=o}}
+    ]
+    
+    \addplot[scatter,only marks,
+        mark size = 2pt,
+        fill = scw-orange,
+        draw=scw-orange,
+        scatter src=explicit symbolic]
+            table {
+            120 1 
+            300 1 
+            90  1 
+            478 1 
+            123 1 
+            37  1 
+            140 1
+        };
+    \addplot[scatter,only marks,
+        mark size = 2pt,
+        fill = scw-teal,
+        draw=scw-teal,
+        scatter src=explicit symbolic]
+            table {
+            306 0
+            181 0
+            128 0
+        };
+    \end{axis}
+
+    
+\end{tikzpicture}

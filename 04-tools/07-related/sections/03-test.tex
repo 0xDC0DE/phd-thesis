@@ -1,0 +1,73 @@
+\section{Test}
+\label{sec:related-test}
+
+Most security practices are done in the test phase
+
+generally security benefits from things that hold still:
+more time to test and figure out what is wrong, and to figure out how to fix it
+
+increased rate of change makes security harder, that burden is being shared with developers imperfectly
+
+some part of security will always be reactive, we know more tomorrow than we know today
+
+To develop new features or fix bugs, a developer starts from a copy of the current code base.
+As other developers submit changed code, this copy gradually ceases to reflect the main (or master) version.
+The longer development continues, the greater the risk of conflicts when merging work back into the main version.
+\Gls{ci} tools are developed to merge the working copies of developers into a shared main version and automatically build and test as frequently as possible.
+A build server is usually set up for this purpose, that will build and test the code after every commit and report the results back to developers.
+
+
+Despite only existing for roughly half a century\todo{ref}, the field of software security has advanced greatly.
+Many novel security tools and practices have been introduced, and proven to be effective.
+But so far no silver bullet has been found, no single tool or practice to single handedly eradicate all software security problems.
+In fact, no such thing is likely to exist.
+Any new practices do not replace old ones, but are instead added to the arsenal of weapons that is available to software development and security teams.
+That is why, in this section I describe some of these more traditional security tools and practices, as I believe they will stay relevant, even if new tools and practices are being developed.
+For each of the mentioned practices, I describe some of the advantages and disadvantages, as well as briefly discuss several noteworthy examples.
+
+\subsection{Penetration testing}
+Penetration testing is the practice of breaking into running software by attacking it.
+Sometimes the penetration tester has access to the source code to speed up this process.
+It is a common practice used by many companies and usually external experts are hired to perform these tests~\cite{cruzes2017security}.\todo{ref bsimm?}
+Since the penetration tester needs access to the running software this can only be done very late in the \gls{sdlc}.
+Already in the introduction, we addressed that relying on security experts does not scale well.
+Furthermore, it does not integrate well in modern development strategies, where fast feedback cycles are frequent releases are key~\cite{securitytestingagile}.
+Penetration testing does improve the security awareness of the developers but does not cause any long-lasting change in development practices by itself~\cite{turpe2016penetration}.
+
+\subsection{Static application security testing}
+As discussed in Chapter~\ref{ch:goals}, static analysis tools are typically used in a reactive approach to security.
+A shift left movement is ongoing to apply these tools as early as possible in the \gls{sdlc}.
+Static analysis tools are well researched~\cite{li2017static,jovanovic2006pixy,livshits2005finding} and commonly used to detect vulnerabilities~\cite{cruzes2017security}.
+Most tools can run automatically and as a result are easily adapted in modern development strategies.
+Static analysis tools vary from robust and time-consuming analyses such as Fortify~\cite{chess2004static} to light real-time analyses~\cite{brown2016build}.\todo{verify refs}
+In controlled experiments, static analysis tools proved to be more effective than penetration testing~\cite{Scandariato2013}.
+However, there are some downsides to their global analyses that can be mitigated with our approach.
+Static analysis tools can not be trivially tailored by ignoring context.
+\todo{flow}
+For example, vulnerability testing with context-insensitive, local versions of the analyses will in many cases not be as effective in terms of \gls{efp} rates as rules that are designed and tuned for local analyses.
+\todo{rephrase with paved path}
+And even if local versions of the analyses perform well, they do not provide fixes to resolve the discovered issues and hence do not enforce uniform solutions like Sensei does.
+\todo{interesting to include or not?}
+Some techniques have been developed to improve the speed of static analysis such that they require orders of magnitude less code to perform similar analyses~\cite{brown2016build}.
+One such technique is the use of micro grammars as checkers.
+These are incomplete, language-independent parsers that can be used to describe patterns in code.
+This technique is vastly less complex than traditional static analysis.
+The focus is on language errors (e.g., unchecked dereferences), but has never been applied to security bugs.
+Security bugs are more language-specific and API-dependent than language errors so this approach can not be easily applied to security.
+\todo{is this already possible?}
+However, we have considered making Sensei rules virtual-machine dependent instead of language dependent.
+For example Java, Kotlin, and Scala all run on the Java Virtual Machine (JVM).
+They make use of the same APIs but use different syntax.
+It is possible to imagine JVM rules that are applicable to all three languages.
+
+TODO: SemGrep
+
+
+\subsection{Dynamic application security testing}
+
+\subsection{Code Reviews}
+Code review is a manual inspection of produced code. It is usually done by another developer than the original author but with that author present. 
+The advantage of this practice is that it can be done as early as desired in the SDLC. Code reviews also provide an educational aspect for the developer whose code is reviewed~\cite{futcher2008guidelines}.
+The downside is that, similarly to penetration testing, it relies on internal or external experts and hence does not scale well. %It is costly in developer time compared to more automated solutions.
+
+Some tools are designed to automate the detection of issues in the review stage, such as Tricorder~\cite{sadowski2015tricorder} and Snyk (https://snyk.io/). While these can provide fixes, most developers go back to their IDE rather than use the code review tool to resolve the issues~\cite{sadowski2015tricorder}.

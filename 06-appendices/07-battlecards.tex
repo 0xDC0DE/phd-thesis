@@ -1,0 +1,25 @@
+\chapter{Security battlecards}
+\label{app:battlecards}
+
+These battlecards contain brief descriptions supplemented with my personal opinion on security tools that are recommended for use in the paved path methodology.
+
+\battlecard{SonarLint by SonarSource}{\url{https://www.sonarlint.org/}}{
+\label{bc:sonarlint}
+SonarLint is a free IDE plugin that focuses on code quality. As explained in this work code quality and code security are often related and hence some rules exist in SonarLint that target security rules. SonarLint is developer-friendly as it provides quick-fixes and clear descriptions with small code examples. However, it only provides a small number of security rules and the rules are not easily customized.}{Lint}
+{Develop}{Real time}{Quick-fix}
+
+\battlecard{Snyk Open Source}{\url{https://snyk.io/}}{
+\label{bc:snyk}
+Snyk Open Source tests for vulnerabilities in open source dependencies. It is available in several IDE's but its web view is the most useful. Snyk Open Source provides remediation through automated pull requests to bump the dependency to the latest version.}{SCA}
+{Build}{Seconds}{Pull request}
+
+\battlecard{Dependabot}{\url{https://dependabot.com/}}{
+\label{bc:dependabot}
+Dependabot creates pull requests to keep your dependencies secure and up-to-date. It is acquired by GitHub and is since free to use and integrated into the platform.
+}{SCA}{Build}{Seconds}
+{Pull request}
+
+\battlecard{GitLab Dependency Scanning}{\url{https://gitlab.com/gitlab-org/security-products/dependency-scanning}}{
+\label{bc:gitlab}
+GitLab's integrated dependency scanner supports many languages and package managers. It provides remediation through automated merge requests, GitLab's term for pull requests.
+}{SCA}{Build}{Seconds}{Merge request}

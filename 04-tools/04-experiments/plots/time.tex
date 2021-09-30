@@ -1,0 +1,50 @@
+\begin{tikzpicture}
+    \node at (0,0) {
+        \begin{tikzpicture}
+        \begin{axis}[
+            %ybar interval,
+            ymax=17, ymin=0,
+            xmin=10, xmax=100,
+            xtick = {10,100},
+            xtick pos=bottom,
+            grid=none,
+            ytick pos=left,
+            ytick = {-1,20},
+            y axis line style={draw=none},
+            x axis line style={color=gray},
+            x tick label style={color=gray, yshift={-1em}},
+            y tick label style={color=gray},
+            ]
+            
+            \addplot [
+            scw-teal,
+            fill=scw-teal,
+            ybar interval,
+            mark=none,
+            ]
+            coordinates
+            {
+            (10, 1)
+            (20, 4)
+            (30, 11)
+            (40, 17)
+            (50, 15)
+            (60, 15)
+            (70, 9)
+            (80, 2)
+            (90, 1)
+            (100, 0)
+            };
+    
+        \end{axis}
+        \end{tikzpicture}
+    };
+    
+    %x axis
+    \node[gray] at (0,-3.05) {54 min};
+    \draw[thick, lightgray] (-3.47,-2.7) -- (3.42,-2.7);
+    \draw[thick, lightgray] (-3.47,-2.7) -- (-3.47,-2.6);
+    \draw[thick, lightgray] (3.42,-2.7) -- (3.42,-2.6);
+    \draw[thick, lightgray] (0,-2.7) -- (0,-2.6);
+    
+\end{tikzpicture}

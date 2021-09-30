@@ -1,0 +1,26 @@
+\chapter{Sensei}
+\label{ch:sensei}
+
+% Context
+The development of the Sensei \gls{ide} plugin started in 2016, when dr. Matias Madou and Nathan Desmet founded the company Sensei Security.
+I joined this company, that later would merge with \gls{scw}, as an intern a few months later.
+% need and task in one
+When I started my research in 2017, I set forth to discover how this tool could be used most effectively, to evaluate its concepts and features, and to help direct its design.
+In this chapter, I describe the Sensei \gls{ide} plugin and discuss the lessons we learned during the implementation and testing of the tool.
+
+\summarybox{
+The first iteration of the Sensei rule editor was a \gls{gui} containing many input fields to allow fast customization of rules.
+It was used by us to create hundreds of rules for customers and developer communities which frequently resulted in the need for extra features.
+Some of these features are very useful at improving the context awareness of Sensei and its usability, other features fell out of use.
+Eventually, through the addition of these many features, the rule editor became too cluttered and unclear.
+
+As a more flexible alternative, Nathan Desmet, principal engineer at \gls{scw}, and I designed a new formatting language based on \gls{yaml} syntax that allows rule writers to quickly and effectively create rules and quick-fixes.
+The rules include several features to improve the usability of the developer and add support for libraries and for design flaws.
+}
+
+\input{04-tools/03-sensei/sections/00-installation}
+\input{04-tools/03-sensei/sections/01-rules}
+\input{04-tools/03-sensei/sections/02-rule-features}
+%\input{04-tools/03-sensei/sections/02-install}
+%\input{04-tools/03-sensei/sections/02-plugin}
+

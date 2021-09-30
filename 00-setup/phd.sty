@@ -1,0 +1,64 @@
+% fancyheadings
+%\usepackage{fancyheadings}
+\usepackage{fancyhdr}
+
+% Headers
+%\addtolength{\headwidth}{\marginparsep}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\bfseries\sffamily\thepage}]%
+	{\fancyplain{}{\bfseries\sffamily\rightmark}}
+\rhead[\fancyplain{}{\bfseries\sffamily\leftmark}]%
+	{\fancyplain{}{\bfseries\sffamily\thepage}}
+\cfoot{}
+
+
+% nieuwe captions: `Figuur' of `Tabel' in bold + kleinere font
+\renewcommand{\@makecaption}[2]{
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{{\bfseries \small #1:} \small #2}%
+  \ifdim \wd\@tempboxa >\hsize
+    {\small \bfseries #1:} \small #2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip
+}
+
+
+% nieuw chaptercommando: rechts gealigneerd + SansSerif
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedleft \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        %\huge\bfseries \sffamily \@chapapp\space \thechapter
+        \LARGE\bfseries \sffamily \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+    \interlinepenalty\@M
+    %\Huge \bfseries \sffamily #1\par\nobreak
+    \huge \sffamily #1\par\nobreak
+    \vskip 40\p@
+}}
+
+% starred chapter head! (Used for Table of contents, Ack, etc)
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        %\huge\bfseries \sffamily \@chapapp\space \thechapter
+        \LARGE\bfseries \sffamily \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+      \fi
+    \fi
+    \interlinepenalty\@M
+    %\Huge \bfseries \sffamily #1\par\nobreak
+    \huge \sffamily #1\par\nobreak
+    \vskip 20\p@
+}}

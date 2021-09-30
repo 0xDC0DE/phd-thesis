@@ -1,0 +1,48 @@
+\section{Findings}
+
+\subsection{Rules}
+
+
+
+\subsection{Remediation}
+
+\subsection{Rollout best practices}
+\label{sec:rollout}
+
+
+
+
+\subsection{Rule creation}
+
+
+
+
+\subsection{Project management}
+Our approach and the collected information described in  Section~\ref{sec:mgmt}  allow  interesting  compliance  visualization to  support  management. Figure~\ref{fig:scanexample} shows a potential visualization of the compliance history. Notice that it differentiates more than the number of compliant vs. non-compliant cases.
+
+The first category is when some of the violating instances have been fixed or some of the compliant instances have been broken. We mark the \emph{fixed violations} in a darker green and the \emph{broken compliances} in red. In Figure~\ref{fig:scanexample}, the first scan results showed half of the currently known instances were compliant, as half of the graph starts as orange and the other half light green. In the second scan an equal number of compliances were broken as violations were fixed. With only the compliant and violating parts, no changes would be visible in such data, since the compliance rate did not change. It is clear from the dark green and red parts, however, that some instances have been changed.
+
+%\begin{figure}
+%  \centering
+%  \includegraphics[width=0.95\textwidth]{timeserie4.png}
+%  \caption{An example project time series on the manager dashboard, showing the progress over the duration of 6 scans.}
+%  \label{fig:scanexample} 
+%\end{figure}
+
+When new code is written it is also important to distinguish this from the previously described code rewrites. For this reason we also mark \emph{new compliances} and new \emph{new violations}. New instances are in red and dark green, in this case on top of the graph. This can be seen in Figure~\ref{fig:scanexample} in the third scan. No existing code was changed in this scan and newly developed code contained an equal number of compliances and violations.
+
+It is possible that during refactoring some instances are deleted. In this case no new compliances or violations are introduced, but the compliance rate still changes. This can be seen in Figure~\ref{fig:scanexample} in the fourth scan, no red or dark green is present in this scan, but the compliance ratio still changes.
+
+Finally, it is possible that new rules are added at some point in time. These rules then cause new violations or compliances to be found, but they do not represent new changes to the code. It is possible that these issues have been there since the first scan but they remained undetected. To reflect changes caused by new rules we create an \emph{unknown} section. It is added retrospectively to all scans previous to the scan that introduces the new rule. The category is visualized as transparent and its value is the sum of the compliant and violating instances of the new rule in the scan that introduces it. This can be seen in Figure~\ref{fig:scanexample}, in the first four scans only 80\% of the graph is colored, this means that 20\% of the current instances have only been discovered with new rules in the fifth scan. Violations of the new rule are marked in orange, not in red since red is used for new violations, these are not necessary new violations, only newly discovered.
+
+Since the manager dashboard is still in development we have not enough user feedback yet on whether or not these are good metrics and visualizations for the security state of a software project.
+
+Some of the comparable tools do not provide any management dashboards at all (Tricorder, SpotBugs, SecureAssist, Snyk, ASIDE). We believe that in order to convince managements and to help them roll out the tool, it is important to show a return on investment. Other static analysis solutions (Fortify, Veracode, Checkmarx) do provide management dashboards. The most common features in these dashboards are tracking the amount of vulnerabilities, the severity of different vulnerabilities, and the vulnerability categories. In comparison to our proposed time series they do not focus on verifying the human capital. In contrast, we believe that measurements like the ratio of new compliances to new violations are important to track the developers' skills and awareness. The dashboards of other tools are instead mostly designed to monitor the application state.
+
+\subsection{Codebase impact}
+\label{sec:codebase-impact}
+
+
+
+
+

@@ -1,0 +1,50 @@
+\begin{tikzpicture}
+    \node at (0,0) {
+        \begin{tikzpicture}
+        \begin{axis}[
+            %ybar interval,
+            ymax=24, ymin=0,
+            xmin=1500, xmax=5000,
+            xtick = {1500,5000},
+            xtick pos=bottom,
+            grid=none,
+            ytick pos=left,
+            ytick = {-1,25},
+            y axis line style={draw=none},
+            x axis line style={color=gray},
+            x tick label style={color=gray,
+                yshift={-1em},
+                /pgf/number format/.cd,fixed,precision=3, set thousands separator={}},
+            y tick label style={color=gray},
+            ]
+            
+            \addplot [
+            scw-teal,
+            fill=scw-teal,
+            ybar interval,
+            mark=none,
+            ]
+            coordinates
+            {
+            (1500, 2)
+            (2000, 1)
+            (2500, 10)
+            (3000, 14)
+            (3500, 24)
+            (4000, 14)
+            (4500, 9)
+            (5000, 0)
+            };
+    
+        \end{axis}
+        \end{tikzpicture}
+    };
+    
+    %x axis
+    \node[gray] at (0.9,-3.05) {3659 points};
+    \draw[thick, lightgray] (-3.47,-2.7) -- (3.42,-2.7);
+    \draw[thick, lightgray] (-3.47,-2.7) -- (-3.47,-2.6);
+    \draw[thick, lightgray] (3.42,-2.7) -- (3.42,-2.6);
+    \draw[thick, lightgray] (0.9,-2.7) -- (0.9,-2.6);
+    
+\end{tikzpicture}

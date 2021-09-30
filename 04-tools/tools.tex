@@ -1,0 +1,52 @@
+\part{Tools}
+\label{p:tools}
+\epigraph{Do, or do not. There is no try.}{\textit{Yoda}}
+
+\clearpage
+\section*{Introduction}
+% (CONTEXT): background for less specialized readers and establish or recalls the importance of the problem
+% ==> state and vision without me
+
+Despite growing efforts to educate developers, they still frequently make mistakes in practice.
+Because security experts are understaffed and unable to assist each developer, security tools have become part of the developer's arsenal.
+
+% (NEED): motivates the audience by stating the difference between the desired and actual situation
+% ==>shortcomings and goal from my perspective
+However, security tools are not designed with the developer in mind and are often a big inhibitor of their productivity. As a result developers dislike and often disable these security tools. 
+
+
+% (The TASK) What did I do?
+We designed and implemented an \gls{ide} plugin called Sensei in line with the paved path methodology.
+Sensei has a heavy focus on developer usability and productivity.
+It checks compliance of code being written to a set of coding guidelines, similar to an as-you-type spell checker.
+Upon detected violations, it offers remediation guidance and additional information to the developer.
+Sensei allows developers and security experts to develop customized rule sets to be enforced, specific to each project.
+
+% (OBJECT)
+In this part I first describe the evolution of traditional security tools in Chapter~\ref{ch:goals}.
+I explain where they are lacking as a tool to support development in the paved path methodology and what goals and requirements to set instead.
+In Chapter~\ref{ch:sensei}, I describe the Sensei \gls{ide} plugin, its design, and its features.
+I continue by describing the experiments and observations of the tool in Chapter~\ref{ch:experiments}.
+In Chapter~\ref{ch:tool-eval}, I discuss the findings of the experiments and the lessons learned and also offer some perspectives that remain future work.
+
+% (FINDINGS)
+%We observed that developers stay engaged with Sensei and heavily use its remediation guidance.
+%Developers also write their own rules for various purposes other than security.
+%
+%% (CONCLUSION)
+%Sensei is able to overcome some of the inhibitors of developer productivity caused by traditional security tools such as slow scanning speeds, false positives, and lack of remediation guidance.
+%
+%% (PERSPECTIVES)
+%Although this tool is already a big step in the right direction, developer usability can still be improved by making it more user aware, and by improving its usability on legacy code bases.
+%Another challenge that remains future work is the automated creation of custom guidelines.
+
+\input{04-tools/00-goals/00-goals}
+\input{04-tools/03-sensei/03-sensei}
+\input{04-tools/04-experiments/04-experiments}
+\input{04-tools/05-evaluation/05-evaluation}
+
+\part{Related work}
+\label{p:related}
+\epigraph{Read them have you? Page-turners they were not.}{\textit{Yoda}}
+
+\input{04-tools/07-related/07-related}

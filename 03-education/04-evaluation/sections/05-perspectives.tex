@@ -1,0 +1,114 @@
+\section{Perspectives}
+\label{sec:its-perspectives}
+
+\subsection{Implementation into the training platform}
+Results from the Rasch model can be used to improve the \gls{scw} training platform.
+This is a step by step process that has already started.
+
+\paragraph{Quality control of the exercises}
+The results of a Rasch model for the use in tests are used to remove items with a low discrimination parameter from the item bank. 
+If an item has a low discrimination parameter, this means that it can not be used to differentiate between users of high and low ability levels.
+These items are not useful in a test, where discriminating between users of different ability levels is exactly the goal.
+Before removing items with a low discriminative ability, the examiner often manually checks items that are only slightly below the predetermined threshold.
+If they are deemed important enough to be included in the tests despite their low discriminative ability, they are not removed from the item bank.
+
+As a first step to use the results of the Rasch models in the \gls{scw} platform, we can use a similar procedure for quality control of the challenges.
+In contrast with tests, estimating ability is not the main goal of the \gls{its}.
+Items with a low discrimination parameter might have little influence on the accuracy of ability estimates, but these items could still provide meaningful learning opportunities.
+A low discriminative ability can be explained by an extreme difficulty, or by a defect.
+If all users are answering the challenge correctly because it is extremely easy, or all users are answering it incorrectly because it is extremely hard, then this challenge can not be used to discriminate between users of high and low ability level.
+But if the discrimination parameter is low, and the difficulty level is not extreme, that means there is a different reason for this low correlation between a correct answer and the ability level of the user.
+A low discrimination parameter, in this case, is an indication that the challenge is misleading or defect.
+Challenges like this have been manually checked, and many of them have indeed shown defects in the past, or are still misleading in some way.
+
+\paragraph{Improved challenge difficulty measure}
+As explained in Appendix~\ref{app:challenges}, currently the difficulty of the challenges is only determined by the number of options to choose from.
+It is a probability of answering correctly in case of a blind guess.
+The results of the Rasch model experiment in Section~\ref{sec:eval-rasch} show that there is no statistically significant correlation between this difficulty and the likelihood of users answering the challenge correctly.
+It is not an accurate difficulty measure.
+
+Nonetheless, this difficulty measure is used in tournaments and other gamification features to decide the amount of points that are awarded to a user after answering correctly.
+It would be more accurate to use the \gls{irt} difficulty for this purpose.
+This difficulty is only available for challenges for which there is a sufficient amount of data.
+There is still need for another measure to better approximate the real difficulty of new challenges that still have insufficient playtime.
+
+In the experiment, I have shown that there is a correlation between the difficulty on one hand, and the framework, the vulnerability type, and the presentation on the other hand.
+A good start for such a temporary approximation could then be to take the mean difficulty of all challenges in the same framework, about the same vulnerability, and with the same presentation.
+
+\paragraph{Improved user ability measure}
+Currently, a security maturity score is computed for each user based on the amount of points they have earned and the accuracy they have maintained while doing so.
+This maturity score is shown on the metrics dashboard, together with a more granular breakdown of the average strengths and weaknesses.
+This metrics dashboard is shown in Figure~\ref{fig:metrics} on page 25.\todo{still page 25?}.
+It is easy to reach a high maturity level for any user, if they spend enough time solving many easy challenges so that they earn points while maintaining a high accuracy.
+
+The \gls{irt} ability estimate can be used to make this maturity score more meaningful.
+However, it currently only provides a global ability estimate and lacks the granularity required for the metrics dashboard.
+A multidimensional Rasch model can be used to achieve this.
+In this model, the ability estimate is represented as a vector, with a value for each dimension.
+It remains future work to train and evaluate such a multidimensional Rasch model with, for example, one dimension for each vulnerability category on the platform.
+
+\paragraph{Improved assessments}
+The past few months, assessments have been the most used play mode on the platform.
+Assessments are built like classic tests, all users have to complete the same challenges and their accuracy is used as an indication of ability.
+
+First, assessments can be improved by using \gls{irt} to estimate the ability level of the user.
+This ability estimate is more meaningful than the accuracy.
+This is most easily understood with an example: two users each complete an assessment with two challenges, one easy challenge and one difficult challenge.
+The first user makes a mistake (due to inattention) on the easy challenge, but answers the difficult challenge correctly.
+The second user answers the easy challenge correctly, but does not know the answer to the difficult challenge.
+These users have achieved the same accuracy on the assessment.
+However, intuitively, we would be more likely to attribute a higher ability level to the first user.
+This is exactly what can be achieved when \gls{irt} is used.
+
+Second, assessments can be made adaptive, similar to a \gls{cat}.
+This means, serving new challenges based on the temporary ability estimate during the assessment.
+Not only will this improve accuracy of the ability estimate, it will also reduce the amount of challenges needed to complete an assessment.
+
+\paragraph{Recommendations in training}
+Once all other implementation related to the Rasch model have been completed, the \gls{cf} algorithm can be integrated in the platform to dynamically recommend challenges to each user in the training mode.
+
+\subsection{Integrating with developer tools}
+\label{sec:its-integration}
+\Gls{scw} is currently developing integrations for several developer and security tools such as Jira\footnote{\url{https://marketplace.atlassian.com/apps/1221320/secure-code-warrior-for-jira?tab=overview&hosting=cloud}}, GitHub\footnote{\url{https://github.com/marketplace/secure-code-warrior-for-github}}, Fortify\footnote{\url{https://www.microfocus.com/en-us/fortify-integrations/secure-code-warrior}}, and more\footnote{\url{https://help.securecodewarrior.com/hc/en-us/categories/900001365043-Integrations-and-Extensions-}}.
+Additionally, there is also an integration for the \gls{ide}, discussed in great detail in Part~\ref{p:tools} of this work.
+
+The current goal of these integrations is to provide contextual training to developers.
+When a security vulnerability is detected through Fortify, or a ticket is created in one of the bug tracking systems that involves a vulnerability, the integration will insert links to training on the \gls{scw} platform about this specific vulnerability.
+This training is highly relevant since it is directly related to the task at hand, i.e. remediating the vulnerability.
+
+However, it is my opinion that they might hurt the productivity and usability of the developer.
+I believe the developer does not want to make a context switch to complete training exercises, when they should be resolving the problem.
+It would be more beneficial to let these integrations insert project-specific remediation guidance, as will be explained in Part~\ref{p:tools}.
+
+Most of the integrations are still in development, and are only used by a select few customers.
+In the future, when more data is available, it will be interesting to analyse which of these inserted links are clicked most frequently.
+This data can give an indication for which vulnerabilities developers seek out training, and hence which vulnerabilities are likely more difficulty to understand and solve in practice.
+It would be interesting to compare these results to those of the Rasch and other priority lists such as the \gls{owasp} Top 10.
+
+\paragraph{Method and System for Adaptive Security Guidance}
+Instead of forcing a developer to make a context switch to follow this contextual training, I have invented an alternative solution.
+With this system, contextual training can be provided at a more appropriate time, that is, when the developer opens the training platform.
+This invention has been patented by \gls{scw} as a Method and System for Adaptive Security Guidance\footnote{\url{https://patents.google.com/patent/US20200211135A1/en}}.
+
+In this invention, the data collected from the integrations feeds into the \gls{its} to result in even more relevant, and highly applicable recommendations.
+For example, the \gls{ide} integration allows us to monitor code changes the developer makes and verify them against a set of rules to detect the mistakes they make in practices.
+Integrations with security scanners such as Fortify in combination with code repository tools such as GitHub, also allow us to collect data about the detected vulnerabilities and who is responsible for those pieces of code.
+At the same time, integrations with issue tracking systems such as Jira enable us to detect which tasks a developer is assigned to, and whether there are any security problems or security critical features among them.
+All of this data, in combination with the performance of users on the platform itself, enables us to make highly relevant recommendations.
+
+Implementing such a system is most likely achieved by first selecting a list of relevant items to recommend and then choosing the most appropriate.
+If a user is assigned a ticket on Jira regarding a \gls{sql} injection, for example, a challenge needs to be selected from the list of challenges about \gls{sql} injection in the relevant language and framework.
+Out of this list, the challenge with the highest predicted rating can be recommended to the user.
+Implementing and evaluating this system remains future work.
+
+\subsection{Mobile application}
+During my research at \gls{scw} I have been closely involved in the design of a mobile application called Secure Code Bootcamp\footnote{\url{https://www.securecodewarrior.com/products/secure-code-bootcamp}}.
+Besides videos and texts explaining different vulnerability types, developers can also play challenges similar to those on the training platform.
+The challenges for the mobile app can be generated from the same vulnerability data as those on the platform.
+
+Instead of presenting it as and identify, locate, or fix exercise, a new presentation form has been developed that is more suitable for a small screen.
+In these challenges the user has to review of a code sample and either accept or reject it based on the security of the sample.
+To accept or reject, the user can tap a button, or swipe to the left or right in a Tinder-style interaction with the app. 
+
+The app is used by a few hundred of students and developers but has not yet had as much use as the \gls{scw} platform itself.
+In the future, analyzing the learning behaviour of the users on this app can provide further insights in the effect of different types of exercises, and the mobile context of the education.

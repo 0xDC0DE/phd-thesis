@@ -1,0 +1,91 @@
+\begin{tikzpicture}
+
+    %\draw [ultra thin, scw-teal] (1.45,3.5) -- (1.45,-3.5);
+    
+    \node at (0,0) {
+        \begin{tikzpicture}
+          \begin{axis}[
+            xbar,
+            y axis line style={ opacity=0 },
+            axis x line=none,
+            y tick label style={
+                color=gray,
+                align=left
+                },
+            tickwidth=0pt,
+            xmin=0,
+            xmax=38,
+            y=20pt,
+            ytick=data,
+            nodes near coords,
+            nodes near coords style={
+                color=gray
+            },
+            visualization depends on={x \as \myx},
+            every node near coord/.append style = {
+                shift = { (axis direction cs: 39-\myx,0) }     
+            },
+            yticklabels = {
+                {SQL    },
+                XSS,
+                {Input validation (2)},
+                Stacktrace printing,
+                {Input validation (1)},
+                Information leakage,
+                Log forgery,
+                File path,
+                File extension,
+                File size
+            },
+            ymajorgrids={true},
+            ]
+            
+            \addplot 
+            [scw-teal,
+            fill=scw-teal]
+            coordinates
+            {
+            %(4,{SQL})
+            %(7,XSS)
+            %(15,{Input validation (2)})
+            %(21,Stacktrace printing)
+            %(27,{Input validation (1)})
+            %(29,Information leakage)
+            %(30,Log forgery)
+            %(32,File path)
+            %(35,File extension)
+            %(38,File size)
+            (4,1)
+            (7,2)
+            (15,3)
+            (21,4)
+            (27,5)
+            (29,6)
+            (30,7)
+            (32,8)
+            (35,9)
+            (38,10)
+            };
+            
+          \end{axis}
+        \end{tikzpicture}
+    };
+    
+    \node [left,gray] at (5.6,3.8) {mean removal time [s]};
+    
+    \node [left,gray] at (-2.05,-3.8) {overall mean};
+    
+    %\node [scw-teal] at (1.45,-3.8) {overall mean};
+    %\node [right,scw-teal] at (5,-3.8) {19};
+    
+    % circle on a line
+    %\draw [ultra thin, lightgray] (-2,-3.8) -- (4.85,-3.8);
+    %\node at (1.45,-3.8) [circle,fill,inner sep=1.5pt,scw-teal]{};
+   
+    % rectangle with a line 
+    \draw [ultra thin, lightgray] (1.45,-3.8) -- (4.85,-3.8);
+    \draw[scw-teal](-2,-3.6) rectangle (1.45,-4);
+    \node [right,gray] at (5,-3.8) {19};
+
+    
+\end{tikzpicture}

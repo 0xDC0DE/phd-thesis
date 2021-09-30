@@ -1,0 +1,84 @@
+\markboth{\sffamily SAMENVATTING}{\sffamily SAMENVATTING}
+\addcontentsline{toc}{chapter}{Nederlandstalige samenvatting}
+\chapter*{Op weg naar veilige software-ontwikkeling}
+\section*{Samenvatting}
+
+Het automatiseren van beveiligingstools heeft het mogelijk gemaakt om onveiligheden sneller en vroeger in de software ontwikkelingscyclus te detecteren.
+Desondanks zijn er nog steeds onveiligheden in bijna alle soorten software.
+De grote meerderheid van deze onveiligheden wordt veroorzaakt door fouten in de onderliggende code.
+Deze onveilige patronen in de code zijn al jaren gekend.
+Traditionele beveiligingstools kunnen deze problemen detecteren nadat de code is ontwikkeld, maar ze vertragen het ontwikkelingsproces en verhinderen het regelmatig lanceren van updates.
+Bovendien bieden ze geen specifieke hulp bij het oplossen van de gevonden onveiligheden.
+Wanneer de onveiligheden gedetecteerd zijn, is het aan de ontwikkelaars om deze op te lossen.
+Gemiddeld nemen bedrijven slechts één beveiligingsexpert aan per 75-200 ontwikkelaars.
+Het is eenvoudigweg niet mogelijk voor deze expert om elk van de ontwikkelaars hierbij te ondersteunen.
+Het is duidelijk dat softwarebeveiliging niet enkel nog de taak is van de expert.
+Het is onvoldoende om onveiligheden te detecteren, er moeten minder onveiligheden geschreven worden.
+Elke ontwikkelaar die code schrijft moet zelf verantwoordelijk zijn om dit vanaf het begin op een veilige manier te doen.
+Om hierop een impact te kunnen maken, moeten we kijken naar de betrokken processen, mensen, en technologie.
+Zo kunnen we garanderen dat er meer aandacht is voor softwarebeveiliging doorheen de hele software ontwikkelingscyclus.
+
+\paragraph{Proces}
+Ik stel een proces voor dat meer aandacht heeft voor de ontwikkelaar, genaamd de verharde weg methode.
+%Wanneer ontwikkelaars gevraagd worden beveiligingstools te gebruiken, dan verminderen die vaak hun productiviteit.
+%Bijgevolg negeren ontwikkelaars de feedback van deze programma's of zetten ze zelfs uit.
+Met deze methode is het de bedoeling dat het beveiligingsteam niet langer de ontwikkelaars verplicht om beveiligingstools in te zetten.
+In de plaats daarvan moet een verhard weg gelegd worden voor de ontwikkelaars om te volgen.
+Deze verharde weg moet verschillend zijn voor elk project en hangt sterk af van de gebruikte technologie.
+Ontwikkelaars en beveiligingsexperts moeten samenwerken om richtlijnen en patronen op te stellen die deze weg klaarleggen.
+Ze kunnen gezamenlijk beslissen over veiligheidskritische functionaliteit, bijvoorbeeld het beheer van encryptiesleutels.
+Ze doen dit door een bibliotheek en software te kiezen die hiervoor zal gebruikt worden.
+Ze kunnen zelfs een nieuwe bibliotheek ontwikkelen die eventueel een bestaande bibliotheek op een veilige manier aanroept.
+Ontwikkelaars zullen dan deze weg volgen, want deze bibliotheek is de eenvoudigste manier om nieuwe functionaliteit toe te voegen die beheer van encryptiesleutels vereist.
+
+\paragraph{Mensen}
+In de verharde weg methode zouden ontwikkelaars geen opleiding moeten volgen die eigenlijk bedoeld is voor beveiligingsexperts.
+Het doel van hun opleiding is niet om de veiligheid van de software te leren testen, maar hen de kennis en vaardigheden aan te leren die ze nodig hebben voor het ontwikkelen van veilige code.
+Daarom moeten ontwikkelaars een relevante en efficiënte opleiding ontvangen die specifiek aan hun rol is aangepast.
+Elke ontwikkelaar moet een defensieve opleiding volgen, in de taal en het raamwerk die die gebruikt tijdens hun dagelijks werk.
+Veel begrippen in software beveiliging zijn algemeen toepasbaar, maar de oplossingen in de code zijn vaak specifiek gebonden aan de taal, en het zijn net die oplossingen die ontwikkelaars moeten aanleren.
+
+Het opleidingsplatform van Secure Code Warrior (SCW) biedt zulke opleidingen aan in een brede waaier van programmeertalen.
+Daarbij voegen ze ook gamificatie toe om de ontwikkelaar te motiveren.
+Desondanks is er een aanzienlijk deel van de gebruikers van het platform dat slechts een minimale hoeveelheid training volgt.
+De gebruikers volgen één van de vooropgestelde trajecten, en het is waarschijnlijk dat het tempo van deze opleidingen niet geschikt is voor iedereen.
+Sommige gebruikers vervelen zich door teveel herhaling, andere gebruikers raken gefrustreerd omdat de opleiding te snel moeilijk wordt.
+
+Ik heb een intelligent leersysteem ontwikkeld voor het aanbevelen van oefeningen aan elke gebruiker op ieder ogenblik.
+Dit leersysteem gebruikt een Collaboratieve Filtering (CF) algoritme om aanbevelingen voor te stellen op basis van de voorkeuren van de meest gelijkgestemde gebruikers.
+Om dit algoritme aan te passen aan een leersysteem, worden gebruikers enkel als gelijkgestemd beschouwd wanneer zij hetzelfde nut ervaren van een oefening rond hetzelfde vaardigheidsniveau.
+Dit vaardigheidsniveau kan niet rechtstreeks gemeten worden, maar wordt regelmatig ingeschat door middel van het Rasch model uit de Item Respons Theorie (IRT).
+Dit model beschrijft de relatie tussen de geobserveerde antwoorden van een gebruiker en diens vaardigheidsniveau.
+Door deze aanpassing aan leersystemen, kan de nauwkeurigheid van een CF algoritme verhogen tot meer dan 13\%.
+Het definitief ontwerp van het intelligent leersysteem gebruikt het k-nearest neighbours baseline algoritme en bereikt een gemiddelde absolute afwijking van 0.4206 op beoordelingen op een schaal van 1 tot 5.
+
+\paragraph{Technologie}
+Traditionele beveiligingstools gebruiken een reactieve aanpak, ze scannen (deels) afgewerkte code, en de oproepende context ervan, op zoek naar onveiligheden.
+De feedback van de tools komt vaak te laat, en dit vertraagt het regelmatig lanceren van updates.
+Het is geweten dat ontwikkelaars deze beveiligingstools storend vinden en zelfs vaak uitzetten.
+Ze worden beschouwd als één van de grootste belemmeringen voor de productiviteit.
+
+In de verharde weg methode zijn tools in de eerste plaats ontworpen voor de ontwikkelaar.
+Daarvoor wordt gebruik gemaakt van een fundamenteel andere aanpak.
+In plaats van het zoeken naar onveiligheden, controleren ze het volgen van richtlijnen tijdens het schrijven van de code, ongeacht diens context.
+Wanneer ontwikkelaars bezig zijn met de functionaliteit van hun code, en hiervoor een bibliotheek gebruiken, dan staat de veiligheid vaak haaks op dit doel.
+Een goede tool zou de ontwikkelaar er op moeten wijzen wanneer die afdwaalt van de verharde weg, en die terugleiden zonder de productiviteit te schaden.
+Dit terugleiden van de ontwikkelaar op de verharde weg, zal diens productiviteit verhogen en tegelijkertijd de cognitieve belasting verlagen.
+Als de beveiligingsexpert de weg goed heeft aangelegd, dan zal de bekomen code veilig zijn.
+
+In dit onderzoek heb ik geholpen bij het ontwerp en evaluatie van Sensei, een invoegtoepassing (Engels: plug-in) ontwikkeld door SCW, voor de applicatie die ontwikkelaars ondersteunt bij het schrijven van code.
+Net zoals een spellingscontrole programma, controleert Sensei of de code voldoet aan zogenaamde recepten.
+Het voorziet hulp bij het oplossen wanneer code afwijkt van deze recepten, in de vorm van kant-en-klare oplossingen (Engels: quick-fixes).
+Ik heb experimenten en gebruikerstests uitgevoerd die aantonen dat deze functionaliteit zeer bruikbaar is en snel aanvoelt als een verlenging van de bestaande ondersteuning voor ontwikkelaars.
+
+Sensei voorziet een recept-verwerker die het mogelijk maakt voor ontwikkelaars en beveiligingsexperts om hun eigen project-specifieke richtlijnen in te stellen, in lijn met de verharde weg methode.
+Deze verwerker biedt suggesties aan uit de code, en toont een live voorbeeld van het effect van het recept op de code.
+In interviews met beveiligingsexperten geven zij aan dat Sensei de makkelijkste tool is die ze al gebruikt hebben voor het aanpassen van de opgelegde regels.
+In een empirisch experiment met studenten heb ik aangetoond dat deze aangepaste recepten een positief effect hebben op het gebruik van de tool met minimale impact op de productiviteit van de ontwikkelaar.
+
+\paragraph{Toekomst}
+Tot nu toe werden de opleiding en de tool apart beschouwd.
+In de praktijk is de grens tussen deze twee niet zo duidelijk.
+Ontwikkelaars leren vaak door te doen, en het leeraspect van de tools mag niet onderschat worden.
+Het intelligente leersysteem kan uitgebreid worden om data te gebruiken die verzameld wordt door Sensei en andere tools die gebruikt worden door ontwikkelaars zoals de code opslagplaats en de issue tracker.
+Ook kan in de toekomst de inschatting van het vaardigheidsniveau van de gebruiker uit het trainingsplatform gebruikt worden om de feedback van Sensei af te stellen.

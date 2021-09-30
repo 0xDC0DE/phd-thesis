@@ -1,0 +1,48 @@
+\part{Education}
+\label{p:education}
+\epigraph{Pass on what you have learned. Strength. Mastery. But weakness, folly, failure also. Yes, failure most of all. The greatest teacher, failure is.}{\textit{Yoda}}
+
+\clearpage
+\section*{Introduction}
+%(CONTEXT): background for less specialized readers and establish or recalls the importance of the problem
+Education in the paved path methodology should be deliberate and keep the developer experience in mind.
+The \gls{scw} training platform is a good resource for education in the paved path methodology. 
+It provides online training through defensive secure coding exercises in many different programming languages and frameworks and its gamification and interactivity make it fun and usable.
+%
+%% (NEED): motivates the audience by stating the difference between the desired and actual situation
+%% ==>shortcomings and goal from my perspective
+Despite the focus on developers and its many usability features, there is still a significant part of the user base that only follows a minimal amount of training.
+Users follow one of the predetermined courses, and it is likely that the pacing of these courses does not fit their needs.
+Users get bored due to too much repetition, or frustrated because the content is moving too fast.
+
+%(The TASK) what did I do?
+%=> IRT, ITS
+I created an \gls{its} by combining psychometric models with techniques from computer science to recommend exercises to each individual at any point in time. 
+A customized recommendation like this is more likely to keep the developer engaged and allows meaningful learning to take place.
+
+I start Part~\ref{p:education} by giving an overview of the \gls{scw} training platform, its features, and the different types of exercises in Chapter~\ref{ch:scw}.
+I then describe the design of the \gls{its} and explain the used techniques in more detail in Chapter~\ref{ch:its-implementation}.
+The last chapter in this part provides an evaluation of the \gls{its} before offering some perspectives that remain future work.
+
+%%(FINDINGS) what did I find?
+%\todo[inline]{what did I find?}
+%(TODO) The recommendation system was able to predict the learning outcome of challenges in historical data with XX\% accuracy. 
+%
+%%(CONCLUSION) what does this mean for the need?
+%\todo[inline]{what does this mean for the need? --> will there be better engagement? More learning?}
+%(TODO) Recommending only challenges with a high probability of a positive learning outcome greatly improves the efficiency of the education.
+%It also reduces the mismatch in learning pace and keeps developer engaged longer.
+%The \gls{its} also allows us to identify defect exercises, as well as promote new content.
+%
+%%(PERSPECTIVES) what now?
+%%=> integrations
+%%=> ecosystem
+%There are still opportunities to improve the \gls{its} in the future. 
+%The psychometric models allow us to take into account the ability of a user, however, we expect the agility of a user to be important as well.
+%It is also possible that recommendations can be improved by taking into account data from other developer tools, such as the issue tracking system, the code repository, and security tools. 
+%The current implementation only uses data from the training platform itself.
+
+\input{03-education/00-scw/00-scw}
+\input{03-education/02-intelligent-tutor/02-intelligent-tutor}
+\input{03-education/03-experiments/03-experiment}
+\input{03-education/04-evaluation/04-evaluation}

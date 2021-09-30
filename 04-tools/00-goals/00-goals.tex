@@ -1,0 +1,26 @@
+\chapter{Goals and requirements}
+\label{ch:goals}
+
+% CONTEXT
+Traditional security tools are an important part of the \gls{sdlc}, and will remain so in the foreseeable future.
+However, they hinder productivity and do not integrate well in the workflows of developers.
+To provide developers with more suitable tools, it is critical to understand the goals and the shortcomings of traditional security tools.
+% TASK
+In this chapter, I briefly describe how security practices and tools evolved over time.
+I explain the disconnect with developer workflows and how the paved path methodology can improve this situation.
+
+\summarybox{
+% Findings
+The goal of traditional security tools is automation of security testing.
+In order to keep up with the ever increasing speed of software development, they are \textit{shifting left} in the \gls{sdlc}, towards the development phase.
+As a result they are being integrated in developer tools.
+However, they are still fundamentally using a reactive approach, scanning (partly) completed code and its calling context for \glspl{vulnerability}.
+To fix detected \glspl{vulnerability}, developers often have to go back to the code (potentially long) after it was initially developed.
+With tools in the paved path methodology the goal is a preventative approach.
+Guidelines are enforced regardless of context as the code is being written.
+% Conclusion
+This helps the developer write secure code from the start, improving their productivity.
+As a result, code fragments are being secured, even if no current calling context exists that leads to an \gls{exploit}, they are being secured for future use.
+}
+
+\input{04-tools/00-goals/sections/01-shift-left}

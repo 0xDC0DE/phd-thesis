@@ -1,0 +1,47 @@
+\section{Plan}
+\label{sec:related-plan}
+
+Software security is not only a problem of enablement.
+Good enough training, tools, and processes exist today that can embed security in software development from the start.
+Yet, we still see frequent reports in the media of bad software practices and vulnerabilities that could have easily been prevented.
+The reality is that businesses often prioritize getting to market and getting new features out, over their obligations in terms of security.
+
+\subsection{Privacy and trust}
+The resulting security problems, however, do not only hurt the business, they also hurt the consumer.
+When businesses are hacked, it is often private data of consumers that is leaked.
+Recently, consumers have claimed control and rights over their personal data.
+Legal frameworks have been built around data privacy, forcing businesses to consider data protection more seriously.
+
+Most famously the \gls{gdpr}, a law on data protection and privacy is enforced in the \gls{eu} since 25 May 2018~\cite{gdpr}.
+It contains regulations that strengthen the individual's fundamental rights in the digital age and clarify rules for businesses storing or processing personal data of individuals in the \gls{eu}.
+This law forces businesses to consider security more seriously, as it is estimated that at least 25\% of software vulnerabilities have \gls{gdpr} implications~\cite{gdprhackerone}.
+Non-compliance with the general data processing principles in this law can result in significant fines, for example in June 2021, Amazon was fined €746 million\footnote{\url{https://www.enforcementtracker.com/ETid-778}}.
+Two years after the implementation of the \gls{gdpr}, the \gls{ec} found that individuals' knowledge about data privacy has increased, and as a result privacy has become a competitive quality for companies which consumers are taking into account in their decision-making~\cite{gdprfra}.
+
+Security is no longer just a necessary cost during development, but businesses are able to see a more direct \gls{roi} for high quality software security.
+Businesses put more effort into the appearance of having trustworthy data protections in place, a process called trust management~\cite{cassandra2021analysis, ashraf2020role}.
+In this discipline consumer trust is the end-goal and good security practices are the means to this goal.
+To convince consumers and buyers of software to trust a product, businesses can acquire a seal of approval from a third party to prove they adhere to certain standards.
+One such widely known certification is the \gls{iso}/\gls{iec} 27000-series, or ISO27K for short.
+The series provides best practice recommendations on information security management, covering privacy, confidentiality, and other cybersecurity issues~\cite{iso27k}.
+To add transparency, businesses can also provide a \gls{sbom}, that lists all components used in their software~\cite{sbomntia}.
+Such an \gls{sbom} is most easily produced using build tools as explained in Section~\ref{sec:related-build}.
+
+In the \gls{us} Biden \gls{eo} on Improving the Nation's Cybersecurity issued May 12, 2021 the \gls{nist} was ordered to publish guidelines regarding practices that enhance the security of the software supply chain.
+Besides providing the purchaser with such an \gls{sbom}, there are numerous other standards and procedures listed regarding trust, multi-factor authentication, encryption, and use of automated security tools.
+In this \gls{eo}, \gls{nist} is directed to solicit input from the private sector and academia to develop standards, tools, and best practices.
+Among the more than 150 position papers, dr. Matias Madou, dr. Brian Chess, and myself have also submitted two, one to advice the creation of a certification framework for secure development practices and the second to promote the use of the paved path methodology.
+Time will tell if this \gls{eo} makes a similarly big impact as the \gls{gdpr}.
+
+Besides the \gls{gdpr} and the \gls{us} \gls{eo}, there are of course similar laws in other parts of the world such as the Data Protection Act in the United Kingdom, the Privacy Act in Canada, and the Personal Data Protection Bill in India.
+
+\subsection{Law enforcement access}
+Unfortunately, no discussion on laws and data privacy would be complete without mentioning laws on the collection and storage of electronic communication and their access by authorities.
+Many of these laws contain requirements that force operators of end-to-end encrypted systems to undermine this encryption to be able to provide access to user communications.
+One such example is the draft considered by the Belgian government at the end of September 2021\footnote{\url{https://ibpt.be/index.php/operateurs/publication/annexe-1-dispositif}}.
+Under this law, operators would have to be able to "turn off" encryption for specific users, essentially creating so-called backdoor access.
+The consensus among cybersecruity experts is that there is no way to provide third party access like this to end-to-end encrypted communications, without also creating encryption backdoors and vulnerabilities that can be exploited by malicious third parties~\cite{bliss1996effective}.
+Creating a backdoor like this, undermines the whole security of the system and puts its users at risk~\cite{encryptionmyths}.
+
+In other countries where similar legislations have passed, such as Australia, research has shown that this has discouraged companies from offering new end-to-end encrypted products~\cite{barker2021economic}.
+It is safe to say that policy makers and governments can have a big influence on the security of software products, for better or for worse.

@@ -1,0 +1,126 @@
+\section{Adaptation to learning systems}
+\label{sec:eval-learning}
+
+Through the above experiments, I am able to obtain an accurate difficulty measure for each challenge, and a good approximation of the ability level of each user at every point in time.
+I have also rigorously tested the performance of several \gls{cf} algorithms on the data set.
+In the experiment of this section, I will use the ability level of the users to improve the performance of these algorithms.
+
+\subsection{Goals and research questions}
+The main \textit{goal} of this experiment is to test the prediction accuracy of different \gls{cf} algorithms after they have been adapted to learning systems.
+The \textit{purpose} is to determine if the proposed adaptations in this work lead to improved performance in some or all algorithms.
+The \textit{quality focus} is the prediction error of the adapted algorithms in comparison with those of the unaltered algorithms.
+The above goal can be achieved by means of an experiment aimed at answering the following question for each algorithm:
+\begin{itemize}
+    \item \textbf{Q1} Does the error rate of the prediction decrease when the proposed adaptation to learning systems is applied?
+\end{itemize}
+
+\subsection{Experimental set-up}
+The best performing configuration of each algorithm tested in the previous experiment of Section~\ref{sec:eval-cf} has been adapted to learning systems and measured in this experiment.
+
+The same process of evaluation is used as in the previous experiment, where each algorithm is tested using 10 fold cross-validation on each of the top five frameworks.
+For each algorithm, the algorithm mean $\mu_a$ and the largest standard deviation $\sigma_{max}$ of each of the three metrics are reported in Appendix~\ref{app:its-metrics}.
+
+\subsection{Adaptation to learning systems}
+The goal of the adaptation is to include the ability level $\theta_{ui}$ of user $u$ at the time of rating item $i$ in the algorithm.
+In particular, this ability level should be used to update the similarity between users.
+Currently, two users are considered like-minded if they rate common items similarly.
+With this adaptation the goal is to consider two users like-minded if the items they rated around the same ability level are rated similarly.
+
+\subsubsection{Similarity metrics}
+The most obvious way to include this ability level is to update the similarity metrics used by the \gls{knn} algorithms.
+
+%\todo[inline]{Should this be included or not?}
+%In the first attempt, the most simple similarity metric, the \gls{msd} was changed.
+%This similarity metric uses a distance measure.
+%In this measure the difference in ability level was added as a multiplier, as shown in Equation~\ref{eq:msd-adapted}.
+%The rationale behind this change is that the distance between users would be amplified if the difference in ability levels is large, and conversely, the distance between users would be decreased if the ability levels were close together.
+%
+%\begin{equation}
+%    \label{eq:msd-adapted}
+%    \text{msd\_adapted}(u,v) = \frac{1}
+%    {\abs{I_{uv}}} \cdot \sum\limits_{i \in I_{uv}} (r_{ui} - r_{vi})^2 \cdot \abs{\theta_{ui} - \theta_{vi}}
+%\end{equation}
+%
+%Testing this change, however, resulted in decreased performance, best explained through two scenarios.
+%First, when users have very different ratings for an item, but they were given at nearly the same ability level, these users are still considered similar users due to the multiplicative effect.
+%It is easy to see how this is detrimental for the performance of the algorithm.
+%Second, when ratings are very close together, but around widely different ability levels, again due to the multiplicative effect, users are still considered similar.
+%This is of course the opposite of the intended effect, where the goal was to consider those users dissimilar due to the difference in ability level.
+%
+%Instead a different adaptation is made to this metric, and all other metrics.
+
+In each of the metrics, to determine the similarity between users $u$ and $v$, summations are made over $I_{uv}$, the items that have been rated by both users $u$ and $v$.
+In the adaptation, this set is replaced by $I_{uv}^t$, the items that have been rated by both users $u$ and $v$ and for which the difference in ability level $\delta\theta = \abs{\theta_{ui} - \theta_{vi}}$ at the moment of rating is smaller than the threshold $t$.
+
+In Equation~\ref{eq:baseline-adapted}, this adaptation is demonstrated for the Baseline similarity, the similarity metric that resulted in the best performance in the previous experiment.
+
+\begin{equation}
+  \label{eq:baseline-adapted}
+        \text{baseline\_adapted\_sim}(u, v) = \frac{
+            \sum\limits_{i \in I_{uv}^t} (r_{ui} -  b_{ui}) \cdot (r_{vi} -
+            b_{vi})} {\sqrt{\sum\limits_{i \in I_{uv}^t} (r_{ui} -  b_{ui})^2}
+            \cdot \sqrt{\sum\limits_{i \in I_{uv}^t} (r_{vi} -  b_{vi})^2}}
+\end{equation}
+
+The value of the threshold parameter $t$ needs to be large enough so that there is still enough data within this range to compare users with.
+The best performance was measured when $t$ was around a third of the entire ability scale.
+
+\subsubsection{Data processing}
+The other algorithms do not explicitly use similarity between the users.
+They can still be influenced to take the ability level at the time of rating into account by processing the data first.
+
+Instead of using a filter at the time of computing the similarity, it is possible to filter at the time the rating is given.
+To do this, the ability scale is split into three intervals, called expert, intermediate, and novice ability level.
+
+The ability level of the user at the time of rating an item $i$ is taken into account, by splitting the item into three distinct items, $i_{expert}$, $i_{intermediate}$, and $i_{novice}$.
+If the user rates the item $i$, the data is then processed as rating one of these three items, based on the ability level the user is at the time of rating.
+This processed data can then be used to train the unaltered algorithms.
+
+This is less accurate then adapting the similarity metrics. It is possible that one users at the bottom of the expert ability level assign very similar ratings as the users at the top of the intermediate ability level. 
+By using a threshold at the time of computing the similarity, these users are still considered similar, by splitting the ability scale into ranks, they are not.
+
+\subsection{Findings}
+The proposed adaptation resulted in improved performance for all of the algorithms, as shown in Table~\ref{tab:improvement}.
+The improvement is larger for the \gls{knn} algorithms, because these algorithms make more explicit use of the ratings of neighbours to make a prediction.
+The improvement is particularly large for the \gls{knn} basic algorithm, with a 13.7\% decrease in \gls{mae}.
+This algorithm is very straightforward and takes the mean of the ratings of the most similar users to make a prediction.
+The improvement of this algorithm is a clear indication that the ability level of a user at the time of rating an item has a big impact on the rating.
+
+The smallest improvement is made by the Co-Clustering algorithm.
+This algorithm was already the worst performing, and it is likely that the effect of splitting the items is somewhat negated by the clustering.
+
+The best performing algorithm after the adaptation is the \gls{knn} baseline, it reaches a \gls{mae} of 0.4206, a total improvement of 16.0\% over the initial baseline benchmark.
+
+\begin{table}
+    \centering
+    \caption[Adapted collaborative filtering algorithms]{All algorithms have improved performance because of the adaptation to learning systems.}
+    \label{tab:improvement}
+    %               1 23 4 56 7 89 
+    \small
+    \begin{tabular}{l ll S[table-format=2.1]}
+                 & \multicolumn{2}{c}{MAE} \\
+    \cline{2-3}
+    & $\mu_a$ & $\sigma_{max}$\\
+    \hline
+    &\multicolumn{3}{c}{\textsf{Similarity metric}}\\
+    \hline
+    k-NN basic & 0.4232 & 0.002 & \textcolor{scw-teal-darker}{-13.7\%}  \\
+    k-NN with means  & 0.4261 & 0.002 & \textcolor{scw-teal-darker}{-5.7\%} \\
+    k-NN with z-score  & 0.4276 & 0.002& \textcolor{scw-teal-darker}{-5.1\%} \\
+    k-NN baseline & {0.4206} & 0.003& \textcolor{scw-teal-darker}{-6.8\%} \\
+    \hline
+    &\multicolumn{3}{c}{\textsf{Data processing}}\\
+    \hline
+    Slope One     & 0.4719 & 0.002 & \textcolor{scw-teal-darker}{-4.2\%}\\
+    Co-clustering & 0.4940 & 0.007
+              & \textcolor{scw-teal-darker}{-1.2\%} \\
+    PMF & 0.4598 & 0.003 
+              & \textcolor{scw-teal-darker}{-3.9\%} \\
+    NMF & 0.4614 & 0.003 
+              & \textcolor{scw-teal-darker}{-4.6\%}\\
+    SVD & 0.4555 & 0.002 
+              & \textcolor{scw-teal-darker}{-4.1\%}\\
+    SVD++ & 0.4409 & 0.003
+              & \textcolor{scw-teal-darker}{-4.0\%} \\
+    \end{tabular}
+\end{table}

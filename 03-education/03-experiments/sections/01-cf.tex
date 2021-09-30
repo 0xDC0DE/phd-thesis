@@ -1,0 +1,483 @@
+\section{Collaborative filtering algorithms}
+\label{sec:eval-cf}
+
+\subsection{Goal and research questions}
+The main \textit{goal} of this experiment is to test the prediction accuracy of different (variations of) \gls{cf} algorithms.
+The \textit{purpose} is to determine which algorithms are most effective at making recommendations on the \gls{scw} platform.
+The \textit{quality focus} is the error of the predicted ratings compared to the observed ratings.
+The above goal can be achieved by means of an experiment aimed at answering the following questions:
+\begin{itemize}
+    \item \textbf{Q1} What is a good error rate for this data set?
+    \item \textbf{Q2} Which algorithm achieves the lowest error rate for predicting the utility of an item?
+\end{itemize}
+
+\subsection{Benchmark algorithms}
+To train and evaluate different (variations of) algorithms I have used the open source Python scikit Surprise~\cite{Hug2020}.
+Since it is open source, the code is available to download from GitHub and the implemented algorithms can later be adapted to learning systems.
+
+Surprise provides two basic \gls{cf} algorithms that can be used as benchmarks to answer the first research question.
+
+The first benchmark algorithm is called Normal Predictor, it estimates a normal distribution based on the training data and makes new predictions by randomly sampling from this distribution.
+
+The second algorithm is the baseline algorithm.
+It uses the baseline estimate as defined in Equation~\ref{eq:baseline-estimate}~\cite{Koren2010}.
+
+\begin{equation}
+    \label{eq:baseline-estimate}
+    \hat{r}_{ui} = b_{ui} = \mu + b_u + b_i
+\end{equation}
+
+In this equation, $\mu$ is the observed overall mean of the ratings, and $b_u$ and $b_i$ are the biases, the average observed deviations of this mean by user $u$ and item $i$.
+
+When computing the utility of an item in Section~\ref{sec:utility} it was observed that some users show a consistent bias.
+This is because many users on the \gls{scw} platform stick to the predetermined courses or tournaments.
+For users who have a higher ability level, this current selection of challenges is consistently too easy, leading to boredom and hence consistently lower ratings by these users.
+The utility experienced by these users can likely be predicted relatively accurately using the baseline algorithm.
+Hence it is expected that this benchmark algorithm will already perform well.
+
+\subsection{Memory-based algorithms}
+Five memory-based \gls{cf} algorithms are evaluated in this experiment, four \gls{knn} algorithms and an algorithm called the Slope One algorithm.
+
+The \gls{knn} algorithms predict the rating $\hat{r}_{ui}$ of a user $u$ for an item $i$ based on the the observed ratings $r_{vi}$ of similar users $v$ for that item.
+These algorithms explicitly combine the ratings of the $k$ nearest neighbours to compute a prediction, hence their name as \gls{knn} algorithms.
+The difference between these algorithms lies in the exact formulas used to combine the existing ratings of the neighbours to make a prediction.
+
+\paragraph{k-NN basic}
+To predict a rating, the first k-NN algorithm, k-NN basic, takes the weighted average of the observed ratings for that item by the $k$ nearest neighbours of the user.
+As shown in Equation~\ref{eq:knn-basic}, the similarity between the users is used as the weight in the weighted average.
+
+\begin{equation}
+    \label{eq:knn-basic}
+    \hat{r}_{ui} = \frac{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v) \cdot r_{vi} }{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v)}
+\end{equation}
+
+In this equation, $\text{sim}(u,v)$ is the similarity between users $u$ and $v$, and $N_i^k(u)$ is the set of $k$ nearest neighbours of user $u$ that have rated item $i$.
+Different similarity metrics can be used, as will be explained later in this section.
+
+The algorithm can also be used to do item-based \gls{cf}, by summing over $j \in N_u^k(i)$, the $k$ nearest neighbours of item $i$ that are rated by user $u$.
+In that case the similarity between items $\text{sim}(i,j)$ needs to be used.
+
+\paragraph{k-NN with means}
+The second k-NN algorithm is called k-NN with means.
+It does not take the weighted average of the ratings of the nearest neighbours, but instead uses the deviation of the mean, as shown in Equation~\ref{eq:knn-means}.
+
+\begin{equation}
+    \label{eq:knn-means}
+    \hat{r}_{ui} = \mu_u + \frac{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v) \cdot (r_{vi} - \mu_v) }{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v)}
+\end{equation}
+
+In this equation, $\mu_u$ is the mean rating given by user $u$.
+The algorithm can similarly be used in an item-based fashion.
+
+\paragraph{k-NN with z-score}
+The k-NN with z-score algorithm uses the standard score, or z-score of the ratings of each user.
+The standard score is the number of standard deviations the rating deviates from the mean.
+It can be computed by taking the deviation from the mean, like in the previous equation, and divide the result by the standard deviation.
+The resulting formula is shown in Equation~\ref{eq:knn-z-score}.
+
+\begin{equation}
+    \label{eq:knn-z-score}
+    \hat{r}_{ui} = \mu_u + \sigma_u \frac{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v) \cdot (r_{vi} - \mu_v) / \sigma_v }{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v)}
+\end{equation}
+
+In this equation $\sigma_u$ is the standard deviation of the ratings of user $u$.
+This algorithm can also be trivially changed to make item-based predictions.
+
+\paragraph{k-NN baseline}
+The final k-NN algorithm, k-NN baseline, uses the baselines of the $k$ nearest neighbours to make a prediction, as shown in Equation~\ref{eq:knn-baseline}
+
+\begin{equation}
+    \label{eq:knn-baseline}
+    \hat{r}_{ui} = b_{ui} + \frac{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v) \cdot (r_{vi} - b_{vi}) }{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v)}
+\end{equation}
+
+In this equation $b_{ui}$ is the baseline rating of user $u$ for item $i$, as computed in Equation~\ref{eq:baseline-estimate}.
+
+\paragraph{Similarity metrics}
+%Because the \gls{knn} algorithms explicitly make use of the similarity between users (or items) to make predictions, they can be easily adapted to learning systems by adjusting the similarity metric.
+The \gls{knn} algorithms described above all make use of the similarity between users (or items) to make predictions, in the formulas this similarity between two users $u$ and $v$ is denoted as $\text{sim}(u,v)$.
+Four similarity metrics are considered in this experiment.
+
+The default configurations for the k-NN algorithms use the \textit{\gls{msd} similarity}.
+The \gls{msd} is a metric for distance between two users, it sums over all items that have been rated by both users and takes the square of the difference of the given ratings, as shown in Equation~\ref{eq:msd}.
+
+\begin{equation}
+    \label{eq:msd}
+    \text{msd}(u,v) = \frac{1}
+    {\abs{I_{uv}}} \cdot \sum\limits_{i \in I_{uv}} (r_{ui} - r_{vi})^2
+\end{equation}
+
+In this equation, $I_{uv}$ is the set of items that have been rated by both users $u$ and $v$.
+
+To use this distance as a similarity measure, the inverse has to be taken.
+To avoid dividing by zero, a one is added to the denominator, as shown in Equation~\ref{eq:msd-sim}.
+
+\begin{equation}
+    \label{eq:msd-sim}
+    \text{msd\_sim}(u,v) = \frac{1}{ \text{msd} (u,v) + 1}
+\end{equation}
+
+%To adapt this similarity to learning systems, two attempts have been made.
+%First, I have added the difference in ability  as a multiplier to Equation~\ref{eq:msd}.
+%As a result, two users will be considered more similar if their ratings are closer together and their abilities were closer together at the time of rating.
+%The adapted distance formula is shown in Equation~\ref{eq:msd-adapted}.
+%
+%\begin{equation}
+%    \label{eq:msd-adapted}
+%    \text{msd\_adapted}(u,v) = \frac{1}
+%    {\abs{I_{uv}}} \cdot \sum\limits_{i \in I_{uv}} (r_{ui} - r_{vi})^2 \cdot \abs{\theta_{ui} - \theta_{vi}}
+%\end{equation}
+%
+%In this equation, $\theta_{ui}$ is the ability level of user $u$ at the time of rating item $i$.
+%% not very effective: maybe because similarity in ability level outweighs similarity in rating: what if ratings are far apart, but the users were close in ability level: the difference in rating is canceled out
+%% similarity in rating is more important still, similarity in ability level should be a filter rather than a multiplier
+%Instead of changing the metric for similarity, the second adaptation instead uses a filter.
+%Instead of using all commonly rated items among users to compute the similarity, only items are used for which the similarity is sufficiently close.
+%
+%\begin{equation}
+%    \label{eq:msd-adapted2}
+%    \text{msd\_adapted}(u,v) = \frac{1}
+%    {\abs{I_{uv}}} \cdot \sum\limits_{i \in I_{uv}} (r_{ui} - r_{vi})^2 \cdot \abs{\theta_{ui} - \theta_{vi}}
+%\end{equation}
+
+The second metric, \textit{the cosine similarity}, requires the ratings of the common items between two users to be represented as vectors.
+The cosine is then defined as the cosine of the angle between these two vectors, which is the same as the inner product of the two vectors normalized to both have length one.
+The resulting formula is shown in Equation~\ref{eq:cosine}.
+
+\begin{equation}
+    \label{eq:cosine}
+    \text{cosine\_sim}(u,v) = \frac{\sum\limits_{i \in I_{uv}} r_{ui} \cdot r_{vi}}{\sqrt{\sum\limits_{i \in I_{uv}} r_{ui}^2}\cdot\sqrt{\sum\limits_{i \in I_{uv}} r_{vi}^2}}
+\end{equation}
+
+The third metric is \textit{the Pearson correlation coefficient}.
+It is commonly used in statistics as a measure of correlation between two data sets.
+It can be seen as a mean-centered cosine similarity which is evident from similarity of the formula with that of the cosine similarity, as shown in Equation~\ref{eq:pearson}.
+
+\begin{equation}
+  \label{eq:pearson}
+  \text{pearson\_sim}(u, v) = \frac{ \sum\limits_{i \in I_{uv}}
+        (r_{ui} -  \mu_u) \cdot (r_{vi} - \mu_{v})} {\sqrt{\sum\limits_{i
+        \in I_{uv}} (r_{ui} -  \mu_u)^2} \cdot \sqrt{\sum\limits_{i \in
+        I_{uv}} (r_{vi} -  \mu_{v})^2} }
+\end{equation}
+
+
+\textit{Baseline}, the final similarity measure considered in this experiment, is very similar to the Pearson correlation coefficient, but uses baselines for centering instead of means. This similarity metric is shown in Equation~\ref{eq:pearson-baseline}.
+
+\begin{equation}
+  \label{eq:pearson-baseline}
+        \text{pearson\_baseline\_sim}(u, v) = \frac{
+            \sum\limits_{i \in I_{uv}} (r_{ui} -  b_{ui}) \cdot (r_{vi} -
+            b_{vi})} {\sqrt{\sum\limits_{i \in I_{uv}} (r_{ui} -  b_{ui})^2}
+            \cdot \sqrt{\sum\limits_{i \in I_{uv}} (r_{vi} -  b_{vi})^2}}
+\end{equation}
+
+\paragraph{Slope One}
+To predict a rating $\hat{r}_{ui}$ of a user $u$ for an item $i$, \gls{knn} algorithms only look at the ratings by similar users for that same item $r_{vi}$.
+The ratings of other common items are only used to determine the most like-minded users, not to compute the predicted rating.
+
+In the Slope One algorithm, all ratings of common items are used to make a prediction by computing a popularity differential between each pair of items~\cite{lemire2005slope}.
+To compute this popularity differential between two items for two users, the rating of one user for this item is subtracted from the rating of the other~\cite{Hug2020}.
+This can be done for all users to receive an average popularity differential between these two items, as shown in Equation~\ref{eq:pop-diff}.
+
+\begin{equation}
+  \label{eq:pop-diff}
+  \text{popularity\_differential}(i,j) = \frac{1}{\abs{U_{ij}}} \sum\limits_{u \in U_{ij}} r_{ui} - r_{uj}
+\end{equation}
+
+In this equation, $U_{ij}$ is the set of all users who rated both items $i$ and $j$.
+
+This popularity differential can then be used to make predictions for the ratings, by taking the mean rating of a user and adding the average popularity differential between two items to this mean, as shown in Equation~\ref{eq:slope-one}.
+
+\begin{equation}
+  \label{eq:slope-one}
+  \hat{r}_{ui} = \mu_{u} + \frac{1}{\abs{R_{i}(u)}} \sum\limits_{j \in R_{i}(u)} \text{popularity\_differential}(i,j)
+\end{equation}
+
+With $R_i(u)$ the set of items $j$ that have been rated by $u$ and also have been rated by at least one other user that has rated $i$.
+
+
+\subsection{Model-based algorithms}
+Besides these memory-based algorithms, Surprise also offers implementations for five popular model-based algorithms~\cite{Hug2020}, one based on clustering and four based on matrix factorization.
+
+\paragraph{Co-Clustering}
+The discussed memory-based algorithms make predictions based on a neighbourhood of either like-minded users or similarly-rated items.
+In the Co-Clustering \gls{cf} algorithm, the idea is to simultaneously obtain user and item neighbourhoods via co-clustering~\cite{george2005scalable}.
+Many algorithms exist to assign these co-clusters, sometimes called biclusters~\cite{tanay2005biclustering}.
+The implementation in Surprise is a more straightforward optimization method, similar to k-means~\cite{Hug2020}.
+
+The average ratings from these clusters can then be used to make predictions about the ratings, as shown in Equation~\ref{eq:co-clustering}.
+
+\begin{equation}
+  \label{eq:co-clustering}
+  \hat{r}_{ui} = \overline{C_{ui}} + (\mu_u - \overline{C_u}) + (\mu_i
+        - \overline{C_i})
+\end{equation}
+
+In this equation $\overline{C_{ui}}$ is the average rating of co-cluster $C_{ui}$, $\overline{C_u}$ is the average rating of the cluster of user $u$, and $\overline{C_i}$ is the average rating of the cluster of item $i$.
+%The number of user and item clusters can be configured, in this experiment, the default values of 3 item and 3 user clusters are used.
+
+\glsreset{pmf}
+\paragraph{\gls{pmf}}
+Matrix factorization models map both the users and the items to a space of latent factors of dimensionality $f$.
+This latent space tries to explain ratings by characterizing both users and items.
+For example, on the \gls{scw} training platform, factors might be obvious characteristics of items such as the vulnerability category, or the presentation of the item.
+It is also possible that they represent less defined dimensions such as readability of the code, or the structure of the files, or even completely uninterpretable dimensions~\cite{Ricci2010}.
+
+Each item $i$ is then depicted as a vector $q_i \in \mathbb{R}^f$, that measures the extent to which this item possesses the characteristics represented in the latent space.
+Each user $u$ is represented by a vector $p_u \in \mathbb{R}^f$ that measure the extent of the interest (or utility) that this user has for the corresponding factors.
+
+The dot product of these two vectors captures the interest (or utility) of the user for this item and can be used to make predictions, resulting in the \gls{pmf} algorithm~\cite{mnih2008probabilistic,Hug2020}.
+The formula is shown in Equation~\ref{eq:pmf}.
+
+\begin{equation}
+  \label{eq:pmf}
+  \hat{r}_{ui} = q_i^T p_u 
+\end{equation}
+
+\glsreset{svd}
+\paragraph{\gls{svd}}
+The \gls{svd} algorithm is very similar to \gls{pmf} but creates a final rating by also adding the baseline predictors~\cite{koren2009matrix, Ricci2010, Hug2020}. 
+The resulting formula is shown in Equation~\ref{eq:svd}.
+
+\begin{equation}
+  \label{eq:svd}
+  \hat{r}_{ui} = \mu + b_u + b_i + q_i^T p_u 
+\end{equation}
+
+To estimate each of these unknown variables, the following regularized squared error needs to be minimized:
+
+\begin{equation}
+     \sum_{r_{ui} \in R_{train}} \left(r_{ui} - \hat{r}_{ui} \right)^2 +
+        \lambda\left(b_i^2 + b_u^2 + ||q_i||^2 + ||p_u||^2\right)
+\end{equation}
+
+The constant $\lambda$ controls the extent of regularization, in this experiment it is set to 0.02. Minimization of the error is typically done using stochastic gradient descent~\cite{Hug2020, Ricci2010}.
+In this process, the algorithm makes predictions for all existing ratings and computes the prediction error.
+All parameters are then moved slightly in the opposite direction to improve the predictions in the next pass.
+For the algorithm in this experiment, this process was repeated 20 times to reach the final estimates.
+
+\paragraph{\gls{nmf}}
+The \gls{nmf} \gls{cf} algorithm is very similar to \gls{pmf}, but the user and item factors are kept positive~\cite{NMF:2014, NMF_algo, zhang2006learning, Hug2020}.
+That means each item $i$ is depicted as a vector $q_i \in \mathbb{R}_{\geq 0}^f$, and each user $u$ as a vector $p_u \in \mathbb{R}_{\geq 0}^f$.
+Predictions are then computed identical to \gls{pmf}, as shown in Equation~\ref{eq:pmf}.
+
+To ensure that the parameters stay positive, a stochastic gradient descent is used that ensures non-negativity of factors based on the step size and the initial values~\cite{Hug2020}.
+
+\paragraph{SVD++}
+The SVD++ algorithm was developed to make use of implicit feedback.
+It builds on the assumption that the users can also be characterized by accounting for which items they have or have not provided a rating.
+The SVD++ algorithm often results in superior accuracy compared to \gls{svd}.
+
+A second set of item factors $y_i \in \mathbb{R}^f$ is added that are used to characterize the users based on the set of items they have rated.
+The user vector $p_u$ is then extended based on these characteristics before using it to compute a prediction, as shown in Equation~\ref{eq:svdpp}. 
+
+\begin{equation}
+  \label{eq:svdpp}
+    \hat{r}_{ui} = \mu + b_u + b_i + q_i^T\left(p_u +
+        |I_u|^{-\frac{1}{2}} \sum_{j \in I_u}y_j\right)
+\end{equation}
+
+\subsection{Experimental set-up}
+To evaluate the various \gls{cf} algorithms in this section, I have selected the five frameworks with the most data available on the platform.
+These are Java Spring, Java \gls{ee}, NodeJS Express, Pseudocode and Python Django.
+For each of those frameworks, I have iterated over the challenge attempts in the data set and continuously estimated the ability of each user.
+This estimate is computed with the adaptive step size adjustment procedure, evaluated in the previous experiment of this chapter.
+This ability estimate was then used to rate each challenge attempt according to its utility for the user, as described in Section~\ref{sec:utility}.
+The resulting ratings, on a scale of 1 to 5, are used to evaluate the (variations of) \gls{cf} algorithms.
+
+\begin{itemize}
+    \item The two benchmark algorithms are tested.
+    \item All four \gls{knn} algorithms are tested with default configurations.
+    \item Each \gls{knn} algorithm is tested with item-based similarities.
+    \item Each of the four \gls{knn} algorithms is tested with all four similarity metrics.
+    \item Slope One is tested with default configurations.
+    \item All five model-based algorithms are tested with default configurations.
+\end{itemize}
+
+Each (variation of an) algorithm is evaluated on each of the five selected frameworks using a process of 10-fold cross-validation.
+In this process, the data set of the framework is split into 10 equal parts, called folds.
+Next, 9 of the 10 folds are used as training data, and the final fold is used as test data.
+Every time an algorithm is evaluated on a fold of test data, this is done with three different evaluation metrics that will be explained further in this section.
+This process is repeated 10 times, each time alternating the fold to be used as test data.
+So for each algorithm and framework combination, 10 measurements are obtained, one for each fold.
+The final step of the cross-validation process is to take the mean and standard deviation of these 10 measurements.
+
+The mean of the 10 measurements is used to evaluate the algorithm on this particular data set, as it represents the mean performance of the algorithm.
+I will call this the framework-mean $\mu_f$ for an algorithm.
+The set of five framework-means for an algorithm is then denoted as $M_f$.
+The standard deviation can be used to assess the algorithm for overfitting.
+Overfitting is a prediction error caused when the algorithm is too closely aligned to the training sets, causing decreased performance on (some of) the test sets.
+Analogous with the framework-mean, this will be denoted as $\sigma_f \in S_f$.
+
+If all five standard deviations $\sigma_f \in S_f$ are sufficiently small, we can take the mean of the five framework-means $\mu_f \in M_f$ to obtain a final result that enables us to evaluate the algorithm's performance on all five frameworks.
+This mean will be called the algorithm-mean $\mu_{a}$.
+In Appendix~\ref{app:its-metrics}, the algorithm-mean is reported for every (variation of) algorithm evaluated, as well as the largest of the framework standard deviations $\sigma_{max} = \text{max}(\sigma_f \in S_f)$ to show that no overfitting is taking place.
+
+\subsubsection{Metrics}
+% https://surprise.readthedocs.io/en/stable/accuracy.html
+To evaluate the \gls{cf} algorithms, I have used three metrics that compare the set of predicted ratings $\hat{R}$ to the set of observed ratings $R$.
+
+\paragraph{\gls{mae}}
+One of the most popular metrics in research literature is the \gls{mae}~\cite{sarwar2001item,su2009survey}.
+It computes the average prediction error over the entire set of predictions, as shown in Equation~\ref{eq:mae}.
+\begin{equation}
+    \label{eq:mae}
+    \text{MAE} = \frac{1}{ |\hat{R}| }  \sum\limits_{\hat{r}_{ui} \in \hat{R}} |r_{ui} - \hat{r}_{ui}|
+\end{equation}
+
+The \gls{mae} uses the same scale as the ratings itself, and hence can not be used to make comparisons between measurements using different scales.
+For this the \gls{nmae} can be used that expresses the error as a percentage of the full scale~\cite{su2009survey}.
+In our rating scale, the \gls{mae} takes values between 0 for a perfect prediction and 5 as the maximum error.
+
+\paragraph{\gls{rmse}}
+The \gls{rmse} amplifies the error between the actual rating and the predictions by taking the square of the prediction error, as shown in Equation~\ref{eq:rsme}.
+
+\begin{equation}
+    \label{eq:rsme}
+    \text{RMSE} = \sqrt{ \frac{1}{ |\hat{R}| }  \sum\limits_{\hat{r}_{ui} \in \hat{R}} (r_{ui} - \hat{r}_{ui})^2}
+\end{equation}
+
+Like the \gls{mae}, the \gls{rmse} is scale-dependent.
+It takes non-negative values and a lower value means better prediction performance.
+
+The \gls{rmse} has increased in popularity, partly because of its use in the Netflix competition for movie recommendations~\cite{su2009survey,zhou2008large}.
+In 2006 Netflix launched a competition to beat the current score of their recommendation algorithm, \emph{Cinematch}.
+At the time the algorithm achieved a \gls{rmse} of 0.9514~\cite{zhou2008large,bennett2007netflix}.
+With the competition, Netflix offered a \$1 million dollar prize to the team who could improve this benchmark by 10\%.
+The algorithm of the winners, one year later, reached a \gls{rmse} of 0.8567 and was put into production~\cite{zhou2008large,netflixprizeforum,netflixprizeleaderboard}.
+This also shows that in \gls{cf} algorithms, improvements of several percents can already be valuable.
+
+\paragraph{\gls{fcp}}
+Finally, I have also included a measure that puts more focus on the order that the items are ranked rather than the exact rating that is predicted.
+In the \gls{fcp}, the number of concordant pairs $n_{c}^{u}$ for a user $u$ is determined by counting the pairs of ratings that are ranked correctly~\cite{koren2013collaborative}.
+This is shown in Equation~\ref{eq:concordantpairs}.
+
+\begin{equation}
+    \label{eq:concordantpairs}
+    n_{c}^{u} = |\{(i,j) \mid \hat{r}_{ui} > \hat{r}_{uj} \text{ and } r_{ui} > r_{uj} \}|
+\end{equation}
+
+The number of pairs that are ranked incorrectly is the number of discordant pairs $n_{d}^u$.
+
+The total number of concordant pairs $n_c$ and discordant pairs $n_d$ are then obtained by summing over all users as shown in Equation~\ref{eq:concordant2}.
+
+\begin{equation}
+    \label{eq:concordant2}
+    n_{c} = \sum\limits_{u} n_{c}^{u},\qquad n_{d} = \sum\limits_{u} n_{d}^{u}
+\end{equation}
+
+Using this total number of concordant and discordant pairs, the FCP can be computed as shown in Equation~\ref{eq:fcp}.
+
+\begin{equation}
+    \label{eq:fcp}
+    \text{FCP} = \frac{n_{c}}{n_{c} + n_{d}}
+\end{equation}
+
+The \gls{fcp} takes values between 1 and 0, with higher meaning that a larger portion of pairs are ranked correctly.
+
+
+\subsection{Findings}
+All measurements during this experiment are included in the tables of Appendix~\ref{app:its-metrics}.
+In this section, I will discuss some interesting results, and mainly use the \gls{mae} to compare the performance of algorithms.
+
+\subsubsection{Benchmark}
+The benchmark algorithms perform reasonably well.
+The Baseline algorithm in particular, as it reaches a $\mu_a$ \gls{mae} of 0.5004 and $\mu_a$ \gls{rmse} of 0.6169.
+This is significantly lower than the prediction error for the Netflix prize for example, where the winner reached a \gls{rmse} of 0.8567~\cite{zhou2008large,netflixprizeforum,netflixprizeleaderboard}. 
+The Netflix recommendations happen to use the same scale as the utility rating in this experiment, so this comparison can be made.
+These results indicate that the utility of an item on the \gls{scw} platform is in comparison easier to predict.
+
+The good performance of the Baseline algorithm was expected based on the observations of the data.
+In the current item selection, most users are shown the same exercises.
+These items are of course not randomly selected, but carefully tailored by the \gls{scw} employees who designed these \gls{owasp} Top 10 courses in the platform.
+As a result, for a number of users this item selection is rather good, and the ratings of these users are consistently high.
+For more experienced users, the content of these courses is too easy, and as a result their ratings are consistently lower.
+Using baselines, these consistent bias result in reasonably accurate predictions.
+
+\subsubsection{Memory-based algorithms}
+The default configurations of all memory-based algorithms result in improved prediction performance compared to the baseline benchmark.
+The Slope One algorithm performs worse than the \gls{knn} algorithms.
+It reaches a \gls{mae} of 0.4928 which is an improvement of about 1.5\% compared to the baseline benchmark.
+The best performing \gls{knn} algorithm is the \gls{knn} baseline.
+As explained before, it is not surprising that baseline algorithms are performing well on this data set.
+It reaches a \gls{mae} of 0.4680, improving the baseline benchmark by 6.5\%.
+
+
+In the next test, the \gls{knn} algorithms were configured to use item-based similarities to find the $k$ nearest neighbouring items, and make predictions based on the ratings of those items.
+This item-based configuration performed worse for all four algorithms, with an increase in prediction error between 1.0\% and 6.7\% depending on the algorithm.
+
+In the final test with the \gls{knn} algorithms, each of the algorithms is evaluated in combination with each of the four similarity metrics.
+%1 - (0.4840/0.4508) --> over 7\% for k-NN with z-score Cosine and Baseline
+The results indicate that the similarity metric can have a big impact on the prediction performance, with as much as 7\% increase in performance for the \gls{knn} with z-score algorithm between the cosine similarity metric and the baseline similarity metric.
+
+When the similarity metrics are ranked from best to worst performance, this ranking is the same for each algorithm, and is as follows:
+\begin{enumerate}[noitemsep]
+    \item Baseline similarity,
+    \item Cosine similarity,
+    \item \gls{msd} similarity,
+    \item Pearson similarity.
+\end{enumerate}
+
+Once again, the choice based on baselines is the best performing.
+
+For each of the \gls{knn} algorithms, the item-based similarity, computed with the baseline similarity metric, results in the best performance.
+The \gls{mae} of the best performing configuration for each memory-based algorithm is shown in Table~\ref{tab:memory-based}, all other measurements are available in Appendix~\ref{app:its-metrics}.
+
+\begin{table}
+    \centering
+    \caption[Prediction performance of memory-based algorithms]{All memory-based algorithms perform better than the benchmarks. \gls{knn} basic an Slope One perform significantly worse than the other algorithms.}
+    \label{tab:memory-based}
+    \small
+    \begin{tabular}{l ll}
+                 & \multicolumn{2}{c}{MAE}\\
+    \cline{2-3} 
+    & $\mu_a$ & $\sigma_{max}$\\
+    \hline
+k-NN basic        & 0.4902 & 0.003 \\ 
+k-NN with means   & 0.4521 & 0.002 \\ 
+k-NN with z-score & 0.4508 & 0.002 \\ 
+k-NN baseline     & 0.4514 & 0.002 \\ 
+Slope One         & 0.4928 & 0.002 \\
+    \end{tabular}
+\end{table}
+
+\subsubsection{Model-based algorithms}
+In the next test, these results are compared to those of the model-based algorithms, which tend to be more accurate, especially for sparse data.
+
+Surprisingly, none of the model-based algorithms was able to improve the prediction rate of the best performing memory-based algorithm.
+Changing parameters in the model-based algorithms had influence on the speed of convergence, but no real impact on the prediction accuracy.
+The \glspl{mae} for each algorithm is shown in Table~\ref{tab:model-based}, for other measurements consult Appendix~\ref{app:its-metrics}.
+
+SVD++, the best performing of the model-based algorithms, reaches a \gls{mae} of 0.4591, beating the default configurations of all memory-based algorithms.
+This is not surprising, as SVD++ also takes into account which items users have and have not rated.
+This algorithm can hence make a better distinction between users who followed the standard courses, and users who did not.
+
+Co-Clustering performs worst of the model-based algorithms and its \gls{mae} is not significantly better than that of the baseline benchmark.
+One of the strengths of the Co-Clustering algorithm is that it can handle synonyms rather well.
+In recommendation systems, synonyms are items that are (nearly) identical but are still labeled as different items.
+Movie databases often have genres like "Children's movie" and "Children's film", which are then clustered together by the algorithm.
+More data can then be used to make recommendations about either of those genres.
+Evidently, on our platform few such synonyms are present, even though for each framework many exercises exist about the same vulnerability types.
+The ratings for these exercises are sufficiently inconsistent so that the Co-Clustering algorithm does not result in significant improvements in prediction accuracy.
+
+While model-based algorithms are usually more accurate, this is not the case for the \gls{scw} training data.
+This is likely because the advantages of model-based algorithms are not very applicable to this data set, as will be explained in the discussions in Chapter~\ref{ch:its-evaluation}.
+
+\begin{table}
+    \centering
+    \caption[Prediction performance of model-based algorithms]{Most model-based algorithms perform worse than the fine-tuned memory-based algorithms. SVD++ is the exception, it reaches prediction accuracy close to that of the best performing memory-based algorithms.}
+    \label{tab:model-based}
+    \small
+    \begin{tabular}{l ll}
+                 & \multicolumn{2}{c}{MAE}\\
+    \cline{2-3} 
+    & $\mu_a$ & $\sigma_{max}$\\
+    \hline
+Co-Clustering     & 0.4999 & 0.007 \\
+PMF               & 0.4783 & 0.003 \\
+NMF               & 0.4835 & 0.002 \\
+SVD               & 0.4750 & 0.003 \\
+SVD++             & 0.4591 & 0.003 \\
+    \end{tabular}
+\end{table}

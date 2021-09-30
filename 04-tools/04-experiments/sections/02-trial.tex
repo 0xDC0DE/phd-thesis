@@ -1,0 +1,41 @@
+\section{Industry trial in 2018}
+\label{sec:trial2018}
+
+One of the earliest customers of Sensei closely monitored their use of the tool during a trial period of several months in 2018.
+They reported their findings to us and at the end of the trial they purchased additional licenses for the tool.
+
+\subsection{Goal}
+The \textit{goal} of the trial is for the client to observe the effects of the Sensei \gls{ide} plugin on its development process.
+The \textit{purpose} is to help the client decide whether or not it is worth to purchase licenses for the Sensei \gls{ide} plugin.
+The \textit{quality focus} is on the time and money saved by detecting possible vulnerabilities early.
+The client aims at better estimating the return on investment of the potential purchase.
+During the trial they can both collect some objective data on the amount of vulnerabilities prevented, as well as collect opinions from the application security team and the developers involved in the trial.
+
+\subsection{Set-up}
+\subsubsection{Subjects}
+The client is a large bank included among the top 25 banks of the world as listed on wikipedia\footnote{\url{https://en.wikipedia.org/wiki/List\_of\_largest\_banks}}. The subjects were a group of five full-time developers selected by the client for their security knowledge. The tool was also given to an employee responsible for application security to help evaluate the trial. This employee was our main contact during the trial period.
+
+\subsubsection{Tasks}
+The subjects are part of teams developing and maintaining the web and mobile applications of the client. They were developing in either IntelliJ IDEA or Android Studio. During the trial period they continued their daily responsibilities as usual, reporting periodically to the application security expert on their impressions of the tool.
+
+\subsubsection{Treatment}
+The developers were given two sets of recipes, one for general Java applications, and one for mobile Android applications in particular.
+The cookbook for general Java applications was developed internally by our developers in cooperation with the application security expert.
+They advised what they wanted to achieve from the developers with the tool, and we created recipes to enforce this.
+The second cookbook was also developed by us and was based on the official Android developer guidelines\footnote{\url{https://developer.android.com/}}.
+All of the recipes in this set had scopes so they would only be active when the developer is working on an Android project.
+
+\subsubsection{Information gathering}
+The client did not share their code nor their Sensei events file.
+Our contact was given the ability to view the summary of the Sensei events file in the form of an update to the Sensei plugin that enables them to view the statistics on each device.
+Our contact at the company evaluated these and shared some of their insights as well as opinions from the subjects themselves.
+
+\subsection{Findings}
+They reported that during the trial over 200 markings were found that were legitimate markings that could lead to vulnerabilities. With the majority of these present in legacy code, they were \glspl{security defect} already in production. The two most common categories were mentioned as being tapjacking and sensitive information leakage (mostly caused by leaking stack traces).
+
+The subjects reported the tool as very useful and not too intrusive when working on new code. They also reported improving their security knowledge, driven by the markings from the plugin.
+
+After the trial, the client chose to extend their current licenses and purchase additional ones.
+
+\subsection{Threats to validity}
+There are many threats to the validity of conclusions drawn from the findings of this trial. We have no detailed knowledge or control over the task, the subjects, the time, or indeed over any other aspect of the trial. We are unable to account for any noise in the metrics or any conditions that limit our ability to generalize the results. For this reason we make no attempts at interpreting the results from this trial, we only report the findings as they were reported to us.

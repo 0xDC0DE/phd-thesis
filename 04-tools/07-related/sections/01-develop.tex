@@ -1,0 +1,62 @@
+\section{Develop}
+
+Developer toolkits evolve over time, and many new technologies and frameworks exist to help developers produce code more efficiently, and more securely.
+As explained in Section~\ref{sec:traditionalsecurity}, security tools are handed to the developer as well because a shift left movement is ongoing to try and identify possible security problems as early as possible in the \gls{sdlc}.
+These tools, however, still use a reactive testing-based approach and can usually only identify security problems once sufficient code has been developed.
+These tools will be discussed in the section on testing, Section~\ref{sec:related-test}.
+In this section I discuss tools and practices that help a developer securely produce code from the start.
+
+\subsection{Lint}
+Linter tools are designed to allow the developer to concentrate solely on the algorithms, data structures, and correctness of the program, and only later, with the aid of lint, address non-functional aspects of the code.
+They mostly focus on syntax and styleguide checking but some tools are advanced enough to check for certain bugs as well.
+Depending on their targets, linters perform their analyses with string-matching or reduced versions of \glspl{ast} without symbol information.
+The more advanced lint tools perform similar analyses to Sensei, making use of the entire \gls{ast}.
+Lint tools are very useful, but they are not often used for security checks.
+Some examples of lint tools are Error Prone\footnote{\url{http://errorprone.info/}}, Checkstyle\footnote{\url{http://checkstyle.sourceforge.net/}}, PMD\footnote{\url{https://pmd.github.io/}}, and SonarLint\footnote{\url{https://www.sonarlint.org/}} (battlecard~\ref{bc:sonarlint}) by SonarSource.
+Lint tools are also often included by default in \glspl{ide} such as AndroidStudio\footnote{\url{https://developer.android.com/studio/write/lint}} and IntelliJ IDEA\footnote{\url{https://www.jetbrains.com/help/idea/code-inspection.html}}
+Not many security rules are included in lint tools.
+Out of the tools above, SonarLint supports the most, with 29 rules targeting vulnerabilities in Java\footnote{\url{https://rules.sonarsource.com/java/type/Vulnerability}}.
+This is because lint tools require fast response times and scanning for vulnerabilities often takes longer-running analyses.
+Many lint tools are open-source which means their rules can be customized to enforce secure coding guidelines, but none are designed for easy and fast customization of the rules.
+
+\subsection{Security patterns}
+Research has shown that adherence to secure coding guidelines leads to more secure code~\cite{lipfordimpact}.
+It comes as no surprise that many efforts exist both in industry and in research to develop such guidelines.
+In contrast with vulnerability lists, discussed in Section~\ref{sec:related-test}, these patterns provide proactive guidelines targeting developers.
+Many of these guidelines can be used as a basis to create Sensei recipes or similar tools provided they are specific enough.
+
+Some work provides sufficiently clear \gls{api}-level instructions that can directly be implemented as recipes in our plugin.
+We have demonstrated this by creating a rule set from The Android Application Secure Design/Secure Coding Guidebook by the Japan Smartphone Security Association~\cite{jssec}.
+Other notable examples are the guidelines designed to counter side-channel attacks, designed by Witteman~\cite{witteman2008secure}, and the Oracle Coding Standards\footnote{\url{https://wiki.sei.cmu.edu/confluence/display/java/SEI+CERT+Oracle+Coding+Standard+for+Java}}.
+The Java code issues and transformations in these guidelines fall clearly within the capabilities of Sensei.
+
+Other  guidelines are too generic and high level such as the work by Schumacher et al.~\cite{schumacher2013security}, or the \gls{owasp} Proactive Controls\footnote{\url{https://owasp.org/www-project-proactive-controls/}}.
+In order to support these with Sensei or other tools, they need to be translated into concrete guidelines and customized for the used \glspl{api}.
+For example, the \gls{owasp} Proactive Control number 5 instructs to validate all inputs.
+To apply this proactive control in practice, security libraries have to be developed or selected to perform the input validations.
+
+Some efforts have also been made to automatically generate rules from code changes such as Paletov et al.~\cite{paletov2018inferring}.
+As mentioned in Section~\ref{sec:improvedrulecreation}, in the future we also want to develop such automatic recipe creation methods.
+
+\subsection{Security Libraries and Frameworks}
+Another solution to make developers adhere to coding guidelines, is by implementing them into frameworks or libraries.
+An example is the \gls{owasp} \gls{esapi}, an open source application security control library that provides some very clear replacement \glspl{api} for insecure \gls{jdk} implementations~\cite{ESAPI}.
+As mentioned in this work, Sensei recipes have already been developed to support replacing banned methods with alternatives from the \gls{esapi} as a demonstration of library adoption recipes. 
+
+Popular web application frameworks provide methods for sanitizing inputs and escaping outputs to prevent common vulnerabilities.
+These frameworks are creating a paved path for developers to follow.
+We have observed that these efforts result in useful code examples in the documentation of frameworks that are easy to understand for developers.
+They also make for easy development of Sensei recipes to adhere to these guidelines.
+However, the implementation details of these methods are sometimes lost to developers, and the results from this work show that this can sometimes lead to increased difficulty locating vulnerabilities.
+
+Nonetheless, this evolution in frameworks has shown to be effective at preventing security problems as indicated by the position of injection flaws and \gls{xss} in the \gls{owasp} top 10.
+Despite \gls{xss} attempts remaining common~\cite{trustwave}, the vulnerability has moved from third place in 2013, to seventh place in 2017.
+In 2021 it is likely to merge with injection flaws, as shown in Figure~\ref{fig:newowasptop10}.
+%At \glsc{scw}, we have observed the similarity between these two categories based on the Sensei recipes targeting both these categories.
+After being the top category since 2013, injection flaws are likely to move down to the third position in the \gls{owasp} top 10 2021.
+
+
+
+
+github copilot
+amazon guru

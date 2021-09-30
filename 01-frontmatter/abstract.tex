@@ -1,0 +1,83 @@
+\markboth{\sffamily SUMMARY}{\sffamily SUMMARY}
+\addcontentsline{toc}{chapter}{English Summary}
+\chapter*{Paving the path towards secure development}
+\section*{Summary}
+
+% CONTEXT
+Automation of security tools has made it possible to identify software vulnerabilities faster and earlier in the Software Development Life Cycle (SDLC), but this has had little impact on the prevalence of vulnerabilities in almost all types of software.
+The vast majority (90\%) of these vulnerabilities are caused by problems in the code, through insecure coding patterns that have been known for years.
+Traditional security tools are capable of detecting these problems after the code has been developed, but they slow down agility and release cycles. 
+Additionally, they do not provide specific guidance to remediate the found vulnerabilities.
+Once the vulnerabilities are discovered, it is up to the development team to fix them.
+On average a company hires only 1 security expert for every 75-200 developers.
+This expert simply can not assist each of those developers.
+It is evident that security is no longer just the task of the expert.
+The ability to detect vulnerabilities is not enough; we need fewer vulnerabilities to be created.
+Every software developer producing code should be responsible for doing this securely from the start.
+% TASK
+To make impactful changes, we have to look at the processes, the people, and the technology involved, to guarantee better software security throughout the whole SDLC.
+
+\paragraph{Process}
+% VISION
+I propose a more developer-friendly workflow, named the paved path methodology.
+In this methodology the security team should not force security testing on developers, but instead gradually build a paved path for developers to follow.
+This paved path should be different for each project and heavily depends on the technology stack for that project.
+Together, developers and security experts should build
+standards and patterns that lay out the paved path.
+They can decide together how security critical features, such as key management, should be handled.
+They do this by deciding on the library and the tools needed, or even by creating a new (wrapper) library.
+Developers will then follow that path, as using this library is the easiest way for them to implement a feature that needs key management.
+
+% EDUCATION
+\paragraph{People}
+In the paved path methodology, developers should not be handed repurposed education meant for security professionals.
+The goal of their education is not to teach them to \textit{test} the security of the code, but to teach them the knowledge and skills necessary to \textit{produce} secure code.
+The developers should hence be provided with role-specific, relevant, and efficient training.
+Each developer should receive defensive training in the same programming language and framework they are using daily in order to understand syntax specific secure and insecure coding patterns.
+While many security concepts are generally applicable, the actual solutions to problems are often programming language specific, and these solutions are exactly what developers should be taught.
+
+The Secure Code Warrior (SCW) training platform provides such defensive training in a wide range of programming languages.
+Additionally, it provides some gamification features to keep the developers engaged.
+Despite that, there is still a significant part of the user base that only follows a minimal amount of training.
+Users follow one of the predetermined courses, and it is likely that the pacing of these courses does not fit their needs.
+Users get bored due to too much repetition, or frustrated because the content is moving too fast.
+
+I created an Intelligent Tutoring System (ITS) to recommend exercises to each individual at any point in time.
+This ITS uses a Collaborative Filtering (CF) algorithm to make a recommendation based on the preferences of the most like-minded users.
+To adapt this algorithm to learning systems, users are only considered like-minded if they find an exercise similarly useful around the same ability level.
+This ability level can not be observed directly, but is regularly estimated by using the Rasch model from Item Response Theory.
+This model describes the relation between the observed answers of a user, and their ability level.
+By using this adaptation to learning systems, the performance of a CF algorithm can be significantly improved, by more than 13\%.
+The final design of the ITS uses a k-nearest neighbours baseline algorithm and reaches a mean absolute error of 0.4206 on a rating scale from 1-5.
+
+% TOOLS
+\paragraph{Technology}
+Traditional security tools use a reactive approach, scanning (partly) completed code and its calling context for vulnerabilities.
+The feedback they provide comes too late, slowing down deploy and release cycles.
+Developers are known to dislike and often disable these security tools during development.
+They frequently perceive the tools as one of the biggest inhibitors of productivity.
+
+In the paved path methodology, tools are in the first place designed as developer tools, using a fundamentally different approach.
+Instead of scanning for vulnerabilities, they enforce guidelines regardless of context as the code is being written.
+When developers are focused on the functionality of their code and using a library for this purpose, security is usually orthogonal to that purpose.
+A good tool should then warn a developer when they stray from the paved path and guide them back without hurting productivity.
+This guiding of the developer along the paved path, boosts their productivity while lowering their cognitive burden.
+If the security experts have done a good job laying out this paved path, the resulting code will be secure.
+
+In this research, I helped design and I evaluated the Sensei Integrated Development Environment (IDE) plugin, developed by SCW.
+Sensei enforces so-called recipes in the IDE, similar to an as-you-type spellchecker.
+It also provides remediation guidance in the form of quick-fixes when these recipes are violated.
+I conducted experiments and usability tests that show that these features are very usable and quickly feel like a natural extension of the existing toolkit of the developer.
+
+Sensei provides a recipe-editor to allow developers and security experts to create their own project-specific guidelines, in line with the paved path methodology.
+This editor can generate suggestions from the context of the code and provides the recipe writer with a live preview of the recipe, showing its markings on the code.
+In interviews conducted during this research, security professionals indicate that customizing recipes with Sensei is easier than any other tools they have used in the past.
+Furthermore, in an empirical experiment with students I have shown that customized recipes are effective at keeping the developer's trust with minimal impact on the developer's productivity.
+
+% PERSPECTIVES
+\paragraph{Perspectives}
+Until now, education and tools were considered two separate things.
+In reality, the border between these two is not that clearly defined and they blend over in each other.
+Developers often learn while doing, and the educational aspect of Sensei itself should not be underestimated.
+In the future, the ITS can be extended to use information gathered by Sensei and other developer tools such as the code repository and the issue tracking system.
+At the same time, the ability estimate of the training platform can be used to tune the feedback of tools such as Sensei to the ability of the user.

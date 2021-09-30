@@ -1,0 +1,95 @@
+\chapter{Challenges}
+\label{app:challenges}
+
+\section{Challenge creation}
+\label{sec:challenge-creation}
+Challenges are created from a secure software application. To this application vulnerabilities are introduced in separate git branches. By adding a single vulnerability, five different challenges (L1-L5) can be created, as described in Section~\ref{sec:challenges}. Some extra data is needed in order to generate these exercises:
+\begin{itemize}
+\setlength\itemsep{0em}
+    \item Category and subcategory of the vulnerability type.
+    \item A textual description explaining the insecurity.
+    \item A textual description explaining the secure version.
+    \item Line numbers marking the code fragment containing the vulnerability.
+    \item Sets of line numbers marking code fragments that are secure. These code fragments, usually called \textit{chunks} are used to generate the options to choose from in a locate (L2) challenge.
+    \item Three additional branches containing alternative but insecure solutions to the insecurity. These branches are used to generate the options to choose from in a fix (L3) challenge.
+    \item A textual description for each insecure solution explaining why the solution is suboptimal.
+\end{itemize}
+
+The difficulty $D \in \{1,2,\dots,100\}$ of a challenge determines how many insecure chunks $c_i$ (correct answers) and secure chunks $c_s$ (incorrect answers) need to be marked. It also determines over how many files $f$ the markings need to be spread. The number of markings and files is determined as shown in Equation~\ref{eq:chunks}.
+
+\begin{subequations}
+\label{eq:chunks}
+\begin{align}
+        c_i &= \left\lceil \dfrac{D}{50} \right\rceil ,         \label{eq:number-of-insecure-chunks} \\
+        c_s &= \left\lceil \dfrac{D}{5} \right\rceil ,         \label{eq:number-of-secure-chunks} \\
+        f &= \left\lceil \dfrac{D}{15} \right\rceil ,         \label{eq:number-of-files}
+\end{align}
+\end{subequations}
+
+This difficulty value $D$ is split up in three tiers, a challenge is considered easy if $D \in [0-35[$, medium if $D \in [35-70[$ and hard if $D \in [70-100]$. This means that for any challenge (L1-L5), $D$ is an indication of the probability of a correct blind guess when it this challenge is presented as a locate exercise (L2). This is likely not an accurate indication of the actual difficulty, which is dependent on many more factors, among which the vulnerability type, code quality, and code complexity.
+
+\section{Scoring}
+\label{sec:scoring}
+A player on the \gls{scw} online learning platform is awarded points for completing a challenge successfully. 
+The amount of points depends on the performance of the player and the difficulty of the challenge.
+
+The maximum points a player can gain for the successful completion of a challenge is determined by its difficulty tier, as shown in Table~\ref{tb:points}.
+
+\begin{table}
+\centering
+\caption[Points awarded for each difficulty on the SCW platform]{The maximum points awarded on completion of a challenge depends on its difficulty.}
+\begin{tabular}{ll} 
+ Difficulty &  Points awarded\\
+ \hline
+ Easy & 100\\
+ Medium & 200\\
+ Hard & 300\\
+\end{tabular}
+
+\label{tb:points}
+\end{table}
+
+The amount of points actually awarded depends on the performance of the player. The player loses points if they need multiple attempts or uses hints to find the correct answer.
+
+Using hints comes with a penalty that decreases the maximum number of points that can still be gained. This penalty stacks for each hint until all hints are used, and the total penalty reaches 100\%, which means that no more points can be scored. 
+This is because, ultimately, in every type of challenge the hints start to remove incorrect options until only the correct option is left. 
+No points should be awarded when only the correct option is left.
+The penalty for using a hint depends on which type of challenge is faced. The reasoning behind this is that some challenge types have more hint available then others. 
+For an identify exercise, for example, it impossible to provide a hint containing a video that explains the vulnerability type in detail, as this would give away the correct answer.
+An overview of the penalty for each hint in each type of exercise is shown in Table~\ref{tb:hints-scoring}.
+
+\begin{table}
+\centering
+\caption[Penalty for using hints]{The penalties for each hint depend on the type of challenge. Using all hints always results in a total penalty of 100\%.}
+\begin{tabular}{r|lll} 
+ \multirow{2}{*}{Hint} & \multicolumn{3}{c}{Penalty (\%)}\\
+ & {Identify} & Locate & Fix \\
+ \hline
+ 1 & 0 & 0 & -33\\
+ 2 & -5 & -50 & -33\\
+ 3 & -35 & -50 & -34\\
+ 4 & -60 & --- & --- \\
+\end{tabular}
+\end{table}
+
+The amount of points that is actually awarded upon completing an exercise depends on the amount of attempts that were needed to find the correct answer. How many of the maximum points are still awarded depends on which scoring method is used, as shown in Table~\ref{tb:scoring-attempts}.
+
+\begin{table}
+\centering
+\caption[Penalty for failed attempts]{The points awarded for each number of failed attempts in the three scoring methods.}
+\begin{tabular}{r|lll} 
+ \multirow{2}{*}{Failed attempts} & \multicolumn{3}{c}{Points Awarded (\%)}\\
+ & Forgiving & Default & Aggressive \\
+ \hline
+ 0 & 100 & 100 & 100\\
+ 1 & 60 & 60 & 60\\
+ 2 & 30 & 30 & 0\\
+ 3 & 10 & 0  & --- \\
+ 4 & 5  & --- & --- \\
+ 5 & 0  & --- & --- \\
+\end{tabular}
+
+\label{tb:scoring-attempts}
+\end{table}
+
+

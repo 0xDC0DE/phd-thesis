@@ -1,0 +1,36 @@
+\chapter{Intelligent tutoring system}
+\label{ch:its-implementation}
+\glsreset{its}
+%(CONTEXT): background for less specialized readers and establish or recalls the importance of the problem
+An important aspect of education in the paved path methodology is its efficiency.
+Educational activities should not keep the developer from their responsibilities for longer than necessary.
+% (NEED): motivates the audience by stating the difference between the desired and actual situation
+% ==>shortcomings and goal from my perspective
+The efficiency of training on the \gls{scw} platform is lacking.
+Because every individual is presented with the same exercises, they often receive training that is too repetitive or too challenging.
+%(The TASK) what did I do?
+%=> IRT, ITS
+I designed an \gls{its} that recommends exercises to each individual at any point in time to provide them with a more appropriate learning pace.
+%When evaluating online learning activities, the focus is often wrongfully on completion and dropout rates~\cite{hadi2016driving}. 
+%It is perfectly possible, likely even, that learning took place despite the user not completing the course.
+%The goal of the \gls{its} should hence be to maximize the opportunity for learning to take place.
+% OBJECT
+In this chapter I present the design of the \gls{its} and discuss the used techniques in its implementation in more detail.
+%In this chapter we start with an overview of the design of the \gls{its} in Section~\ref{sec:design}.
+%In the rest of the chapter we explain the used techniques in more detail.
+%First, the collaborative filtering algorithm is detailed in Section~\ref{sec:collab}.
+%Next, the psychometric models are discussed in Section~\ref{sec:calib}.
+
+\summarybox{
+I designed an \gls{its} that consists of three main algorithms, one for exercise selection, and one each for estimation of user ability and exercise difficulty.
+Exercise selection is achieved through a \gls{cf} algorithm adapted to learning systems.
+In such an algorithm a target user's preference for an exercise is predicted from the preferences of like-minded users.
+Through the use of the psychometric model of \gls{irt} both estimation of user ability and exercise difficulty can be done at once.
+A sanitized data set of over 9 million solved exercises is used to calibrate these algorithms making up the \gls{its}.
+}
+
+% SECTIONS
+\input{03-education/02-intelligent-tutor/sections/01-design}
+\input{03-education/02-intelligent-tutor/sections/02-collaborative-filtering}
+\input{03-education/02-intelligent-tutor/sections/03-calibration}
+\input{03-education/02-intelligent-tutor/sections/04-data}

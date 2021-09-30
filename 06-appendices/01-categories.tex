@@ -1,0 +1,194 @@
+\chapter{Vulnerability taxonomy}
+\label{app:categories}
+
+\begin{longtable}{p{.50\textwidth} | p{.50\textwidth} } 
+\caption[SCW vulnerability taxonomy for mobile]{Vulnerability taxonomy of the SCW platform for mobile applications}
+ \textbf{Category} & \textbf{Subcategory} \\
+ \hline
+Insecure Data Storage& Plaintext Storage Of Credentials\\
+Insecure Data Storage& Storage On SDCard / External Storage\\
+Insecure Data Storage& Storage Of Binary Cookies\\
+Insecure Data Storage& Storage In Plist Or XML Files\\
+Insecure Data Storage& Storage In Log Files\\
+Insecure Data Storage& Storage In SQLite Databases\\
+Insufficient Transport Layer Protection& Weak Cipher Suites\\
+Insufficient Transport Layer Protection& Trusting Self-Signed Or Untrusted Certificates\\
+Insufficient Transport Layer Protection& Weak Certificate Validation\\
+Insufficient Transport Layer Protection& Communication Over Cleartext Protocol\\
+Insufficient Transport Layer Protection& Improper Certificate Pinning Configuration\\
+Unintended Data Leakage& Request/Response Caching\\
+Unintended Data Leakage& Keyboard Caching\\
+Unintended Data Leakage& Copy/Paste Buffer Caching (Pasteboard)\\
+Unintended Data Leakage& Application Backgrounding Screenshots\\
+Unintended Data Leakage& Logging Sensitive Information\\
+Unintended Data Leakage& HTML5 Data Storage\\
+Unintended Data Leakage& Browser Cookie Objects\\
+Unintended Data Leakage& Analytics Data Sent To 3rd Parties\\
+Insecure Authentication& Storing Credentials With 'Remember Me' Functionality\\
+Insecure Authentication& Use Of Spoofable Parameters For Authentication\\
+Insecure Authentication& Use Of Weak Passwords\\
+Insecure Authentication& Client Side Authentication For Authenticating To Server\\
+Insecure Authentication& Hardcoded API Keys\\
+Insecure Authentication& Weak Lockout Mechanism\\
+Insecure Authentication& Misuse of Fingerprint\\
+Insecure Authentication& Password Enumeration\\
+Insecure Authorization& Broken Access Control\\
+Insecure Authorization& Insecure Direct Object Reference\\
+Insecure Authorization& Using inputs from untrusted sources\\
+Broken Cryptography& Use Of Hardcoded Keys\\
+Broken Cryptography& Use Of Encoding\\
+Broken Cryptography& Use Of Insecure/Deprecated Algorithms\\
+Broken Cryptography& Use Of Short Encryption Keys\\
+Broken Cryptography& Insecure Storage Of Encryption Keys\\
+Broken Cryptography& Insecure Generation Of Encryption Keys\\
+Broken Cryptography& Reuse Of Initialization Vector\\
+Broken Cryptography& Improper Use Of Cryptography Algorithm\\
+Client Side Injection& SQL Injection\\
+Client Side Injection& Local File Inclusion\\
+Client Side Injection& JavaScript Injection\\
+Client Side Injection& XML Injection\\
+Client Side Injection& DOM-Based Cross-Site Scripting\\
+Client Side Injection& Untrusted third party sites\\
+Improper Session Handling& Improper Timeout Of Session ID\\
+Improper Session Handling& Weak Session Token Generation Algorithm\\
+Improper Session Handling& Same Session ID With Change In Privilege\\
+Improper Session Handling& Improper Flags In Cookie Headers\\
+Lack Of Binary Protections& No Code Obfuscation\\
+Lack Of Binary Protections& No Protection From Debuggers\\
+Lack Of Binary Protections& No Protection From Runtime Injection\\
+Lack Of Binary Protections& No Protection From Piracy\\
+Lack Of Binary Protections& Lack Of Adequate Security Controls\\
+Improper Platform Usage& Tapjacking\\
+Improper Platform Usage& Webview Settings\\
+Improper Platform Usage& Incorrect Activity Configuration\\
+Improper Platform Usage& Insecure File/Directory Permissions\\
+Improper Platform Usage& Insecure Use Of Pasteboard\\
+Improper Platform Usage& Misuse Of URL Schemes\\
+Improper Platform Usage& Misuse Of Intents\\
+Improper Platform Usage& Misuse Of Broadcast Receivers\\
+Improper Platform Usage& Misuse Of Keychain\\
+Client Code Quality& Overflow Vulnerabilities\\
+Client Code Quality& Format String Vulnerabilties\\
+Code Tampering& Backups Enabled\\
+Code Tampering& Tampering Detection\\
+Reverse Engineering& Code Information Leakage\\
+Reverse Engineering& Emulation Detection\\
+Extraneous Functionality& Autofill Password\\
+Extraneous Functionality& Leftover Comments\\
+Extraneous Functionality& Debugging Features Enabled\\
+Injection Flaws& Code Injection\\
+Injection Flaws& External Entity Injection\\
+Injection Flaws& HTTP Injection\\
+Injection Flaws& LDAP Injection\\
+Injection Flaws& NoSQL Injection\\
+Injection Flaws& OS Command Injection\\
+Injection Flaws& Path Traversal\\
+Injection Flaws& Local File Inclusion\\
+Injection Flaws& Remote File Inclusion\\
+Injection Flaws& SQL Injection\\
+Injection Flaws& XML Injection\\
+Injection Flaws& XPath Injection\\
+Injection Flaws& XQuery Injection\\
+Injection Flaws& Email Injection\\
+Injection Flaws& Deserialization of Untrusted Data\\
+Injection Flaws& Other\\
+Authentication& Improper Authentication\\
+Authentication& Forceful Browsing\\
+Authentication& Username Enumeration\\
+Authentication& Password Enumeration\\
+Authentication& Insufficiently Protected Credentials\\
+Authentication& Insufficient Anti-Automation\\
+Authentication& Weak Password Policy\\
+Authentication& Insecure Password Change Function\\
+Authentication& Insecure Password Reset Function\\
+Authentication& Other\\
+Session Handling& Insufficient Session Expiration\\
+Session Handling& Weak Session Token Generation\\
+Session Handling& Cross Site Request Forgery\\
+Session Handling& Exposed Session Tokens\\
+Session Handling& Other\\
+Cross Site Request Forgery& Cross Site Request Forgery\\
+Insecure Cryptography& Weak Algorithm Use\\
+Insecure Cryptography& Exposed Key\\
+Insecure Cryptography& Padding Oracle\\
+Insecure Cryptography& Encryption Oracle\\
+Insecure Cryptography& Decryption Oracle\\
+Insecure Cryptography& Insecure Randomness\\
+Insecure Cryptography& Insufficiently Protected Credentials\\
+Insecure Cryptography& Other\\
+Sensitive Data Storage& Plaintext Storage of Passwords\\
+Sensitive Data Storage& Plaintext Storage of Sensitive Information\\
+Sensitive Data Storage& Other\\
+Access Control& Insecure Direct Object Reference\\
+Access Control& Missing Function Level Access Control\\
+Access Control& Using input from untrusted sources\\
+Access Control& Other\\
+Memory Corruption& Stack Overflow\\
+Memory Corruption& Heap Overflow\\
+Memory Corruption& Null Dereference\\
+Memory Corruption& Integer Overflow\\
+Memory Corruption& Use After Free\\
+Memory Corruption& Type Confusion\\
+Memory Corruption& Other\\
+Insufficient Transport Layer Protection& Unprotected Transport of Credentials\\
+Insufficient Transport Layer Protection& Unprotected Transport of Sensitive Information\\
+Insufficient Transport Layer Protection& Weak Algorithm or Protocol Use\\
+Insufficient Transport Layer Protection& Other\\
+Information Exposure& Security Misconfiguration\\
+Information Exposure& Error Details\\
+Information Exposure& Debug Information\\
+Information Exposure& Sensitive Data Exposure\\
+Information Exposure& Other\\
+Security Misconfiguration& Information Exposure\\
+Security Misconfiguration& Clickjacking\\
+Security Misconfiguration& Disabled Security Features\\
+Security Misconfiguration& Debug Features Enabled\\
+Security Misconfiguration& Other\\
+Vulnerable Components& Using Known Vulnerable Components\\
+Vulnerable Components& Using Components From Untrusted Source\\
+Vulnerable Components& Other\\
+Unvalidated Redirects and Forwards& Unvalidated Redirects and Forwards\\
+Cross-Site Scripting (XSS)& Stored Cross-Site Scripting\\
+Cross-Site Scripting (XSS)& Reflected Cross-Site Scripting\\
+Cross-Site Scripting (XSS)& DOM-Based Cross-Site Scripting\\
+Cross-Site Scripting (XSS)& Mixed server and client side rendering\\
+Cross-Site Scripting (XSS)& CSS Injection\\
+Cross-Site Scripting (XSS)& Other\\
+Business Logic& Insufficient Validation\\
+Business Logic& Logical Error\\
+Side Channel Vulnerability& Timing Attack\\
+Side Channel Vulnerability& URL caching\\
+Side Channel Vulnerability& Keyboard caching\\
+Side Channel Vulnerability& Clipboard buffer caching\\
+Side Channel Vulnerability& Application backgrounding\\
+Side Channel Vulnerability& Data sent to 3rd parties \\
+Side Channel Vulnerability& Logs (application or system)\\
+Side Channel Vulnerability& Other\\
+File Upload Vulnerability& Unrestricted File Upload\\
+Denial of Service& Uncaught Error Handling\\
+Denial of Service& Regular Expression DoS\\
+Denial of Service& Other\\
+Insufficient Logging and Monitoring& Insufficient Logging and Monitoring\\
+Injection Flaws& Log Forging\\
+Injection Flaws& Resource Injection\\
+Memory Corruption& Buffer Overflow\\
+Memory Corruption& Double Free\\
+Client Code Quality& Improper Memory Management\\
+Insecure Authentication& Username Enumeration\\
+Improper Session Handling& Client Side Session Token Generation\\
+Memory Corruption& Illegal Pointer Value\\
+Memory Corruption& Uninitialized Variable\\
+Memory Corruption& Race Conditions\\
+Denial of Service& Failure to Release Resource\\
+Denial of Service& Routing\\
+Injection Flaws& CSS Injection\\
+XML External Entities (XXE)& XML External Entities (XXE)\\
+Security Misconfiguration& Improper Permissions\\
+Access Control& Missing Object Level Access Control\\
+Server-Side Request Forgery& Server-Side Request Forgery\\
+Lack of Resources & Rate Limiting& Lack of Resources & Rate Limiting\\
+Mass Assignment& Mass Assignment\\
+Improper Assets Management& Improper Assets Management\\
+\end{longtable}
+
+ 

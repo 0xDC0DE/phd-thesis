@@ -1,0 +1,187 @@
+\section{Industry interview in 2021}
+\label{sec:trial}
+
+%Intro
+%-------
+%    Pieter - PhD in software security at SCW and University of Ghent Belgium
+%    Research DevSecOps - human centered security practices
+%    Some questions you might not have the answer available without looking up data
+%    I will come back with an e-mail and we can see what data is possible 
+%    Can I record this meeting? that way I don't have to take notes
+%    Who are you? What are your roles at the company?
+%    
+%Team and practices
+%------------------
+%    How long have you been using Sensei? 
+%    Size of the team? devs vs security professionals
+%    How many use Sensei? Voluntarily? Changed over time?
+%    How did you start using it?
+%    What other tools do you use that work well or work against Sensei?
+%    
+%Rules creation
+%--------------
+%    How many Sensei rules have you created?
+%    Who creates the rules?
+%        - wizard? preview panels? UI view or code view?
+%        - quickfixes? descriptions? scopes?
+%        - do they have lots of hits?
+%    Security related vs quality vs productivity?
+%    Recipes to migrate libraries? Or recipes to use libraries correctly?
+%    do you use any public cookbooks?
+%    any rules that stand out to you, that you think show off Sensei capabilities?
+%    
+%Findings
+%--------
+%    do your rules have hits on code that you don't want to fix? or are they always accurate?
+%    do the users of Sensei trust the tool and quickfixes? do they use them often?
+%    Do you feel Sensei improces your code security? Do you have any evidence?
+%    Do you feel Sensei boosts productivity?
+%    
+%    Overall impressions of Sensei?
+%        - security, quality, productivity, management
+
+In August 2021 I had the opportunity to interview the security team at a large company that has been using Sensei for over two years.
+They shared their insights in how the tool is used, what they liked about it and what its biggest shortcomings are in their eyes. 
+        
+\subsection{Goal}
+The \textit{goal} of this interview is to learn how Sensei is actually used in an industry setting.
+The \textit{purpose} is to understand if our design goals align with the expectations of the users, and to observe which features are most useful and which are lacking or missing.
+The \textit{quality focus} is on the frequency features are being used, and for which purpose.
+
+\subsection{Set-up}
+
+\subsubsection{Subjects}
+The client is an international cloud computing company building and maintaining \gls{erp} software used by more than 26,000 customers.
+The teams observed and interviewed are based in Europe.
+They are 8 teams of developers and a team of 12 security professionals.
+Most, but not all, security professionals have prior development experience, some at this same company.
+
+\subsubsection{Task}
+The subjects are part of teams developing and maintaining the \gls{erp} software of the client.
+All of the Sensei users are developing using the IntelliJ IDEA.
+During the use of Sensei they have continued their daily responsibilities as usual.
+
+\subsubsection{Treatement}
+Use of the Sensei plugin in these teams is voluntary.
+About 90 employees in total are using the tool, of which 60 are using it more actively.
+Five of the security professionals use the tool, as they are the ones involved in Java development.
+The remaining users are developers.
+
+The teams have been using Sensei for over two years.
+When it was purchased, one of the security professionals gave a presentation and a demonstration of the tool to interested coworkers.
+Most attendees were team leads, managers, and some security champions.
+From there on, use of Sensei has not been actively promoted across the company.
+However, one security professional regularly discusses the tool in the security champions group meetings, as well as the dedicated support channel on \gls{slack}.
+
+The security team also uses Fortify, Checkmarx, SonarQube, Semgrep, and FindBugs.
+They have sufficient context to compare Sensei to other security tools.
+The listed tools, together with other comparable tools, are discussed in more detail in Chapter~\ref{ch:related}.
+
+\subsubsection{Information gathering}
+The team of security professionals is our contact at the company.
+Two members of the team agreed to a meeting in which I interviewed them on their use and their impressions of Sensei as well as other security tools they are familiar with.
+This interview was recorded and the recording reviewed before writing this report.
+
+One of the interviewees has been with the company the entire time that Sensei was purchased, this person has prior development experience.
+The other interviewee joined the company after the purchase of Sensei, this person does not have prior development experience, but has been a security professional for a longer time.
+
+\subsection{Findings}
+
+\subsubsection{Adoption}
+The security professionals found that adoption of the tool is not easy.
+It is hard to get a chance to show value to the developers, and they are hesitant to install new tools in their \gls{ide}.
+It is easier to convince the security champions who are more interested, and actively looking for tools that can help them produce secure code faster.
+So far the security professionals have preferred the hands-off approach and allowed the tool to organically spread, instead of making it mandatory.
+The security professionals, many who have development backgrounds, are convinced that the tool can be an asset to developers outside of the context of security as well.
+
+\subsubsection{Recipes}
+The security professionals have created around 50 recipes.
+They are stored on a remote server and distributed to the developers as a read-only cookbook.
+The recipes in this cookbook are not all security related, but around 70\% of them are.
+The other recipes are related to quality and code conventions.
+Many of the security team have a development background, they have added these recipes in an attempt to show their value to the developers.
+No public cookbooks are used, but the recipes in the public cookbooks served as inspiration for their own custom recipes.
+
+The company has a lot of very clear coding standards that are published and used outside of their company as well.
+These coding standards are used as a basis for recipes and their quick-fixes.
+No real consultation with developers is needed, as it is generally agreed by developers and security experts that these coding standards are to be used.
+However, to create the quick-fixes, the security professionals frequently consult internally with more experienced team members.
+Since some of them are former developers at the same company, they have an intimate knowledge of the code base.
+
+The company uses many wrapper libraries.
+However, these are often not specifically written for security purposes only.
+Several Sensei recipes exist to migrate to wrapper libraries or to different versions of \glspl{api}.
+
+The security team is currently unaware of the amount of recipes that are being created by developers themselves.
+They are also unaware if developers are frequently remediating markings from the distributed cookbook.
+In fact, in their eyes, visibility into metrics like this is one of the biggest shortcomings of the tool.
+
+\subsubsection{Recipe editor}
+The security professionals create both recipes from scratch and from context and think both use cases are important and necessary.
+They most frequently use the \gls{ui} view to edit recipes, but to refactor recipes and make bulk changes, they sometimes use a text editor as well.
+
+They think the preview panels and the recipe editor are by far the most useful features of the entire plugin.
+These features make customization of the recipes far more easy compared to the other tools they are using in the \gls{sdlc}.
+
+Descriptions are often used, but the full coding guidelines are not usually customized to the specific recipe.
+The coding guideline provided is instead a generally applicable description that provides links to documentation about the secure coding standards that are used at the company.
+
+The security professionals use recipe scopes very often.
+The scopes are used to limit recipes to certain packages and modules.
+This is only done as a consideration for developer usability, to avoid false positives in the large code base.
+
+Finally, they try to provide quick-fixes as often as possible, but admit it is not always possible.
+Sometimes the quick-fix provided requires the developer to make additional changes.
+
+\subsubsection{Paved path methodology}
+The security team is not using a paved path methodology.
+However, their practices are in line with many of the goals of this methodology.
+
+The security professionals try to be \textit{enablers}, and not only tell developers what they do wrong, but also provide guidance as much as possible.
+They provide a service to developers and are very aware of developer usability.
+The team prefers to neglect some parts of the security of the software over generating too many false positives, which could result in \glspl{efp}.
+
+They belief Sensei supports this enablement approach through its quick-fixes.
+Since a complete Sensei recipe includes a quick-fix, the security team is forced to offer remediation guidance.
+This remediation guidance in turn enables the developers to resolve security markings by themselves.
+
+For the security professionals without former development experience, this requirement of a quick-fix forces them to be closer to the development workflows.
+Sometimes, creating a quick-fix pushes the limits of their knowledge of programming.
+In that case, they do not consult the development team, as suggested by the paved path methodology, but instead consult with former developers in the security team itself.
+
+\subsubsection{Disadvantages}
+As mentioned before, visibility into the developer's practices with the tool is one of the biggest shortcomings of Sensei in the eyes of the security team.
+So far features that report back information from the \gls{ide} have been avoided as we expected customers would be hesitant of such features.
+Many of the metrics that the security team requests are available in the \glspl{ide} of the developers, in the Sensei events databases.
+Clearly, gathering those databases is not a convenient way to collect that information.
+On top of that, currently we provide no convenient way visualize the results in a management dashboard, which other tools commonly provide.
+
+Alternatively, some metrics can be collected through server side scans.
+It is possible to run IntelliJ IDEA inspections from the command line, including the Sensei recipes. 
+The resulting scans are not as efficient as those by standalone tools, such as static analysis tools discussed in Chapter~\ref{ch:related}.
+In particular, the memory usage is exceedingly big for large enough code bases because the entire \gls{ide} is in fact running in a background process.
+It is also more difficulty to automate running IntelliJ IDEA inspections in the \gls{cicd} pipeline compared to tools who provide better integrations for this purpose.
+The convenience of running scans in other stages of the \gls{sdlc} seems to be the main reason the security team uses some of the other tools.
+
+%
+%== Other tools
+%FindBugs
+%--------
+%Creating rules with is harder, not as intuitive
+%Can be more easily integrated in CI
+%Simple general rules that are more widely applicable, and make more sense in CI
+%Not usable in shift left
+%No remediation
+%They want rules in CI and in the IDE to show the same things
+%
+%SemGrep
+%-------
+%used by security professionals in the code reviews, in between developing and building
+%without dev, reactive feedback, more automated
+%links to documentation as feedback, no code fixes
+%rules are pretty easy to customize but it is more difficult without the preview panels, it is better than findbugs
+%semgrep is multi language
+%compile agnostic, fully realised on text (no AST), so no compilable classes are required, code snippets are enough
+%
+\subsection{Threats to validity}
+There are many threats to the validity of conclusions drawn from the findings of this trial. We have no detailed knowledge or control over the task, the subjects, the time, or indeed over any other aspect of the trial. We are unable to account for any noise in the metrics or any conditions that limit our ability to generalize the results. For this reason we make no attempts at interpreting the results from this trial, we only report the findings as they were reported to us.

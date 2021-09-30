@@ -1,0 +1,117 @@
+\section{Data}
+\label{sec:data}
+
+The data used to create the \gls{its} is extracted from the developer log of the \gls{scw} training platform.
+
+While this database was not originally intended to be used for analytics, and other data sources have been set up since, lots of useful data is present in this database and it is by far the largest collection. 
+
+Each challenge in the platform has a unique \gls{id}.
+This \gls{id} is tied to the \gls{vulnerability} in a code fragment, not to the way it is presented to the user (L1-L5).
+For each challenge the language and framework are known, as well as the category and subcategory of the vulnerability.
+The difficulty assigned to this challenge is also known but it is not an accurate representation.
+The way this difficulty is determined is explained in more detail in Appendix~\ref{app:challenges}.
+
+The multiple choice options for an identify challenge are randomly generated each time it is presented to a user on the website.
+For the locate and fix challenges the multiple-choice options are fixed, and determined by the author of the challenge.
+There is no clear order to the multiple-choice options.
+There is only one correct option, and all others are incorrect, with no distinction between which incorrect option is the closest to the correct one, or the most misleading option.
+
+Each user has a unique \gls{id} that is a hashed, this way it is not possible to identify the person behind this user \gls{id} in compliance with the \gls{gdpr}.
+Some information on the user is available, but it is not used in the design of the \gls{its}.
+For example, the time zone and the chosen country as the \textit{home base} in the gamification features.
+For each user it is also possible to look up information about the company they are working for, such as the size of the company and its main industry.
+
+\subsection{Data collection}
+Whenever a user tries to solve a challenge a number of variables are written to the developer log.
+For each challenge attempt the unique user id is logged, as well as the challenge id and the way this challenge was presented to the user (L1-L5).
+Each play mode (tournament, training, assessment) is logged in a separate collection.
+A number of performance metrics are logged as well, such as the outcome (correct or incorrect), the amount of attempts needed, and the amount of hints used.
+
+The time spent to complete the challenge is logged as well.
+However upon inspecting this, there seem to have been several bugs present in the past so that it is not usable.
+Furthermore, even for the more recent data where these bugs have been resolved, there is no way to find out whether the user was actively trying to solve the challenge during this time, or doing something else.
+It is also not possible to know how much of this time was spent reading the hints.
+
+More than 12 million challenge attempts have been written to the developer log.
+
+\subsection{Data pre-processing}
+This vast collection of data includes users who only completed a small amount of challenges, such as during the free trial.
+For these users we can not accurately predict their ability level, nor can we learn much about their preferences.
+Both the \gls{cf} algorithm as well as the Rasch model are only successful when the user has a sufficiently long history on the platform.
+For this reason we are only using challenge attempts done by users who completed at least 20 challenges, a recommended minimum length to achieve reasonable accuracy for the Rasch model.
+Users who have completed at least 20 challenges will be called active users from here on.
+Out of the 175,979 unique users who have completed at least one challenge on the platform, 95,591 are considered active users whose behaviour on the platform will be used to create the \gls{its}.
+
+A similar argument can be made for the challenges.
+To accurately calibrate the difficulty of a challenge, enough users of varying ability levels need to complete it.
+The ability level of these users needs to be known.
+To calibrate the difficulty of an exercise, \gls{irt} recommends a minimum of 500 responses to an item.
+As a result we are filtering out all challenges who are not completed by at least 500 active users.
+Out of the 19,782 exercises 9,144 remain, 40 of the 50 frameworks are still represented in this data set.
+On the \gls{scw} training platform there are multiple modes with each their own rules.
+In training and tournament hints are available and multiple attempts are allowed, while in assessments there is only one attempt possible.
+The Rasch model, on the other hand, expects dichotomous responses, the answer is either correct or incorrect.
+To map challenge attempts of all modes fairly to this binary outcome, any challenge attempt is only considered correct if it was answered correctly without use of any hints on the first attempt.
+In the rest of this book this will be implied when it is written a challenge is answered correctly.
+
+\subsection{Data annotation}
+\label{sec:utility}
+The exercise difficulties and user ability levels as estimated by the Rasch model can be used to determine the utility of an item for a user.
+A scale of 1 - 5 was chosen, and each item is assigned a neutral utility of 3 by default.
+This utility is updated based on the performance of the user on this item, and on related items later in time.
+
+\paragraph{Flow}
+The first influence on the utility of an item is user engagement.
+If the item is considered likely to keep the user in flow, its utility is decreased.
+If the item is likely to make users feel frustrated or bored, its utility is increased.
+Whether or not an item is likely to keep a user in flow is determined through the probability of a correct answer.
+Before each item is played, the difficulty of this item and the current ability level of the user are used to determine this probability through teh \gls{irf}.
+The utility is then updated based on this probability as well as the actual outcome of the answer.
+If the probability of a correct answer is lower than 50\%, and the user did indeed answer the item incorrectly, this item's utility is lowered for risk of frustration.
+If, on the other hand, the probability of a correct answer is larger than 80\% and the item is answered correctly, this item's utility is lowered for risk of boredom.
+These values are in line with research on the engagement of examinees in \glspl{cat}~\cite{ling2017computerized}\todo{more refs}.
+The utility in both these cases is decreased by one.
+
+This decrease in utility is immediately nullified if the next item is played in short succession.
+When the next item is played within 40 minutes, the upper scale of a reasonable play time for a challenge, the utility of the previous item is increased by one, as a reward for this apparent engagement\todo{rephrase?}.
+
+\paragraph{Increased ability}
+If a user learns something new from an item, this should also lead to increased utility.
+However, with \gls{irt}, and any other approximation methods, the estimate of the ability is never increased based on an incorrect answer.
+The only reason to increase the ability estimate, is when there is evidence of this increase, i.e. when the user answers a difficult item correctly.
+In reality, however, learning takes place before this correct answer, and the actual (unobservable) ability level has increased earlier in time, so that the user was able to answer this difficult item correctly.
+In line with this observation, items are updated retrospectively based on answers to related items later in time.
+
+If an item is answered correctly, the utility of the previous item in the same vulnerability category is increased based on the difference in difficulty.
+Similarly, the utility of the previous item in the same category is decreased for an incorrect answer.
+
+Putting the rewards and punishments for flow and increased ability together results in the final algorithm to determine the utility of an item as shown in Algorithm~\ref{al:utility}.
+The \texttt{min} and \texttt{max} functions are added to ensure utility ratings stay within the 1 - 5 scale.
+
+\begin{algorithm}[H]
+\caption{\label{al:utility}Utility of challenges}
+\SetAlgoLined
+\SetKwInOut{Input}{input}
+\SetKwInOut{Output}{output}
+\Input{current item $i$\\ probability of correct answer $p$}
+\Output{utility $u_j$, for items $j \leq i$}
+$u_i \leftarrow 3$\\
+\lIf{$i-1$ played less than 40 minutes ago}{$u_{i-1} = u_{i-1} + 1$}
+\uIf{$i$ answered correctly}
+    {
+    \lIf{$p > 0.8$}{$u_i = u_i - 1$}
+    \lIf{$d_i$ > $d_j$}{$u_j = \text{min}(5, u_j + (d_i - d_j))$}
+    }
+\Else
+    {
+    \lIf{$p < 0.5$}{$u_i = u_1 - 1$}
+    \lIf{$d_i$ < $d_j$}{$u_j = \text{max}(1, u_j + (d_i - d_j))$}
+    }
+\end{algorithm}
+
+Annotating the items like this results in a reasonable distribution of the ratings.
+A large portion of the items are rated around the middle rating of 3, but a significant amount of items also end up with a lower or higher rating.
+A clear bias exists for some users, for whom the ratings are either consistently higher or consistently lower.
+This can be explained by the (mis)match between these users' ability levels and the current item selection of the default courses or tournaments.
+Some users have an ability level that is much higher, and they are consistently shown items that can be considered too easy for them, resulting in consistently lower ratings.
+For other users, the current selection happens to be about right for their skill level, and hence their ratings are consistently somewhat higher.
