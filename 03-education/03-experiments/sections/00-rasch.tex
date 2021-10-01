@@ -51,7 +51,7 @@ Based on the implementation that is available on GitHub\footnote{\url{https://gi
 For each item bank that is calibrated separately, the results can hence not be easily compared to other item banks, as they each have their own scale.
 
 However, for this experiment it is necessary to compare the difficulty of challenges across the entire platform.
-To be able to do this, the full item bank has to be calibrated at once. 
+To be able to do this, the entire item bank has to be calibrated at once. 
 The necessary computations took over 73 hours to complete, confirming once more that it would not be feasible to use in the \gls{its}.
 
 \subsubsection{Statistical significance}
@@ -68,10 +68,10 @@ To test the correlation between the difficulty on the \gls{scw} training platfor
 The test (R = 0.03, $p = 1.85 \times 10^{-3}$) determines that no significant variation in the \gls{irt} difficulty can be explained by the \gls{scw} difficulty.
 This is no surprise, it is clear that the current difficulty assigned on the platform is not an accurate representation of the actual difficulty.
 
-For the categorical variables a one-way \gls{anova} can be used.
+For the categorical variables, a one-way \gls{anova} can be used.
 This test determines if there is a statistically significant difference between one or more of the possible values that a categorical variable can take.
 The one-way \gls{anova} compares the mean difficulty for each of those values and determines whether any of those means are statistically significantly different from each other.
-If the one-way \gls{anova} returns a statistically significant result, that means there are at least two values that are statistically different from each others.
+If the one-way \gls{anova} returns a statistically significant result, that means there are at least two values that are statistically different from each other.
 
 The variables were found to have unequal variances across the possible values, a property called heterogeneity of variances.
 This means that a Welch \gls{anova} should be used, as this \gls{anova} can better control for type I errors~\cite{liu2015comparing}.
@@ -79,10 +79,10 @@ The results of the Welch \glspl{anova} are shown in Table~\ref{tab:anova1} and s
 
 \begin{table}
     \centering
-    \caption[\Gls{anova} test results for Rasch model]{The results of one-way \gls{anova} tests between variables of the exercises and the estimated difficulty. For each variable, the degrees of freedom (df) is shown, as well as the F-statistic, the $p$-value, and the eta-squared ($\eta^2$). All four categorical variables have statistically significant correlations with the estimated difficulty of the exercise. The presentation has a large effect on the estimated difficulty, the category, vulnerability, and framework each have a medium effect.}
+    \caption[\Gls{anova} test results for Rasch model]{The results of one-way \gls{anova} tests between variables of the exercises and the estimated difficulty. For each variable, the degrees of freedom (df) are shown, as well as the F-statistic, the $p$-value, and the eta-squared ($\eta^2$). All four categorical variables have statistically significant correlations with the estimated difficulty of the exercise. The presentation has a large effect on the estimated difficulty. The category, vulnerability, and framework each have a medium effect.}
     \setcellgapes{4pt}\makegapedcells
     \begin{tabular}{l l S[table-format=3.3] l l}
-    Variable & df & F & $p$ & $\eta^2$ \\
+Variable & df & F & $p$ & $\eta^2$ \\
     \hline
     Category & 36 & 14.154 & $2.97 \times 10^{-53}$ & 0.046 \\
     Vulnerability & 142 & 5.393 & $1.19 \times 10^{-45}$ & 0.079 \\
@@ -104,7 +104,7 @@ Results of these tests are shown in Table~\ref{tab:gameshowell}.
     \setcellgapes{4pt}\makegapedcells
     \renewcommand\theadfont{\normalsize}
     \begin{tabular}{l l l l l}
-    \thead{Variable} & \thead{Values} & \thead{Significant\\ pairs} & \thead{Insignificant\\ pairs} & \thead{Significant\\ values} \\
+    Variable & \thead{Values} & \thead{Significant\\ pairs} & \thead{Insignificant\\ pairs} & \thead{Significant\\ values} \\
     \hline
     Category & 36 & 118 & 548 & 29 \\
     Vulnerability & 142 & 384 & 9769 & 77 \\
@@ -125,7 +125,7 @@ The exact $p$-values of these tests are reported in Appendix~\ref{app:pairups}.
 %Where appropriate, the $p$-values of the pairwise Games-Howell test for compared categories will be included.
 
 \subsection{Findings}
-In this section I report some of the notable differences in difficulty between different values for each of the characteristics and offer possible explanations for these observations.
+In this section, I report some of the notable differences in difficulty between different values for each of the characteristics and offer possible explanations for these observations.
 
 \subsubsection{Vulnerability category}
 There is a statistically significant difference between the mean difficulty of the four hardest and the four easiest categories.
@@ -216,8 +216,8 @@ On top of the standard language skills, and the security knowledge, a developer 
 
 The mobile framework Java Android is more difficult than web frameworks for the same language (Java \gls{jsf}, Java Spring), as shown in Figure~\ref{fig:frames3}.
 This can be explained through the increased attack vectors of mobile applications that are installed on the device of the user.
-Because the device and operating system can not be trusted, the developer has to be aware of other threats, such as restoring backups that are tampered with, detecting root access, and tapjacking.
-Unfortunately, Objective C, an extension of C that can be used for mobile development does not show a statistically significant difference with C itself to confirm this correlation.
+Because the device and operating system cannot be trusted, the developer has to be aware of other threats, such as restoring backups that are tampered with, detecting root access, and tapjacking.
+Unfortunately, Objective C, an extension of C that can be used for mobile development, does not show a statistically significant difference with C itself to confirm this correlation.
 The more modern replacement for Objective C, Swift, that is inspired by both C\# (.NET) and Python does show a statistically significant higher mean difficulty than both these languages~\cite{nondot}.
 
 Languages and frameworks have evolved to automate some of the tasks of the developer, such as memory management, and password encryption.

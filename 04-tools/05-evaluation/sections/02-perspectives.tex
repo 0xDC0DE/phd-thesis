@@ -22,7 +22,7 @@ A Sensei recipe can then be created from the code changes that can optionally be
 This technology would also enable automatic recipe creation methods, such as generating a recipe from a code patch in the code repository.
 It might even be possible to dynamically suggest recipes while observing the developer during their normal workflow.
 Previous research has been performed to identify \gls{api} rules for cryptography from code changes~\cite{paletov2018inferring}.
-Efforts have also been made to automatically generate patches from code repositories and their histories, using different algorithms~\cite{weimer2009automatically}, including learned from human-written patches~\cite{kim2013automatic} or correct code~\cite{long2016automatic}.
+Efforts have also been made to automatically generate patches from code repositories and their histories, using different algorithms~\cite{weimer2009automatically}, including those learned from human-written patches~\cite{kim2013automatic} or correct code~\cite{long2016automatic}.
 While this research tries to automatically patch bugs, the approaches can also be used to create recipes to apply the discovered patches more broadly and to do so during the writing of code rather than afterwards.
 With some user interaction, such a tool might also be able to generate recipes (without fixes) from the output of traditional security tools.
 
@@ -30,7 +30,7 @@ This technology is part of ongoing research funded by a \gls{vlaio} \gls{oeno} p
 
 \subsection{Adapting feedback to the skill level}
 An important concept during the design and evaluation of the Sensei \gls{ide} plugin, is the \gls{efp} rate.
-When many markings exist in the code that the developer does not intend to fix, i.e. when there is a high \gls{efp} rate, this might cause developers to be overwhelmed and ignore feedback from Sensei all together.
+When many markings exist in the code that the developer does not intend to fix, i.e. when there is a high \gls{efp} rate, this might cause developers to be overwhelmed and ignore feedback from Sensei altogether.
 To explain this concept, the example of \gls{os} command injection was used.
 A simple and easy to understand recipe to avoid \gls{os} command injection, is to simply avoid all uses of \gls{os} commands.
 A more experience developer, however, will understand how \gls{os} commands can be used securely, for example to launch a different software application through a hard-coded command.
@@ -40,7 +40,7 @@ In other cases, recipes are created that detect (presumably) deliberate insecure
 Take the example of cookies, where it is generally recommended to configure them as HttpOnly.
 This prevents the cookies from being used in client-side scripts, and hence avoids some of the most common \gls{xss} attacks.
 However, in some legitimate cases the developer might need to use a cookie in a client-side script, and to configure the cookie as such.
-Of course, they have to take into consideration the security implication of this configuration.
+Of course, they have to take the security implication of this configuration into consideration.
 For example, they will have to ensure that this is not used for security-sensitive cookies, such as session cookies.
 A recipe that detects insecure configurations like this, will lead to \glspl{efp} for developers who need the features that are blocked by these configurations.
 

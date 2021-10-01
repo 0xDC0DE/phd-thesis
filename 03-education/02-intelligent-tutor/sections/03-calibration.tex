@@ -23,8 +23,8 @@ I explain how both can be implemented simultaneously by using \gls{irt}, a techn
 This field of study focuses on the objective measurement of skills, knowledge, and abilities, often with the goal to create better computerized tests.
 
 The goal of a test is to estimate the ability of an examinee.
-With \glspl{cat} this can be done with higher precision while using less exercises than classic \glspl{fit}.
-To achieve this \glspl{cat} continuously adapt the exercises to the estimated ability level of the examinee.
+With \glspl{cat}, this can be done with higher precision while using less exercises than classic \glspl{fit}.
+To achieve this, \glspl{cat} continuously adapt the exercises to the estimated ability level of the examinee.
 An overview of the steps taken by a \gls{cat} is shown in Algorithm \ref{al:test}. 
 
 \begin{algorithm}[H]
@@ -75,9 +75,9 @@ It is necessary to use a dichotomous model in the \gls{its} because some importa
 Polytomous models are most effective when the number of possible options for the multiple choice question is limited to three or four. 
 The incorrect options need to be deliberate and able to mislead a person with a lower ability level. 
 
-On the \gls{scw} training platform this is not the case as will be explained in Section~\ref{sec:data}.
-Because of this lack of useful polytomous information, I use the dichotomous Rasch model.
-For dichotomous models there are only two outcomes, $k \in \{0,1\}$, representing correct and incorrect.
+On the \gls{scw} training platform, this is not the case as will be explained in Section~\ref{sec:data}.
+Because of this lack of useful polytomous information, I decided to use the dichotomous Rasch model.
+For dichotomous models, there are only two outcomes, $k \in \{0,1\}$, representing correct and incorrect.
 That means the \gls{irf} in Equation \ref{eq:irf} can be reduced to
 
 \begin{subequations}
@@ -90,7 +90,7 @@ That means the \gls{irf} in Equation \ref{eq:irf} can be reduced to
 \end{align}
 \end{subequations}
 
-such that $P_{j}$ represents the probability of of a correct response for exercise $j$, and $Q_j$ the probability of an incorrect response.
+such that $P_{j}$ represents the probability of a correct response for exercise $j$, and $Q_j$ the probability of an incorrect response.
 
 \subsection{Rasch model}
 \label{sec:rasch}
@@ -152,7 +152,7 @@ On the other hand, exercises with lower discrimination values, like $a_1 = 0.25$
     \centering
     %\input{03-education/plots/2pl}
     \includegraphics[page=2]{03-education/figures/tikzfigures.pdf}
-    \caption[Item response functions of the 2PL model]{Three \glspl{irf} in the \gls{2pl} model, with equal difficulty parameter $b_j$ but different discrimination parameters $a_j$. The discrimination parameter represents how good an exercise can differentiate between users of different ability levels $\bm\theta$. A higher value means a steeper increase in probability of a correct answer $P_j$ around the difficulty level $\bm\theta = b_j$.}
+    \caption[Item response functions of the 2PL model]{Three \glspl{irf} in the \gls{2pl} model, with equal difficulty parameter $b_j$ but different discrimination parameters $a_j$. The discrimination parameter represents how well an exercise can differentiate between users of different ability levels $\bm\theta$. A higher value means a steeper increase in probability of a correct answer $P_j$ around the difficulty level $\bm\theta = b_j$.}
     \label{fig:2pl}
 \end{figure}
 
@@ -167,27 +167,29 @@ On the other hand, exercises with lower discrimination values, like $a_1 = 0.25$
 
 \subsubsection{Model calibration}
 Both the \gls{1pl} and \gls{2pl} models hold parameters of two types: item parameters $\bm{p}_j$ and person parameters $\bm{\theta}_i$. 
-With enough data both sets of parameters can be accurately estimated.
-First the item parameters are estimated independently of the ability levels, this is called the \textit{model calibration}. 
+With enough data, both sets of parameters can be accurately estimated.
+First, the item parameters are estimated independently of the ability levels, this is called the \textit{model calibration}. 
 Next, the ability levels are estimated while keeping the item parameters fixed.
 
 \Gls{irt} offers several model calibration techniques, mostly designed for item banks with several dozens of items.
 The larger size of the item bank of \gls{scw} will cause longer execution times and more difficult convergence to stable estimates.
-I solve this problem by splitting the item bank in several smaller item banks, for example one for each framework on the platform.
+I solve this problem by splitting the item bank to several smaller item banks, for example one for each framework on the platform.
 The resulting consequences are discussed in Chapter~\ref{ch:its-experiments}.
 
 The calibration of the model consists of tuning the model parameters to maximize the probability of the observed data.
 More formally, model calibration is maximizing the likelihood of the model $L(\bm\theta,\bm{p})$ with respect to all item parameters $\bm{p} = (\bm{p}_1,\dots,\bm{p}_J)$.
 Because this likelihood is also dependent on all person parameters $\bm\theta = (\theta_1,\dots,\theta_I)$, direct maximization is not possible.
-There are several techniques possible to overcome this.
+There are several possible techniques that can be used to overcome this.
 The most well-known are \gls{jml}, \gls{cml}, and \gls{mml}~\cite{magis2017computerized}.
+
 The \gls{jml} algorithm iteratively maximizes the full likelihood with respect to both person and item parameters until convergence is reached.
+
 \Gls{cml} relies on properties specific to the Rasch model to replace unknown ability levels with known sufficient statistics which then allows for the estimation of the item parameters without requiring the estimation of the person parameters.
 
 \Gls{mml} is formulated under the assumption that the ability is a random parameter.
-In contrast to the \gls{cml} it can be used for other \gls{irt} models besides the Rasch model~\cite{bartolucci2010point}.
-It does not replace the person parameters by sufficient statistics however, but aims to integrate out the person parameters from the maximization process~\cite{bartolucci2010point,magis2017computerized}.
-A prior distribution for the ability parameters $f(\bm{\theta})$ is used to calculate the marginal likelihood (or the expectation) of a response pattern as shown in Equation~\ref{eq:integrate-out}.
+In contrast to the \gls{cml}, it can be used for other \gls{irt} models besides the Rasch model~\cite{bartolucci2010point}.
+It does not replace the person parameters by sufficient statistics, but aims to integrate out the person parameters from the maximization process~\cite{bartolucci2010point,magis2017computerized}.
+A prior distribution for the ability parameters $f(\bm{\theta})$ is used to compute the marginal likelihood (or the expectation) of a response pattern as shown in Equation~\ref{eq:integrate-out}.
 
 \begin{equation}
     \label{eq:integrate-out}
@@ -195,13 +197,13 @@ A prior distribution for the ability parameters $f(\bm{\theta})$ is used to calc
 \end{equation}
 
 The prior distributions are often chosen as normal distributions.
-The item parameters can then be estimated by maximizing the full likelihood calculated as the product of all marginal pattern likelihoods.
+The item parameters can then be estimated by maximizing the full likelihood, calculated as the product of all marginal pattern likelihoods.
 Computing these marginal response pattern distributions was conceptually complex until efficient \gls{em} algorithms were implemented~\cite{magis2017computerized}.
 
 In this work, I used the \gls{mml} approach as it has many advantages, such as its applicability to many types of \gls{irt} models, its ability to compare the fit of different models, and its ability to handle perfect response patterns (all correct or all incorrect answers).
 
 \subsubsection{Ability estimation}
-Once the item parameters are calibrated they are set as fixed.
+Once the item parameters are calibrated, they are set as fixed.
 Estimating the person parameters is done through maximizing the \textit{likelihood function} shown in Equation~\ref{eq:wle1}, with respect to $\theta$. 
 
 \begin{equation}
@@ -209,10 +211,10 @@ Estimating the person parameters is done through maximizing the \textit{likeliho
     L(\theta) = \prod_{j=1}^{J} \prod_{k=0}^{K_j} P_{jk}(\theta, \bm{p}_j)^{Y_{jk}}
 \end{equation}
 
-In this equation $Y_{jk}$ equals one if the response category $k$ was chosen for item $j$ and zero otherwise.
+In this equation, $Y_{jk}$ equals one if the response category $k$ was chosen for item $j$ and zero otherwise.
 
 Note that since the item parameters $\bm{p}_j$ are already calibrated and now set as fixed, the function only depends on the person parameters $\theta$.
-Maximizing this function is equivalent with maximizing its logarithm, the so-called \textit{log-likelihood function}, as shown in Equation~\ref{eq:wle2}.
+Maximizing this function is equivalent to maximizing its logarithm, the so-called \textit{log-likelihood function}, as shown in Equation~\ref{eq:wle2}.
 
 \begin{equation}
     \label{eq:wle2}
@@ -234,18 +236,19 @@ The method applied in this work is the \gls{wle}~\cite{magis2017computerized}.
 
 \subsection{Alternative approaches}
 \todo[inline]{briefly describe all alternatives}
+
 \subsubsection{Classical Test Theory}
-Inaccurate: only useful when all users do the same challenges --> not the desired outcome, opposite in face
+Inaccurate: only useful when all users do the same challenges --> not the desired outcome, opposite in fact
 
 \subsubsection{Three- and four-parameter logistic models}
 Further extensions exist on the \gls{2pl} model. 
-The \gls{3pl} model and \gls{4pl} model add parameters that influence the lower and upper asymptotic behaviour of the \gls{irf}.
+The \gls{3pl} and \gls{4pl} add parameters that influence the lower and upper asymptotic behaviour of the \gls{irf}.
 The lower asymptote parameter $c_j$ is sometimes called the pseudo-guessing parameter. 
 It allows the probability of a correct answer for infinitely small ability levels to be a positive probability instead of zero in the \gls{1pl} and \gls{2pl} model. 
 This means that even users of extremely low ability level still have a non-zero probability of answering the exercise correctly.
-In reality this can of course be achieved through guessing the correct answer in case of multiple-choice.
+In reality, this can of course be achieved through guessing the correct answer in case of multiple-choice.
 
-On the opposite side of the curve the upper asymptote parameter $d_j$ allows the maximal probability to be lower than one. 
+On the opposite side of the curve, the upper asymptote parameter $d_j$ allows the maximal probability to be lower than one. 
 This parameter is called the inattention parameter. 
 The \gls{4pl} model allows users of extremely high ability level to have a probability of less than 1 of answering the exercise correctly.
 This can be explained as the user being inattentive or hurried when answering the question.
@@ -281,7 +284,7 @@ The resulting \glspl{irf} are shown in Equations~\ref{eq:3pl} and \ref{eq:4pl}.
     \centering
     %\input{03-education/plots/4pl}
     \includegraphics[page=5]{03-education/figures/tikzfigures.pdf}
-    \caption[Item response functions of the 4PL model]{Three \glspl{irf} in the \gls{4pl} model, with equal difficulty, discrimination, and pseudo-guessing parameters but different inattention parameters $d_j$. The inattention parameter represents the likelihood that a user answers incorrectly due to inattention. A non-zero inattention parameter means that the probability of a correct answer $P_j$ is never 1, not even for users of extremely high ability level $\bm\theta$.}
+    \caption[Item response functions of the 4PL model]{Three \glspl{irf} in the \gls{4pl} model, with equal difficulty, discrimination, and pseudo-guessing parameters but different inattention parameters $d_j$. The inattention parameter represents the likelihood that a user answers incorrectly due to inattention. A inattention parameter different form 1 means that the probability of a correct answer $P_j$ is never 1, not even for users of extremely high ability level $\bm\theta$.}
     \label{fig:4pl}
 \end{figure}
 

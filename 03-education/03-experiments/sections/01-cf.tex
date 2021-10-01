@@ -12,7 +12,7 @@ The above goal can be achieved by means of an experiment aimed at answering the 
 \end{itemize}
 
 \subsection{Benchmark algorithms}
-To train and evaluate different (variations of) algorithms I have used the open source Python scikit Surprise~\cite{Hug2020}.
+To train and evaluate different (variations of) algorithms, I have used the open source Python scikit Surprise~\cite{Hug2020}.
 Since it is open source, the code is available to download from GitHub and the implemented algorithms can later be adapted to learning systems.
 
 Surprise provides two basic \gls{cf} algorithms that can be used as benchmarks to answer the first research question.
@@ -55,7 +55,7 @@ In this equation, $\text{sim}(u,v)$ is the similarity between users $u$ and $v$,
 Different similarity metrics can be used, as will be explained later in this section.
 
 The algorithm can also be used to do item-based \gls{cf}, by summing over $j \in N_u^k(i)$, the $k$ nearest neighbours of item $i$ that are rated by user $u$.
-In that case the similarity between items $\text{sim}(i,j)$ needs to be used.
+In that case, the similarity between items $\text{sim}(i,j)$ needs to be used.
 
 \paragraph{k-NN with means}
 The second k-NN algorithm is called k-NN with means.
@@ -80,7 +80,7 @@ The resulting formula is shown in Equation~\ref{eq:knn-z-score}.
     \hat{r}_{ui} = \mu_u + \sigma_u \frac{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v) \cdot (r_{vi} - \mu_v) / \sigma_v }{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v)}
 \end{equation}
 
-In this equation $\sigma_u$ is the standard deviation of the ratings of user $u$.
+In this equation, $\sigma_u$ is the standard deviation of the ratings of user $u$.
 This algorithm can also be trivially changed to make item-based predictions.
 
 \paragraph{k-NN baseline}
@@ -91,7 +91,7 @@ The final k-NN algorithm, k-NN baseline, uses the baselines of the $k$ nearest n
     \hat{r}_{ui} = b_{ui} + \frac{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v) \cdot (r_{vi} - b_{vi}) }{\sum\limits_{v \in N_i^k(u)} \text{sim}(u, v)}
 \end{equation}
 
-In this equation $b_{ui}$ is the baseline rating of user $u$ for item $i$, as computed in Equation~\ref{eq:baseline-estimate}.
+In this equation, $b_{ui}$ is the baseline rating of user $u$ for item $i$, as computed in Equation~\ref{eq:baseline-estimate}.
 
 \paragraph{Similarity metrics}
 %Because the \gls{knn} algorithms explicitly make use of the similarity between users (or items) to make predictions, they can be easily adapted to learning systems by adjusting the similarity metric.
@@ -214,7 +214,7 @@ The average ratings from these clusters can then be used to make predictions abo
         - \overline{C_i})
 \end{equation}
 
-In this equation $\overline{C_{ui}}$ is the average rating of co-cluster $C_{ui}$, $\overline{C_u}$ is the average rating of the cluster of user $u$, and $\overline{C_i}$ is the average rating of the cluster of item $i$.
+In this equation, $\overline{C_{ui}}$ is the average rating of co-cluster $C_{ui}$, $\overline{C_u}$ is the average rating of the cluster of user $u$, and $\overline{C_i}$ is the average rating of the cluster of item $i$.
 %The number of user and item clusters can be configured, in this experiment, the default values of 3 item and 3 user clusters are used.
 
 \glsreset{pmf}
@@ -225,7 +225,7 @@ For example, on the \gls{scw} training platform, factors might be obvious charac
 It is also possible that they represent less defined dimensions such as readability of the code, or the structure of the files, or even completely uninterpretable dimensions~\cite{Ricci2010}.
 
 Each item $i$ is then depicted as a vector $q_i \in \mathbb{R}^f$, that measures the extent to which this item possesses the characteristics represented in the latent space.
-Each user $u$ is represented by a vector $p_u \in \mathbb{R}^f$ that measure the extent of the interest (or utility) that this user has for the corresponding factors.
+Each user $u$ is represented by a vector $p_u \in \mathbb{R}^f$ that measures the extent of the interest (or utility) this user has for the corresponding factors.
 
 The dot product of these two vectors captures the interest (or utility) of the user for this item and can be used to make predictions, resulting in the \gls{pmf} algorithm~\cite{mnih2008probabilistic,Hug2020}.
 The formula is shown in Equation~\ref{eq:pmf}.
@@ -237,7 +237,7 @@ The formula is shown in Equation~\ref{eq:pmf}.
 
 \glsreset{svd}
 \paragraph{\gls{svd}}
-The \gls{svd} algorithm is very similar to \gls{pmf} but creates a final rating by also adding the baseline predictors~\cite{koren2009matrix, Ricci2010, Hug2020}. 
+The \gls{svd} algorithm is very similar to \gls{pmf}, but creates a final rating by also adding the baseline predictors~\cite{koren2009matrix, Ricci2010, Hug2020}. 
 The resulting formula is shown in Equation~\ref{eq:svd}.
 
 \begin{equation}
@@ -260,16 +260,16 @@ For the algorithm in this experiment, this process was repeated 20 times to reac
 \paragraph{\gls{nmf}}
 The \gls{nmf} \gls{cf} algorithm is very similar to \gls{pmf}, but the user and item factors are kept positive~\cite{NMF:2014, NMF_algo, zhang2006learning, Hug2020}.
 That means each item $i$ is depicted as a vector $q_i \in \mathbb{R}_{\geq 0}^f$, and each user $u$ as a vector $p_u \in \mathbb{R}_{\geq 0}^f$.
-Predictions are then computed identical to \gls{pmf}, as shown in Equation~\ref{eq:pmf}.
+Predictions are then computed identically to \gls{pmf}, as shown in Equation~\ref{eq:pmf}.
 
-To ensure that the parameters stay positive, a stochastic gradient descent is used that ensures non-negativity of factors based on the step size and the initial values~\cite{Hug2020}.
+To ensure that the parameters remain positive, a stochastic gradient descent is used that ensures non-negativity of factors based on the step size and the initial values~\cite{Hug2020}.
 
 \paragraph{SVD++}
 The SVD++ algorithm was developed to make use of implicit feedback.
-It builds on the assumption that the users can also be characterized by accounting for which items they have or have not provided a rating.
+It builds on the assumption that the users can also be characterized by accounting for which items they have or have not provided a rating for.
 The SVD++ algorithm often results in superior accuracy compared to \gls{svd}.
 
-A second set of item factors $y_i \in \mathbb{R}^f$ is added that are used to characterize the users based on the set of items they have rated.
+A second set of item factors $y_i \in \mathbb{R}^f$ is added that is used to characterize the users based on the set of items they have rated.
 The user vector $p_u$ is then extended based on these characteristics before using it to compute a prediction, as shown in Equation~\ref{eq:svdpp}. 
 
 \begin{equation}
@@ -326,7 +326,7 @@ It computes the average prediction error over the entire set of predictions, as 
     \text{MAE} = \frac{1}{ |\hat{R}| }  \sum\limits_{\hat{r}_{ui} \in \hat{R}} |r_{ui} - \hat{r}_{ui}|
 \end{equation}
 
-The \gls{mae} uses the same scale as the ratings itself, and hence can not be used to make comparisons between measurements using different scales.
+The \gls{mae} uses the same scale as the ratings itself, and hence cannot be used to make comparisons between measurements using different scales.
 For this the \gls{nmae} can be used that expresses the error as a percentage of the full scale~\cite{su2009survey}.
 In our rating scale, the \gls{mae} takes values between 0 for a perfect prediction and 5 as the maximum error.
 
@@ -344,12 +344,12 @@ It takes non-negative values and a lower value means better prediction performan
 The \gls{rmse} has increased in popularity, partly because of its use in the Netflix competition for movie recommendations~\cite{su2009survey,zhou2008large}.
 In 2006 Netflix launched a competition to beat the current score of their recommendation algorithm, \emph{Cinematch}.
 At the time the algorithm achieved a \gls{rmse} of 0.9514~\cite{zhou2008large,bennett2007netflix}.
-With the competition, Netflix offered a \$1 million dollar prize to the team who could improve this benchmark by 10\%.
+With the competition, Netflix offered a \$1 million dollar prize to the team that could improve this benchmark by 10\%.
 The algorithm of the winners, one year later, reached a \gls{rmse} of 0.8567 and was put into production~\cite{zhou2008large,netflixprizeforum,netflixprizeleaderboard}.
 This also shows that in \gls{cf} algorithms, improvements of several percents can already be valuable.
 
 \paragraph{\gls{fcp}}
-Finally, I have also included a measure that puts more focus on the order that the items are ranked rather than the exact rating that is predicted.
+Finally, I have also included a measure that puts more focus on the order the items are ranked rather than the exact rating that is predicted.
 In the \gls{fcp}, the number of concordant pairs $n_{c}^{u}$ for a user $u$ is determined by counting the pairs of ratings that are ranked correctly~\cite{koren2013collaborative}.
 This is shown in Equation~\ref{eq:concordantpairs}.
 
@@ -358,9 +358,9 @@ This is shown in Equation~\ref{eq:concordantpairs}.
     n_{c}^{u} = |\{(i,j) \mid \hat{r}_{ui} > \hat{r}_{uj} \text{ and } r_{ui} > r_{uj} \}|
 \end{equation}
 
-The number of pairs that are ranked incorrectly is the number of discordant pairs $n_{d}^u$.
+The number of pairs that is ranked incorrectly is the number of discordant pairs $n_{d}^u$.
 
-The total number of concordant pairs $n_c$ and discordant pairs $n_d$ are then obtained by summing over all users as shown in Equation~\ref{eq:concordant2}.
+The total number of concordant pairs $n_c$ and discordant pairs $n_d$ is then obtained by summing over all users as shown in Equation~\ref{eq:concordant2}.
 
 \begin{equation}
     \label{eq:concordant2}
@@ -389,8 +389,8 @@ The Netflix recommendations happen to use the same scale as the utility rating i
 These results indicate that the utility of an item on the \gls{scw} platform is in comparison easier to predict.
 
 The good performance of the Baseline algorithm was expected based on the observations of the data.
-In the current item selection, most users are shown the same exercises.
-These items are of course not randomly selected, but carefully tailored by the \gls{scw} employees who designed these \gls{owasp} Top 10 courses in the platform.
+In the current item selection, most users are given the same exercises.
+These items are of course not randomly selected, but carefully tailored by the \gls{scw} employees who designed these \gls{owasp} Top 10 courses on the platform.
 As a result, for a number of users this item selection is rather good, and the ratings of these users are consistently high.
 For more experienced users, the content of these courses is too easy, and as a result their ratings are consistently lower.
 Using baselines, these consistent bias result in reasonably accurate predictions.
@@ -409,7 +409,7 @@ This item-based configuration performed worse for all four algorithms, with an i
 
 In the final test with the \gls{knn} algorithms, each of the algorithms is evaluated in combination with each of the four similarity metrics.
 %1 - (0.4840/0.4508) --> over 7\% for k-NN with z-score Cosine and Baseline
-The results indicate that the similarity metric can have a big impact on the prediction performance, with as much as 7\% increase in performance for the \gls{knn} with z-score algorithm between the cosine similarity metric and the baseline similarity metric.
+The results indicate that the similarity metric can have a big impact on the prediction performance, with as much as a 7\% increase in performance for the \gls{knn} with z-score algorithm between the cosine similarity metric and the baseline similarity metric.
 
 When the similarity metrics are ranked from best to worst performance, this ranking is the same for each algorithm, and is as follows:
 \begin{enumerate}[noitemsep]

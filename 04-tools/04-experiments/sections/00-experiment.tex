@@ -2,8 +2,8 @@
 \label{sec:experiment}
 
 In November 2018, I conducted an experiment with students to evaluate some features of the Sensei \gls{ide} plugin.
-This experiment has been well designed with the help of my supervisors and prof. Riccardo Scandariato who has practical experience with similar experiments in the past.
-It was conducted with the help of the lecturer dr. Mattias De Wael, and my colleague at \gls{scw}, Downey Robersscheuten.
+This experiment has been well designed with the help of my supervisors and prof. Riccardo Scandariato who has practical experience with similar experiments.
+It was conducted with the help of the lecturer dr. Mattias De Wael, and two of my colleagues at \gls{scw}, Downey Robersscheuten and Tim Dekiere.
 
 \subsection{Goals and research questions}
 The main \textit{goal} of the experiment is to observe the impact of the Sensei \gls{ide} plugin on developers and developed code during development.
@@ -11,7 +11,7 @@ The \textit{purpose} is evaluating the usability and effectiveness of Sensei in 
 The \textit{quality focus} is the ability of the plugin to help developers adhere to secure coding guidelines without causing a significant cognitive burden.
 The study evaluates the behaviour of a developer.
 We aim at measuring the increase in cognitive burden when developers use the plugin, by measuring the impact on development time.
-In our experiment we evaluated the impact on a group of students who have a consolidated minimum level of expertise in both web application development and web application security.
+In our experiment, we evaluated the impact on a group of students who have a consolidated minimum level of expertise in both web application development and web application security.
 
 The above goal can be achieved by means of an experiment aimed at answering the following four questions:
 \begin{itemize}
@@ -26,7 +26,7 @@ The above goal can be achieved by means of an experiment aimed at answering the 
 The subjects for this study are a group of third year students following the bachelor program for Computer and Cyber Crime Professional\footnote{\url{https://www.howest.be/en/programmes/bachelor/applied-informatics/computer-and-cyber-crime-professional}} at the college Hogeschool West-Vlaanderen (Howest) in Bruges, Belgium.
 All students are in the third, and final year of the bachelor program.
 The experiment was performed in the context of the Secure Object Oriented Architectures class.
-In this course the students are taught design patterns, how to design three layered applications, and java technicalities.
+In this course, the students are taught design patterns, how to design three layered applications, and java technicalities.
 During the entire course the focus is on development while conforming to Oracle's Secure Coding Guidelines\footnote{\url{https://docs.oracle.com/cd/E26502\_01/html/E29016/scode-1.html}}.
 
 All of the students are familiar with Java programming in IntelliJ IDEA, as it is the main language and \gls{ide} used in the education program.
@@ -40,12 +40,12 @@ However, only 32 students successfully submitted all necessary files after the e
 
 \subsubsection{Development task}
 \label{sec:task}
-The subjects were given a development task to complete with the Sensei plugin installed in the \gls{ide}.
+The subjects were given a development task to complete with the Sensei plugin installed in their \gls{ide}.
 For the assignment they received the incomplete code for an employment web app.
 The application provides employees of a company a way to view, download, and upload their payslips, as well as to submit requests for absence.
 The application is written in Java and uses \gls{jsp} as the server side technology.
 Some of the features are incomplete and must be completed by the subjects during the experiment.
-During the implementation of these features the subjects are at risk of introducing a number of web application vulnerabilities.
+During the implementation of these features, the subjects are at risk of introducing a number of web application vulnerabilities.
 Below is a list of features to be completed and their associated risks.
 
 \begin{itemize}[noitemsep]
@@ -59,7 +59,7 @@ Below is a list of features to be completed and their associated risks.
 The treatment consisted of two parts. First, all subjects participated in a \gls{scw} tournament.
 The next week, all participants were given the Sensei \gls{ide} plugin, but some features were disabled for the control group.
 \paragraph{Tournament}
-One week preceding the experiment all subjects participated in a tournament on the \gls{scw} platform.
+One week preceding the experiment, all subjects participated in a tournament on the \gls{scw} platform.
 The subjects were handed 24 secure coding exercises in Java using \gls{jsp} to complete within 90 minutes.
 The awarded points on completion of an exercise depends on its difficulty and the performance of the subject, as described in Appendix~\ref{app:challenges}.
 The scoring method chosen was "Forgiving".
@@ -163,7 +163,7 @@ For example, a parameterized query is the compliant counterpart of a \gls{sql} i
 A compliant counterpart is available for the recipe in Table~\ref{tab:recipe1}.
 For other recipes, such as the one in Table~\ref{tab:recipe2}, no compliant counterpart can be created.
 This is not possible, for example, for a recipe that forbids the use of \gls{os} commands, in order to prevent \gls{os} command injection.
-All code devoid of \gls{os} commands is technically compliant to this recipe, but we can not create a recipe that detects conscious compliance to the recipe.
+All code devoid of \gls{os} commands is technically compliant to this recipe, but we cannot create a recipe that detects conscious compliance to the recipe.
 The events also include the opening of a description (DESCRIPTION).
 The events file does not include code or code locations, as our clients do not want to expose this information.
 
@@ -233,7 +233,7 @@ At this point we discovered that the hand-in procedure was not correctly perform
 We asked all subjects to hand in again, stressing to include both the events file and all source files, but very few subjects submitted a second time. 
 
 Without the source code in addition to the events file, I am unable to verify whether the code is still functional, as simply removing the relevant pieces of code would also effectively remove all guideline violations.
-On the other hand, without the events file we can not verify which impact the Sensei plugin had on the security of resulting code.
+On the other hand, without the events file we cannot verify which impact the Sensei plugin had on the security of resulting code.
 
 This means I do not have sufficient data to compare results from both groups to evaluate the \textit{effectiveness} of Sensei on improving the security of the final code, but that was never the main objective of the experiment.
 %It remains future work to rerun a similar experiment including the proper collection of all required data.
@@ -241,9 +241,9 @@ With the data from the 32 subjects who handed in their events file, I can still 
 
 \subsubsection{Analysis method}
 \label{sec:analysis}
-Since the logs in the events file do not include file locations we sometimes have to make assumptions on which ADD and DELETE events should be paired.
+Since the logs in the events file do not include file locations, we sometimes have to make assumptions on which ADD and DELETE events should be paired.
 On occasion there are multiple guideline violations with the same recipe ID present in the code at a certain time, as is the case in Table~\ref{tab:recipe2}. 
-In this case we can not know for certain which of the two violations is fixed first.
+In this case, we cannot know for certain which of the two violations is fixed first.
 During our experiment, this was the case for 8\% guideline violations, with the two ADD events on average 37.75 s (s = 44.05 s) apart.
 For the measurements of the time between adding the violation and removing it, we assumed that the violations were removed in the same order as they were introduced.
 For all of the cases eventually either both violations were removed or neither of them were.
@@ -272,16 +272,16 @@ The aforementioned assumption hence has no influence on the mean removal time an
 We observed three exceptionally long removal times and inspected the logs to determine the cause.
 Two of the outliers had events regarding other recipe IDs in between the ADD and DELETE events and so the subject did not spend this time actively solving the guideline violation.
 For further computations of removal time, these two outliers are left out.
-In between the ADD and DELETE events of the third case there were a number of DESCRIPTION events with the same recipe ID. In this case we can safely assume that the subject did indeed spend 3.54 min actively resolving the issue.
+In between the ADD and DELETE events of the third case there were a number of DESCRIPTION events with the same recipe ID. In this case, we can safely assume that the subject did indeed spend 3.54 min actively resolving the issue.
 
 \subsection{Findings}
 \subsubsection{Guideline violations}
 On average, the subjects introduced 17.64 (s = 10.27) guideline violations.
 The best performing subject (in this regard) introduced 2 guideline violations.
-For this subject the events log showed enough C\_ADD events to assume that the subject completed at least the majority of the programming exercise.
+For this subject, the events log showed enough C\_ADD events to assume that the subject completed at least the majority of the programming exercise.
 The worst performing subject added 37 guideline violations.
 In this case the events log showed a large number of ADD and DELETE events for the same recipe ID, making us believe that the subject was rewriting the code a number of times.
-This can result from attempting to implement the code functionally correct or from attempting to resolve the guideline violation.
+This can result from attempting to implement the code functionally correctly or from attempting to resolve the guideline violation.
 The absence of DESCRIPTION events in the log is strong evidence for the former. 
 
 \subsubsection{Resolving guideline violations}
@@ -323,7 +323,7 @@ On average the subjects opened 2.79 (s = 7.64) descriptions.
 
 \subsubsection{Development time}
 Using the events file from Sensei we can determine the approximate development time for the entire experiment.
-If we take the time difference between the first and the last event this will likely be close to the total development time.
+If we take the time difference between the first and the last event, this will likely be close to the total development time.
 This can be done for all users of both the control and the test group that handed in the events file.
 For users in the test group we can also approximate the time spent addressing Sensei markings by taking the sum of all removal times.
 We can compare these results to see how much impact Sensei had on the development time.

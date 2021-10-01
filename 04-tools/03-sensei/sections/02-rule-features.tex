@@ -154,7 +154,7 @@ Code fragments are refactored without involving additional libraries, only libra
 
 The second example, where the insecure code is replaced with \gls{api} calls from a different library, is a \emph{library adoption recipe}.
 Instead of providing guidance on the correct usage of the \glspl{api}, such recipes promote the adoption of a new library.
-This type of recipe has a trigger in one library but their fix uses another library.
+This type of recipe has a trigger in one library but their fix uses a different library.
 
 As a proof of concept for library adoption recipes, support has been developed for the \gls{owasp} \gls{esapi} library.
 Among others, the \gls{owasp} \gls{esapi} contains replacement methods for commonly used insecure \gls{jdk} methods, the so-called \gls{owasp} \gls{esapi} banned \glspl{api}\footnote{\url{https://www.owasp.org/index.php/ESAPI\_Secure\_Coding\_Guideline\#Banned_APIs}}.
@@ -206,7 +206,7 @@ The fix then inserts the required \gls{api} calls, leading to comfortable and in
 This recipe is a good example to demonstrate the paved path methodology.
 It guides the developer along a predetermined path laid out for them to implement encryption securely.
 
-We also have improved context-awareness to detect flaws by adding more recipe scopes.
+We have also improved context-awareness to detect flaws by adding more recipe scopes.
 One such example is the Android \emph{context scope}.
 As explained earlier, in the Android manifest a developer can configure capabilities of components such as activities and broadcast receivers regarding their communication towards the \gls{os}.
 They can listen to any other application, only to authorized applications, or only to the own application.

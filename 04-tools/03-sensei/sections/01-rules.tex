@@ -9,7 +9,7 @@ Customization and distribution of the recipes is a crucial feature for any succe
 If the recipes are easy to customize, it ensures that Sensei can provide highly relevant and applicable feedback to the developer.
 This customization should be scalable and hence not be a service provided by us.
 It should allow developers and security experts to effortlessly share project-specific or team-specific guidelines among each other.
-For this reason the recipe creation process should be easy and fast, and at the same time versatile. 
+For this reason, the recipe creation process should be easy and fast, and at the same time versatile. 
 
 Our first approach allowed users to create new recipes through predefined recipe models.
 A \gls{gui} was used to let the recipe writer fill in a number of variables for this model.
@@ -57,7 +57,7 @@ When this context-aware option is chosen, the recipe creation wizard is opened a
 To search for a methodcall, the information that can be pre-filled from context is the type and the name of the methodcall, as well as the number of arguments and each of their types.
 The user can then adjust the recipe to reach the desired results through the \gls{yaml} code or the provided \gls{gui}.
 This window also provides a preview panel, as shown in Figure~\ref{fig:recipewizard1}.
-In this panel the code file from which the recipe wizard was opened is shown, and the effects of the recipe being created are visualised, which allows for easy customization.
+In this panel, the code file from which the recipe wizard was opened is shown, and the effects of the recipe being created are visualised, which allows for easy customization.
 
 \begin{sidewaysfigure}
   \centering
@@ -103,7 +103,7 @@ The live previews also greatly improve the usability, since before they were int
 To check the recipes, our tool reuses the \gls{ide} syntax checking features.
 When a developer writes new code, the \gls{ide} rebuilds the \gls{ast} and computes the changes compared to the previous version.
 A limited \gls{ast} of the changes, containing the necessary symbol information, is then passed on, allowing tools to only analyze the changes.
-On this \gls{ast}, a combination of specialized light-weight versions of existing analysis techniques are used such as taint analysis, data flow analysis, and control flow analysis to verify the recipes in real time.
+On this \gls{ast}, a combination of specialized light-weight versions of existing analysis techniques is used such as taint analysis, data flow analysis, and control flow analysis to verify the recipes in real time.
 
 \subsection{Managing recipes}
 \label{sec:manager}
@@ -117,10 +117,10 @@ When they develop new \glspl{api}, additionally to documentation, developers can
 We also recommend to make Sensei recipes part of the remediation process when problems are found by security testing or reported through bug bounty programs.
 It should be part of the process to create a recipe that prevents this same vulnerability from occurring in the future.
 Currently, it is often the case that security experts run the security scans.
-When problems are found these experts guide the developers by providing them with informal, broadly applicable guidelines and checklists.
+When problems are found, these experts guide the developers by providing them with informal, broadly applicable guidelines and checklists.
 These instructions sometimes use security jargon that might not be clear to all developers, and even if they are understood, that does not guarantee the developer will be able to apply them in practice.
 In the paved path methodology, security experts and developers should work together to create \gls{api}-level guidelines instead.
-As part of this process, to communicate this guideline to the rest of the team, Sensei recipes can be created as well.
+As part of this process, to communicate these guidelines to the rest of the team, Sensei recipes can be created as well.
 
 For existing projects, we recommend companies to start with no recipes and use existing data on the security of their project as a starting point.
 This could be the report of a penetration test, or results of vulnerability scans.

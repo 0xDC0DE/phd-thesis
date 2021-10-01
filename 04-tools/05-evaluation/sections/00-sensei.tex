@@ -21,7 +21,7 @@ A significant portion of the recipes are related to the quality of the code rath
 
 We have noticed, in practice, that security and quality are often closely related.
 High quality code is easier to understand and maintain, and hence also to secure.
-But often, writing high quality code leads even more directly to secure code.
+But often, writing high quality code can also lead to secure code in a more direct way.
 
 Take the example of a \gls{sql} query.
 Writing a data retrieval method of high quality means that the query is easy to understand, but also that the data is retrieved at high speed.
@@ -64,7 +64,7 @@ Even for users that were experienced with the old rule models, the preview panel
 Security professionals report that Sensei is the easiest tool they have used when it comes to customizing recipes.
 The majority of comparable tools allow writing custom rules or analyses in some way or another.
 \todo[inline]{revisit after related work is finished}
-Writing rules for these tools is done through complex, but well documented \glspl{api} (SpotBugs, Tricorder, Checkmarx) or more user friendly custom formats such as \gls{xml} (Fortify, SecureAssist).
+Writing rules for these tools is done through complex, but well documented \glspl{api} (SpotBugs, Tricorder, Checkmarx) or more user-friendly custom formats such as \gls{xml} (Fortify, SecureAssist).
 Of these, Checkmarx is the only one tool that provides a Query editor and manager, albeit not built into their static analysis tool.
 For all other tools, the rule writers can use an \gls{ide} or text editor of their choice.
 None of the tools allow creating rules on-the-fly in the code.
@@ -100,9 +100,9 @@ Instead of “create recipe for similar methodcalls”, it might be more effecti
 
 Quick-fixes are added to nearly every recipe.
 However, in some situations no fully functional quick-fix can be created and the developer is still required to make changes to the code after applying the quick-fix.
-To create quick-fixes the template language that allows reusing parts of the original code can be very useful.
+To create quick-fixes, the template language that allows reusing parts of the original code can be very useful.
 However, the suggestion box in the quick-fix menu is not clearly visible to the users, and as a result these suggestions are rarely used.
-Currently the variables are hidden by default and the "Show variables" button is not very prominent, as shown in Figure~\ref{fig:showvariables}.
+Currently, the variables are hidden by default and the "Show variables" button is not very prominent, as shown in Figure~\ref{fig:showvariables}.
 
 \begin{figure}
   \centering
@@ -136,16 +136,16 @@ This means that a developer is not hindered during development unless they are v
 
 When code is marked, the developer needs to spend some extra time understanding the issue and fixing it.
 During the empirical experiment of Section~\ref{sec:experiment}, the mean observed remediation time of a guideline violation is 19 seconds.
-The use of Sensei on average increased the total development time with 11\%.
-This is a relatively low increase considering the programming assignment was to complete security critical features and hence the subjects were frequently confronted with feedback from the tool.
-It is also important to note that for all of the subjects the experiment was the first time they were making use of the tool.
+On average, the use of Sensei increased the total development time with 11\%.
+This is a relatively low increase considering the programming assignment was to complete security-critical features and hence the subjects were frequently confronted with feedback from the tool.
+It is also important to note that for all of the subjects, the experiment was the first time they were making use of the tool.
 
 During the experiment, 98.4\% of code markings shown by Sensei (n = 247) were resolved by the developers.
-Out of the resolved code markings 73.3\% were fixed using the quick-fixes.
+Out of the resolved code markings, 73.3\% were fixed using the quick-fixes.
 All of the users (n = 15) used at least one quick-fix, with an average of 12.71 (s = 4.73) quick-fixes used.
 The remaining code markings have been removed manually, either by fixing the violation or by removing the violating code entirely.
 This is a high level of engagement, compared to the lower than 20\% "Apply fix" rate reported by the code review tool Tricorder~\cite{sadowski2015tricorder}.
-On average the subjects resolved the issue within 19.10 s (s = 25.22 s) of writing the violated \gls{api} call.
+On average the subjects resolved the issue within 19.10 s (s = 25.22 s) of writing the violating \gls{api} call.
 This means that developers are spending comparatively little time understanding the issues and applying fixes.
 By comparison, for Tricorder and SpotBugs the time between writing the violating code and fixing is usually several days~\cite{sadowski2015tricorder,ayewah2007using}.
 
@@ -193,23 +193,23 @@ This is a common trade-off, therefore tools that are used early in the \gls{sdlc
 Security professionals understand this.
 In the second industry trial Sensei is complimented by five additional security tools: Fortify, Checkmarx, SonarQube, Semgrep, and FindBugs.
 
-An example of this strategy is also exists with multiple products of the same company. 
+An example of this strategy also exists with multiple products of the same company. 
 The Fortify Security Assistant \gls{ide} plugin is used earlier in the \gls{sdlc} than other Fortify tools, but only uses a subset of the available rules to improve developer usability.
-It helps a set of vulnerabilities to be detected earlier, and hence saves money and time fixing those issues, but it does not provide the full protection that, e.g., Fortify on Demand does.
+It helps detect a set of vulnerabilities earlier, and hence saves money and time fixing those issues, but it does not provide the full protection that, e.g., Fortify on Demand does.
 In the related work section, we will discuss where we consider Sensei to improve over Fortify Security Assistant as an early \gls{sdlc} tool.
 
 \subsection{Project and team management}
 \subsubsection{Compliance}
 Coding guidelines can provide a good measure for security in a software product.
 Where vulnerability scanning can only provide an indication of the vulnerability density, they do not provide the full picture.
-In the case, for example, where a large number of \gls{sql} injections are found, this could indicate poor database security.
+In the case, for example, where a large number of \gls{sql} injections is found, this could indicate poor database security.
 But it can also mean that there simply are a lot of database queries, with a large portion of them done securely.
 For coding guidelines a relative measure can be designed, by comparing the number of guideline violations to the number of times the code complies to guidelines. Since complying to strong coding guidelines leads to secure code~\cite{banerjee2009software,tabassum2017comparing}, we get a better indication of the security in the software product.
 
 While the plugin is useful as a tool to aid the developer, the option to measure guideline deployment also hints at its potential as a management tool.
 Like we did for the empirical experiment, management can track the changes developers makes to projects and log the guideline violations that they introduce and fix, with or without aid of the quick-fixes.
 Currently, this data is collected in the events databases on the machine of each developer.
-In the future these metrics will be collected and visualised on the \gls{scw} platform.
+In the future, these metrics will be collected and visualised on the \gls{scw} platform.
 This makes the return on investment clear to companies using the tool.
 Furthermore, this can be used to track the performance of individual developers, and then to give more targeted and individually tailored training.
 This data can for example feed into the \gls{its} to improve its recommendations, as described in Section~\ref{sec:its-integration}.
@@ -226,7 +226,7 @@ While the tool is a developer tool first, it is also a security tool, and it is 
 Which is why it is important to show value for both user groups.
 
 \subsubsection{Roll-out}
-From experience, we learned that ideally the plugin is rolled out when new recipes do not mark any existing code.
+From experience, we learned that the plugin is ideally rolled out when new recipes do not mark any existing code.
 This is when a project kicks off and zero lines of code have been written. 
 Alternatively it can be rolled out when a new \gls{api} or library is introduced in the project and recipes will be written for this library or \gls{api}.
 Few projects are developed from scratch, however, so the reality is that the plugin needs to work in an already developed product.
@@ -234,20 +234,20 @@ In that case, rolling the plugin out with all recipes switched on can be overwhe
 In addition, developers are often hesitant to fix issues they did not introduce in the code themselves, and they might not even have permission to change code that is not theirs.
 This results in a large number of \glspl{efp}, which we want to avoid.
 
-When developers create their own recipes from scratch they are working on a certain branch of the project.
+When developers create their own recipes from scratch, they are working on a certain branch of the project.
 They usually create very targeted recipes to fix or enforce small things in the project files they are working on.
-When they create the recipe they inspect the violations and fix the markings.
+When they create the recipe, they inspect the violations and fix the markings.
 The recipe and fixed code are pushed to the code base simultaneously.
 This typically leads to few \glspl{efp}.
 However, often the application security team of the company imposes recipes as well.
-At one point, we had a client where the security expert created a large number of recipes and imposed them onto the developers without fixing any of the resulting violations.
+At one point, the security expert at a client of ours created a large number of recipes and imposed them onto the developers without fixing any of the resulting violations.
 It did not come as a surprise that this resulted in a great number of \glspl{efp} and out of the 20 developers that had the tool installed, all of them had disabled its markings.
 To avoid such failures, we recommend two approaches to keep the \gls{efp} rate low for imposed cookbooks.
 
 Firstly, in the ideal scenario the security team creates a number of recipes and looks at their violations in the code to inspect their severity.
 When recipes result in few violations, the team can safely roll out the recipes without resulting in too many \glspl{efp}.
 
-The roll-out is more challenging when a recipe results in a great number of violations that are not trivially resolved.
+The roll-out is more challenging when a recipe results in a large number of violations that are not trivially resolved.
 In that case the security team should create a developer task force.
 Their task is to create \glspl{api} to resolve the recipe hits.
 They then turn the original recipe into a library adoption recipe and fix all marked code with this recipe.
@@ -257,7 +257,7 @@ The new \gls{api}, the recipe, and all code fixes can be pushed to the code base
 The ideal scenario might not apply in practice, however.
 It is possible that the code base is simply too large to start fixing all code markings.
 We have had clients where a strong recipe resulted in over 3000 violations.
-It can also be the case that when the security team creates a task force, this developer time is payed by the security budget, not the development budget.
+It can also be the case that when the security team creates a task force, this developer time is paid by the security budget, not the development budget.
 In such cases it is not beneficial to spend developer time to fix the existing issues in the code before rolling out the recipe. 
 
 We then instead recommend the second approach, in which the recipes are rolled out company-wide without fixing the code markings.

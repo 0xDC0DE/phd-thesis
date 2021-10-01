@@ -46,7 +46,7 @@ They shared their insights in how the tool is used, what they liked about it and
 \subsection{Goal}
 The \textit{goal} of this interview is to learn how Sensei is actually used in an industry setting.
 The \textit{purpose} is to understand if our design goals align with the expectations of the users, and to observe which features are most useful and which are lacking or missing.
-The \textit{quality focus} is on the frequency features are being used, and for which purpose.
+The \textit{quality focus} is on the frequency at which features are being used, and for which purpose.
 
 \subsection{Set-up}
 
@@ -59,7 +59,7 @@ Most, but not all, security professionals have prior development experience, som
 \subsubsection{Task}
 The subjects are part of teams developing and maintaining the \gls{erp} software of the client.
 All of the Sensei users are developing using the IntelliJ IDEA.
-During the use of Sensei they have continued their daily responsibilities as usual.
+During their use of Sensei, they have continued their daily responsibilities as usual.
 
 \subsubsection{Treatement}
 Use of the Sensei plugin in these teams is voluntary.
@@ -70,6 +70,7 @@ The remaining users are developers.
 The teams have been using Sensei for over two years.
 When it was purchased, one of the security professionals gave a presentation and a demonstration of the tool to interested coworkers.
 Most attendees were team leads, managers, and some security champions.
+Security champions are developers who show more interest, and higher competence regarding security.
 From there on, use of Sensei has not been actively promoted across the company.
 However, one security professional regularly discusses the tool in the security champions group meetings, as well as the dedicated support channel on \gls{slack}.
 
@@ -91,13 +92,13 @@ The other interviewee joined the company after the purchase of Sensei, this pers
 The security professionals found that adoption of the tool is not easy.
 It is hard to get a chance to show value to the developers, and they are hesitant to install new tools in their \gls{ide}.
 It is easier to convince the security champions who are more interested, and actively looking for tools that can help them produce secure code faster.
-So far the security professionals have preferred the hands-off approach and allowed the tool to organically spread, instead of making it mandatory.
+So far, the security professionals have preferred the hands-off approach and allowed the tool to organically spread, instead of making it mandatory.
 The security professionals, many who have development backgrounds, are convinced that the tool can be an asset to developers outside of the context of security as well.
 
 \subsubsection{Recipes}
 The security professionals have created around 50 recipes.
-They are stored on a remote server and distributed to the developers as a read-only cookbook.
-The recipes in this cookbook are not all security related, but around 70\% of them are.
+These are stored on a remote server and distributed to the developers as a read-only cookbook.
+The recipes in this cookbook are not all related to security, but around 70\% of them are.
 The other recipes are related to quality and code conventions.
 Many of the security team have a development background, they have added these recipes in an attempt to show their value to the developers.
 No public cookbooks are used, but the recipes in the public cookbooks served as inspiration for their own custom recipes.
@@ -112,16 +113,16 @@ The company uses many wrapper libraries.
 However, these are often not specifically written for security purposes only.
 Several Sensei recipes exist to migrate to wrapper libraries or to different versions of \glspl{api}.
 
-The security team is currently unaware of the amount of recipes that are being created by developers themselves.
+The security team is currently unaware of the number of recipes that are being created by developers themselves.
 They are also unaware if developers are frequently remediating markings from the distributed cookbook.
 In fact, in their eyes, visibility into metrics like this is one of the biggest shortcomings of the tool.
 
 \subsubsection{Recipe editor}
-The security professionals create both recipes from scratch and from context and think both use cases are important and necessary.
+The security professionals create both recipes from scratch and from context and believe both use cases are important and necessary.
 They most frequently use the \gls{ui} view to edit recipes, but to refactor recipes and make bulk changes, they sometimes use a text editor as well.
 
-They think the preview panels and the recipe editor are by far the most useful features of the entire plugin.
-These features make customization of the recipes far more easy compared to the other tools they are using in the \gls{sdlc}.
+They believe the preview panels and the recipe editor are by far the most useful features of the entire plugin.
+These features make customization of the recipes much easier compared to the other tools they are using in the \gls{sdlc}.
 
 Descriptions are often used, but the full coding guidelines are not usually customized to the specific recipe.
 The coding guideline provided is instead a generally applicable description that provides links to documentation about the secure coding standards that are used at the company.
@@ -131,17 +132,17 @@ The scopes are used to limit recipes to certain packages and modules.
 This is only done as a consideration for developer usability, to avoid false positives in the large code base.
 
 Finally, they try to provide quick-fixes as often as possible, but admit it is not always possible.
-Sometimes the quick-fix provided requires the developer to make additional changes.
+Sometimes, the quick-fix provided requires the developer to make additional changes.
 
 \subsubsection{Paved path methodology}
-The security team is not using a paved path methodology.
+The security team does not use the paved path methodology.
 However, their practices are in line with many of the goals of this methodology.
 
 The security professionals try to be \textit{enablers}, and not only tell developers what they do wrong, but also provide guidance as much as possible.
 They provide a service to developers and are very aware of developer usability.
 The team prefers to neglect some parts of the security of the software over generating too many false positives, which could result in \glspl{efp}.
 
-They belief Sensei supports this enablement approach through its quick-fixes.
+They believe Sensei supports this enablement approach through its quick-fixes.
 Since a complete Sensei recipe includes a quick-fix, the security team is forced to offer remediation guidance.
 This remediation guidance in turn enables the developers to resolve security markings by themselves.
 
@@ -150,11 +151,11 @@ Sometimes, creating a quick-fix pushes the limits of their knowledge of programm
 In that case, they do not consult the development team, as suggested by the paved path methodology, but instead consult with former developers in the security team itself.
 
 \subsubsection{Disadvantages}
-As mentioned before, visibility into the developer's practices with the tool is one of the biggest shortcomings of Sensei in the eyes of the security team.
-So far features that report back information from the \gls{ide} have been avoided as we expected customers would be hesitant of such features.
+As mentioned before, visibility into the developers' practices with the tool is one of the biggest shortcomings of Sensei in the eyes of the security team.
+So far, features that report back information from the \gls{ide} have been avoided as we expected customers would be hesitant of such features.
 Many of the metrics that the security team requests are available in the \glspl{ide} of the developers, in the Sensei events databases.
 Clearly, gathering those databases is not a convenient way to collect that information.
-On top of that, currently we provide no convenient way visualize the results in a management dashboard, which other tools commonly provide.
+On top of that, currently, we provide no convenient way visualize the results in a management dashboard, which other tools commonly do.
 
 Alternatively, some metrics can be collected through server side scans.
 It is possible to run IntelliJ IDEA inspections from the command line, including the Sensei recipes. 

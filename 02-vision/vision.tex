@@ -38,7 +38,10 @@ Security issues still exist in all software products: 100\% of the applications 
 
 The (application) security team (\Gls{sec} or \Gls{appsec}) at these companies is responsible for evaluating the software and finding all the \glspl{vulnerability}. With the use of security tools much of this process is automated and so they have become quite competent at finding problems in the code. In fact, many of the reported numbers are collected through security tools used by these very teams~\cite{owasptop10data}. 
 
-The ability to detect \glspl{security problem} alone is not sufficient, more focus should be on preventing and fixing them in a scalable way. Once that these (potential) \glspl{vulnerability} are discovered, it is up to the development team (\Gls{dev}) to fix them. In order to help them manage this task, the security team pushes discovered \glspl{vulnerability} into a \gls{bugtracker}. They even organise the \glspl{vulnerability} by category and prioritize them by severity of impact. To actually understand each \gls{issue}, and to fix them in a consistent way, however, developers are often on their own. On average a company hires only 1 security expert for every 75-200 developers~\cite{bsimm9, bsimm11, shiftleftsurvey}. This expert simply can not assist each of those developers. 
+The ability to detect \glspl{security problem} alone is not sufficient, more focus should be on preventing and fixing them in a scalable way.
+Once these (potential) \glspl{vulnerability} are discovered, it is up to the development team (\Gls{dev}) to fix them. 
+In order to help them manage this task, the security team pushes discovered \glspl{vulnerability} into a \gls{bugtracker}. They even organise the \glspl{vulnerability} by category and prioritize them by severity of impact. To actually understand each \gls{issue}, and to fix them in a consistent way, however, developers are often on their own.
+On average a company hires only 1 security expert for every 75-200 developers~\cite{bsimm9, bsimm11, shiftleftsurvey}. This expert simply cannot assist each of those developers. 
 It is evident that security is no longer just the task of this expert. Every developer should be responsible for producing code securely from the start. 
 
 \subsection{The development team and the operations team}
@@ -46,25 +49,34 @@ In order to make producing secure code more scalable, we can take a look at the 
 The operations team (\Gls{ops}) used to be the only one responsible for testing and deploying code delivered by developers.
 Once the code was finished, and working on the developer's local machine, it was \textit{thrown over the wall} for the operators to deal with.
 The \gls{devops} movement aims to make this a more shared responsibility between \gls{dev} and \gls{ops}.
-In the ideal goal the two become one integrated \gls{devops} team. In reality they are often still two closely related teams. 
+Ideally, the two become one integrated \gls{devops} team. In reality they are often still two closely related teams. 
 
-This close collaboration between the two is key. The operations team provides a service to developers that enables them to test and deploy their own code. They do not force automation but gradually build a \gls{cicd} pipeline. This pipeline is different for each project and heavily depends on the chosen technology stack for that project. Through this pipeline developers are able to check in smaller pieces of code more frequently and quickly receive feedback. DevOps has quickly gained popularity, 43\% of developers report using its practices and 80\% of developers think using DevOps practices is important~\cite{stackoverflow2020}.
+This close collaboration between the two is key.
+The operations team provides a service to developers that enables them to test and deploy their own code. They do not force automation but gradually build a \gls{cicd} pipeline. This pipeline is different for each project and heavily depends on the chosen technology stack for that project.
+Through this pipeline, developers are able to check in smaller pieces of code more frequently and quickly receive feedback. DevOps has quickly gained popularity, 43\% of developers report using its practices and 80\% of developers think using DevOps practices is important~\cite{stackoverflow2020}.
 
 %(NEED) 
 The automated \gls{cicd} pipeline also benefits the security team.
 Because of the faster release and deploy times, fixed security problems find their way into production faster.
 The \gls{cicd} pipeline also allows them to automatically run static and dynamic analysis tools more easily.
-On bigger projects such tools easily need a couple of hours to complete their analyses. This is not ideal for \gls{devops} pipelines, where tight feedback loops are important. Almost all developers (96\%) report that the biggest inhibitor to productivity is the disconnect between development and security workflows~\cite{shiftleftsurvey}. A guideline that is sometimes mentioned for \gls{devops} tools is the coffee test. The idea behind this test is that all automations should be finished within the time it takes a developer to get a cup of coffee after checking in his code. 
+On bigger projects, such tools easily need a couple of hours to complete their analyses. This is not ideal for \gls{devops} pipelines, where tight feedback loops are important.
+Almost all developers (96\%) report that the biggest inhibitor to productivity is the disconnect between development and security workflows~\cite{shiftleftsurvey}.
+A guideline that is sometimes mentioned for \gls{devops} tools is the coffee test.
+The idea behind this test is that all automations should be finished within the time it takes a developer to get a cup of coffee after checking in their code. 
 
-To solve this, the security team can tune the tools so that they run more lightweight analyses. One way to do this is by disabling certain rules. More lightweight analyses do not hinder the developers' productivity and also allow for fast feedback of the analysis results. Of course, the full scan should still be run regularly, for example on a daily basis. 
+To solve this, the security team can tune the tools so that they run more lightweight analyses. One way to do this is by disabling certain rules.
+More lightweight analyses do not hinder the developers' productivity and also allow for fast feedback of the analysis results. Of course, the full scan should still be run regularly, for example on a daily basis. 
 Faster feedback through lightweight analyses is definitely an improvement over delayed pushing of \glspl{security problem} into a \gls{bugtracker}, but it is not enough. 
 The \gls{cicd} pipeline may be convenient to automate security, but it is still disconnected from the development workflow.
-There is still only one expert to help up to 200 developers, so the problem of preventing and fixing \glspl{security problem} at scale remains. The security team acknowledges this, as they rank creating developer-friendly workflows as their top priority, even ahead of protecting the production software itself~\cite{shiftleftsurvey}.
+There is still only one expert to help up to 200 developers, so the problem of preventing and fixing \glspl{security problem} at scale remains.
+The security team acknowledges this, as they rank creating developer-friendly workflows as their top priority, even ahead of protecting the production software itself~\cite{shiftleftsurvey}.
 
 \subsection{Three is a party}
 
 %(TASK) 
-Similarly to the \gls{devops} movement, security should become a shared responsibility between the development (or \gls{devops}) team and the security team. The security team should not generate reports and \textit{throw it over the wall} to developers. Instead they should closely collaborate with developers to enable them to produce secure code consistently. This can be achieved through the \textit{paved path methodology}. 
+Similarly to the \gls{devops} movement, security should become a shared responsibility between the development (or \gls{devops}) team and the security team.
+The security team should not generate reports and \textit{throw it over the wall} to developers.
+Instead, they should closely collaborate with developers to enable them to produce secure code consistently. This can be achieved through the \textit{paved path methodology}. 
 
 Like the operations team, the security team should provide a service to developers to make it easy for them to secure their own code in a consistent way.
 They should not force security testing on developers, but instead gradually build a \textit{paved path} for developers to follow.
@@ -75,12 +87,12 @@ The correct way to handle key management will depend on the programming language
 Developers will then follow the paved path, as it is the easiest way for them to implement a feature that needs key management.
 Automated checks can be included in \Gls{cicd} by operators to prevent any other ways of handling key management.
 
-In order to achieve this close collaboration the security team needs to be deliberate in their approach. Their focus should not just be on the code, but also on the developer.
+In order to achieve this close collaboration, the security team needs to be deliberate in their approach. Their focus should not just be on the code, but also on the developer.
 They should be mindful of their communication and be empathetic. This way \gls{sec} and \gls{devops} can truly come together to form a \gls{devsecops} team with aligned goals.
 
 \section{Improved culture}
 This shift towards collaboration starts with a shift in culture.
-Historically, the developer team and the security team have developed somewhat of an adversarial relationship.
+Historically, the development team and the security team have developed somewhat of an adversarial relationship.
 The security team has to constantly fight to make security a priority during development.
 They are aware of the risks and the costs related to poor security and they try their hardest to find all the problems in the code.
 
@@ -103,7 +115,7 @@ The security team needs to understand this, and get involved from the start.
 Security becomes a shared responsibility, but so does building and deploying fast.
 Moreover, faster building and deploying also benefits security, as any security problems that eventually show up in production can also be patched and updated faster.
 
-The mutual goal of a \gls{devsecops} team should be both to reduce the number of vulnerabilities in later stages of the development life cycle, while also still maintaining or even improving deployment metrics~\cite{doddevsecops}.
+The mutual goal of a \gls{devsecops} team should be to reduce the number of vulnerabilities in later stages of the development life cycle, while also still maintaining or even improving deployment metrics~\cite{doddevsecops}.
 It then becomes clear that improving one at the detriment of the other, is not real improvement.
 
 \subsection{Aligning communication}
@@ -155,31 +167,50 @@ The learning context should resemble the developer's work context. They should r
 Retention and recollection of the material is not just improved through more and better associations, but also through repetition. Repetition reinforces the associations in memory, this makes them stronger and more durable~\citep{dirksen2015design}.
 Of course we can not expect developers to study for hours on a daily basis, education should be possible with minimal harm to their productivity.
 
-Finding the right balance between repetition and efficiency is a difficult problem. How much repetition is needed depends on the individual learning pace of each developer. A teacher can easily adapt their pace to the students in their classroom. However, in classroom teaching much of the practical context and other relevance aspects mentioned in the previous section are easily neglected. In online learning it is more practical to allow each developer to train using their own programming language and their own machine. Online learning also allows for much better scalability. But online systems are much worse at adapting to the learning pace of each user. A possible solution to this problem is described in Part~\ref{p:education} of this work.
+Finding the right balance between repetition and efficiency is a difficult problem. How much repetition is needed depends on the individual learning pace of each developer. A teacher can easily adapt their pace to the students in their classroom.
+However, in classroom teaching, much of the practical context and other relevant aspects mentioned in the previous section are easily neglected. In online learning it is more practical to allow each developer to train using their own programming language and their own machine. Online learning also allows for much better scalability. But online systems are much worse at adapting to the learning pace of each user. A possible solution to this problem is described in Part~\ref{p:education} of this work.
 
-From the developer's perspective relevance and efficiency are closely related. As explained in the previous section, education in the right language and framework allows for better recollection because contextual associations are made in memory. But using the right programming language also ensures that the developer is being taught problems and solutions that are immediately applicable to their work. Many learning resources teach secure coding concepts in a different programming language, or by using pseudo-code. While most developers will be able to apply the learned concepts to their own code, they will still need to research specifics on their own to do so.
+From the developer's perspective, relevance and efficiency are closely related.
+As explained in the previous section, education in the right language and framework allows for better recollection because contextual associations are made in memory. But using the right programming language also ensures that the developer is being taught problems and solutions that are immediately applicable to their work.
+Many learning resources teach secure coding concepts in a different programming language, or by using pseudo-code. While most developers will be able to apply the learned concepts to their own code, they will still need to research specifics on their own to do so.
 
-Efficiency can also be improved by providing exercises that help developers acquire the right skills. These skills are recognizing insecure code patterns and (re)writing their code so that it is secure. They need to be taught the \textit{paved path}, and how to stay on it. 
+Efficiency can also be improved by providing exercises that help developers acquire the right skills.
+These skills are recognizing insecure code patterns and (re)writing their code so that it is secure.
+They need to be taught the \textit{paved path}, and how to stay on it. 
 Security experts, on the other hand, are often occupied with testing whether potential vulnerabilities can be exploited. This is frequently reflected in security education; developers are handed penetration testing exercises. Such exercises certainly have a place in developer education, as they create new and strengthen old associations in memory. 
 However, in order to teach developers secure coding skills more efficiently, the focus should be on defensive exercises, i.e., exercises that teach the developer to recognize insecure code and to prevent or fix insecurities.
 
 \subsection{Usable education}
 When it comes to online learning, usability and engagement go hand in hand. By improving the usability of the education, engagement is increased as well~\cite{garzotto2007investigating,sweetser2005gameflow,febretti2009usability,dahleez2021higher}. 
 Engagement has been shown to have a clear positive effect on learning~\cite{hamari2016challenging,dahleez2021higher}.
-Because online learning often experiences low engagement, extra care should be put into usability~\cite{hadi2016driving}.
+Because online learning often suffers from low engagement, extra care should be put into usability~\cite{hadi2016driving}.
 
-Improving the relevance and efficiency of education, will indirectly make it more usable as less effort will be needed to understand and apply the learned lessons. Efficient training, that can avoid unnecessary repetition, will make it less likely that a developer gets bored due to this repetition. On the other hand, too much efficiency can cause the learning curve to be unnecessarily steep. When developers have difficulty keeping up with the material, they might experience frustration. A bored or frustrated developer is likely to lose interest and even to disengage from the education. When instead a developer continuously experiences the right level of challenge, they are experiencing a state of flow~\cite{joo2012model,csikszentmihalyi2014learning}.
+Improving the relevance and efficiency of education will indirectly make it more usable, as less effort will be needed to understand and apply the learned lessons.
+Efficient training, that can avoid unnecessary repetition, will make it less likely that a developer gets bored due to this repetition.
+On the other hand, too much efficiency can cause the learning curve to be unnecessarily steep. When developers have difficulty keeping up with the material, they might experience frustration. A bored or frustrated developer is likely to lose interest and even to disengage from the education. When instead a developer continuously experiences the right level of challenge, they are experiencing a state of flow~\cite{joo2012model,csikszentmihalyi2014learning}.
 Flow affects learning both directly and via increased engagement~\cite{hamari2016challenging,van2008difficulty,joo2012model}.
 Finding the right difficulty for each user to keep them in a state of flow is a challenge tackled in Part~\ref{p:education} of this work.
 
 Besides keeping users in a state of flow, usability and engagement can also be improved through other means.
-One way to do this is by providing a structured learning journey that lays out a clear path and expectations~\cite{hadi2016driving}. This structured journey allows online learning to replicate a more traditional learning experience. Another way to improve usability and engagement is through increased interactivity of the education~\cite{hadi2016driving}. It is possible to encourage interactivity between learners by adding gamification and competitive aspects such as high scores, leaderboards, badges, achievements, or even prizes. Promising rewards like these upon completion of certain tasks have a clear effect on learner motivation and hence engagement.
-Finally, engagement can also be increased through the presentation of the learning material. Many developers are problem solvers at heart. They enjoy trying to understand a problem and coming up with an elegant solution. Rather than handing them descriptive learning material, it will likely improve engagement when developers are allowed to figure out the answer themselves. In online learning this is not easily achieved, since automated grading of open ended questions is difficult.
+One way to do this is by providing a structured learning journey that lays out a clear path and expectations~\cite{hadi2016driving}.
+This structured journey allows online learning to replicate a more traditional learning experience.
+Another way to improve usability and engagement is through increased interactivity of the education~\cite{hadi2016driving}.
+It is possible to encourage interactivity between learners by adding gamification and competitive aspects such as high scores, leaderboards, badges, achievements, or even prizes.
+Promising rewards like these upon completion of certain tasks has a clear effect on learner motivation and hence engagement.
+Finally, engagement can also be increased through the presentation of the learning material. Many developers are problem solvers at heart.
+They enjoy trying to understand a problem and coming up with an elegant solution.
+Rather than handing them descriptive learning material, it will likely improve engagement when developers are allowed to figure out the answer for themselves.
+In online learning this is not easily achieved, since automated grading of open ended questions is difficult.
 
-A form factor that still allows for some type of problem solving that is easy to correct for a computer is multiple choice. These type of questions teach a developer to \textit{recognize} the right answer among several~\citep{dirksen2015design}. In reality a developer also needs to \textit{recall} the material without being given options to choose from. However, such a recollection activity can be turned into a recognition activity by providing so-called scaffolding~\cite{maybin1992scaffolding}. In the next section I explain how security tools can be designed to provide this scaffolding during development.
+A form factor that still allows for some type of problem solving that is easy to correct for a computer is multiple choice.
+This type of questions teach a developer to \textit{recognize} the right answer among several~\citep{dirksen2015design}.
+In reality, a developer also needs to \textit{recall} the material without being given options to choose from. However, such a recollection activity can be turned into a recognition activity by providing so-called scaffolding~\cite{maybin1992scaffolding}. In the next section I explain how security tools can be designed to provide this scaffolding during development.
 
 \section{Developer-minded security tools}
-Education alone is insufficient for developers to produce secure code. Our memories are not infallible and regression of knowledge is possible. Other times developers sufficiently remember, but fail to apply their knowledge in practice~\cite{xie2011programmers}. Security tools should help close this gap between knowledge and practice. 
+Education alone is insufficient for developers to produce secure code.
+Our memories are not infallible and regression of knowledge is possible.
+Other times developers sufficiently remember, but fail to apply their knowledge in practice~\cite{xie2011programmers}.
+Security tools should help close this gap between knowledge and practice. 
 
 Developers are known to dislike and often disable security tools during development~\cite{shiftleftsurvey}. 
 They frequently perceive them as one of the biggest inhibitors of productivity. 
@@ -188,11 +219,13 @@ A tool supporting the paved path methodology should in the first place be design
 A developer tool should:
 \begin{itemize}[noitemsep]
     \item provide \emph{relevant} feedback to the developer's work,
-    \item be \emph{efficient} and improve productivity instead of hurt it,
+    \item be \emph{efficient} and improve productivity instead of hurting it,
     \item be \emph{usable} and well integrated into developer workflows.
 \end{itemize}
 
-To the developer the goal of a tool is to make development easier, it should help boost their productivity and lower their cognitive burden. From the developer's perspective security is a non-functional requirement and not the main objective.
+To the developer, the goal of a tool is to make development easier.
+It should help boost their productivity and lower their cognitive burden.
+From the developer's perspective, security is a non-functional requirement and not the main objective.
 By using the paved path methodology, such a developer tool can improve the security of the code.
 Good development teams are narrow in their allowed practices, as this makes it much more feasible to understand and maintain the software.
 In order to be successful, the security team should contribute and help decide these allowed practices.
@@ -200,9 +233,9 @@ Security will then simply be a result of sticking to these practices, a result o
 
 \subsection{Relevant tools}
 To lay out this paved path, the security team and the development team have to work closely together.
-Together they need to create guidelines that specify the preferred solution for a security critical feature that is needed by the development team.
-These guidelines should not be conceptual guidelines like the security team is used to create, as those are hard to translate into code by developers.
-Instead the security team should work together with members from the development team to make specific, \gls{api}-level guidelines.
+Together, they need to create guidelines that specify the preferred solution for a security-critical feature that is needed by the development team.
+These guidelines should not be conceptual guidelines like the security team is used to creating, as those are hard to translate into code by developers.
+Instead, the security team should work together with members from the development team to make specific, \gls{api}-level guidelines.
 These guidelines lay out which libraries or even which specific library calls are to be used in the project.
 
 When the developers are using libraries for a specific purpose, they are focused on the functionality of their code. Security is often orthogonal to that purpose.
@@ -214,7 +247,7 @@ A tool supporting the paved path methodology should then remind the developer of
 Any library calls or custom methods that the developer uses and that are functionally similar to the library provided by the security team, should be marked by the tool.
 This should be done regardless of the security of the used library. The goal of the tool is not to evaluate the security of the code, but only its adherence to the guidelines.
 Since these guidelines are customized for each project, this guarantees that the feedback will always be applicable and highly relevant to the developer's work.
-The tool should hence be easily configured to enforce project-specific guidelines.
+The tool should hence be easy to configure so that project-specific guidelines can be enforced.
 
 \subsection{Efficient tools}
 It is worth emphasizing that the enforced guidelines can have a wide range of applications. They can be used to migrate to a new library, to deprecate old functions, enforce code quality guidelines, improve legibility, and so on. 
@@ -229,7 +262,8 @@ When using traditional security tools, developers report this poor quality of fe
 These security tools are of course still valuable to the security team to help them create and maintain libraries, but they are not the right tool to provide to developers.
 
 Because the tool is able to provide instantaneous feedback, it makes sense to do so in the developer's \gls{ide}.
-It can then make all necessary information about the agreed guidelines available in the \gls{ide} as well. This way the developer is able to access it without making a context switch to consult outside documentation, again boosting productivity.
+It can then make all necessary information about the agreed guidelines available in the \gls{ide} as well.
+This way, the developer is able to access it without making a context switch to consult outside documentation, again boosting productivity.
 
 The guidelines describe which library calls to use, that is, they describe the desired outcome.
 Because of this, the tool that is enforcing the guidelines is able to provide targeted and relevant remediation guidance that can even be automated by the tool.
@@ -246,7 +280,7 @@ Because the information is presented as a guideline, it is immediately obvious f
 
 When the developer is provided feedback that describes potential vulnerabilities, on the other hand, solving the problem is a more complex task. Even if the developer is already familiar with the \gls{vulnerability} and does not need to research it, the focus in the case of a potential bug report is on determining whether this particular instance can be exploited or not. If it is determined insecure, the developer needs to research a solution, apply it, and verify whether no functional changes were made. This requires a much larger cognitive effort. Traditional security tools are meant to be just that, tools for the security team.
 
-The usability for developers is improved because the tool is designed with developer in mind.  
+The usability for developers is improved because the tool is designed with the developer in mind.  
 The tool resides in the developer's \gls{ide} and reuses existing features to display information and provide remediation guidance.
 It is closely integrated in the developer's workflow and is easily and frequently used for other purposes than security.
 
@@ -276,7 +310,7 @@ In Part~\ref{p:tools}, I describe the goals and requirements for a security tool
 I helped with the design and requirements of this tool that is implemented by the engineering team at \gls{scw} and evaluated it both in a controlled experiment as well as in professional settings.
 The tool, called Sensei, functions as an \gls{ide} plugin and reuses existing \gls{ide} features that the developer is familiar with.
 Sensei is designed as a developer tool first, improving productivity and reducing the cognitive burden of development.
-It enables close collaboration between the development team and the security team and ensures that secure code is being produced in a scalable way.
+It enables close collaboration between the development team and the security team, and ensures that secure code is being produced in a scalable way.
 This part is based on:
 
 \begin{itemize}
@@ -356,20 +390,25 @@ Other contributions as a researcher at
 There is still progress to be made outside of this work, both in the education and tools for the paved path methodology as well as in different aspects of the cooperation between the security team and the development team.
 
 
-Until now education and tools were considered two separate things to provide to developers. In reality the border between these two is not that clearly defined and they blend over in each other. 
+Until now, education and tools were considered two separate things to provide to developers.
+In reality, the border between these two is not that clearly defined and they blend over into each other. 
 
 
 Developers often learn while doing, and the educational aspect of Sensei itself should not be underestimated. The approach of an \gls{its} can be extended to the tool. The information, and even guidance, that is provided by Sensei should not be identical for each user. Different information should be offered when teaching a new lesson compared to brushing up a forgotten one. Teaching new concepts should also depend on previous knowledge. It is easier to explain a new type of injection flaw (e.g. \gls{xml} injection) to a developer by drawing parallels with other injection flaws that they are already acquainted with (e.g. \gls{sql} injection).
 Markings and remediation guidance should depend on the knowledge of the developer, and even that of other team members. Some critical security features might need more expertise, and the most efficient way forward as a team, could be for an uninformed developer to ask help from a more educated or experienced coworker.
 
-
-But not only Sensei can benefit from this blended border with education. Education can also be more targeted if it can integrate with Sensei and other developer tools. By observing which errors developers make in practice, a better picture can be created of their understanding. By integrating with issue trackers, it is possible to the issues that developers are assigned to and to design individual learning goals for each developer. Integration with developer tools enables education to become even more relevant, efficient and usable.
-
+But not only Sensei can benefit from this blended border with education.
+Education can also be more targeted if it can integrate with Sensei and other developer tools. By observing which errors developers make in practice, a better picture of their understanding can be created.
+By integrating with issue trackers, it is possible to keep track of the issues that developers are assigned to, and to design individual learning goals for each developer.
+Integration with developer tools enables education to become even more relevant, efficient and usable.
 
 Another challenge that remains for the paved path methodology is applying it to existing, potentially large, legacy codebases. While the security team can still lay out a paved path for developers to follow, it is no easy task to refactor the existing code so that it adheres to this path. 
 Extra care should be taken when designing the inherently safe wrapper library so that its uses match one to one as much as possible with the existing library. 
 
-The paved path methodology helps the security team prevent and fix vulnerabilities at scale. However, the security team still needs to tackle scalability in other facets of their collaboration with developers beyond the scope of this work. One example is threat modeling. It is impossible for one security expert to threat model all software designs by up to 200 developers. 
+The paved path methodology helps the security team prevent and fix vulnerabilities at scale.
+However, the security team still needs to tackle scalability in other facets of their collaboration with developers beyond the scope of this work.
+One example is threat modeling.
+It is impossible for one security expert to model threats for all software designs by up to 200 developers. 
 Even though some approaches exist, they need wider adoption and more thorough evaluation before they can be endorsed.
 
 %One such an approach is security surveys. These surveys are filled in by developers during the design phase and allow security experts to quickly determine which software designs contain most risk and should be threat modeled in more detail. 

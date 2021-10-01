@@ -7,7 +7,7 @@ This is a step by step process that has already started.
 
 \paragraph{Quality control of the exercises}
 The results of a Rasch model for the use in tests are used to remove items with a low discrimination parameter from the item bank. 
-If an item has a low discrimination parameter, this means that it can not be used to differentiate between users of high and low ability levels.
+If an item has a low discrimination parameter, this means that it cannot be used to differentiate between users of high and low ability levels.
 These items are not useful in a test, where discriminating between users of different ability levels is exactly the goal.
 Before removing items with a low discriminative ability, the examiner often manually checks items that are only slightly below the predetermined threshold.
 If they are deemed important enough to be included in the tests despite their low discriminative ability, they are not removed from the item bank.
@@ -32,7 +32,7 @@ It would be more accurate to use the \gls{irt} difficulty for this purpose.
 This difficulty is only available for challenges for which there is a sufficient amount of data.
 There is still need for another measure to better approximate the real difficulty of new challenges that still have insufficient playtime.
 
-In the experiment, I have shown that there is a correlation between the difficulty on one hand, and the framework, the vulnerability type, and the presentation on the other hand.
+In the experiment, I have shown that there is a correlation between the difficulty on one hand and the framework, the vulnerability type, and the presentation on the other hand.
 A good start for such a temporary approximation could then be to take the mean difficulty of all challenges in the same framework, about the same vulnerability, and with the same presentation.
 
 \paragraph{Improved user ability measure}
@@ -73,7 +73,7 @@ Once all other implementation related to the Rasch model have been completed, th
 Additionally, there is also an integration for the \gls{ide}, discussed in great detail in Part~\ref{p:tools} of this work.
 
 The current goal of these integrations is to provide contextual training to developers.
-When a security vulnerability is detected through Fortify, or a ticket is created in one of the bug tracking systems that involves a vulnerability, the integration will insert links to training on the \gls{scw} platform about this specific vulnerability.
+When a security vulnerability is detected through Fortify, or a ticket that involves a vulnerability is created in one of the bug tracking systems, the integration will insert links to training on the \gls{scw} platform about this specific vulnerability.
 This training is highly relevant since it is directly related to the task at hand, i.e. remediating the vulnerability.
 
 However, it is my opinion that they might hurt the productivity and usability of the developer.
@@ -91,9 +91,9 @@ With this system, contextual training can be provided at a more appropriate time
 This invention has been patented by \gls{scw} as a Method and System for Adaptive Security Guidance\footnote{\url{https://patents.google.com/patent/US20200211135A1/en}}.
 
 In this invention, the data collected from the integrations feeds into the \gls{its} to result in even more relevant, and highly applicable recommendations.
-For example, the \gls{ide} integration allows us to monitor code changes the developer makes and verify them against a set of rules to detect the mistakes they make in practices.
+For example, the \gls{ide} integration allows us to monitor code changes the developer makes and verify them against a set of rules to detect the mistakes they make in practice.
 Integrations with security scanners such as Fortify in combination with code repository tools such as GitHub, also allow us to collect data about the detected vulnerabilities and who is responsible for those pieces of code.
-At the same time, integrations with issue tracking systems such as Jira enable us to detect which tasks a developer is assigned to, and whether there are any security problems or security critical features among them.
+At the same time, integrations with issue tracking systems such as Jira allow us to detect which tasks a developer is assigned to, and whether there are any security problems or security-critical features among them.
 All of this data, in combination with the performance of users on the platform itself, enables us to make highly relevant recommendations.
 
 Implementing such a system is most likely achieved by first selecting a list of relevant items to recommend and then choosing the most appropriate.
