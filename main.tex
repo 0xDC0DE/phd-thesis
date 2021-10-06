@@ -10,9 +10,9 @@
 % Differences between digital and print versions
 \usepackage{ifthen}
 \newboolean{ForDigital}
-\setboolean{ForDigital}{false}
+\setboolean{ForDigital}{true}
 \newboolean{ForPrint}
-\setboolean{ForPrint}{true}
+\setboolean{ForPrint}{false}
 
 \usepackage{00-setup/phd}
 
@@ -109,7 +109,7 @@
 
 % if you want to speed up things:
 % comment out when compiling for print
-\usepackage[draft]{graphicx}	
+%\usepackage[draft]{graphicx}	
 
 \usepackage{multirow}
 \usepackage{float}				% positie figuren etc.
@@ -661,12 +661,13 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 
 \cleardoublepage
 
-\parskip 1mm
-\input{01-frontmatter/jury}
-\parskip 0mm
-\newpage
-
-\cleardoublepage
+% Remove for initial version
+%\parskip 1mm
+%\input{01-frontmatter/jury}
+%\parskip 0mm
+%\newpage
+%
+%\cleardoublepage
 
 \parskip 1mm
 \input{01-frontmatter/ack}

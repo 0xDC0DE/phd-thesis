@@ -54,6 +54,7 @@ This model not only allows calibration of both users and items, but because they
 Although it will not be used for exercise selection in the \gls{its}, the model is certainly useful for accurately estimating exercise difficulty and user ability. 
 
 \subsection{Item response theory}
+\label{sec:irt-intro}
 \Gls{irt} is a model for measuring psychological \textit{latent traits}, i.e. unobservable characteristics such as ability or competence level. 
 The model estimates these latent traits by means of \textit{manifest} (observable) variables and statistical psychometric models.
 This is done based on the mathematical relationship between the latent traits and the manifest variables. 
@@ -232,24 +233,30 @@ For dichotomous items ($k \in \{0,1\}$), such as in our case, this can be writte
 There are several calibration methods to maximize this likelihood, describing them is out of the scope of this book. 
 The method applied in this work is the \gls{wle}~\cite{magis2017computerized}.
 
-
-
 \subsection{Alternative approaches}
-\todo[inline]{briefly describe all alternatives}
+\gls{irt} is often used to adapt the learning material to the ability level of the student in e-learning systems~\cite{chen2005personalized,yarandi2011personalised}.
+Often the \gls{irt} ability level is used to determine the appropriate difficulty level of the exercises that should be presented to the user~\cite{chen2005personalized,yarandi2011personalised,khanal2020systematic}.
+In another approach the \gls{irt} ability level was used as a weight in \gls{cf} algorithms so that that the users with greater ability level have greater weight in the calculation of the recommendations than the users with less knowledge.
+This approach assumes that users of greater ability level, such as teachers, are more able to assess the utility of an item than users of lower ability level.
+In this work, however, users do not rate the items explicitly but instead the utility is determined from learning outcome and engagement, as will be explained in Section~\ref{sec:utility}.
 
-%https://repository.uel.ac.uk/download/e3b705a3e6417837ad1377af2f0fe65ee01cf91ecec3bda7a2a5257fca3d9808/129643/2011_Yarandi_etal_Item_Response_Theory.pdf
-%https://www.sciencedirect.com/science/article/pii/S036013150400034X
-%https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.661.3840&rep=rep1&type=pdf
-% https://reader.elsevier.com/reader/sd/pii/S0950705109000161?token=DCBC432396C3F5D1AA2E0425CAC9A2B3BBD6C3613A026CE1327D3970BA9F3685C3EFD1CD26982C6845F5F9E3B53A3CC2&originRegion=eu-west-1&originCreation=20211001115115
-%https://link.springer.com/content/pdf/10.1007/s10489-016-0892-x.pdf
-%https://link.springer.com/content/pdf/10.1007/s10639-019-10063-9.pdf
+Despite the popularity of \gls{irt} some alternative approaches exist to determine the ability level of a user.
 
 \subsubsection{Classical Test Theory}
-Inaccurate: only useful when all users do the same challenges --> not the desired outcome, opposite in fact
+In \gls{ctt}, all users have to complete the same exercises and their accuracy on the questions is used as an indicator for the ability level.
+Classic test theory assumes that each person has an unobservable true ability score $T$ that would be the result of a test if there are no errors in the measurement.
+In a test, the observed score $X$ is measured instead.
+This score is defined as the sum of the true score and a measurement error $E$.
+According to \gls{ctt}, the true score is impossible to obtain, but several techniques exist to estimate the reliability of a test.
 
-\subsubsection{Three- and four-parameter logistic models}
-Further extensions exist on the \gls{2pl} model. 
-The \gls{3pl} and \gls{4pl} add parameters that influence the lower and upper asymptotic behaviour of the \gls{irf}.
+Besides the lower accuracy of ability estimation, \gls{ctt} is also not appropriate to use in the \gls{its} because it requires fixed item selection for all the users.
+By doing this, some users are guaranteed to feel bored or frustrated since it is impossible to select items of the appropriate difficulty level for all of the users simultaneously.
+
+\subsubsection{Other IRT models}
+\paragraph{Three- and four-parameter logistic models}
+In this work we are using the \gls{2pl} Rasch model of \gls{irt}.
+However, further extensions exist on the \gls{2pl} model that add additional parameters.
+The \gls{3pl} and \gls{4pl} add parameters that influence the lower and upper asymptotic behaviour of the \gls{irf}~\cite{magis2017computerized}.
 The lower asymptote parameter $c_j$ is sometimes called the pseudo-guessing parameter. 
 It allows the probability of a correct answer for infinitely small ability levels to be a positive probability instead of zero in the \gls{1pl} and \gls{2pl} model. 
 Even users of extremely low ability level still have a non-zero probability of answering the exercise correctly.
@@ -278,7 +285,11 @@ The resulting \glspl{irf} are shown in Equations~\ref{eq:3pl} and \ref{eq:4pl}.
 \end{split}
 \end{equation}
 
-\todo[inline]{plots and explanation of why we did not use it}
+\Glspl{irf} of the \gls{3pl} model with varying pseudo-guessing parameters are plotted in Figure~\ref{fig:3pl}.
+In Figure~\ref{fig:4pl}, three \glspl{irf} are plotted with varying values for the inattention parameter.
+The addition of these parameters is likely to improve the fit of the model to the data.
+However, the pseudo-guessing and inattention parameters of exercises are not of much use in the \gls{its} or the \gls{scw} portal in general, and hence the \gls{2pl} model is chosen.
+
 \begin{figure}
     \centering
     %\input{03-education/plots/3pl}
@@ -295,25 +306,54 @@ The resulting \glspl{irf} are shown in Equations~\ref{eq:3pl} and \ref{eq:4pl}.
     \label{fig:4pl}
 \end{figure}
 
-\subsubsection{Polytomous IRT models}
+\paragraph{Polytomous IRT models}
 %Predict WHICH of the answers is given (in multiple choice). For that it is necessary to know which one is MOST correct. Unfortunately this information is not available.
 % The selection of a particular polytomous model involves a number of factors: the type of data, model-
 %data fit, philosophical considerations, model assumptions, and parsimony. If the data consist of items that have unordered alternatives, then the NRM is appropriate. When responses to an item are classified into more thantwo categoriesthatcan beorderedtorepresentvaryingdegreesofthetraitmeasuredbytheitem, theneithertheGRM,GPCM,orthePCMcouldbeused.Iftheordereddataareratings,thenmoreconstrained versionsofthesemodels,suchastheMRSM,theSIM,ortheARSM,wouldbeappropriate.~\cite{dodd1995computerized}
-partial credit: for mathematics awarding points for completing some of the steps
-essay points: awarded scores based on quality
+In the \gls{2pl} model, we are only concerned with whether or not the selected answer is correct.
+However, even if an incorrect options is selected, it is often possible to use this information to refine the estimate of the ability level of the user based on which incorrect option was chosen~\cite{magis2017computerized}.
+This is the intent of polytomous \gls{irt} models.
+There are many polytomous models available but they generally require scoring in a way that partial credit can be given for incorrect answers~\cite{dodd1995computerized}.
+This makes sense if one considers scoring essays based on quality, or giving partial credit in mathematical questions for completing some of the steps.
 
-\subsubsection{Response-time IRT models}
-Doubts about the accuracy of time tracking
-Time pressure in tournament
-Training efficiency: guess reasonably fast to learn the correct answer
+On the \gls{scw} portal this could be achieved by ranking the options in the multiple choice question from the most incorrect to the most correct.
+However, currently this is not the case, so we have no indication of which incorrect answer is closest to correct.
+Furthermore, historically the incorrect answers have not been logged in the data collection, only the amount of incorrect guesses before a correct answer is given.
+In case the user gave up before finding the correct answer (or in assessments where only one guess is available), the last guess is logged.
+Polytomous models could result in more accurate results, however, currently they can not be used to the available data set.
 
-maybe useful when only using data from assessment mode where only one attempt can be used so the user is more careful.
+\paragraph{Multidimensional IRT models}
+While the ability level has been introduced as a multivariate vector of latent traits $\bm{\theta}_i$, in Section~\label{sec:irt-intro}, in the current implementation this has been implemented as a scalar.
+In reality, the ability of a user regarding software security is not accurately represented as a single value.
+When the ability estimate is represented as a vector, a value can be obtained for each dimensions of the skill.
+For example, the ability of a user for each of the vulnerability categories can be represented as a scalar.
+Using a multidimensional representation for the ability level like this, is not only likely to result in more accurate estimates, but also allows more granular decision making of the appropriate difficulty for an item in the \gls{its}.
+However, sufficient data needs to be available to have an accurate measurement for each of the dimensions which would limit the amount of users that can be accurately assessed.
+I have opted to keep as much data as possible to train the \gls{cf} algorithm instead.
+
+\paragraph{Response-time IRT models}
+Response-time \gls{irt} models also take into account how much time each user takes to answer a correct answer.
+However, as mentioned before, there have been several bugs present in the time tracking features on the platform and this data is currently unreliable.
+
+Furthermore, time pressure varies in different modes on the platform.
+While users can generally take as much time as they prefer when answering questions in training and assessments, in tournaments there is a limited time to complete the questions.
 
 \subsubsection{Elo system}
-An Elo system is made for symmetric matchups (players vs player, or players vs AI)
+The Elo rating system, named after its inventor Arpad Elo, is a method for calculating relative skill levels between players of a zero-sum game~\cite{elo1978rating}.
+It is widely used in sports, games, and videogames, such as chess, American football, basketball, Major League Baseball, table tennis, Scrabble, Counter Strike: Global Offensive, and League of Legends.
 
-Asymmetric adaptations exist
+Similarly to \gls{irt}, the ability level is not measured directly, but it is inferred from wins, losses, and draws against other players or teams.
+Based on the current ability levels, the expected outcome of a match-up is predicted.
+When the actual outcome differs from this expectation, the ability level is updated~\cite{elo2008logistic}.
+By how much it is updated depends on the difference between the ability levels, and in some cases by the observed skill difference.
+For an overwhelming victory a bigger increase in ability will often be awarded than for a near win.
 
-Still Elo only takes into account ability, while many other reasons can exist: author, application type, coding style, ...
+The Elo system is made for symmetric matchups, player versus player, or team versus team.
+A zero-sum game is a mathematical representation of a situation in which an advantage that is won by one player is lost by the other.
+While \gls{irt} sets both users and items on the same scale, the training platform can not be considered a zero-sum game.
+One challenge is played by many more players than a single player usually plays challenges.
 
-similar to the step size adjustment of IRT
+Although adaptations exist for asymmetric games~\cite{wise2021elo}, I expect the ability estimates to converge slower and the difficulty estimates of items to be less stable than with \gls{irt}.
+\Gls{irt} takes into account the entire response pattern, hence it is able to estimate the outcome of a challenge again later, based on new information.
+The Elo system only takes into account the current ability of the user, which might still be inaccurate at the time of playing.
+As a result, potentially large updates are made to the difficulty of the items that are presented to this user.
