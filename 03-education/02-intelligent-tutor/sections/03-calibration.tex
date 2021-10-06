@@ -176,7 +176,7 @@ The larger size of the item bank of \gls{scw} will cause longer execution times 
 I solve this problem by splitting the item bank to several smaller item banks, for example one for each framework on the platform.
 The resulting consequences are discussed in Chapter~\ref{ch:its-experiments}.
 
-The calibration of the model consists of tuning the model parameters to maximize the probability of the observed data.
+The calibration of the model consists of tuning the model parameters to maximize the likelihood of the observed data.
 More formally, model calibration is maximizing the likelihood of the model $L(\bm\theta,\bm{p})$ with respect to all item parameters $\bm{p} = (\bm{p}_1,\dots,\bm{p}_J)$.
 Because this likelihood is also dependent on all person parameters $\bm\theta = (\theta_1,\dots,\theta_I)$, direct maximization is not possible.
 There are several possible techniques that can be used to overcome this.
@@ -283,7 +283,7 @@ The resulting \glspl{irf} are shown in Equations~\ref{eq:3pl} and \ref{eq:4pl}.
     \centering
     %\input{03-education/plots/3pl}
     \includegraphics[page=4]{03-education/figures/tikzfigures.pdf}
-    \caption[Item response functions of the 3PL model]{Three \glspl{irf} in the \gls{3pl} model, with equal difficulty and discrimination parameters but different pseudo-guessing parameters $c_j$. The pseudo-guessing parameter represents the likelihood that a user is able to guess the correct answer to a question. A non-zero pseudo-guessing parameter means a non-zero probability of a correct answer $P_j$, even for users of extremely low ability level $\bm\theta$.}
+    \caption[Item response functions of the 3PL model]{Three \glspl{irf} in the \gls{3pl} model, with equal difficulty and discrimination parameters but different pseudo-guessing parameters $c_j$. The pseudo-guessing parameter represents the probability that a user is able to guess the correct answer to a question. A non-zero pseudo-guessing parameter means a non-zero probability of a correct answer $P_j$, even for users of extremely low ability level $\bm\theta$.}
     \label{fig:3pl}
 \end{figure}
 
@@ -291,7 +291,7 @@ The resulting \glspl{irf} are shown in Equations~\ref{eq:3pl} and \ref{eq:4pl}.
     \centering
     %\input{03-education/plots/4pl}
     \includegraphics[page=5]{03-education/figures/tikzfigures.pdf}
-    \caption[Item response functions of the 4PL model]{Three \glspl{irf} in the \gls{4pl} model, with equal difficulty, discrimination, and pseudo-guessing parameters but different inattention parameters $d_j$. The inattention parameter represents the likelihood that a user answers incorrectly due to inattention. A inattention parameter different form 1 means that the probability of a correct answer $P_j$ is never 1, not even for users of extremely high ability level $\bm\theta$.}
+    \caption[Item response functions of the 4PL model]{Three \glspl{irf} in the \gls{4pl} model, with equal difficulty, discrimination, and pseudo-guessing parameters but different inattention parameters $d_j$. The inattention parameter represents the probability that a user answers incorrectly due to inattention. A inattention parameter different form 1 means that the probability of a correct answer $P_j$ is never 1, not even for users of extremely high ability level $\bm\theta$.}
     \label{fig:4pl}
 \end{figure}
 
