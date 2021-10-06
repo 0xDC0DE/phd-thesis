@@ -39,6 +39,10 @@
 
 % underfull and overfull boxes
 \usepackage[breaklinks]{hyperref}
+\raggedbottom
+\usepackage{etoolbox}
+% should fix overfull and underfull warning is biblio
+\apptocmd{\sloppy}{\hbadness 10000\relax}{}{}
 
 % adding stuff
 %\usepackage[utf8]{inputenc}
@@ -309,16 +313,44 @@
   stringstyle=\color{scw-teal-darker}\bfseries,
   identifierstyle=\color{scw-red}\bfseries,
   keywordstyle=\color{scw-orange}\bfseries,
-  morekeywords={xmlns,version,type,android,label,theme,allowBackup,usesCleartextTraffic}% list your attributes here
+  morekeywords={xmlns,version,type,android,label,theme,allowBackup,usesCleartextTraffic,Match,QualifiedName,Method,Argument,Arguments,Index,Value,ComparatorOperator,ExpectedValue,ComparatorType}% list your attributes here
 }
 \lstdefinelanguage{YAML}
 {
   morestring=[b]",
+  morestring=[b]',
   %morestring=[s]{>}{<},
   morecomment=[s]{<?}{?>},
   stringstyle=\color{scw-teal-darker}\bfseries,
   keywordstyle=\color{scw-orange-darker}\bfseries,
-  morekeywords={search,methodcall,name,type,args,containsUntrustedInput,trustedSources,1}% list your attributes here
+  morekeywords={search,methodcall,name,type,args,containsUntrustedInput,trustedSources,availableFixes,actions,rewrite,fix,id,languages,rules,message,metadata,category,cwe,license,owasp,pattern,severity,value,to,patterns,not,inside,version,services,maria,image,ports,volumes,web}% list your attributes here
+}
+
+\lstdefinelanguage{Dockerfile}
+{
+  morekeywords={FROM, RUN, CMD, LABEL, MAINTAINER, EXPOSE, ENV, ADD, COPY,
+    ENTRYPOINT, VOLUME, USER, WORKDIR, ARG, ONBUILD, STOPSIGNAL, HEALTHCHECK,
+    SHELL},
+  morecomment=[l]{\#},
+  morestring=[b]"
+}
+
+\lstdefinelanguage{json}{
+    string=[s]{"}{"},
+    comment=[l]{:\ "},
+    morecomment=[l]{:"},
+    morekeywords={input,method,paty,user_id,id,data,management_chain,false,default,true},
+    literate=
+        *{0}{{{\color{numb}0}}}{1}
+         {1}{{{\color{numb}1}}}{1}
+         {2}{{{\color{numb}2}}}{1}
+         {3}{{{\color{numb}3}}}{1}
+         {4}{{{\color{numb}4}}}{1}
+         {5}{{{\color{numb}5}}}{1}
+         {6}{{{\color{numb}6}}}{1}
+         {7}{{{\color{numb}7}}}{1}
+         {8}{{{\color{numb}8}}}{1}
+         {9}{{{\color{numb}9}}}{1}
 }
 
 \usepackage[colorinlistoftodos]{todonotes}
@@ -332,6 +364,10 @@
 #1
 \end{tcolorbox}
 }
+
+%combine footnote and url
+\newcommand{\footurl}[1]
+{\footnote{\url{#1}}}
 
 \tcbuselibrary{skins}
 \newcounter{battlecardcounter}
@@ -471,6 +507,17 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \newacronym{nist}{NIST}{National Institute of Standards and Technology}
 \newacronym{iso}{ISO}{International Organization for Standardization}
 \newacronym{iec}{IEC}{International Electrotechnical Commission}
+\newacronym{dos}{DoS}{Denial of Service}
+\newacronym{qa}{QA}{Quality Assurance}
+\newacronym{pci}{PCI DSS}{Payment Card Industry Data Security Standard}
+\newacronym{hipaa}{HIPAA}{Health Insurance Portability and Accountability Act}
+\newacronym{des}{DES}{Data Encryption Standard}
+\newacronym{iac}{IaC}{Infrastructure as Code}
+\newacronym{vm}{VM}{Virtual Machine}
+\newacronym{vmi}{VMI}{Virtual Machine Image}
+\newacronym{cpu}{CPU}{Central Processing Unit}
+\newacronym{cncf}{CNCF}{Cloud Native Computing Foundation}
+\newacronym{opa}{OPA}{Open Policy Agent}
 
 
 % Glossary entries
@@ -694,7 +741,8 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \todo[inline]{clear page after summary box where necessary?}
 \todo[inline]{probability vs likelihood}
 \todo[inline]{developer team -> development team}
-\todo[inline]{code base, or codebase?}
+\todo[inline]{code base -> codebase}
+\todo[inline]{open source software -> open-source software}
 
 \input{02-vision/vision}
 \input{03-education/education}

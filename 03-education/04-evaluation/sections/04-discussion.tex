@@ -2,8 +2,7 @@
 \label{sec:its-discussion}
 
 \subsection{Rasch model}
-
-Many efforts exist to rate, rank, organize, and prioritize vulnerabilities into lists and taxonomies, such as the \gls{owasp} Top 10~\cite{wichers2017owasp}, the seven pernicious kingdoms~\cite{tsipenyuk2005seven}, the \gls{cve}~\cite{guo2009ontology,mann1999towards}, and the \gls{cwe}/SANS Top 25 most dangerous software errors~\cite{martin20112011}.
+Many efforts exist to rate, rank, organize, and prioritize vulnerabilities into lists and taxonomies, such as the \gls{owasp} Top 10~\cite{wichers2017owasp}, the seven pernicious kingdoms~\cite{tsipenyuk2005seven}, the \gls{cve}~\cite{guo2009ontology,mann1999towards,baker1999development}, and the \gls{cwe}/SANS Top 25 most dangerous software errors~\cite{martin20112011}.
 They are often built from the perspective of the security professional, and take into account prevalence in production, detectability by tools, and potential of impact.
 These lists and taxonomies can be used as guidelines for security professionals to decide which insecurities should be prioritized.
 
@@ -14,8 +13,8 @@ When the developer is aware such a vulnerability is present, they are able to de
 So while popular lists like \gls{owasp} Top 10 can be useful as baselines and guidelines for security teams to set their priorities, but they might not be the right focus from an education perspective.
 Based on the results from the Rasch model, developer training should go further than these infamous security problems and focus more on security problems involving larger pieces of code.
 We can see this shift in priority in the newest draft of the \gls{owasp} Top 10\footnote{\url{https://owasp.org/Top10/}}.
-In the new version, shown in Figure~\ref{fig:newowasptop10}, "injection" goes down in priority and "\gls{xxe}" even merges with "security misconfiguration".
-New categories are introduced such as "insecure design", proposed as the new number 4, shifting the focus towards security flaws.
+In the new version, shown in Figure~\ref{fig:newowasptop10}, ``Injection" goes down in priority and``\gls{xxe}" even merges with ``Security misconfiguration".
+New categories are introduced such as ``insecure design", proposed as the new number 4, shifting the focus towards security flaws.
 
 \begin{sidewaysfigure}
     \centering
@@ -36,8 +35,7 @@ This is the goal of Part~\ref{p:tools} of this work.
 %\todo[inline]{Relate findings to some other research about the security of programming languages}
 
 \subsection{Recommendations}
-
-In the experiments of the previous chapter, many algorithms have been tested and adapted to learning systems.
+In the experiments described in the previous chapter, several algorithms were tested and adapted to learning systems.
 Memory-based algorithms based on baselines have come out on top.
 The best performing is the \gls{knn} baseline algorithm using the baseline-centered Pearson similarity measure.
 This was expected based on the current exercise selection, as many users show a consistent bias in their ratings.
@@ -73,7 +71,7 @@ These matrices only need to be computed once in a while, for example once or twi
 Synonyms occur when a number of identical or very similar items have different names or entries in the data set.
 Model-based techniques are capable of dealing with the synonym problem because they do not use the item names directly, but instead look for latent factors related to the items.
 In our data set we do not expect many natural synonyms to exist.
-While there are duplicate exercises, in the sense that they are in the same framework and about the same vulnerability type, in reality they are in different code bases, and of varying complexity.
+While there are duplicate exercises, in the sense that they are in the same framework and about the same vulnerability type, in reality they are in different codebases, and of varying complexity.
 
 With the learning adaptation, however, we have intentionally introduced synonyms by splitting items into separate entities based on the ability level of the users answering them.
 The fact that we still see significant improvements in the model-based algorithms, who are supposed to factor out item names, is proof that these items demonstrate significantly different characteristics in the latent factor space.

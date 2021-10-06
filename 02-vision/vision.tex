@@ -292,6 +292,7 @@ In Part~\ref{p:education} of this work, I describe how to create better security
 I analyzed the behaviour of over 175,000 developers receiving security education on the online learning platform created by \gls{scw}. 
 I designed, implemented, and evaluated an \gls{its} that selects the most appropriate exercise for each developer at each point in time.
 This \gls{its} ensures that developers are receiving \textit{relevant} training and acquire the necessary skills \textit{efficiently} while still being \textit{usable} and engaging.
+
 This part is based on:
 
 \begin{itemize}
@@ -309,14 +310,16 @@ This part is based on:
 In Part~\ref{p:tools}, I describe the goals and requirements for a security tool supporting the paved path methodology.
 I helped with the design and requirements of this tool that is implemented by the engineering team at \gls{scw} and evaluated it both in a controlled experiment as well as in professional settings.
 The tool, called Sensei, functions as an \gls{ide} plugin and reuses existing \gls{ide} features that the developer is familiar with.
+It provides remediation guidance in the form of quick-fixes and offers several features improving usability for the developer.
 Sensei is designed as a developer tool first, improving productivity and reducing the cognitive burden of development.
 It enables close collaboration between the development team and the security team, and ensures that secure code is being produced in a scalable way.
+
 This part is based on:
 
 \begin{itemize}
  \item 
  \textbf{Sensei: Enforcing secure coding guidelines in the integrated development environment}\\
- \underline{Pieter De Cremer}, Nathan Desmet, Matias Madou, \mbox{Bjorn De Sutter}\\
+ {\small \underline{Pieter De Cremer}, Nathan Desmet, Matias Madou, \mbox{Bjorn De Sutter}\\}
  In \emph{Software: Practice and Experience}, 2020
     
  \item 
@@ -337,6 +340,8 @@ This part is based on:
 
 %Finally, in Chapter~\ref{ch:conclusion} we summarize the results and offer some perspectives that remain future work.
 Finally, in Part~\ref{p:related} I describe related tools and practices, and offer my opinion on how they can be used to achieve a more human-centered approach to software security.
+Some of the discussed tools and practices have been thoroughly researched and are used in industry, other work is more recent and innovative. 
+This includes practices around governance, training, development, building, and deploying of software products.
 
 Other contributions as a researcher at 
 \gls{scw} that are not detailed in this dissertation include:
@@ -415,8 +420,8 @@ Even though some approaches exist, they need wider adoption and more thorough ev
 %Integration testing platforms (e.g. Selenium) are another possibility. They allow security experts automate threat modeling tests that are widely applicable. 
 %An example of such a test is verifying if multiple incorrect password attempts trigger a lockout mechanism correctly.
 
-\todo[inline]{review: better ending/conclusion to the chapter?}
-
-The paved path methodology described in this work on its own will not cause an enormous shift in software development, nor will it single-handedly prevent all software vulnerabilities in the future.
-But it is an improvement. It is a first step in a bigger movement to make security a shared responsibility among everyone involved in the software development process. And a first step towards a more human-centered future of software security.
-
+% so poetic
+The paved path methodology by itself will not cause an enormous shift in software development, nor will it single-handedly prevent all software vulnerabilities in the future.
+But it is an improvement.
+With this method, we are paving the path towards secure development, and taking step in the right direction.
+A step towards a more human-centered future of software security, in a bigger journey to make security a shared responsibility among everyone involved in the software development process.

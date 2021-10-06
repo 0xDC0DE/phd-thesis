@@ -8,37 +8,41 @@ Working software has to be delivered frequently, in a couple of weeks to a coupl
 Product management and developers have to work closely together to set priorities and iteratively deliver minimal viable products and improvements.
 In this process, individuals and interactions are prioritized over processes and tools, and working software is prioritized over comprehensive documentation.
 The Scrum framework is frequently used to implement this type of development strategy~\cite{schwaber2004agile}.
+Generally security benefits from things that hold still.
+When the codebase remains the same for longer, the security team has more time to test and fix the security of the code.
+The increased rate of change has made the job of the security professional harder.
 
+\subsection{Build tools}
 Building on agile practices, \gls{devops} aims for complete end-to-end automation of not only software development, but also delivery.
 In academic research, there is not yet a clear definition for \gls{devops}, but it is most often characterized by cross-functional teams and shared ownership~\cite{erich2017qualitative,ebert2016devops}.
 Quality deliveries with short release cycles need a high degree of automation, and many tools have been developed to assist with this automation.
 
 Build tools are used for compiling code, they often include so-called package or dependency managers to centralize project dependencies.
-Some examples of build tools and package managers are Apache Ant\footnote{\url{https://ant.apache.org/}}, Maven\footnote{\url{https://maven.apache.org/}}, Gradle\footnote{\url{https://gradle.org/}},
-Pip \footnote{\url{https://pypi.org/project/pip/}} and Yarn\footnote{\url{https://classic.yarnpkg.com/en/}}.
+Some examples of build tools and package managers are Ant\footnote{\url{https://ant.apache.org/}}, Maven\footnote{\url{https://maven.apache.org/}}, Gradle\footnote{\url{https://gradle.org/}},
+Pip \footnote{\url{https://pypi.org/project/pip/}}, and Yarn\footnote{\url{https://classic.yarnpkg.com/en/}}.
 
-Managing dependencies centrally like this makes it easy to monitor and update to newer versions.
-This also provides a centralized overview of all software components used to create a \gls{sbom} as explained in Section~\ref{sec:related-plan}.
+Managing dependencies centrally like this, makes it easy to monitor and update them to newer versions.
+This also provides a centralized overview of all software components used to create an \gls{sbom} as explained in Section~\ref{sec:related-plan}.
+
+\subsection{Software composition analysis}
 Use of vulnerable and outdated components is a common vulnerability category, and part of the \gls{owasp} top 10.
-Many \gls{sca} tools exist that scan build files and alert developers when the dependencies contain vulnerabilities.
+Many \gls{sca} tools exist that scan build files and alert developers when any of the used dependencies contain vulnerabilities.
 
-% Battlecards
-Some noteable tools are Snyk (battlecard~\ref{bc:snyk}), Dependabot (battlecard~\ref{bc:dependabot}) and GitLab Dependency Scanner (battlecard~\ref{bc:gitlab}).
+Some notable tools are Snyk (battlecard~\ref{bc:snyk}), Dependabot (battlecard~\ref{bc:dependabot}) and GitLab Dependency Scanner (battlecard~\ref{bc:gitlab}).
 These tools are typically integrated into the code repository and run regular scans.
 Use of vulnerable components is a vulnerability that can be introduced \textit{after} initial development because dependencies are (supposed to be) updated frequently.
 It makes sense to integrate this type of security tool in the code repository rather than development tools.
 In the development tool, many developers would get notified of an outdated dependency at the same time, while likely few of them would be working on the build file.
 This would either result in many \glspl{efp}, or in the same fix being applied by multiple developers.
 Remediation for these vulnerabilities is often simply bumping the dependency to the newest version, and results from the Rasch model show that developers have no difficulty fixing this type of vulnerability.
-Some \gls{sca} tools will calculate the minimal upgrade path so as not to risk any breaking changes in the code base.
-As remediation guidance \gls{sca} tools often create automated pull requests that update dependencies to the newest version.
+%Some \gls{sca} tools will calculate the minimal upgrade path so as not to risk any breaking changes in the code base.
+As remediation guidance, \gls{sca} tools often create automated pull requests that update dependencies to a secure version.
 This process is intuitive and well integrated with existing developer workflows.
 
-However, many challenges remain in this field, as in some programming languages over 70\% of vulnerabilities are in transitive dependencies~\cite{snyk2020}.
-These can not be easily fixed since they are out of the control of the developer, if the direct dependencies are not updated, then they might need to be replaced.
-With some package managers (such as Maven) it is also possible to exclude the transitive dependency and manually download the newest version, with the risk of runtime errors if there are any breaking changes.
-Sometimes it can suffice to make sure methods containing vulnerabilities are not used, or they can be excluded or replaced with a so-called monkey-patch\footnote{\url{https://docs.plone.org/appendices/glossary.html\#term-Monkey-patch}}.
-All these options require more initimate knowledge of the package manager or the dependencies being used.
-
-
-
+However, some challenges remain in this field, as in some programming languages over 70\% of vulnerabilities are in transitive dependencies~\cite{snyk2020}.
+Transitive dependencies can not be easily updated since they are out of direct control of the developer.
+With some package managers (such as Maven) it is possible to exclude the transitive dependency and manually download the newest version.
+This comes with the risk of runtime errors if the newest version contains any breaking changes, since the developer has no control over the code in the direct dependency where these breaking changes may cause errors.
+It can also suffice to verify that the methods containing vulnerabilities are not used in the code.
+These methods can also be excluded or replaced with so-called monkey-patches\footnote{\url{https://docs.plone.org/appendices/glossary.html\#term-Monkey-patch}}.
+All these options require more intimate knowledge of the package manager or the dependencies being used and make fixing this vulnerability type more complex than it is often represented in training.

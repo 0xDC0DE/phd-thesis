@@ -37,7 +37,7 @@ Since the majority of like-minded users enjoy the target movie, the algorithm pr
 \begin{figure}
     \centering
     %\input{03-education/plots/collaborative-filtering}
-    \includegraphics[page=7]{03-education/figures/tikzfigures.pdf}
+    \includegraphics[page=7,width=\textwidth]{03-education/figures/tikzfigures.pdf}
     \caption[Collaborative filtering algorithm]{Visual representation of the steps to determine if the target movie $j=B$ is a good recommendation for the target user $i=0$. 
     The \gls{cf} algorithm first finds all users who have similar preferences for movies as the target user (marked in green). 
     The users who have the most similar preferences are used in a majority vote. 
@@ -84,7 +84,7 @@ The algorithm concludes that the target challenge is a good recommendation for t
 \begin{figure}
     \centering
     %\input{03-education/plots/3d-collaborative-filtering}
-    \includegraphics[page=3]{03-education/figures/tikzfigures.pdf}
+    \includegraphics[width=\textwidth,page=3]{03-education/figures/tikzfigures.pdf}
     \caption[Adapted collaborative filtering algorithm]{Visual representation of the steps to determine if the target challenge $j=B$ is a good recommendation for the target user $i=0$. 
     The collaborative filtering algorithm first finds all users who experienced similar utility from challenges as the target user around the same ability level $\bm\theta$ (marked in green). 
     Similar utility at a different ability level is disregarded (marked in red).
@@ -154,16 +154,47 @@ In commercial offerings, such as Pluralsight Iris\footnote{\url{https://www.plur
 In other systems, students are allowed to advance to more difficult levels when a sufficiently high accuracy is achieved on exercises in the current level~\cite{abu2009evaluating,mahdi2016intelligent}.
 Some more advanced systems provide adaptive feedback to the users, based on which mistakes have been made in the exercises~\cite{carter2013tutoring,abuel2018intelligent}.
 Finally, the most advanced systems are able to adapt the difficulty of the exercises more dynamically.
-Duolingo for example, adapts the difficulty of the of last few exercises in a lesson based on the performance of the student on the previous exercises\footnote{\url{https://blog.duolingo.com/keeping-you-at-the-frontier-of-learning-with-adaptive-lessons/}}.
+Duolingo for example, adapts the difficulty of the of last few exercises in a lesson based on the performance of the student on the previous exercises\footnote{\url{https://blog.duolingo.com/}}.
 
 All of these system focus on offering exercises of the appropriate difficulty level, and some also take into account classifications of learning styles~\cite{alshammari2015design,felder1988learning}.
 The goal of the \gls{its}, however, is to also pay attention to other potential factors such as the coding style, presentation form, application type, and so on.
 
 \paragraph{Serious games}
-\todo[inline]{if time left: add short section on serious games: not adapting to difficulty, but making classic learning material more engaging}
+Several serious games exist to for topics related to cybersecurity and social engineering.
+They usually focus on awareness of software users of different ages rather than software developers~\cite{giannakas2015cyberaware,jin2018evaluation,beckers2016serious,yasin2018design}.
 
-\paragraph{Machine learning}
-\todo[inline]{machine learning? --> machine learning is used in (some) CF algorithms}
+This research mostly focuses on the effect of gamification, and usually adds game elements to static learning content.
+They do not adapt to the users beyond opening new content after the completion of preceding exercises.
+
+\paragraph{Content-based recommendation systems}
+Another type of recommendation systems that is related to \gls{cf} algorithms, are content-based recommenders.
+These systems analyze item descriptions to identify items that are of particular interest to a user~\cite{pazzani2007content}.
+To do this, they represent both items and users as a vector of characteristics, similar to the vectors in model-based \gls{cf} algorithms.
+However, in contrast with these \gls{cf} algorithms, the vectors are not computed in a latent factor space.
+
+Item characteristics are often already available in the system, or they can be detected through natural language processing. 
+On the \gls{scw} platform, for example, the framework, language, vulnerability type, author and so on are characteristics that are readily available.
+
+In order to make a recommendation for a user, items are selected that have similar characteristics to previously liked items by this user.
+Several algorithms can be used to achieve this, among which nearest neighbour methods and decision trees~\cite{pazzani2007content}.
+In contrast with item-based collaborative filtering, these algorithms compute the similarity between items not based on the similarity of ratings they receive by users, but based on the characteristics of the items themselves.
+This is not a good approach for learning systems, where diverse content should be recommended, covering, for example, multiple vulnerability types.
+
+\paragraph{Knowledge-based recommendation systems}
+Systems that make use of the organisation of learning material are called knowledge-based, or semantics-based recommendation systems.
+They create a structured knowledge graph or ontology to organise the learning material.
+
+Existing ontologies in software security attempt to organize different security concepts in a broader knowledge graph of software science.
+For example, they classify \gls{sql} injection as a type of injection attack, \gls{sql} security as a type of data integrity, and a \gls{dos} attack is linked the availability of the product~\cite{kang2013security, jia2018practical}.
+
+While this information can be useful to a developer learning about different security concepts, it can not be used to organise the learning material on the \gls{scw} training platform.
+
+Many vulnerability types require a broad knowledge of varying aspects of software development, such as the operating system, communication protocols, language and framework specifics, software architecture, and more.
+On the \gls{scw} platform, however, we assume the users have sufficient knowledge of these domains, and require education in software security only.
+With this assumption, I do not see a need to create a knowledge graph for software vulnerabilities.
+It is my belief that most vulnerabilities are unrelated to each other, in the sense that it is possible to understand and master each of them without learning about the other.
+Current education efforts often focus on the \gls{owasp} top 10, in which vulnerabilities are ranked mostly based on their prevalence in practice.
+This is strong evidence for the fact that they are unrelated to each other.
 
 \paragraph{Computerized Adaptive Tests}
 \Glspl{cat} are computer-based tests that adapt to the ability of the examinee. 

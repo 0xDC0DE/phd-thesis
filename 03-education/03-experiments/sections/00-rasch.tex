@@ -68,7 +68,7 @@ To test the correlation between the difficulty on the \gls{scw} training platfor
 The test (R = 0.03, $p = 1.85 \times 10^{-3}$) determines that no significant variation in the \gls{irt} difficulty can be explained by the \gls{scw} difficulty.
 This is no surprise, it is clear that the current difficulty assigned on the platform is not an accurate representation of the actual difficulty.
 
-For the categorical variables, a one-way \gls{anova} can be used.
+A one-way \gls{anova} can be used for the categorical variables.
 This test determines if there is a statistically significant difference between one or more of the possible values that a categorical variable can take.
 The one-way \gls{anova} compares the mean difficulty for each of those values and determines whether any of those means are statistically significantly different from each other.
 If the one-way \gls{anova} returns a statistically significant result, that means there are at least two values that are statistically different from each other.
@@ -200,7 +200,7 @@ This is the case for Java Spring, Java \gls{ee}, Java \gls{jsf}, C\# (.NET) Web 
 All of these frameworks are more difficult than their standard language counterparts, as shown in Figure~\ref{fig:frames2}.
 This is surprising, as frameworks are designed to implement commonly used functions so that the developer does not have to.
 For example, to securely hash a password in standard Java, the developer has to research which algorithm is the most secure, they have to generate a salt using a secure random number generator and correctly combine each of these techniques.
-In Java Spring a \texttt{PasswordEncoder} interface is provided, the documentation of this interface is very brief and informs developers that \texttt{BCryptPasswordEncoder} is the preferred implementation\footnote{\url{https://docs.spring.io/spring-security/site/docs/4.2.4.RELEASE/apidocs/org/springframework/security/crypto/password/PasswordEncoder.html}}.
+In Java Spring a \texttt{PasswordEncoder} interface is provided, the documentation of this interface is very brief and informs developers that \texttt{BCryptPasswordEncoder} is the preferred implementation\footnote{\url{https://docs.spring.io/}}.
 
 Because frameworks often automate these commonly used features, some details of the implementations might be lost to developers.
 When the implementation is insufficient, or when the framework is used incorrectly, it is possible that even a security conscious developer can remain unaware of the consequences.

@@ -38,7 +38,7 @@ A good start for such a temporary approximation could then be to take the mean d
 \paragraph{Improved user ability measure}
 Currently, a security maturity score is computed for each user based on the amount of points they have earned and the accuracy they have maintained while doing so.
 This maturity score is shown on the metrics dashboard, together with a more granular breakdown of the average strengths and weaknesses.
-This metrics dashboard is shown in Figure~\ref{fig:metrics} on page 25.\todo{still page 25?}.
+This metrics dashboard is shown in Figure~\ref{fig:metrics}, on page \pageref{fig:metrics}.
 It is easy to reach a high maturity level for any user, if they spend enough time solving many easy challenges so that they earn points while maintaining a high accuracy.
 
 The \gls{irt} ability estimate can be used to make this maturity score more meaningful.
@@ -69,7 +69,7 @@ Once all other implementation related to the Rasch model have been completed, th
 
 \subsection{Integrating with developer tools}
 \label{sec:its-integration}
-\Gls{scw} is currently developing integrations for several developer and security tools such as Jira\footnote{\url{https://marketplace.atlassian.com/apps/1221320/secure-code-warrior-for-jira?tab=overview&hosting=cloud}}, GitHub\footnote{\url{https://github.com/marketplace/secure-code-warrior-for-github}}, Fortify\footnote{\url{https://www.microfocus.com/en-us/fortify-integrations/secure-code-warrior}}, and more\footnote{\url{https://help.securecodewarrior.com/hc/en-us/categories/900001365043-Integrations-and-Extensions-}}.
+\Gls{scw} is currently developing integrations for several developer and security tools such as Jira\footnote{\url{https://marketplace.atlassian.com/apps/1221320/}}, GitHub\footnote{\url{https://github.com/marketplace/secure-code-warrior-for-github}}, Fortify\footnote{\url{https://www.microfocus.com/en-us/fortify-integrations}}, and more\footnote{\url{https://help.securecodewarrior.com}}.
 Additionally, there is also an integration for the \gls{ide}, discussed in great detail in Part~\ref{p:tools} of this work.
 
 The current goal of these integrations is to provide contextual training to developers.
@@ -85,10 +85,10 @@ In the future, when more data is available, it will be interesting to analyse wh
 This data can give an indication for which vulnerabilities developers seek out training, and hence which vulnerabilities are likely more difficulty to understand and solve in practice.
 It would be interesting to compare these results to those of the Rasch and other priority lists such as the \gls{owasp} Top 10.
 
-\paragraph{Method and System for Adaptive Security Guidance}
+\paragraph{Adaptive Security Guidance}
 Instead of forcing a developer to make a context switch to follow this contextual training, I have invented an alternative solution.
 With this system, contextual training can be provided at a more appropriate time, that is, when the developer opens the training platform.
-This invention has been patented by \gls{scw} as a Method and System for Adaptive Security Guidance\footnote{\url{https://patents.google.com/patent/US20200211135A1/en}}.
+This invention has been patented by \gls{scw} as a ``Method and System for Adaptive Security Guidance"\footnote{\url{https://patents.google.com/patent/US20200211135A1/en}}.
 
 In this invention, the data collected from the integrations feeds into the \gls{its} to result in even more relevant, and highly applicable recommendations.
 For example, the \gls{ide} integration allows us to monitor code changes the developer makes and verify them against a set of rules to detect the mistakes they make in practice.

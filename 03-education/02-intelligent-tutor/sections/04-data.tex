@@ -69,11 +69,12 @@ Before each item is played, the difficulty of this item and the current ability 
 The utility is then updated based on this probability as well as the actual outcome of the answer.
 If the probability of a correct answer is lower than 50\%, and the user did indeed answer the item incorrectly, this item's utility is lowered for risk of frustration.
 If, on the other hand, the probability of a correct answer is larger than 80\% and the item is answered correctly, this item's utility is lowered for risk of boredom.
-These values are in line with research on the engagement of examinees in \glspl{cat}~\cite{ling2017computerized}\todo{more refs}.
+These values are in line with research on the engagement of examinees in \glspl{cat}~\cite{ling2017computerized,bolton1976handbook,moeyaert2016easy}.
 The utility in both these cases is decreased by one.
 
 This decrease in utility is immediately nullified if the next item is played in short succession.
-When the next item is played within 40 minutes, the upper scale of a reasonable play time for a challenge, the utility of the previous item is increased by one, as a reward for this apparent engagement\todo{rephrase?}.
+When the next item is played within 40 minutes, the upper scale of a reasonable play time for a challenge, this is evidence of continued engagement by the user.
+In that case, the utility of the previous item is increased by one as a reward.
 
 \paragraph{Increased ability}
 If a user learns something new from an item, this should also lead to increased utility.

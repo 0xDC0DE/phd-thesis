@@ -53,7 +53,7 @@ public ResultSet getUserById(String id){
 \end{lstlisting}
 
 In industry, recipes were created, both to help developers use libraries correctly, as well as to migrate to new libraries.
-Security professionals reported that many wrapper libraries are used in their code base to make the life of developers easier.
+Security professionals reported that many wrapper libraries are used in their codebase to make the life of developers easier.
 These wrapper libraries were rarely developed solely for security reasons, but often did include security automation.
 It is clear that for such wrapper libraries, it is crucial that the recipes can easily be customized.
 
@@ -102,13 +102,13 @@ Quick-fixes are added to nearly every recipe.
 However, in some situations no fully functional quick-fix can be created and the developer is still required to make changes to the code after applying the quick-fix.
 To create quick-fixes, the template language that allows reusing parts of the original code can be very useful.
 However, the suggestion box in the quick-fix menu is not clearly visible to the users, and as a result these suggestions are rarely used.
-Currently, the variables are hidden by default and the "Show variables" button is not very prominent, as shown in Figure~\ref{fig:showvariables}.
+Currently, the variables are hidden by default and the ``Show variables" button is not very prominent, as shown in Figure~\ref{fig:showvariables}.
 
 \begin{figure}
   \centering
   %\includegraphics[width=0.75\textwidth]{showvariables.png}
   \includegraphics[width=0.75\textwidth,page=15]{04-tools/figures/figures2.pdf}
-  \caption[Show variables button in the fix menu]{The suggestions in the quick-fix menu are hidden by default. Users do not make use of the "Show variables" button that reveals them, as it does not attract their attention.}
+  \caption[Show variables button in the fix menu]{The suggestions in the quick-fix menu are hidden by default. Users do not make use of the ``Show variables" button that reveals them, as it does not attract their attention.}
   \label{fig:showvariables} 
 \end{figure}
 
@@ -144,7 +144,7 @@ During the experiment, 98.4\% of code markings shown by Sensei (n = 247) were re
 Out of the resolved code markings, 73.3\% were fixed using the quick-fixes.
 All of the users (n = 15) used at least one quick-fix, with an average of 12.71 (s = 4.73) quick-fixes used.
 The remaining code markings have been removed manually, either by fixing the violation or by removing the violating code entirely.
-This is a high level of engagement, compared to the lower than 20\% "Apply fix" rate reported by the code review tool Tricorder~\cite{sadowski2015tricorder}.
+This is a high level of engagement, compared to the lower than 20\% ``Apply fix" rate reported by the code review tool Tricorder~\cite{sadowski2015tricorder}.
 On average the subjects resolved the issue within 19.10 s (s = 25.22 s) of writing the violating \gls{api} call.
 This means that developers are spending comparatively little time understanding the issues and applying fixes.
 By comparison, for Tricorder and SpotBugs the time between writing the violating code and fixing is usually several days~\cite{sadowski2015tricorder,ayewah2007using}.
@@ -237,7 +237,7 @@ This results in a large number of \glspl{efp}, which we want to avoid.
 When developers create their own recipes from scratch, they are working on a certain branch of the project.
 They usually create very targeted recipes to fix or enforce small things in the project files they are working on.
 When they create the recipe, they inspect the violations and fix the markings.
-The recipe and fixed code are pushed to the code base simultaneously.
+The recipe and fixed code are pushed to the codebase simultaneously.
 This typically leads to few \glspl{efp}.
 However, often the application security team of the company imposes recipes as well.
 At one point, the security expert at a client of ours created a large number of recipes and imposed them onto the developers without fixing any of the resulting violations.
@@ -252,10 +252,10 @@ In that case the security team should create a developer task force.
 Their task is to create \glspl{api} to resolve the recipe hits.
 They then turn the original recipe into a library adoption recipe and fix all marked code with this recipe.
 In the process of doing so, many corner cases can be encountered that help to fine-tune both the \gls{api} and the recipe.
-The new \gls{api}, the recipe, and all code fixes can be pushed to the code base simultaneously. 
+The new \gls{api}, the recipe, and all code fixes can be pushed to the codebase simultaneously. 
 
 The ideal scenario might not apply in practice, however.
-It is possible that the code base is simply too large to start fixing all code markings.
+It is possible that the codebase is simply too large to start fixing all code markings.
 We have had clients where a strong recipe resulted in over 3000 violations.
 It can also be the case that when the security team creates a task force, this developer time is paid by the security budget, not the development budget.
 In such cases it is not beneficial to spend developer time to fix the existing issues in the code before rolling out the recipe. 

@@ -14,7 +14,7 @@ A false positive from the perspective of the developer is also called an \gls{ef
 To ensure the usability of the tool, the \gls{efp} rate should be sufficiently low~\cite{sadowski2015tricorder,johnson2013don}.
 
 To demonstrate \glspl{efp} we take a look at \gls{os} Command injection.
-One of the \gls{owasp} \gls{esapi} Banned \glspl{api} is \texttt{Runtime.exec}.
+One of the \glspl{api} that is banned in the \gls{owasp} \gls{esapi} guidelines is \texttt{Runtime.exec}.
 This \gls{api} is used to execute \gls{os} commands in Java programs.
 When user input is added to this command, \gls{os} command injection is possible and the attacker can gain access to the underlying \gls{os}.
 Using this information it is possible to create a recipe that marks all uses of the \texttt{Runtime.exec} method.
@@ -157,12 +157,12 @@ Instead of providing guidance on the correct usage of the \glspl{api}, such reci
 This type of recipe has a trigger in one library but their fix uses a different library.
 
 As a proof of concept for library adoption recipes, support has been developed for the \gls{owasp} \gls{esapi} library.
-Among others, the \gls{owasp} \gls{esapi} contains replacement methods for commonly used insecure \gls{jdk} methods, the so-called \gls{owasp} \gls{esapi} banned \glspl{api}\footnote{\url{https://www.owasp.org/index.php/ESAPI\_Secure\_Coding\_Guideline\#Banned_APIs}}.
+Among others, the \gls{owasp} \gls{esapi} contains replacement methods for commonly used insecure \gls{jdk} methods, the so-called \gls{owasp} \gls{esapi} banned \glspl{api}\footnote{\url{https://www.owasp.org/index.php/ESAPI\_Secure\_Coding\_Guideline}}.
 To support the \gls{owasp} \gls{esapi} in companies that adapt it, a recipe set was created to enforce the replacement of the banned \glspl{api} with their alternatives from the \gls{owasp} \gls{esapi}.
 Feedback from these companies showed that this set of library adoption recipes was intuitive and easy to use for developers.
 Importantly, it increased the speed of the library's adoption.
 
-Library usage recipes are generally applicable to code bases because the trigger and fix of these recipes use \glspl{api} from the same library, thus ensuring that the recipes never mark any code when the fix is unavailable.
+Library usage recipes are generally applicable to codebases because the trigger and fix of these recipes use \glspl{api} from the same library, thus ensuring that the recipes never mark any code when the fix is unavailable.
 The trigger and fix for library adoption recipes depend on different libraries.
 This implies that an applied quick-fix can result in the use of unavailable \glspl{api}. 
 
@@ -201,7 +201,7 @@ These quick-fixes are only partial fixes: They inject code that invokes encrypti
 It is then still up to the developer to remove the XOR operations and fill in the correct string or array identifier.
 This emphasizes again why it is beneficial to provide fixes in the \gls{ide} during development time.
 When this recipe is used during the development of a new method, the developer starts by creating a function declaration.
-When a function exists with "encrypt" in the name and an empty body, this is marked, as the required \gls{api} calls are missing.
+When a function exists with ``encrypt" in the name and an empty body, this is marked, as the required \gls{api} calls are missing.
 The fix then inserts the required \gls{api} calls, leading to comfortable and intuitive security help for the developer.
 This recipe is a good example to demonstrate the paved path methodology.
 It guides the developer along a predetermined path laid out for them to implement encryption securely.

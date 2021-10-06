@@ -1,8 +1,6 @@
 \chapter{Security battlecards}
 \label{app:battlecards}
 
-These battlecards contain brief descriptions supplemented with my personal opinion on security tools that are recommended for use in the paved path methodology.
-
 \battlecard{SonarLint by SonarSource}{\url{https://www.sonarlint.org/}}{
 \label{bc:sonarlint}
 SonarLint is a free IDE plugin that focuses on code quality. As explained in this work code quality and code security are often related and hence some rules exist in SonarLint that target security rules. SonarLint is developer-friendly as it provides quick-fixes and clear descriptions with small code examples. However, it only provides a small number of security rules and the rules are not easily customized.}{Lint}
@@ -23,3 +21,60 @@ Dependabot creates pull requests to keep your dependencies secure and up-to-date
 \label{bc:gitlab}
 GitLab's integrated dependency scanner supports many languages and package managers. It provides remediation through automated merge requests, GitLab's term for pull requests.
 }{SCA}{Build}{Seconds}{Merge request}
+
+\battlecard{FindBugs}{\url{http://findbugs.sourceforge.net/}}{
+\label{bc:findbugs}
+FindBugs is a static analysis tool that looks for bugs in Java code. It has not been updated since 2017 and its spiritual successor is SpotBugs.
+Its IDE plugin is not compatible with newer versions of IntelliJ.
+To customize the rules, APIs must be used.
+A popular plugin exists, Find Sec Bugs, that is still updated.
+This plugin customizes the rule set and adds over 100 security bugs.}{SAST}
+{Test}{Minutes}{Description}
+
+\battlecard{SpotBugs}{\url{http://findbugs.sourceforge.net/}}
+{
+\label{bc:SpotBugs}
+SpotBugs is a community supported successor of FindBugs.
+It is free to use and can find up to 400 bug patterns in Java code.
+Its IDE plugin is still compatible with the newest version of IntelliJ but the Find Sec Bugs rules can not be easily added to this IDE plugin.
+SpotBugs is the spiritual successor of FindBugs, carrying on from the point where it left off with support of its community.
+SpotBugs' bug descriptions are very short, do not suggest any remediation but provide links to relevant Wikipedia articles. 
+
+This lack of information and remediation to the developer has shown to result in low developer trust, as was explained in Section~\ref{sec:efp}.
+Experiments with this tool showed that half of the reported issues are never even reviewed~\cite{ayewah2007using}.
+SpotBugs is well researched~\cite{ayewah2007using,ayewah2010google,findbugs2008} and used in industry.
+It is also used at the company of one of our trials.
+
+Research by Ayewah et al.~\cite{ayewah2007using} showed that the tool has an \gls{efp} rate of 77\%, and that the most interesting bugs were found and fixed without SpotBugs, namely after they were revealed by static analysis scans later in the SDLC. Ayewah et al.\ conclude, however, that the tool could have been used to discover those bugs earlier, if only it would have been used more actively by developers. This is in line with our findings indicating that a low EFP rate inhibits effectiveness. I believe that shorter scan times, better descriptions, and remediation help as available in Sensei might improve the use of SpotBugs by developers in earlier stages of development.
+}{SAST}
+{Test}{Minutes}{Description}
+
+\battlecard{Semmle}{\url{https://semmle.com/}}{
+\label{bc:semmle}
+Lots to say TODO TODO
+}{SAST}
+{Test}{Minutes}{None}
+
+\battlecard{Semgrep}{\url{https://semgrep.dev/}}{
+\label{bc:semgrep}
+Lots to say TODO TODO
+}{SAST}
+{Test}{Seconds}{Quick-fix}
+
+\battlecard{Tricorder}{\url{https://research.google/pubs/pub43322/}}{
+\label{bc:tricorder}
+Tricorder~\cite{sadowski2015tricorder} is a data-driven program analysis platform integrated into the workflow of developers at Google. Tricorder's design philosophy closely resembles that of Sensei where they put developer usability first. Custom analyzers are written in Java, C++, Python, or Go, and also require setting up a service in a docker file. 
+
+The results of Tricorder analyzers are shown in a review tool. In this tool quick-fixes are available, but empirical observations have shown they are not used frequently, as only a 20\% ``Apply fix" rate is reported for Tricorder~\cite{sadowski2015tricorder}. It is hypothesised that developers prefer to go back to their IDE to fix the problems~\cite{sadowski2015tricorder}. 
+After carefully improving their analyzers, Tricorder reached an EFP rate of around 5\%. While both the customized rules of Sensei and the customized analyzers used by Tricorder appear to be effective solutions for preventing EFPs, quick-fixes are more practical in the IDE than during the test or review stage, as is evident from the low ``Apply fix" rate for Tricorder. 
+}{SAST}{Test}{Minutes}{Quick-fix}
+
+\battlecard{Shipshape}{\url{https://github.com/google/shipshape}}{
+\label{bc:shipshape}
+Shipshape is the open source version of Tricorder (battlecard~\ref{bc:tricorder}).
+}{SAST}{Test}{Minutes}{Quick-fix}
+
+\battlecard{Fortify}{\url{}}{
+\label{bc:fortify}
+
+}{SAST}{Test}{}{}

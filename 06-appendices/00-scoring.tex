@@ -9,8 +9,8 @@ Challenges are created from a secure software application. To this application v
     \item Category and subcategory of the vulnerability type.
     \item A textual description explaining the insecurity.
     \item A textual description explaining the secure version.
-    \item Line numbers marking the code fragment containing the vulnerability.
-    \item Sets of line numbers marking code fragments that are secure. These code fragments, usually called \textit{chunks} are used to generate the options to choose from in a locate (L2) challenge.
+    \item Line numbers of the code fragment containing the vulnerability.
+    \item Sets of line numbers marking alternative code fragments. These code fragments, usually called \textit{chunks}, are used to generate the possible options in a locate (L2) challenge.
     \item Three additional branches containing alternative but insecure solutions to the insecurity. These branches are used to generate the options to choose from in a fix (L3) challenge.
     \item A textual description for each insecure solution explaining why the solution is suboptimal.
 \end{itemize}
@@ -70,6 +70,7 @@ An overview of the penalty for each hint in each type of exercise is shown in Ta
  3 & -35 & -50 & -34\\
  4 & -60 & --- & --- \\
 \end{tabular}
+\label{tb:hints-scoring}
 \end{table}
 
 The amount of points that is actually awarded upon completing an exercise depends on the amount of attempts that were needed to find the correct answer. How many of the maximum points are still awarded depends on which scoring method is used, as shown in Table~\ref{tb:scoring-attempts}.

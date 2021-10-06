@@ -13,13 +13,13 @@ For this reason, the recipe creation process should be easy and fast, and at the
 
 Our first approach allowed users to create new recipes through predefined recipe models.
 A \gls{gui} was used to let the recipe writer fill in a number of variables for this model.
-A simple example of such a model is  the “Replace method call model”.
-Figure~\ref{fig:recipeedit2} shows a recipe being created to replace the \texttt{addCookie} method with a safe alternative from the \gls{owasp} \gls{esapi}, an open source, web application security control library designed to make secure development easier~\cite{ESAPI}; the organization also provides some commonly used security guidelines.
+A simple example of such a model is  the ``Replace method call model”.
+Figure~\ref{fig:recipeedit2} shows a recipe being created to replace the \texttt{addCookie} method with a safe alternative from the \gls{owasp} \gls{esapi}, an open-source, web application security control library designed to make secure development easier~\cite{ESAPI}; the organization also provides some commonly used security guidelines.
 The recipe writer has to fill in some specifics about the method they want to be marked by Sensei, such as the package, class, and method names.
 Then they can write one or more quick-fixes.
 Here, they have to create a quick-fix description and they have to define the code fragment that will be used to replace the original.
 To do so they can reuse arguments, method names, and more from the original code by means of a template language.
-In the field "Rewrite to", the example quick-fix reuses the first argument of the original method call by using the template \texttt{arguments.0}. 
+In the field ``Rewrite to", the example quick-fix reuses the first argument of the original method call by using the template \texttt{arguments.0}. 
 
 \begin{figure}
   \centering
@@ -41,7 +41,7 @@ The resulting taxonomy of 10 bad code patterns is included in Appendix~\ref{app:
 
 Since this approach requires recipe writers to learn the new syntax, we have provided some tools to assist them, in the form of a \gls{gui} that can be used to build the desired recipe from scratch.
 In addition, the recipe editor is now more context-aware.
-The recipe writer can open a recipe creation wizard by pressing a key combination in the text editor in the \gls{ide} and selecting "create new recipe".
+The recipe writer can open a recipe creation wizard by pressing a key combination in the text editor in the \gls{ide} and selecting ``create new recipe".
 This opens a context-aware menu depending on the position of the caret.
 For example, if the caret was on a method call, the menu contains an option to create a new recipe that searches for similar method calls, as shown in Figure~\ref{fig:newrecipemethodcall}.
 
@@ -63,7 +63,7 @@ In this panel, the code file from which the recipe wizard was opened is shown, a
   \centering
   %\includegraphics[width=\textwidth]{rulewizard1.png}
   \includegraphics[width=\textwidth,page=10]{04-tools/figures/figures2.pdf}
-  \caption[Recipe created from context]{A recipe created through the "search for similar methodcalls" option in the context-aware recipe creation menu will generate a \gls{yaml}-based recipe with details from the context of the caret position.}
+  \caption[Recipe created from context]{A recipe created through the ``search for similar methodcalls" option in the context-aware recipe creation menu will generate a \gls{yaml}-based recipe with details from the context of the caret position.}
   \label{fig:recipewizard1} 
 \end{sidewaysfigure}
 
@@ -178,7 +178,7 @@ An additional quick-fix option will be added in the future to disable a recipe.
   \centering
   %\includegraphics[width=\textwidth]{copyrecipe.png}
   \includegraphics[width=\textwidth,page=4]{04-tools/figures/figures1.pdf}
-  \caption[Copy recipe option in the quick-fix menu]{For remote recipes, the quick-fix menu offers a "Copy recipe" option.}
+  \caption[Copy recipe option in the quick-fix menu]{For remote recipes, the quick-fix menu offers a ``Copy recipe" option.}
   \label{fig:copyrecipe} 
 \end{figure}
 

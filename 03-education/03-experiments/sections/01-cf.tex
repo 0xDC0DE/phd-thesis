@@ -12,7 +12,7 @@ The above goal can be achieved by means of an experiment aimed at answering the 
 \end{itemize}
 
 \subsection{Benchmark algorithms}
-To train and evaluate different (variations of) algorithms, I have used the open source Python scikit Surprise~\cite{Hug2020}.
+To train and evaluate different (variations of) algorithms, I have used the open-source Python scikit Surprise~\cite{Hug2020}.
 Since it is open source, the code is available to download from GitHub and the implemented algorithms can later be adapted to learning systems.
 
 Surprise provides two basic \gls{cf} algorithms that can be used as benchmarks to answer the first research question.
@@ -456,7 +456,7 @@ This algorithm can hence make a better distinction between users who followed th
 Co-Clustering performs worst of the model-based algorithms and its \gls{mae} is not significantly better than that of the baseline benchmark.
 One of the strengths of the Co-Clustering algorithm is that it can handle synonyms rather well.
 In recommendation systems, synonyms are items that are (nearly) identical but are still labeled as different items.
-Movie databases often have genres like "Children's movie" and "Children's film", which are then clustered together by the algorithm.
+Movie databases often have genres like ``Children's movie" and ``Children's film", which are then clustered together by the algorithm.
 More data can then be used to make recommendations about either of those genres.
 Evidently, on our platform few such synonyms are present, even though for each framework many exercises exist about the same vulnerability types.
 The ratings for these exercises are sufficiently inconsistent so that the Co-Clustering algorithm does not result in significant improvements in prediction accuracy.
