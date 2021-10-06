@@ -62,14 +62,10 @@ When testing \gls{yaml} syntax and creating recipes from context, we observed a 
 Even for users that were experienced with the old rule models, the preview panels in the new recipe editor and the context-aware suggestions greatly improve the recipe-writing process.
 
 Security professionals report that Sensei is the easiest tool they have used when it comes to customizing recipes.
-The majority of comparable tools allow writing custom rules or analyses in some way or another.
-\todo[inline]{revisit after related work is finished}
-Writing rules for these tools is done through complex, but well documented \glspl{api} (SpotBugs, Tricorder, Checkmarx) or more user-friendly custom formats such as \gls{xml} (Fortify, SecureAssist).
-Of these, Checkmarx is the only one tool that provides a Query editor and manager, albeit not built into their static analysis tool.
-For all other tools, the rule writers can use an \gls{ide} or text editor of their choice.
+The majority of comparable tools allow writing custom rules or analyses in one way or another, as described in the related work, in Section~\ref{sec:customization}.
+Writing rules for these tools is often done through complex, but well documented \glspl{api} or more user-friendly formats. 
 None of the tools allow creating rules on-the-fly in the code.
 Sensei does allow this, which greatly improves the speed and usability of writing rules.
-Related tools will be described in more detail in Chapter~\ref{ch:related}.
 
 \subsubsection{Recipe features}
 Because recipes can be created on-the-fly in the code, context-aware suggestions can be made, and testing of the recipes is more efficient since their markings can be observed live as the recipe is being created.
@@ -190,7 +186,6 @@ The above does not imply that Sensei is the one and only tool that solves all po
 To detect issues as early as possible, i.e., in real-time as the developer is writing code, analyses have to be light-weight.
 This implies that all possible execution paths in the entire program cannot be exhaustively considered, and some types of vulnerabilities, including design flaws, can go undetected.
 This is a common trade-off, therefore tools that are used early in the \gls{sdlc} such as Sensei should be complemented with more complete scanning solutions deployed later in the \gls{sdlc}.
-\todo[inline]{revisit after related work}
 Security professionals understand this.
 In the second industry trial Sensei is complimented by five additional security tools: Fortify, Checkmarx, SonarQube, Semgrep, and FindBugs.
 

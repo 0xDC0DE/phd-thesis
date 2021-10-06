@@ -323,7 +323,7 @@ In case the user gave up before finding the correct answer (or in assessments wh
 Polytomous models could result in more accurate results, however, currently they can not be used to the available data set.
 
 \paragraph{Multidimensional IRT models}
-While the ability level has been introduced as a multivariate vector of latent traits $\bm{\theta}_i$, in Section~\label{sec:irt-intro}, in the current implementation this has been implemented as a scalar.
+While the ability level has been introduced as a multivariate vector of latent traits $\bm{\theta}_i$, in Section~\ref{sec:irt-intro}, in the current implementation this has been implemented as a scalar.
 In reality, the ability of a user regarding software security is not accurately represented as a single value.
 When the ability estimate is represented as a vector, a value can be obtained for each dimensions of the skill.
 For example, the ability of a user for each of the vulnerability categories can be represented as a scalar.
@@ -339,8 +339,9 @@ Furthermore, time pressure varies in different modes on the platform.
 While users can generally take as much time as they prefer when answering questions in training and assessments, in tournaments there is a limited time to complete the questions.
 
 \subsubsection{Elo system}
-The Elo rating system, named after its inventor Arpad Elo, is a method for calculating relative skill levels between players of a zero-sum game~\cite{elo1978rating}.
-It is widely used in sports, games, and videogames, such as chess, American football, basketball, Major League Baseball, table tennis, Scrabble, Counter Strike: Global Offensive, and League of Legends.
+The Elo rating system is a method for calculating relative skill levels between players of a zero-sum game~\cite{elo1978rating}.
+It is named after its inventor Arpad Elo.
+The system is widely used in sports, games, and videogames, such as chess, American football, basketball, Major League Baseball, table tennis, Scrabble, Counter Strike: Global Offensive, and League of Legends.
 
 Similarly to \gls{irt}, the ability level is not measured directly, but it is inferred from wins, losses, and draws against other players or teams.
 Based on the current ability levels, the expected outcome of a match-up is predicted.
@@ -348,7 +349,7 @@ When the actual outcome differs from this expectation, the ability level is upda
 By how much it is updated depends on the difference between the ability levels, and in some cases by the observed skill difference.
 For an overwhelming victory a bigger increase in ability will often be awarded than for a near win.
 
-The Elo system is made for symmetric matchups, player versus player, or team versus team.
+The Elo system is designed for symmetric match-ups such as player versus player, or team versus team.
 A zero-sum game is a mathematical representation of a situation in which an advantage that is won by one player is lost by the other.
 While \gls{irt} sets both users and items on the same scale, the training platform can not be considered a zero-sum game.
 One challenge is played by many more players than a single player usually plays challenges.
