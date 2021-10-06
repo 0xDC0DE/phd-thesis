@@ -200,7 +200,7 @@ This is the case for Java Spring, Java \gls{ee}, Java \gls{jsf}, C\# (.NET) Web 
 All of these frameworks are more difficult than their standard language counterparts, as shown in Figure~\ref{fig:frames2}.
 This is surprising, as frameworks are designed to implement commonly used functions so that the developer does not have to.
 For example, to securely hash a password in standard Java, the developer has to research which algorithm is the most secure, they have to generate a salt using a secure random number generator and correctly combine each of these techniques.
-In Java Spring a \texttt{PasswordEncoder} interface is provided, the documentation of this interface is very brief and informs developers that \texttt{BCryptPasswordEncoder} is the preferred implementation\footnote{\url{https://docs.spring.io/}}.
+In Java Spring a \texttt{PasswordEncoder} interface is provided, the documentation of this interface is brief and informs developers that \texttt{BCryptPasswordEncoder} is the preferred implementation\footnote{\url{https://docs.spring.io/}}.
 
 Because frameworks often automate these commonly used features, some details of the implementations might be lost to developers.
 When the implementation is insufficient, or when the framework is used incorrectly, it is possible that even a security conscious developer can remain unaware of the consequences.

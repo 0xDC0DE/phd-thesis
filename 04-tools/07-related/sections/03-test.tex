@@ -14,7 +14,7 @@ In this section, I describe new tools and practices as well as some traditional 
 Penetration testing is the practice of breaking into running software by attacking it.
 Sometimes, the penetration tester has access to the source code to speed up this process.
 It is a common practice used by many companies and usually external experts are hired to perform these tests~\cite{cruzes2017security,bsimm11}.
-Since the penetration tester needs access to the running software this can only be done very late in the \gls{sdlc}.
+Since the penetration tester needs access to the running software this can only be done late in the \gls{sdlc}.
 Already in the introduction, we addressed that relying on security experts does not scale well.
 Furthermore, it does not integrate well in modern development strategies, where fast feedback cycles and frequent releases are key~\cite{securitytestingagile}.
 Penetration testing does improve the security awareness of the developers, but does not cause any long-lasting change in development practices by itself~\cite{turpe2016penetration}.
@@ -118,7 +118,7 @@ public class DesUsageDetector extends CipherDetector {
 
 \subsubsection{Custom query language}
 To make customisation of rules easier, some tools provide a custom query language that makes abstractions of their \gls{api}.
-They still require the rule writer to write code, but they usually provide more specific syntax to make the development of rules much simpler.
+They still require the rule writer to write code, but they usually provide more specific syntax to make the development of rules easier.
 
 Code Query Language (CodeQL) is an example of such a query language.
 It is a free and open-source semantic code analysis engine that is created with the goal to query code as if it were data.
@@ -145,7 +145,7 @@ select call
 
 The query language CxQuery by Checkmarx uses regular Java syntax.
 It provides abstractions to iteratively filter results based on certain properties of the code.
-Some knowledge of the \gls{api} is required, but Checkmarx provides very clear and easy to understand documentation containing lots of examples.
+Some knowledge of the \gls{api} is required, but Checkmarx provides  clear and easy to understand documentation that contains lots of examples.
 The resulting query, shown in Listing~\ref{lst:detectDES-checkmarx}, is even shorter than the one for CodeQL and just as easy to understand.
 
 \begin{lstlisting}[language={Java},caption={CxQuery query used by Checkmarx to find use of insecure algorithm DES.},label={lst:detectDES-checkmarx},abovecaptionskip=-0.0pt,xleftmargin=15pt]
@@ -198,13 +198,13 @@ availableFixes:
          to: '{{qualifier}}.getInstance("AES/GCM/NoPadding")'
 \end{lstlisting}
 
-Semgrep (battlecard~\ref{bc:semgrep}) uses \gls{yaml} and has a very similar rule format to Sensei.
-It is important to note that Semgrep is the first tool discussed in the rule creating methods that also provides quick-fixes.
+Like Sensei, Semgrep (battlecard~\ref{bc:semgrep}) uses \gls{yaml} and its rule format is also similar to that of Sensei.
 While it is intended to be used as a testing tool, third-party plugins have been developed to use Semgrep in the \gls{ide}, making it potentially a great tool for supporting the paved path methodology.
 A rule to detect and fix use of \gls{des} is shown in Listing~\ref{lst:Des-semgrep}.
+It is important to note that Semgrep is the first tool discussed in this section that provides quick-fixes.
 Besides the search pattern and the fix, the rule also includes metadata that is stored separately for Sensei recipes, such as the category, severity level, and descriptions.
-Semgrep provides the concept of metavariables, an abstraction made available to track variables such as method names across the search pattern.
-A metavariable \texttt{\$CIPHER} is used in the example to define the fix, this is more user-friendly than the templating language provided by Sensei.
+Semgrep rules have a few advanced features, such as the concept of metavariables, an abstraction made available to track variables such as method names across the search pattern.
+The metavariable \texttt{\$CIPHER} is used in the example to define the fix, this is more user-friendly than the templating language provided by Sensei where the rule-writer is required to know the appropriate name of the element in the \gls{ast}.
 
 \begin{lstlisting}[language={yaml},caption={Semgrep rule to discover use of DES},float,label={lst:Des-semgrep},literate={\ \ }{{\ }}1,xleftmargin=12pt]
 rules:

@@ -76,7 +76,7 @@ The ability level of the user at the time of rating an item $i$ is taken into ac
 If the user rates the item $i$, the data is then processed as rating one of these three items, based on the ability level of the user at the time of rating.
 This processed data can then be used to train the unaltered algorithms.
 
-This is less accurate than adapting the similarity metrics. It is possible that users at the bottom of the expert ability level assign very similar ratings to the users at the top of the intermediate ability level. 
+This is less accurate than adapting the similarity metrics. It is possible that users at the bottom of the expert ability level rate items similarly to the users at the top of the intermediate ability level. 
 By using a threshold at the time of computing the similarity, these users are still considered similar.
 By splitting the ability scale into ranks, they are not.
 
@@ -84,7 +84,7 @@ By splitting the ability scale into ranks, they are not.
 The proposed adaptation resulted in improved performance for all of the algorithms, as shown in Table~\ref{tab:improvement}.
 The improvement is larger for the \gls{knn} algorithms, because these algorithms make more explicit use of the ratings of neighbours to make a prediction.
 The improvement is particularly large for the \gls{knn} basic algorithm, with a 13.7\% decrease in \gls{mae}.
-This algorithm is very straightforward and takes the mean of the ratings of the most similar users to make a prediction.
+This algorithm is straightforward as it takes the mean of the ratings of the most similar users to make a prediction.
 The improvement of this algorithm is a clear indication that the ability level of a user at the time of rating an item has a significant impact on the rating.
 
 The smallest improvement is made by the Co-Clustering algorithm.

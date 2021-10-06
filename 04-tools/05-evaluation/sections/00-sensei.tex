@@ -31,7 +31,7 @@ Even if the current query did not use any (unsanitized) user input, using a para
 It will also set a good example for future developers writing similar methods.
 Developers will often copy existing code and make some changes to fit their needs.
 After all, developers try to be as efficient as they can in delivering code.
-If no parameterized queries are used, a very subtle change can mean the difference between secure code or a vulnerability, as shown in Listings~\ref{lst:safe}~and~\ref{lst:unsafe}.
+If no parameterized queries are used, a subtle change can mean the difference between secure code or a vulnerability, as shown in Listings~\ref{lst:safe}~and~\ref{lst:unsafe}.
 
 \begin{lstlisting}[float,language={Java},caption={This method concatenates an integer value to the query. An integer variable can not alter the query, and hence this method can not lead to SQL injection.},
 float,label={lst:safe},abovecaptionskip=-0.0pt]
@@ -100,9 +100,10 @@ Instead of “create recipe for similar methodcalls”, it might be more effecti
 
 Quick-fixes are added to nearly every recipe.
 However, in some situations no fully functional quick-fix can be created and the developer is still required to make changes to the code after applying the quick-fix.
-To create quick-fixes, the template language that allows reusing parts of the original code can be very useful.
+The template language that allows reusing parts of the original code is often required to create a working quick-fix.
 However, the suggestion box in the quick-fix menu is not clearly visible to the users, and as a result these suggestions are rarely used.
-Currently, the variables are hidden by default and the ``Show variables" button is not very prominent, as shown in Figure~\ref{fig:showvariables}.
+The recipe-writer can still find them in the documentation or by copy pasting from other rules, but using this menu should be more convenient.
+Currently, the variables are hidden by default and the ``Show variables" button is not prominent enough, as shown in Figure~\ref{fig:showvariables}.
 
 \begin{figure}
   \centering
@@ -127,7 +128,7 @@ With the exception of the Fortify Security Assistant that disables rules to spee
 \subsection{Feedback and remediation}
 Sensei is distributed as an \gls{ide} plugin.
 This allows it to reuse and extend existing \gls{ide} functionality, and naturally feel part of the existing tool kit of developers.
-When interviewed, subjects of the usability tests reported that the markings and quick-fixes felt very similar to those provided by the \gls{ide} itself.
+When interviewed, subjects of the usability tests reported that the markings and quick-fixes felt similar to those provided by the \gls{ide} itself.
 They all indicated that they would use them frequently.
 
 When analyzing newly written code, the longest time we have measured that is needed for the analyses to finish is 29 ms.
@@ -235,7 +236,7 @@ In addition, developers are often hesitant to fix issues they did not introduce 
 This results in a large number of \glspl{efp}, which we want to avoid.
 
 When developers create their own recipes from scratch, they are working on a certain branch of the project.
-They usually create very targeted recipes to fix or enforce small things in the project files they are working on.
+They usually create targeted recipes to fix or enforce small things in the project files they are working on.
 When they create the recipe, they inspect the violations and fix the markings.
 The recipe and fixed code are pushed to the codebase simultaneously.
 This typically leads to few \glspl{efp}.

@@ -91,7 +91,7 @@ Scopes like this can also help with performance, i.e., meeting the real-time che
 
 In the old editor, rather than \emph{trigger} scopes, \emph{recipe} scopes were a property of the entire recipe.
 They were added by selecting the type of scope and filling in some fields.
-By migrating these scopes to the \gls{yaml} syntax, the scoping of recipes becomes much more flexible.
+By migrating these scopes to the \gls{yaml} syntax, the scoping of recipes becomes more flexible.
 The recipe scopes that can be migrated to trigger scopes are the class scope, method scope, file scope, Android context scope, and Android build property scope.
 Descriptions of these scopes can be found in Appendix~\ref{app:recipe-scopes}.
 
@@ -129,7 +129,7 @@ It might then be better for the company to provide a method that replaces the or
 In this method the cookies can be first configured properly before calling the original \texttt{addCookie} method.
 Such replacement wrapper methodcall is shown in Listing~\ref{lst:cookie3}.
 The new guideline for cookies is then to replace the \texttt{addCookie} method with the \texttt{safeAddCookie}, as shown in Listing~\ref{lst:cookie4}.
-The creation of such a wrapper library is strongly recommended by the paved path methodology, as the resulting guidelines are very easy to understand by developers.
+The creation of such a wrapper library is strongly recommended by the paved path methodology, as the resulting guidelines are easy to understand for developers.
 At the same time any security bugs are confined to the \textit{implementation} of the wrapper library, and no new bugs can be introduced by \textit{using} the wrapper library. This makes the job of the security team easier as well.
 
 \begin{lstlisting}[language={Java},caption={A wrapper library can be created to avoid code reuse and to improve clarity of the guidelines for the developer.}, float,label={lst:cookie3},abovecaptionskip=-0.0pt] 
@@ -173,7 +173,7 @@ When the library used in the quick-fix serves as a scope of a recipe, it will no
 As discussed before, coding guidelines are enforced through mostly local analyses.
 This allows Sensei to intervene earlier in the development process and makes it possible to perform the analyses in real time while the developer is typing.
 For this reason the focus of the approach is mostly on implementation bugs.
-Detecting design flaws in the application code (rather than in the \glspl{api} it relies on) is typically much harder.
+Detecting design flaws in the application code (rather than in the \glspl{api} it relies on) is typically harder.
 Still, we have learned that various flaws can be tackled through the use of configuration files and the previously described trigger and recipe scopes.
 
 An example of a flaw that is difficult to detect with local analyses is excessive security logging.
@@ -192,7 +192,7 @@ This can be seen in Listing~\ref{lst:manifest}, line 3.
 \end{lstlisting}
 
 Another example is the use of encryption.
-It is trivial to detect if a deprecated encryption algorithm is used by means of a known \gls{api}, but it is much harder to detect the absence of encryption through local analyses.
+It is trivial to detect if a deprecated encryption algorithm is used by means of a known \gls{api}, but it is harder to detect the absence of encryption through local analyses.
 One interesting class of mistakes that we observed was developers XOR’ing data, or encoding data, rather than encrypting it.
 As a solution, a coding guideline can be created that requires functions whose name contains “encrypt” to perform encryption through some of their approved \gls{api} methods.
 If such a function \emph{only} performs encoding or XOR operations, it implies that the required \gls{api} calls are missing.

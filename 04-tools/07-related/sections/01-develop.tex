@@ -11,10 +11,10 @@ Linter tools are designed to allow the developer to concentrate solely on the al
 They mostly focus on syntax and styleguide checking but some tools are advanced enough to check for certain bugs as well.
 Depending on their targets, linters perform their analyses with string-matching or reduced versions of \glspl{ast} without symbol information.
 The more advanced lint tools perform similar analyses to Sensei, making use of the entire \gls{ast}.
-Lint tools are very useful, but they are not often used for security checks.
+Lint tools are useful and commonly used, but they are not often deployed for security purposes.
 Some examples of lint tools are Error Prone\footnote{\url{http://errorprone.info/}}, Checkstyle\footnote{\url{http://checkstyle.sourceforge.net/}}, PMD\footnote{\url{https://pmd.github.io/}}, and SonarLint\footnote{\url{https://www.sonarlint.org/}} (Appendix~\ref{app:battlecards}, battlecard~\ref{bc:sonarlint}) by SonarSource.
 Lint tools are also often included by default in \glspl{ide} such as AndroidStudio\footnote{\url{https://developer.android.com/studio/write/lint}} and IntelliJ IDEA\footnote{\url{https://www.jetbrains.com/help/idea/code-inspection.html}}.
-Not many security rules are included in lint tools.
+Not many security rules are included in lint tools by default.
 Out of the tools above, SonarLint supports the most, with 29 rules targeting vulnerabilities in Java\footnote{\url{https://rules.sonarsource.com/java/type/Vulnerability}}.
 This is because lint tools require fast response times and scanning for vulnerabilities often takes longer-running analyses.
 Many lint tools are open-source which means their rules can be customized to enforce secure coding guidelines, but none are designed for easy and fast customization of the rules.
@@ -40,7 +40,7 @@ As mentioned in Section~\ref{sec:improvedrulecreation}, in the future we also wa
 
 \subsection{Security Libraries and Frameworks}
 Another solution to make developers adhere to coding guidelines, is by implementing them into frameworks or libraries.
-An example is the \gls{owasp} \gls{esapi}, an open-source application security control library that provides some very clear replacement \glspl{api} for insecure \gls{jdk} implementations~\cite{ESAPI}.
+An example is the \gls{owasp} \gls{esapi}, an open-source application security control library that provides clear replacement \glspl{api} for insecure \gls{jdk} implementations~\cite{ESAPI}.
 As mentioned in this work, Sensei recipes have already been developed to support replacing banned methods with alternatives from the \gls{esapi} as a demonstration of library adoption recipes. 
 
 Popular web application frameworks provide methods for sanitizing inputs and escaping outputs to prevent common vulnerabilities.

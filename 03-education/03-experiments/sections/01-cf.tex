@@ -162,7 +162,7 @@ It can be seen as a mean-centered cosine similarity which is evident from simila
 \end{equation}
 
 
-\textit{Baseline}, the final similarity measure considered in this experiment, is very similar to the Pearson correlation coefficient, but uses baselines for centering instead of means. This similarity metric is shown in Equation~\ref{eq:pearson-baseline}.
+\textit{Baseline}, the final similarity measure considered in this experiment, is similar to the Pearson correlation coefficient, but uses baselines for centering instead of means. This similarity metric is shown in Equation~\ref{eq:pearson-baseline}.
 
 \begin{equation}
   \label{eq:pearson-baseline}
@@ -237,7 +237,7 @@ The formula is shown in Equation~\ref{eq:pmf}.
 
 \glsreset{svd}
 \paragraph{\gls{svd}}
-The \gls{svd} algorithm is very similar to \gls{pmf}, but creates a final rating by also adding the baseline predictors~\cite{koren2009matrix, Ricci2010, Hug2020}. 
+The \gls{svd} algorithm is similar to \gls{pmf}, but creates a final rating by also adding the baseline predictors~\cite{koren2009matrix, Ricci2010, Hug2020}. 
 The resulting formula is shown in Equation~\ref{eq:svd}.
 
 \begin{equation}
@@ -258,7 +258,7 @@ All parameters are then moved slightly in the opposite direction to improve the 
 For the algorithm in this experiment, this process was repeated 20 times to reach the final estimates.
 
 \paragraph{\gls{nmf}}
-The \gls{nmf} \gls{cf} algorithm is very similar to \gls{pmf}, but the user and item factors are kept positive~\cite{NMF:2014, NMF_algo, zhang2006learning, Hug2020}.
+The \gls{nmf} \gls{cf} algorithm is also similar to \gls{pmf}, but the user and item factors are kept positive~\cite{NMF:2014, NMF_algo, zhang2006learning, Hug2020}.
 That means each item $i$ is depicted as a vector $q_i \in \mathbb{R}_{\geq 0}^f$, and each user $u$ as a vector $p_u \in \mathbb{R}_{\geq 0}^f$.
 Predictions are then computed identically to \gls{pmf}, as shown in Equation~\ref{eq:pmf}.
 
