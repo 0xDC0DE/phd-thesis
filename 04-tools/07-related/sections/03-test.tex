@@ -35,14 +35,9 @@ This testing is done with automated tools, such as static analysis tools.
 \subsection{Static analysis}
 Static analysis tools are well researched~\cite{li2017static,jovanovic2006pixy,livshits2005finding} and commonly used to detect vulnerabilities~\cite{cruzes2017security,bsimm9,bsimm11}.
 Most tools can run automatically, and as a result are easily adapted in modern development strategies.
-Static analysis tools vary from robust and time-consuming analyses such as Fortify~\cite{chess2004static} (battlecard~\ref{bc:fortify}) to light real-time analyses~\cite{brown2016build}.
+Static analysis tools vary from robust and time-consuming analyses such as Fortify~\cite{chess2004static} (battlecard~\ref{bc:fortify}) and Veracode (battlecard~\ref{bc:veracode}) to light real-time analyses~\cite{brown2016build}.
+Several resources exist to help compare different tools, such as the \gls{owasp} list of source code analysis tools \footurl{https://owasp.org/www-community/Source\_Code\_Analysis\_Tools} and list of vulnerability scanning tools \footurl{https://owasp.org/www-community/Vulnerability\_Scanning\_Tools}, as well as Kompar\footurl{https://kompar.tools/} that allows easy comparison between static analysis tools/
 In controlled experiments, static analysis tools proved to be more effective than penetration testing~\cite{Scandariato2013}.
-
-\todo{whole list of tools that can be discussed}
-Already mentioned in this work:
-FindBugs
-Fortify
-Semgrep
 
 As explained in this work, frequent testing is useful, but analyses of traditional security tools often run too long to be well-integrated in developer workflows.
 These tools are often seen as a big inhibitor for the developer's productivity.
@@ -52,7 +47,7 @@ However, static analysis tools require sufficient code to be completed in order 
 By customizing the rules, some tools can be tailored to ignore context, which can speed up their analyses even if they were not designed with this in mind.
 But even if local versions of the analyses perform well, they often do not provide fixes to resolve the discovered issues and hence do not enforce a paved path.
 They can not be applied in a pro-active manner, like Sensei can.
-An example of a tool that does provide fixes in the code review stage, is Tricorder~\cite{sadowski2015tricorder} (battlecard~\ref{bc:tricorder}), or its open-source version Shipshape (battlecard~\ref{bc:shipshape}).
+Examples of tools that provide fixes in the code review stage, are Tricorder~\cite{sadowski2015tricorder} (battlecard~\ref{bc:tricorder}), its open-source version Shipshape (battlecard~\ref{bc:shipshape}), or Reshift Security\footurl{https://www.reshiftsecurity.com/}.
 Research with this tool showed that most developers go back to their \gls{ide} rather than use the code review tool to resolve the issues~\cite{sadowski2015tricorder}.
 
 \subsection{IDE-based}
@@ -64,8 +59,7 @@ Examples of plugins like this are Semgrep, FindBugs/Spotbugs
 \todo{examples: Semgrep, FindBugs/SpotBugs}
 
 Performing the full scan, however, often takes too long and as a result these tools are not very usable.
-In an attempt to be more developer-friendly, other tools provide lightweight versions of the analyses.
-\todo{examples: Fortify Security Assistant}
+In an attempt to be more developer-friendly, other tools provide lightweight versions of the analyses, such as Fortify Security Assistant as a lightweight version of Fortify on Demand.
 
 In this case, the plugin is often not able to detect the complete set of vulnerabilities that the original tool is capable of.
 The goal is to provide faster feedback loops to the developer, with the drawback that some of the vulnerabilities will go unnoticed.
@@ -77,8 +71,9 @@ All the other vulnerabilities are still caught when the fully capable tool is us
 For these tools to be most effective, their rules should be tailored specific to the organization's coding standards and target vulnerabilities relevant to the organization's history~\cite{bsimm9,bsimm11}.
 As described in this work, this also prevents false positives and \glspl{efp}, thus improving usability for developers and ensuring continued use of the tool.
 
-To customizes the rules, different approaches exist.
-In this section, they will be demonstrated with a rule to detect the use of the deprecated cryptographic algorithm \gls{des} in Java.
+Some tools do not allow customization of the rules, such as Reshift security, and Veracode (battlecard~\ref{bc:veracode}).
+Among the tools that do, different approaches exist.
+In this section, these approaches will be demonstrated with a rule to detect the use of the deprecated cryptographic algorithm \gls{des} in Java.
 The insecure line of code that needs to be marked is shown in Listing~\ref{lst:useDES}.
 
 \begin{lstlisting}[language={Java},caption={Insecure use of a deprecated cryptographic algorithm},label={lst:useDES},abovecaptionskip=-0.0pt,xleftmargin=15pt]
@@ -117,6 +112,8 @@ public class DesUsageDetector extends CipherDetector {
 }
 \end{lstlisting}
 
+Other examples of tools that use \glspl{api} are JavaParser\footurl{http://javaparser.org/}, Tricorder (battlecard~\ref{bc:tricorder}), Shipshape (battlecard~\ref{bc:shipshape}), \todo{finish list}
+
 \subsubsection{Custom query language}
 To make customisation of rules easier, some tools provide a custom query language that makes abstractions of their \gls{api}.
 They still require the rule-writer to write code, but they usually provide more specific syntax to make the development of rules easier.
@@ -153,6 +150,8 @@ The resulting query, shown in Listing~\ref{lst:detectDES-checkmarx}, is even sho
 result = All.FindByName("*getInstance*",11,11);
 result = result.FindByParameterValue(0,"DES",BinaryOperator.IdentityEquality);
 \end{lstlisting}
+
+Other tools that are using a custom query language are jQAssistant\footurl{https://jqassistant.org/}, Neo4J\footurl{https://neo4j.com/},\todo{finish list}
 
 \subsubsection{Markup language}
 Some tools allow customization of the rules through existing markup languages such \gls{xml} and \gls{yaml}.
@@ -243,7 +242,6 @@ Since taint tracking requires a source to be specified, it functions differently
 Using metavariables it is possible to create a rule that prevents \glspl{efp} similarly to Sensei's trusted input. 
 Listing~\ref{lst:metavariable} shows a rule to detect potential \gls{os} command injections, the analogous Sensei recipe is shown in Listing~\ref{lst:yamlrecipe}, but repeated here in Listing~\ref{lst:oscommand-sensei} for convenience.
 
-
 \begin{minipage}[t]{0.9\linewidth}
 \begin{lstlisting}[language={yaml},caption={Any commands passed on to the \texttt{exec} method that have not been retrieved through \texttt{getSafeCommand} will be marked.},label={lst:metavariable},xleftmargin=15pt]
 rules:
@@ -274,3 +272,5 @@ search:
             name: "getSafeCommand"
 \end{lstlisting}
 \end{minipage}
+
+Other tools that use formatting languages to customize rules are Fortify (battlecard~\ref{bc:fortify}), \todo{finish list}

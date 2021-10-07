@@ -55,10 +55,22 @@ In 2021 it is likely to merge with injection flaws, as shown in Figure~\ref{fig:
 %At \glsc{scw}, we have observed the similarity between these two categories based on the Sensei recipes targeting both these categories.
 After being the top category since 2013, injection flaws are likely to move down to the third position in the \gls{owasp} top 10 2021.
 
+\subsection{Artificial intelligence completion}
+Recently some tools have emerged to help a developer produce code more efficiently with the help of \gls{ai}.
+Some examples of \gls{ai} completions tools are Copilot\footurl{https://copilot.github.com/}, tabnine\footurl{https://www.tabnine.com/} (formerly codota\footurl{https://www.codota.com/}),and  kite\footurl{https://www.kite.com/}.
+The most famous, Copilot, is a service created by GitHub and OpenAI described as ``Your AI pair programmer".
+It functions as a plugin for Visual Studio Code that generates code based on the current file formats.
 
+Copilot is trained on public code and text from the internet, including public repositories on GitHub.
+It uses context from the \gls{ide} to provide suggestions in the code that is being developed.
 
+Many developers have used Copilot and have found that it was accurate and often improved their productivity.
+Generally, if a developer does not know how to complete a feature, they will often Google it.
+In many cases they will either find documentation or a Stack Overflow post that will point them to a solution.
+It still requires judgement from the developer to decide if the solution is correct and secure.
 
-\todo[inline]{if time left}
-github copilot
-amazon guru
-deepcode
+Similarly, the code suggestions Copilot provides are only as secure as the repositories it was trained on.
+When Copilot was used to complete 1,692 code scenarios with risk of introducing vulnerabilties. 
+Researchers found that in 40\% of the cases the suggested code was still vulnerable~\cite{copilot2021}.
+It is clear that it still requires judgement from the developer to ensure the produced code is secure.
+

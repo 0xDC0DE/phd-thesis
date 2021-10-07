@@ -1,15 +1,22 @@
 \chapter{Security in software development}
 \label{ch:related}
 
-Software security is a relatively new field.
-The first books and academic classes on the topic appeared in 2001~\cite{mcgraw2004software}.
-Despite that, many tools and practices have been developed over the past two decades that have greatly advanced this field.
-In this chapter, I provide a broad overview of security practices and tools, discussed in order of their use in the \gls{sdlc}.
-I also discuss a selection of specific tools in Appendix~\ref{app:battlecards}.
-This appendix contains a number of battlecards in which I describe several tools that have caught my attention during this research.
-\todo{summarize here}
+Software security is a relatively new field~\cite{mcgraw2004software}, but many tools and practices have already been developed that have caused great advancements.
+Many guides exist to help you decide which tools are appropriate for your project.
+In this chapter, I want to extend these guides so that you are better equipped to estimate the strengths of a tool for use in the paved path methodology.
+I describe commonalities between tools in different phases of the \gls{sdlc} and how they can be deployed effectively.
+
+For future reference, Appendix~\ref{app:battlecards} contains a number of battlecards with my thoughts on a few more tools.
+
 \summarybox{
-findings and conclusion 
+Security begins even before code is written.
+Laws, legislations, and consumer demands all impact how much attention is given to security.
+Besides lightweight linter tools, developers can also find help to produce secure code from patterns, libraries, and frameworks.
+In the build phase, the use of new methodologies has driven the automation of building executables and installing dependencies, which has made it easier to test for use of vulnerable components.
+
+Most security practices, however, take place in the test phase.
+Many code review practices and tools exist, most of which allow customization of the rules through one of three methods: an \gls{api}, a custom query language, or a formatting language such as \gls{xml} or \gls{yaml}.
+Finally, in the release phase, advancements in infrastructure as code have made it easier to securely deploy applications and manage infrastructure.
 }
 
 \include{04-tools/07-related/sections/00-plan}
@@ -18,57 +25,10 @@ findings and conclusion
 \include{04-tools/07-related/sections/03-test}
 \include{04-tools/07-related/sections/04-release}
 
-%\section*{List of stuff to look at}
-%Check these sources: 
-%https://owasp.org/www-community/Source\_Code\_Analysis\_Tools
-%https://owasp.org/www-community/Vulnerability\_Scanning\_Tools
-%https://kompar.tools/
-%https://securecodewarrior.atlassian.net/wiki/spaces/CP/pages/993329838/Why+wouldn+t+you+use+X+instead
-%https://securecodewarrior.atlassian.net/wiki/spaces/CP/pages/1103265877/Sensei+Competitive+Space
-%
-%Open Policy Agent (OPA)!!
-%github copilot
-%amazon guru
-%\paragraph{Tricorder}
-%\subsection{WhiteSource Cure}
-%WhiteSource cure
-%
-%WhiteSource Cure looks interesting at a glance. But if you dig into it a bit, I think they’ve taken a few major short-cuts and odd decisions.
-%They decide to not parameterize all inputs to a SQL query. This is bad because it shows to developers that it’s OK to not always parameterize all inputs.
-%There’s some interesting comments in some of the fixes. If a setFeature call fails on a DocumentBuilderFactory, they are suggesting you should check for possible attack. That’s kind of FUD. That suggests no attack whatsoever.
-%They are not detecting super obvious SQL injection issues right next to other fixes they are providing.
-%Some of their suggestions handle things in a way that’s not exactly how I’d do it. For instance, their fix for path traversal needs 2 more changes by a developer to work without causing major issues. And it makes assumptions about the correct design that I don’t think are valid. You’re thus not fixing the issue at its root.
-%https://securecodewarrior.slack.com/archives/C92HYQNVA/p1627890321009700
-%
-%\paragraph{ReshiftSecurity}
-%TODO: %https://www.reshiftsecurity.com/product/ 
-%- based on Spotbugs and (I think) the SpotBugs security plugin
-%- does not play nice with spotbugs (removes ability to configure spotbugs preferences ) so I think they may not have amended Spotbugs code enough to make it an independent plugin
-%- autofix functionality doesn't appear to be present in the IDE, I think that is through a CI integration
-%- don't think you can create your own rules easily
-%- not sure how good it is at identifying security issues, it did not pick up an SQL injection in my sample project
-%```
-%            Statement stm = dbConnection.createStatement();
-%            ResultSet res = stm.executeQuery(
-%                    "SELECT description from todos where status=" + status);
-%```
-%
-%%%https://www.producthunt.com/posts/reshift-security
-%\paragraph{Semmle}
-%  %https://www.theregister.co.uk/2020/05/06/github\_releases\_codescanning\_tool/
-%  Semmle is cool stuff. But:
-%It’s not a developer-focused tool per say. It’s complex, and requires appsec to write rules
-%It’s not in your IDE
-%It is very focused on “Is this exploitable?“, which means it’s not useful for enforcing code best practices
-%It doesn’t give you quick-fixes
-%It doesn’t give you contextual education
-%Hence, it doesn’t close the loop to help prevent them from reoccurring
 %
 %\paragraph{CodeInspector}
 %%%https://www.code-inspector.com/
-%\paragraph{Semgrep}
-%%https://r2c.dev/blog/2020/be-careful-what-you-request-for-django-method/ 
-%%https://r2c.dev/blog/2020/hardcoded-secrets-unverified-tokens-and-other-common-jwt-mistakes/
+
 %\paragraph{Pluralsight}
 %%https://help.pluralsight.com/help/vs-code-extension
 %
@@ -98,55 +58,12 @@ findings and conclusion
 %The way they provide a “fix” is done by showing you examples of open source repos where this issue should have been fixed, but in their example it doesn’t even show the same code as the found vulnerability so effectively the user still needs to plow through the suggested changes and determine if they are right in which they still need a good too strong security knowledge.
 %
 %Specifically to Sensei, one thing we have to copy is showing an example. So the suggestion they make is together with an example of another place in the code where this is also the case (or where that same change was executed). That looked really cool. I think in Sensei that would work even better, because we should do that in the code base itself, and not on some random other open source project... My 2 cents
-%
-%\subsubsection{Fortify}
-%Micro Focus Fortify is an ecosystem that embeds application security testing into all stages of the development tool chain. Some of the most comparable tools to Sensei in their ecosystem are Fortify Static Code Analyzer (FSCA), Fortify on Demand (FOD), and Fortify Security Assistant (FSA). 
-%
-%As the name suggests, FSCA~\cite{fsca} performs static code analysis on the source code. It can be built in CI/CD tools and has support for 25 programming languages including Java and C\#. Scanning takes several minutes and the results can be shown in a web interface or in integrations with many bug tracking systems, ticketing systems, and code repositories. Fortify recommends using their rule sets that cover over 1000 vulnerability categories and more than one million APIs. Creating new rules can be done in their custom XML format in any text editor~\cite{fsca-curstom-rules}. Doing so requires reading extensive documentation and learning the proper syntax. They do not provide a rule editor, instead the rule writer can use any preferred text editor. FOD~\cite{fod} provides similar features to FSCA but through a web portal, Micro Focus calls this Application Security as a Service. 
-%
-%FSA~\cite{fsa} is a plugin for the IDE, currently available for Eclipse and Visual Studio. It allows security scans in the IDE, where the rule set is tuned such that the longest analyses are disabled by default. The scan can take several minutes during which the developer cannot make any code changes. This is still quite long compared to the real-time results of Sensei and might inhibit developers from requesting scans frequently during development. 
-%
-%%\changed{As already discussed in Section \ref{sec:evaluation} this demonstrates the trade-off for early detection: a more light-weight version of the analyses is performed in the IDE to guarantee the developers' usability, which means that not all potential issues can be detected at this stage.}
-%
-%Besides the FSA, Fortify offers two more IDE plugins. The FOD plugin is available for Eclipse, Visual Studio, and IntelliJ. It allows the developer to request static assessments from FOD and download the results. A similar plugin is available for FSCA on all three IDEs. 
-%
-%FOD allows scan results to be evaluated against custom security policies in order to hide reports of certain vulnerability types. During installation of the FSA in the IDE, a link to a remote Rulepack Update Server is required, this allows the tool to download the necessary rule information to perform scans. It is also possible to use a local copy of the rules when no network connection is available. The FSA also allows enabling and disabling each individual rule in the UI. 
-%
-%Each tool provides detailed descriptions on vulnerabilities, which focus on explaining the vulnerabilities in detail, in part by providing examples of insecure code. In a second tab, FOD provides a description and code examples to resolve the vulnerability. All tools provide links to reference material and to recommended solutions. FOD also provides links to Secure Code Warrior to provide training on a specific vulnerability. The information provided is very similar to the different descriptions of Sensei, but the focus is more on explaining the vulnerability first instead of the solution.
-%
-%Both FSCA and FOD provide a management dashboard in which the security status (failed or passed security policy) of multiple applications can be seen. The dashboard of FOD provides more detailed information where it is possible to track the amount of issues over time for each severity. It also provides an insight in the vulnerability categories of most prevalent issues. FOD can track the amount of newly introduced problems in each scan. This makes it possible to evaluate the developers' skills over time, on top of tracking the application state. However, in contrast to Sensei, no clear distinction is made between problems detected by new rules and problems detected in newly developed code.
-%
-%\subsubsection{Tricorder}
-%
-%
-%\subsubsection{SpotBugs}
-%
-%
+
 %\subsubsection{SecureAssist}
 %SecureAssist~\cite{secureassist} is an IDE plugin targeting the discovery of security bugs in code. It is available for eclipse, intelliJ, VisualStudio, RAD, and Spring Tool Suite~\cite{sastinide}. Its scans are not in the IDE but on the enterprise portal. The results are sent back to the IDE once completed. This allows scanning without preventing the developer from continuing his work, which contrasts with the Fortify Security Assistant, that prevents developers from changing the code during a scan. Remediation is provided in the form of descriptions that explain the attack and provide some code examples but the tool does not provide quick fixes~\cite{secureassistide}. 
 %
 %Rule packs are distributed as JAR files and the tool provides a Rulepack Configurator similar to Sensei's cookbook Manager.
-%
-%\subsubsection{Veracode}
-%Veracode offers two tools. The Veracode Static Analysis (VSA) is a SaaS platform that is similar to Fortify on Demand~\cite{veracode}. Veracode Greenlight (VG) is an IDE plugin, similar to Fortify Security Asisstant.
-%
-%VSA performs static analysis scans on compiled bytecode of web applications in 23 programming languages. Because it does not need access to the source code it can also analyse frameworks and libraries used in the project. VSA provides integrations with popular ticketing systems, CI/CD tools and three IDEs: IntelliJ, Visual Studio, and Eclipse. All these integrations offer the possibility to start scans and download the results. Veracode focuses heavily on not only detecting vulnerabilities but also guiding remediation. To that extent, they provide detailed instructions and videos. There is even the possibility to schedule a one-on-one conference call with a consultation expert. This expert can help the developer determine whether an issue is a false positive or what the best remediation is for a detected vulnerability. Scheduling such a consultation will usually take about three days. Veracode does not encourage or provide help to share the knowledge that is gathered by the developer during such a consultation session with their peers. 
-%
-%The company claims most scans finish in under an hour. This means the feedback cycle is rather long compared to the other tools. Since the scans are performed on binaries, they are not able to provide quickfixes as Sensei does, which is unfortunate for a solution otherwise very focused on remediation.
-%
-%Veracode promotes a low false positive rate of 5\% and hence discourages rule customization. Rule customization would also be much harder, since VSA analyzes compiled bytecode, not source code. VSA does not allow to disable rules or issues individually, but lets companies define a custom security policy for their application. Setting a policy configures the conditions used to evaluate results of  a scan, and helps decide if the build should break or be accepted. In these policies it is possible to add rules that disable certain CWE entries, category of flaws, or severity of flaws. Veracode offers Program Management Support, where a Program Manager will help define these policies, and gradually increase their requirements. This helps guarantee developer usability during roll-out. Developers will first be encouraged to resolve the most severe issues. In later stages when a tighter policy is set, they are exposed to additional issues. Although a new policy does not provide as granular control as a new rule in Sensei, this feature and roll-out procedure closely resemble the best practices described in Section \ref{sec:rollout}.
-%
-%VSA offers a dashboard to track scan results over time. This displays the number of flaws per scan, tracks which ones are new, and organises the existing flaws into severity categories.
-%
-%VG is an IDE plugin for Eclipse, IntelliJ, and Visual Studio. It is a light-weight version of VSA that is scanned locally. Since the scans are performed on bytecode, it requires a successful build. VG can be configured to scan automatically by using the Automatic Build option in the IDE. Scans are not real-time like Sensei but take around 3 seconds, after which the results are not shown in the IDE editor, but in a separate pane. Double clicking an issue in this pane will open the editor at the relevant location in code. Like VSA, VG is unable to provide quickfixes, but provides a lot of detailed information to the developer.
-%
-%\subsubsection{Checkmarx}
-%Checkmarx Static Application Security Testing (CxSAST)~\cite{cxsast} is a static analysis tool that perfoms source code scans. It has support for over 25 coding and scripting languages, including Java, C\#, and python. Similar to Fortify and Veracode, CxSAST has IDE plugins for Eclipse, Visual Studio, and IntelliJ. Again, and still in contrast to Sensei, these plugins do not perform any local scans but instead allow uploading the source code to CxSAST. They provide an interactive way to view the scan results by marking the relevant code in the IDE editor. 
-%
-%Checkmarx claims flexible rules lead to higher accuracy, and have a very extensive Query Language (CxQL)~\cite{cxaudit} to create and adapt rules.  Managing queries is done in the CxAudit tool, this tool allows enabling and disabling individual queries. Here, new queries can also be added in a Query Source Pane. It is possible to export a set of queries from this tool to use in different applications. The source pane however provides little help to write and especially debug new rules. Since the rule-writing tool is independent from the scanning tool and the IDE, it requires long iterations to optimize rules compared to the instant feedback in the Sensei rule editor where the results of rules are updated live. Vulnerabilities marked in the scan results have a category but no descriptions are provided. This means that little help is provided compared to the remediation suggestions and quickfixes of Sensei. More details about the control flow leading to the vulnerability are clearly marked in the IDE plugins and can help an experienced developer find the best place in source code to resolve the problem. A similar feature could be developed for Sensei's concept of trusted input, but it was decide to omit this to avoid unnecessary clutter in the IDE.
-%
-%Checkmarx does provide an integration between CxSAST and its training service CxCodebashing. This way developers can learn about the vulnerability and how to fix it in an interactive way. This integration is similar to the integration between Secure Code Warrior and Fortify on Demand, as well as the training links in the full coding guideline description of Sensei.
-%
+
 %\subsubsection{Aside}
 %The OWASP ASIDE/ESIDE~\cite{aside} project consist of two branches, the ASIDE branch that focuses on detecting software vulnerabilities and helping developer write secure code, and the ESIDE branch that focuses on helping students in acquiring secure programming knowledge and practices.
 %

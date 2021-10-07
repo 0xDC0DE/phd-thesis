@@ -83,20 +83,21 @@ Kubernetes is designed to be highly customizable and developers must turn on cer
 More information can be found on the \gls{owasp} website\footurl{https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html}.
 
 \subsubsection{Policy as code}
-With policy as code, isolation and decoupling is taken one step further.
+With policy as code, isolation and decoupling is applied to some of the logic of the applications.
 A separate service is deployed that can be queried to make policy decisions.
-One framework to run such a service is \gls{opa}, backed up be \gls{cncf}.
+One framework to run such a service is \gls{opa}, backed up by the \gls{cncf}.
 
-As an example, take a look at authorization decisions.
-In a budgeting application, manager may be able to access the salary of anyone who reports to them.
-To make such decisions, the management chain can be stored in the policy agent, an example is shown how this can be stored in \gls{opa} in Listing~\ref{lst:mgmt-chain}.
+To explain how policy decisions can be decoupled, I use the example of authorization.
+In a budgeting application, a manager may be able to access the salary of anyone who reports to them.
+To isolate the necessary decisions from the application itsel, the management chain can be stored in the policy agent.
+In Listing~\ref{lst:mgmt-chain}, an example is shown of such a management chain is stored in \gls{opa}.
 
 \begin{lstlisting}[language={json},caption={Management chain data example for use in OPA.},label={lst:mgmt-chain},xleftmargin=15pt]
 {
     "management_chain": {
-        "colin": [
+        "bjorn": [
             "pieter",
-            "downey"
+            "bert"
         ],
         "alex": [
             "gillis"
@@ -106,9 +107,8 @@ To make such decisions, the management chain can be stored in the policy agent, 
 \end{lstlisting}
 
 It is then possible to define rules and execute queries based on this data.
-In Listing~\ref{lst:opa-rule} rules are shown for the salary example.
+In Listing~\ref{lst:opa-rule}, rules are shown that determine who is able to access a salary.
 Users are allowed to see their own salary and that of other users below them in the management chain.
-
 
 \begin{minipage}[t]{0.9\linewidth}
 \begin{lstlisting}[language={json},caption={OPA rules that define who has access to the salary of other users.},label={lst:opa-rule},xleftmargin=15pt]
@@ -133,19 +133,19 @@ The budgeting application can then make decisions by querying the \gls{opa} serv
 
 \begin{minipage}[t]{0.9\linewidth}
 \begin{lstlisting}[language={java},caption={Management chain data example for use in OPA.},label={lst:opa-query},xleftmargin=15pt]
-> input := {"method": "GET", "path": ["salary", "colin"], "user_id": "gillis"}
+> input := {"method": "GET", "path": ["salary", "alex"], "user_id": "gillis"}
 > allow
 false
 \end{lstlisting}
 \end{minipage}
 
-Decoupling policy decisions like this has many advantages.
+Decoupling policy decisions has many advantages.
 It provides a centralized overview of policies and avoids redundancy in implementations.
-In another application, for example, employees are able to request absence and these requests can be authorized by their manager.
-Instead of implementing these decisions again in the second application and possibly even storing the data multiple times, the \gls{opa} service can be reused by adding new rules.
+In another application, for example, employees might able to request absence and these requests can be authorized by their manager, requiring the same management chain to make authorization decisions.
+Instead of implementing these decisions in the second application and possibly even storing the data multiple times, the \gls{opa} service can be reused by adding new rules.
 
 Because of the declarative nature of the rules, they can be understood easily, causing reduced complexity and hence reduced chance for mistakes.
-The policy agent can be used to overcome several vulnerabilities in \gls{owasp} top 10, such as authentication and authorization decisions, as well as some business logic flaws.
+The policy agent can be used to overcome several vulnerabilities in \gls{owasp} top 10, such as authentication and authorization flaws, as well as some business logic flaws.
 
 By using a policy as code service, logging of the policy decisions will also be done separately from application logs.
-This can make it easier to monitor and detect abnormal usage of the application, partly mitigating the security problem of excessive logging in the application itself.
+This can make it easier to monitor and detect abnormalities, partly mitigating the security problem of excessive logging in the application.
