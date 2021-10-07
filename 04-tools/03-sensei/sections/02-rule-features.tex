@@ -8,7 +8,7 @@ In this section, I explain the problems they tackle and provide code examples fo
 \label{sec:efp}
 It is important to choose the right error level for the developer to pay attention to the markings, but also not to overwhelm them with markings to the point that they start to ignore them.
 Since the recipes can be created by anyone in the team, they should not be too obtrusive.
-To a recipe writer, a false positive is an incorrect marking of code that is not violating a coding guideline.
+To a recipe-writer, a false positive is an incorrect marking of code that is not violating a coding guideline.
 However, to a developer, a false positive is any code marking that they do not intend to fix and ignore instead~\cite{ayewah2007evaluating}.
 A false positive from the perspective of the developer is also called an \gls{efp}~\cite{sadowski2015tricorder}.
 To ensure the usability of the tool, the \gls{efp} rate should be sufficiently low~\cite{sadowski2015tricorder,johnson2013don}.
@@ -83,7 +83,7 @@ search:
   \label{fig:recipegui}
 \end{figure}
 
-Another way to allow recipe writers to create more targeted recipes and to keep the \gls{efp} rate low, is to provide \emph{trigger scopes}.
+Another way to allow recipe-writers to create more targeted recipes and to keep the \gls{efp} rate low, is to provide \emph{trigger scopes}.
 Trigger scopes can be added by using the \texttt{in} keyword in the \gls{yaml} syntax, or by using the \gls{gui} as shown in Figure~\ref{fig:recipegui}.
 The in-clause can define restraints on the context.
 This makes it possible to create a recipe that prevents the usage of \texttt{Runtime.exec} except in a class with name \texttt{AppLauncher}.
@@ -216,11 +216,11 @@ Such a recipe can allow communication of sensitive information between classes t
 \subsection{Testing recipes}
 %\todo[inline]{Add example of indexing of arguments and quickfixes}
 Testing custom recipes is a challenge.
-When new recipes are created, the recipe writers first have to test the behaviour of the recipe manually.
+When new recipes are created, the recipe-writers first have to test the behaviour of the recipe manually.
 They develop a few code fragments they expect to be marked, as well as some that should not be marked by the recipe.
 They then apply the transformations and manually inspect the resulting changes.
 The recipe wizard helps speed up these tasks by providing preview panels during recipe creation.
-A recipe writer at a company, however, cannot be asked to perform the manual checks again every time they install updates to our plugin (including its underlying analyses) or to the \gls{ide} itself.
+A recipe-writer at a company, however, cannot be asked to perform the manual checks again every time they install updates to our plugin (including its underlying analyses) or to the \gls{ide} itself.
 Such updates always risk altering the outcome of a recipe.
 Instead automated unit testing is needed.
 
@@ -228,16 +228,16 @@ The plugin developer has sufficient capabilities to automate unit tests to verif
 To do this they also create a few demo recipes and test the behavior of these recipes.
 Since they have access to the code of the plugin, they can simply write unit tests and (directly) call internal plugin and exported \gls{ide} methods to test the markings and transformations and to compare them to the expected results.
 In other words, they can write code snippets that check automatically whether or not updates to tools alter the deployment of existing recipes.
-Such testing is unavailable to the custom recipe writers in a company, however, which do not have access to, and definitely do not want to learn, the internal plugin \glspl{api}.  
+Such testing is unavailable to the custom recipe-writers in a company, however, which do not have access to, and definitely do not want to learn, the internal plugin \glspl{api}.  
 
-A better testing framework is hence required, such that the recipe writers in companies can indicate the expected outcomes of every recipe they wrote on a number of code samples.. 
-If we allow recipe writers to define tests in the plugin itself, and store them in the cookbooks, these tests can automatically be performed when loading a new cookbook and after every \gls{ide} and plugin update.
+A better testing framework is hence required, such that the recipe-writers in companies can indicate the expected outcomes of every recipe they wrote on a number of code samples.. 
+If we allow recipe-writers to define tests in the plugin itself, and store them in the cookbooks, these tests can automatically be performed when loading a new cookbook and after every \gls{ide} and plugin update.
 We can then notify the user when one of the recipes is no longer working as expected.
 
-In the new recipe wizard it could be possible for the recipe writer to select one or more of the examples that are marked in the preview panels and allow these examples to be used as the recipe tests.
-This way the recipe writers are creating tests for their recipes with nearly no additional cognitive effort.
+In the new recipe wizard it could be possible for the recipe-writer to select one or more of the examples that are marked in the preview panels and allow these examples to be used as the recipe tests.
+This way the recipe-writers are creating tests for their recipes with nearly no additional cognitive effort.
 However, this comes with the problem that (possibly confidential) code of the client is then stored in these recipe tests.
-At this point in time, implementing the necessary support for recipe writer defined tests remains future work.
+At this point in time, implementing the necessary support for recipe-writer defined tests remains future work.
 
 %\subsection{Code generators}
-%When developers use the plugin for a while they get used to certain fixes being available. They know that if they write an insecure SQL query, the quick fix is able to secure it for them. This results in developers purposefully making mistakes because it takes less effort to let the plugin fix it. In order to improve this process we have created code generators. Generators are secure code fragments that can be inserted with a shortcut. Code generators are developed by the recipe writer, and rolled out to the developer, just like the recipes. They consist of a name and the inserted code. In order for generators to be successful, they need to adapt the generated code to the context, similarly to how the quick fixes adapt when they are applied (relying on the use of the template language in their specification). From our experience with early versions of the generators, where the inserted code was not adapted to the context, e.g., to reuse the variable names occurring in the original code, we learned that that such a lack of adaptivity was a blocker for the take up by developers. More adaptive generators have not been implemented so far, validating whether this will improve their use remains future work.
+%When developers use the plugin for a while they get used to certain fixes being available. They know that if they write an insecure SQL query, the quick fix is able to secure it for them. This results in developers purposefully making mistakes because it takes less effort to let the plugin fix it. In order to improve this process we have created code generators. Generators are secure code fragments that can be inserted with a shortcut. Code generators are developed by the recipe-writer, and rolled out to the developer, just like the recipes. They consist of a name and the inserted code. In order for generators to be successful, they need to adapt the generated code to the context, similarly to how the quick fixes adapt when they are applied (relying on the use of the template language in their specification). From our experience with early versions of the generators, where the inserted code was not adapted to the context, e.g., to reuse the variable names occurring in the original code, we learned that that such a lack of adaptivity was a blocker for the take up by developers. More adaptive generators have not been implemented so far, validating whether this will improve their use remains future work.

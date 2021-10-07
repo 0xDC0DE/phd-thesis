@@ -12,10 +12,10 @@ It should allow developers and security experts to effortlessly share project-sp
 For this reason, the recipe creation process should be easy and fast, and at the same time versatile. 
 
 Our first approach allowed users to create new recipes through predefined recipe models.
-A \gls{gui} was used to let the recipe writer fill in a number of variables for this model.
+A \gls{gui} was used to let the recipe-writer fill in a number of variables for this model.
 A simple example of such a model is  the ``Replace method call model”.
 Figure~\ref{fig:recipeedit2} shows a recipe being created to replace the \texttt{addCookie} method with a safe alternative from the \gls{owasp} \gls{esapi}, an open-source, web application security control library designed to make secure development easier~\cite{ESAPI}; the organization also provides some commonly used security guidelines.
-The recipe writer has to fill in some specifics about the method they want to be marked by Sensei, such as the package, class, and method names.
+The recipe-writer has to fill in some specifics about the method they want to be marked by Sensei, such as the package, class, and method names.
 Then they can write one or more quick-fixes.
 Here, they have to create a quick-fix description and they have to define the code fragment that will be used to replace the original.
 To do so they can reuse arguments, method names, and more from the original code by means of a template language.
@@ -25,13 +25,13 @@ In the field ``Rewrite to", the example quick-fix reuses the first argument of t
   \centering
   %\includegraphics[width=\textwidth]{ruleedit2.png}
   \includegraphics[width=\textwidth,page=7]{04-tools/figures/figures2.pdf}
-  \caption[Old model-based recipe editor]{The old recipe editor used a \gls{gui}. It required the recipe writer to fill in a number of input fields to specify the behaviour of the recipe.}
+  \caption[Old model-based recipe editor]{The old recipe editor used a \gls{gui}. It required the recipe-writer to fill in a number of input fields to specify the behaviour of the recipe.}
   \label{fig:recipeedit2} 
 \end{figure}
 
 However, for more complex models the number of input fields grew rapidly to accommodate a plethora of corner cases, and so did the number of models for multiple scenarios.
 As of now the old recipe editor has over 40 different models.
-With this many models, it becomes overwhelming for recipe writers that have to select a model to enforce their desired coding guideline.
+With this many models, it becomes overwhelming for recipe-writers that have to select a model to enforce their desired coding guideline.
 The described model-based recipe creation process is not flexible and intuitive enough, so in the next iteration a new approach was taken.
 
 In the new approach we split up the recipe in two parts: A trigger to identify the violation, plus an optional quick-fix to correct the vulnerability consistently according to company best practices.
@@ -39,9 +39,9 @@ Triggers are now specified by way of \gls{yaml}\footnote{\url{https://yaml.org/}
 To develop this \gls{yaml} syntax, all existing Sensei rules were analyzed and grouped based on which elements in the code are incorrect and which transformations are required to fix them.
 The resulting taxonomy of 10 bad code patterns is included in Appendix~\ref{app:patterns}.
 
-Since this approach requires recipe writers to learn the new syntax, we have provided some tools to assist them, in the form of a \gls{gui} that can be used to build the desired recipe from scratch.
+Since this approach requires recipe-writers to learn the new syntax, we have provided some tools to assist them, in the form of a \gls{gui} that can be used to build the desired recipe from scratch.
 In addition, the recipe editor is now more context-aware.
-The recipe writer can open a recipe creation wizard by pressing a key combination in the text editor in the \gls{ide} and selecting ``create new recipe".
+The recipe-writer can open a recipe creation wizard by pressing a key combination in the text editor in the \gls{ide} and selecting ``create new recipe".
 This opens a context-aware menu depending on the position of the caret.
 For example, if the caret was on a method call, the menu contains an option to create a new recipe that searches for similar method calls, as shown in Figure~\ref{fig:newrecipemethodcall}.
 
@@ -68,7 +68,7 @@ In this panel, the code file from which the recipe wizard was opened is shown, a
 \end{sidewaysfigure}
 
 After creating a trigger, it is possible to create an optional quick-fix.
-Here, the recipe writer has to fill in the quick-fix description and the replacement code.
+Here, the recipe-writer has to fill in the quick-fix description and the replacement code.
 For the replacement code, they can make use of the same template language as in the first approach to reuse parts of the original code.
 Below the input field, an overview is provided of the available parts of the original code, as shown in Figure~\ref{fig:createfix}.
 Double clicking one of these options, adds its template to the fix.
@@ -78,7 +78,7 @@ The quick-fix creation window also offers a live preview in the lower right corn
   \centering
   %\includegraphics[width=\textwidth]{createfix.png}
   \includegraphics[width=\textwidth,page=5]{04-tools/figures/figures1.pdf}
-  \caption[Fix creation window]{The fix creation window allows the recipe writer to reuse parts of the original code.}
+  \caption[Fix creation window]{The fix creation window allows the recipe-writer to reuse parts of the original code.}
   \label{fig:createfix} 
 \end{figure}
 
@@ -96,8 +96,8 @@ All of these features are related to the usability of the developer and will be 
 
 We have observed that the context-aware recipe wizard has greatly sped up the recipe creation process.
 In practice, creating new recipes often starts from a bad code example, either when fixing a vulnerability or while reviewing the code of a colleague.
-The recipe writer can then simply open the recipe creation wizard from this example.
-The live previews also greatly improve the usability, since before they were introduced, to create a finished recipe the recipe writer was required to go back and forth several times to test the recipe in the \gls{ide} and adjust it in the recipe editor.
+The recipe-writer can then simply open the recipe creation wizard from this example.
+The live previews also greatly improve the usability, since before they were introduced, to create a finished recipe the recipe-writer was required to go back and forth several times to test the recipe in the \gls{ide} and adjust it in the recipe editor.
 
 \subsection{Verifying recipes}
 To check the recipes, our tool reuses the \gls{ide} syntax checking features.
@@ -186,7 +186,7 @@ An additional quick-fix option will be added in the future to disable a recipe.
   \centering
   %\includegraphics[width=0.75\textwidth]{clonerecipe.png}
   \includegraphics[width=0.75\textwidth,page=2]{04-tools/figures/figures1.pdf}
-  \caption[Clone recipe window]{The clone recipe window allows the recipe writer to configure the new recipe to disable the recipe it is copied from.}
+  \caption[Clone recipe window]{The clone recipe window allows the recipe-writer to configure the new recipe to disable the recipe it is copied from.}
   \label{fig:clonewindow} 
 \end{figure}
 
