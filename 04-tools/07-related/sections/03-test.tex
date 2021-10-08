@@ -35,7 +35,7 @@ This testing is done with automated tools, such as static analysis tools.
 \subsection{Static analysis}
 Static analysis tools are well researched~\cite{li2017static,jovanovic2006pixy,livshits2005finding} and commonly used to detect vulnerabilities~\cite{cruzes2017security,bsimm9,bsimm11}.
 Most tools can run automatically, and as a result are easily adapted in modern development strategies.
-Static analysis tools vary from robust and time-consuming analyses such as Fortify~\cite{chess2004static} (battlecard~\ref{bc:fortify}) and Veracode (battlecard~\ref{bc:veracode}) to light real-time analyses~\cite{brown2016build}.
+Static analysis tools vary from robust and time-consuming analyses such as Fortify~\cite{chess2004static} (battlecard~\ref{bc:fortify-sca}-\ref{bc:fortify_on_demand}) and Veracode (battlecard~\ref{bc:veracode-sa}) to light real-time analyses~\cite{brown2016build}.
 Several resources exist to help compare different tools, such as the \gls{owasp} list of source code analysis tools \footurl{https://owasp.org/www-community/Source\_Code\_Analysis\_Tools} and list of vulnerability scanning tools \footurl{https://owasp.org/www-community/Vulnerability\_Scanning\_Tools}, as well as Kompar\footurl{https://kompar.tools/} that allows easy comparison between static analysis tools/
 In controlled experiments, static analysis tools proved to be more effective than penetration testing~\cite{Scandariato2013}.
 
@@ -54,12 +54,13 @@ Research with this tool showed that most developers go back to their \gls{ide} r
 Because developers prefer to remediate problems in their \gls{ide}, and as part of the shift left movement, many static analysis tools are now available as \gls{ide} plugins as well.
 For some tools no effort has been made to adapt them to better suit the developer.
 They still perform identical analyses to the original tool, either remotely or locally.
-Some tools even prevent the developer from making changes to the code while the scan is in progress.
 Examples of plugins like this are Semgrep, FindBugs/Spotbugs
 \todo{examples: Semgrep, FindBugs/SpotBugs}
+Some tools even prevent the developer from making changes to the code while the scan is in progress.
+
 
 Performing the full scan, however, often takes too long and as a result these tools are not very usable.
-In an attempt to be more developer-friendly, other tools provide lightweight versions of the analyses, such as Fortify Security Assistant as a lightweight version of Fortify on Demand.
+In an attempt to be more developer-friendly, other tools provide lightweight versions of the analyses, such as \gls{fsa} (battlecard~\ref{bc:fsa}) as a lightweight version of \gls{fod} (battlecard~\ref{bc:fortify_on_demand}), or Veracode Greenlight (battlecard~\ref{bc:veracode-gl}) as a lightweight version of Veracode Static Analysis (battlecard~\ref{bc:veracode-gl}).
 
 In this case, the plugin is often not able to detect the complete set of vulnerabilities that the original tool is capable of.
 The goal is to provide faster feedback loops to the developer, with the drawback that some of the vulnerabilities will go unnoticed.
@@ -71,7 +72,7 @@ All the other vulnerabilities are still caught when the fully capable tool is us
 For these tools to be most effective, their rules should be tailored specific to the organization's coding standards and target vulnerabilities relevant to the organization's history~\cite{bsimm9,bsimm11}.
 As described in this work, this also prevents false positives and \glspl{efp}, thus improving usability for developers and ensuring continued use of the tool.
 
-Some tools do not allow customization of the rules, such as Reshift security, and Veracode (battlecard~\ref{bc:veracode}).
+Some tools do not allow customization of the rules, such as Reshift security, and Veracode (battlecard~\ref{bc:veracode-sa},\ref{bc:veracode-gl}).
 Among the tools that do, different approaches exist.
 In this section, these approaches will be demonstrated with a rule to detect the use of the deprecated cryptographic algorithm \gls{des} in Java.
 The insecure line of code that needs to be marked is shown in Listing~\ref{lst:useDES}.
@@ -141,7 +142,7 @@ where
 select call
 \end{lstlisting}
 
-The query language CxQuery by Checkmarx uses regular Java syntax.
+The query language CxQuery by Checkmarx (battlecard~\ref{bc:checkmarx}) uses regular Java syntax.
 It provides abstractions to iteratively filter results based on certain properties of the code.
 Some knowledge of the \gls{api} is required, but Checkmarx provides  clear and easy to understand documentation that contains lots of examples.
 The resulting query, shown in Listing~\ref{lst:detectDES-checkmarx}, is even shorter than the one for CodeQL and just as easy to understand.
@@ -273,4 +274,4 @@ search:
 \end{lstlisting}
 \end{minipage}
 
-Other tools that use formatting languages to customize rules are Fortify (battlecard~\ref{bc:fortify}), \todo{finish list}
+Other tools that use formatting languages to customize rules are Fortify (battlecard~\ref{bc:fortify-sca}-\ref{bc:fsa}), \todo{finish list}

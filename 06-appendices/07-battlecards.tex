@@ -4,11 +4,11 @@
 \battlecard{SonarLint by SonarSource}{\url{https://www.sonarlint.org/}}{
 \label{bc:sonarlint}
 SonarLint is a free IDE plugin that focuses on code quality. As explained in this work code quality and code security are often related and hence some rules exist in SonarLint that target security rules. SonarLint is developer-friendly as it provides quick-fixes and clear descriptions with small code examples. However, it only provides a small number of security rules and the rules are not easily customized.}{Lint}
-{Develop}{Real time}{Quick-fix}
+{Develop}{Real-time}{Quick-fix}
 
 \battlecard{Snyk Open Source}{\url{https://snyk.io/}}{
-\label{bc:snyk}
-Snyk Open Source tests for vulnerabilities in open-source dependencies. It is available in several IDE's but its web view is the most useful. Snyk Open Source provides remediation through automated pull requests to bump the dependency to the latest version.}{SCA}
+\label{bc:snyk_open_source}
+Snyk Open Source tests for vulnerabilities in open-source dependencies. It is available in several IDEs but its web view is the most useful. Snyk Open Source provides remediation through automated pull requests to bump the dependency to the latest version.}{SCA}
 {Build}{Seconds}{Pull request}
 
 \battlecard{Dependabot}{\url{https://dependabot.com/}}{
@@ -51,7 +51,7 @@ Research by Ayewah et al.~\cite{ayewah2007using} showed that the tool has an \gl
 
 \battlecard{Semmle}{\url{https://semmle.com/}}{
 \label{bc:semmle}
-Semmle is a tool acquired by GitHub that also offers an \gls{ide} plugin
+Semmle is a tool acquired by GitHub that also offers an \gls{ide} plugin.
 It uses a reactive approach, and the default rules are focused on finding vulnerabilities, but the rules can be customized to use more local analyses and enforce code best practices.
 Creating new rules is done through a custom query language, called CodeQL.
 A ``Query console" is provided that has syntax highlighting and completion, two features that makes development of these queries easier.
@@ -63,9 +63,11 @@ Some example projects are available in the query console that can be used to tes
 \label{bc:semgrep}
 Out of all the tools reviewed in this work, Semgrep most closely resembles Sensei.
 Semgrep is a fast static analysis tool commercialised as r2c (\url{https://r2c.dev/}) that uses pfff (\url{https://github.com/returntocorp/pfff/}) as a static analysis engine.
-Semgrep allows easy customization of rules through a \gls{yaml} syntax taht is very similar to that of Sensei.
+Semgrep allows easy customization of rules through a \gls{yaml} syntax that is very similar to that of Sensei.
 It provides advanced features to tune rules so that they minimize the chance for EFPs.
 Semgrep rules also include fixes, and use so-called metavariables to reuse parts of the original code, which seems more user-friendly than the moustache code provided by Sensei.
+
+
 To develop new Semgrep rules, a web-interface called the Playground can be used.
 In this interface rules can be developed and tested on any fragment of code, which makes development a smooth experience.
 It also makes it easy to share examples and working rules among the community.
@@ -91,10 +93,10 @@ They provide an interactive way to view the scan results by marking the relevant
 Vulnerabilities marked in the scan results have a category but no descriptions are provided. This means that little help is provided compared to the remediation suggestions and quick-fixes of Sensei.
 This way developers can learn about the vulnerability and how to fix it in an interactive way. This integration is similar to the integration between Secure Code Warrior and Fortify on Demand or Sensei.
 
-Checkmarx claims flexible rules lead to higher accuracy, and have a very extensive Query Language (CxQL)~\cite{cxaudit} to create and adapt rules.  
-Its custom query language CxQuery uses regular Java syntax and is easy to understand.
+Checkmarx claims flexible rules lead to higher accuracy, and the tool uses a very extensive Query Language (CxQL)~\cite{cxaudit} to allow the creation of rules.  
+It uses regular Java syntax and is easy to understand.
 There is good documentation available but no proper tool to create or test rules, this makes development of the rules notably more difficult.
-It seems that the rules in CxQuery can be built to ignore context and enforce secure coding guidelines in line with the paved path methodology.
+It seems that the rules in CxQL can be built to ignore context and enforce secure coding guidelines in line with the paved path methodology.
 It is also possible to tune CxSAST so that it uses more lightweight analyses, resulting in faster feedback.
 }{SAST}{Test}{Minutes}{Guidance}
 
@@ -111,28 +113,37 @@ After carefully improving their analyzers, Tricorder reached an EFP rate of arou
 Shipshape is the open-source version of Tricorder (battlecard~\ref{bc:tricorder}).
 }{SAST}{Test}{Minutes}{Quick-fix}
 
-\battlecard{Fortify}{\url{}}{
-\label{bc:fortify}
+\battlecard{Fortify Static Code Analyzer}{\url{https://www.microfocus.com/en-us/cyberres/application-security/static-code-analyzer}}{
+\label{bc:fortify-sca}
 Micro Focus Fortify is an ecosystem that embeds application security testing into all stages of the development tool chain. 
 
 As the name suggests, \gls{fsca}~\cite{fsca} performs static code analysis on the source code. It can be built in CI/CD tools and has support for 25 programming languages including Java and C\#. Scanning takes several minutes and the results can be shown in a web interface or in integrations with many bug tracking systems, ticketing systems, and code repositories. Fortify recommends using their rule sets that cover over 1000 vulnerability categories and more than one million APIs. Creating new rules can be done in their custom XML format in any text editor~\cite{fsca-curstom-rules}. Doing so requires reading extensive documentation and learning the proper syntax. They do not provide a rule editor, instead the rule writer can use any preferred text editor. 
 
-\Gls{fod}~\cite{fod} provides similar features to FSCA but through a web portal, Micro Focus calls this Application Security as a Service.
+FSCA provides detailed descriptions of vulnerabilities, which focus on explaining the vulnerabilities in detail, in part by providing examples of insecure code.
+}{SAST}{Test}{Minutes}{Description}
 
-\Gls{fsa}~\cite{fsa} is a plugin currently available for Eclipse and Visual Studio. It allows security scans in the IDE, where the rule set is tuned such that the longest analyses are disabled by default. The scan can take several minutes during which the developer cannot make any code changes. This is still quite long compared to the real-time results of Sensei and might inhibit developers from requesting scans frequently during development. 
+\battlecard{Fortify on Demand}{\url{https://www.microfocus.com/en-us/cyberres/application-security/fortify-on-demand}}{
+\label{bc:fortify_on_demand}
+\Gls{fod}~\cite{fod} provides similar features to FSCA (battlecard~\ref{bc:fortify}) but through a web portal, Micro Focus calls this ``Application Security Testing as a Service".
+It provides the same feedback as FSCA, but in a second tab, also provides a description and code examples to resolve the vulnerability.
+Both tools also provide links to reference material and to recommended solutions, but on top, FOD provides links to Secure Code Warrior to provide training on a specific vulnerability. 
 
-Besides the FSA, Fortify offers two more IDE plugins. The FOD plugin is available for Eclipse, Visual Studio, and IntelliJ. It allows the developer to request static assessments from FOD and download the results. A similar plugin is available for FSCA on all three IDEs. 
+An FOD plugin is available for Eclipse, Visual Studio, and IntelliJ.
+It allows the developer to request static assessments from FOD by uploading the code and downloading the results.
+}{SAST}{Test}{Minutes}{Description}
 
-Each tool provides detailed descriptions of vulnerabilities, which focus on explaining the vulnerabilities in detail, in part by providing examples of insecure code. In a second tab, FOD provides a description and code examples to resolve the vulnerability. All tools provide links to reference material and to recommended solutions. FOD also provides links to Secure Code Warrior to provide training on a specific vulnerability. The information provided is very similar to the different descriptions of Sensei, but the focus is more on explaining the vulnerability first instead of the solution.
+\battlecard{Fortify Security Assistant}{\url{https://marketplace.microfocus.com/fortify/category/plugins}}{
+\label{bc:fsa}
+\Gls{fsa}~\cite{fsa} is a plugin currently available for Eclipse and Visual Studio. It allows security scans similar to that of FSCA (battlecard~\ref{bc:fortify}) and FOD (battlecard~\ref{bc:fortify_on_demand}), but does so in the IDE. 
+The rule set is tuned such that the longest analyses are disabled by default.
+The scan can take several minutes during which the developer cannot make any code changes. This is still quite long compared to the real-time results of Sensei and might inhibit developers from requesting scans frequently during development.
 }{SAST}{Test}{Minutes}{Description}
 
 
-\battlecard{Veracode}{\url{https://www.veracode.com/}}{
-\label{bc:veracode}
-Veracode offers two tools. 
-\Gls{vsa} is a SaaS platform that allows the developer to upload their code to be analyzed. \Gls{vg} is an \gls{ide} plugin that performs lightweight versions of the same analyses.
-
-The tools perform static analysis scans on compiled bytecode of web applications in 23 programming languages.
+\battlecard{Veracode Static Analysis}{\url{https://www.veracode.com/products/binary-static-analysis-sast}}{
+\label{bc:veracode-sa}
+\Gls{vsa} is a SaaS platform that allows the developer to upload their code to be analyzed. .
+The tool perform static analysis scans on compiled bytecode of web applications in 23 programming languages.
 Because it does not need access to the source code it can also analyse frameworks and libraries used in the project. 
 The downside to this approach is that sufficient code needs to be finished and a successful build is required.
 
@@ -141,7 +152,11 @@ To that extent, they provide detailed instructions and videos.
 There is even the possibility to schedule a one-on-one conference call with a consultation expert. 
 
 The company claims most scans finish in under an hour. This means the feedback cycle is rather long compared to the other tools. Since the scans are performed on binaries, they are not able to provide quick-fixes as Sensei does, which is unfortunate for a solution otherwise very focused on remediation.
+}{SAST}{Test}{Hour}{Descriptions}
 
-In my opinion, Veracode is not suited as a developer tool.
+\battlecard{Veracode Greenlight}{\url{https://help.veracode.com/r/c_master_greenlight}}{
+\label{bc:veracode-gl}
+\Gls{vg} is an \gls{ide} plugin that performs lightweight versions of the analyses performed by \gls{vsa} (battlecard~\ref{bc:veracode}).
+In my opinion, \gls{vg} is not suited as a developer tool.
 The lack of rule customization, absence of quick-fixes, and the fact that it analyzes bytecode are all big hurdles for it to be well-integrated in the developer workflow.
-}{SAST}{Test}{Hour}{Descriptions, consultations}
+}{SAST}{Test}{Minutes}{Descriptions}
