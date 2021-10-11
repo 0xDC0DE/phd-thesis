@@ -5,13 +5,13 @@ It is easier to push frequent updates if there is only a single version of the a
 Furthermore, because the service provider has access to user data and behaviour, it is easier to collect feedback and make incremental improvements.
 Finally, it is more economically viable to adapt to continuously changing requirements of customers, if the software is sold on a subscription basis.
 
-\subsubsection{Infrastructure as code}
+\subsection{Infrastructure as code}
 To keep pace with this high velocity of software development, new technology has been developed to automate infrastructure and deployment.
 With \gls{iac}, the process of managing and provisioning data centers is done through machine-readable configuration files rather than hardware configurations and interactive tools~\cite{wittig2018amazon}.
 Most frequently these configuration files are declarative, focusing on what the eventual target configuration should be, rather than describing the necessary changes to meet this configuration.
 Two big components are required for automated infrastructure, those are application deployment and runtime orchestration.
 
-\paragraph{Application deployment}
+\subsubsection{Application deployment}
 Modern software applications often consist of a variety of services, such as an \gls{api}, a web front-end, a back-end application, logging services, and services used for data analytics.
 To ease the deployment, and to isolate services from each other, virtualization is used.
 In early virtualization, a \gls{vmi} was created that contains the service's code and any requirements to run it, such as the \gls{os} and the dependencies.
@@ -70,7 +70,7 @@ But some misconfigurations can still downgrade the level of security and even in
 Many guides and training exist help developers secure Dockerfiles and other container technology, including the \gls{scw} portal, the \gls{owasp} website\footurl{https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html}, and \gls{nist}\footurl{https://csrc.nist.gov/publications/detail/nistir/8176/final}.
 Some security tools, like Snyk, have adapted to scan for container misconfigurations, to detect, for example, use of open-source images with known vulnerabilities.
 
-\paragraph{Runtime orchestration}
+\subsubsection{Runtime orchestration}
 With runtime orchestration, the management of multiple physical servers is being abstracted as well.
 An orchestration framework exposes a server cluster as if it were a single pool of resources, and allows the installation and management of containers across these servers from one centralized host.
 Several runtime orchestration frameworks exist, with the most popular being Kubernetes (K8s), originally designed by Google and now maintained by the 
@@ -80,7 +80,7 @@ Runtime orchestration makes it easy to apply security practices such as network 
 Kubernetes is designed to be highly customizable and developers must turn on certain features to make sure the resulting configuration is secure.
 More information can be found on the \gls{owasp} website\footurl{https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html}.
 
-\subsubsection{Policy as code}
+\subsection{Policy as code}
 With policy as code, isolation and decoupling are applied to some of the logic of the applications.
 A separate service is deployed that can be queried to make policy decisions.
 One framework to run such a service is \gls{opa}, backed up by the \gls{cncf}.

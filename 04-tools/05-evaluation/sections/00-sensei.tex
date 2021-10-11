@@ -112,10 +112,8 @@ Currently, the variables are hidden by default and the ``Show variables" button 
 Scopes are used frequently in industry, almost exclusively to avoid creating \glspl{efp} and increase developer usability.
 Most of the comparable tools operate in later stages of the \gls{sdlc}.
 They perform scans during code review or testing phases.
-\todo[inline]{Strong, usability is still important}
-Usability issues for these tools are less critical as they do not create markings that can disturb a developer during development.
-Instead it is often a security expert who will analyze and prioritize the results of security scans by placing them into the bug tracking system.
-Common features for those tools are integrations with common bug tracking systems to allow them to publish bugs automatically.
+It is often a security expert who will analyze and prioritize the results of security scans by placing them into the bug tracking system.
+Features for those tools often include integrations with common bug tracking systems to allow them to publish bugs automatically.
 
 We observed that many tools provide functionality to disable certain rule reports through configuring security policies.
 This is a necessary feature to remove or hide classic false positives.
@@ -184,8 +182,7 @@ A better recommendation is to encode the database output when it is used, as the
 For example, a string value may be displayed on the \gls{html} page and also used in a JavaScript script on that same page, resulting in two different, but simultaneous escape requirements.
 We learn that data should always be sanitized before it is stored in the database and encoded before it is displayed in the web or mobile application.
 Since these are usually the ends of the data flow, no data needs to be sanitized or encoded twice.
-\todo[inline]{Not as trivial as implied}
-If the rules are co-designed with the secure application architecture, it becomes trivial to enforce the sanitization and encoding routines at the correct locations in code. 
+If the rules are co-designed with the secure application architecture, encoding routines can be enforced only at the correct locations in code. 
 The above does not imply that Sensei is the one and only tool that solves all potential software development security issues.
 
 

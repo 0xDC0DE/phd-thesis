@@ -99,12 +99,7 @@ In practice, creating new recipes often starts from a bad code example, either w
 The recipe-writer can then simply open the recipe creation wizard from this example.
 The live previews also greatly improve the usability, since before they were introduced, to create a finished recipe the recipe-writer was required to go back and forth several times to test the recipe in the \gls{ide} and adjust it in the recipe editor.
 
-\subsection{Verifying recipes}
-\todo[inline]{rewrite}
-To check the recipes, our tool reuses the \gls{ide} syntax checking features.
-When a developer writes new code, the \gls{ide} rebuilds the \gls{ast} and computes the changes compared to the previous version.
-A limited \gls{ast} of the changes, containing the necessary symbol information, is then passed on, allowing tools to only analyze the changes.
-On this \gls{ast}, a combination of specialized light-weight versions of existing analysis techniques is used such as taint analysis, data flow analysis, and control flow analysis to verify the recipes in real time.
+
 
 \subsection{Managing recipes}
 \label{sec:manager}
@@ -196,6 +191,12 @@ They are in line with the philosophy that developers' productivity benefits from
 In that philosophy, it is preferable to have developers disable some recipes rather then uninstalling or neglecting the tool completely.
 Importantly, this does not necessarily result in guideline violations slipping below the radar, since security and management can still have these recipes, as well as complimentary tools, enabled in later phases of the \gls{sdlc}.
 
+\subsection{Verifying recipes}
+To inspect the code against a number of recipes, our tool reuses the \gls{ide} syntax checking features.
+When a developer writes new code, the \gls{ide} rebuilds the \gls{ast} and computes the changes compared to the previous version.
+A limited \gls{ast} of the changes, containing the necessary symbol information, is then passed on, allowing tools to only analyze the changes.
+On this \gls{ast}, a combination of specialized light-weight versions of existing analysis techniques is used such as taint analysis, data flow analysis, and control flow analysis to verify the recipes in real time.
+
 \subsection{Explaining recipes}
 \label{sec:information}
 In order to mark violated guidelines, our plugin makes use of existing \gls{ide} features to flag coding mistakes.
@@ -205,7 +206,7 @@ Traditional error-level markings are usually immediately addressed by the develo
 This is the case because error-level warnings in an \gls{ide} typically indicate a problem in the code that will result in a compilation failure.
 Currently error markings by our tool still allow successful compilation of a project, but several clients have requested for the markings to result in compilation failures, equivalent to errors marked by the \gls{ide} itself.
 This is not surprising, as it is in line with the default behavior of popular \glspl{ide} such as Visual Studio.
-When Visual Studio's C compiler compiles code that uses the insecure \texttt{sprintf} function, it throws a compilation error warning the developer that the function may be unsafe.
+For example, when Visual Studio's C compiler compiles code that uses the insecure \texttt{sprintf} function, it throws a compilation error warning the developer that the function may be unsafe.
 
 An example marking can be seen in Figure~\ref{fig:publicactivity}, where the opening \texttt{<activity>} tag in \gls{xml} code is marked as an error.
 This marking makes the code fragment stand out and attracts the developer's attention.
