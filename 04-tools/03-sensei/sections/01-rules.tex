@@ -1,13 +1,13 @@
 \section{Recipes}
 
 The \gls{api}-level rules that are enforced by Sensei are called recipes.
-This name is chosen to emphasize the difference between Sensei and existing, traditional security tools, who often use rules to scan for vulnerabilities.
+This name is chosen to emphasize the difference between Sensei and existing, traditional security tools, which often use rules to scan for vulnerabilities.
 Recipes are also commonly used in the \gls{devops} movement, for example by the popular automation tool Chef~\footnote{\url{https://www.chef.io/}}.
 
 \subsection{Creating recipes}
 Customization and distribution of the recipes is a crucial feature for any successful tool supporting the paved path methodology.
-If the recipes are easy to customize, it ensures that Sensei can provide highly relevant and applicable feedback to the developer.
-This customization should be scalable and hence not be a service provided by us.
+If the recipes are easy to customize, Sensei can be more easily tuned to provide highly relevant and applicable feedback to the developer.
+This customization should be scalable and hence not be a service provided by engineers or experts at \gls{scw}.
 It should allow developers and security experts to effortlessly share project-specific or team-specific guidelines among each other.
 For this reason, the recipe creation process should be easy and fast, and at the same time versatile. 
 
@@ -17,8 +17,8 @@ A simple example of such a model is  the ``Replace method call model”.
 Figure~\ref{fig:recipeedit2} shows a recipe being created to replace the \texttt{addCookie} method with a safe alternative from the \gls{owasp} \gls{esapi}, an open-source, web application security control library designed to make secure development easier~\cite{ESAPI}; the organization also provides some commonly used security guidelines.
 The recipe-writer has to fill in some specifics about the method they want to be marked by Sensei, such as the package, class, and method names.
 Then they can write one or more quick-fixes.
-Here, they have to create a quick-fix description and they have to define the code fragment that will be used to replace the original.
-To do so they can reuse arguments, method names, and more from the original code by means of a template language.
+To create quick-fix, they have to write a quick-fix description and they have to define the code fragment that will be used to replace the original.
+For the replacement code, they can reuse arguments, method names, and more from the original code by means of a template language.
 In the field ``Rewrite to", the example quick-fix reuses the first argument of the original method call by using the template \texttt{arguments.0}. 
 
 \begin{figure}
@@ -32,9 +32,9 @@ In the field ``Rewrite to", the example quick-fix reuses the first argument of t
 However, for more complex models the number of input fields grew rapidly to accommodate a plethora of corner cases, and so did the number of models for multiple scenarios.
 As of now the old recipe editor has over 40 different models.
 With this many models, it becomes overwhelming for recipe-writers that have to select a model to enforce their desired coding guideline.
-The described model-based recipe creation process is not flexible and intuitive enough, so in the next iteration a new approach was taken.
+The described model-based recipe creation process is not flexible and intuitive enough, so in the next iteration Nathan Desmet and I designed a new approach.
 
-In the new approach we split up the recipe in two parts: A trigger to identify the violation, plus an optional quick-fix to correct the vulnerability consistently according to company best practices.
+In this approach we split up the recipe in two parts: A trigger to identify the violation, plus an optional quick-fix to correct the vulnerability consistently according to company best practices.
 Triggers are now specified by way of \gls{yaml}\footnote{\url{https://yaml.org/}} syntax, which provides more flexibility.
 To develop this \gls{yaml} syntax, all existing Sensei rules were analyzed and grouped based on which elements in the code are incorrect and which transformations are required to fix them.
 The resulting taxonomy of 10 bad code patterns is included in Appendix~\ref{app:patterns}.
@@ -94,12 +94,13 @@ All of these features are related to the usability of the developer and will be 
   \label{fig:generalsettings} 
 \end{figure}
 
-We have observed that the context-aware recipe wizard has greatly sped up the recipe creation process.
+When creating recipes in-house, we have observed that the context-aware recipe wizard has greatly sped up the recipe creation process.
 In practice, creating new recipes often starts from a bad code example, either when fixing a vulnerability or while reviewing the code of a colleague.
 The recipe-writer can then simply open the recipe creation wizard from this example.
 The live previews also greatly improve the usability, since before they were introduced, to create a finished recipe the recipe-writer was required to go back and forth several times to test the recipe in the \gls{ide} and adjust it in the recipe editor.
 
 \subsection{Verifying recipes}
+\todo[inline]{rewrite}
 To check the recipes, our tool reuses the \gls{ide} syntax checking features.
 When a developer writes new code, the \gls{ide} rebuilds the \gls{ast} and computes the changes compared to the previous version.
 A limited \gls{ast} of the changes, containing the necessary symbol information, is then passed on, allowing tools to only analyze the changes.
@@ -125,14 +126,14 @@ As part of this process, to communicate these guidelines to the rest of the team
 For existing projects, we recommend companies to start with no recipes and use existing data on the security of their project as a starting point.
 This could be the report of a penetration test, or results of vulnerability scans.
 While resolving these issues in the code, developers and security experts can start building the first recipes.
-Some clients are hesitant to start with an empty security tool and, despite our recommendations to customize recipes for each project, still wish to receive a starting recipe pack.
+Some clients of \gls{scw} have been hesitant to start with an empty security tool and, despite our recommendations to customize recipes for each project, still wish to receive starting recipes.
 For this reason we have created small open-source sets of unopinionated recipes that can be used in all projects\footnote{\url{https://securecodewarrior.github.io/public-cookbooks/}}.
 These recipes aid in correctly using the standard libraries of certain popular frameworks (e.g., Java 
 \gls{ee}, Android \gls{sdk}, \gls{aws} \gls{sdk}).
 This set can be used as inspiration and to get both security experts and developers accustomed to the tool, but usually it does not flag many issues.
 
 Considering the different sources of recipes, developers can have recipes imposed by management and/or by the security team, as well as recipes distributed among the developers per team or project.
-On top, there is the open-source cookbooks that can be used as a starting point during the pilot program.
+On top, there is the open-source recipes that can be used as a starting point when first using the tool.
 To make the management of recipes easier, we group recipes into cookbooks.
 Instead of distributing recipes one-by-one, this allows for grouping and distributing related recipes more easily. 
 
@@ -281,7 +282,7 @@ In the future the integration between the \gls{scw} training platform and the Se
   \label{fig:fulldescription}
 \end{figure}
 
-The third description is visible to the developer when they press the \gls{ide}’s key combination (Windows/Linux: Alt+Enter, Mac: Option+Enter) to start resolving the issue.
+The third description is visible to the developer when they press the \gls{ide}’s key combination to start resolving the issue.
 A drop down menu appears, containing the possible quick-fixes' descriptions.
 %A "copy recipe" option is available as well, and for local recipes there is also additionally an "edit recipe" option, both of these can be disabled in the Sensei settings.
 IntelliJ also provides options to disable inspections locally or globally. Figure~\ref{fig:qfdescription} shows an example.

@@ -45,7 +45,7 @@ They shared their insights in how the tool is used, what they liked about it and
         
 \subsection{Goal}
 The \textit{goal} of this interview is to learn how Sensei is actually used in an industry setting.
-The \textit{purpose} is to understand if our design goals align with the expectations of the users, and to observe which features are most useful and which are lacking or missing.
+The \textit{purpose} is to understand if the design goals as explained in this book align with the expectations of the users, and to observe which features are most useful and which are lacking or missing.
 The \textit{quality focus} is on the frequency at which features are being used, and for which purpose.
 
 \subsection{Set-up}
@@ -58,7 +58,7 @@ Most, but not all, security professionals have prior development experience, som
 
 \subsubsection{Task}
 The subjects are part of teams developing and maintaining the \gls{erp} software of the client.
-All of the Sensei users are developing using the IntelliJ IDEA.
+All of the Sensei users use the IntelliJ IDEA.
 During their use of Sensei, they have continued their daily responsibilities as usual.
 
 \subsubsection{Treatement}
@@ -160,7 +160,8 @@ On top of that, currently, we provide no convenient way visualize the results in
 Alternatively, some metrics can be collected through server side scans.
 It is possible to run IntelliJ IDEA inspections from the command line, including the Sensei recipes. 
 The resulting scans are not as efficient as those by standalone tools, such as static analysis tools discussed in Chapter~\ref{ch:related}.
-In particular, the memory usage is exceedingly big for large enough codebases because the entire \gls{ide} is in fact running in a background process.
+In particular, the security professionals reported that the memory usage is exceedingly big for large enough codebases.
+Since these interviews the developers at \gls{scw} have also fixed a memory leak in the command line scans which has mitigated this problem.
 It is also more difficulty to automate running IntelliJ IDEA inspections in the \gls{cicd} pipeline compared to tools who provide better integrations for this purpose.
 The convenience of running scans in other stages of the \gls{sdlc} seems to be the main reason the security team uses some of the other tools.
 

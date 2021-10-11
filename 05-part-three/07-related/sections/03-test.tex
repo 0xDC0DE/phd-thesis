@@ -2,13 +2,13 @@
 \label{sec:related-test}
 
 Software security initially started as part of software testing~\cite{sharma2017}.
-Today, still, most security practices are done in the testing phase.
+Today, still, most security practices are deployed in the testing phase.
 Some part of software security will always be reactive.
 Like all other parts of computer science, security keeps advancing, and we will always know more tomorrow than we know today.
 
 So while many novel security tools and practices have been introduced and proven to be effective, new practices generally do not replace old ones.
 Instead, they are added to the arsenal of weapons that is available for development and security teams.
-In this section, I describe new tools and practices as well as some traditional ones, as I believe they will stay relevant, even if new tools and practices are being introduced.
+In this section, I describe new tools and practices as well as some traditional ones, as I believe they will remain relevant, even if new tools and practices are being introduced.
 
 \subsection{Penetration testing}
 Penetration testing is the practice of breaking into running software by attacking it.
@@ -28,15 +28,15 @@ It is usually done by another developer than the original author but with that a
 Code reviews also provide an educational aspect for the developer whose code is reviewed~\cite{futcher2008guidelines}.
 The downside is that, similarly to penetration testing, it relies on internal or external experts and hence does not scale well.
 
-\Gls{ci} tools are developed to merge the working copies of developers into a shared main version and automatically build and review code as frequently as possible.
-A build server is usually set up for this purpose, that will build and test the code after every commit and report the results back to developers.
+\Gls{ci} tools are developed to automatically build and review code as frequently as possible when the working copies of developers are merged into a shared main version.
+A build server is usually set up for this purpose, which will build and test the code after every commit and report the results back to the developers.
 This testing is done with automated tools, such as static analysis tools.
 
 \subsection{Static analysis}
 Static analysis tools are well researched~\cite{li2017static,jovanovic2006pixy,livshits2005finding} and commonly used to detect vulnerabilities~\cite{cruzes2017security,bsimm9,bsimm11}.
-Most tools can run automatically, and as a result are easily adapted in modern development strategies.
+Most tools can run automatically, and are easily adapted in modern development strategies as a result.
 Static analysis tools vary from robust and time-consuming analyses such as Fortify~\cite{chess2004static} (battlecard~\ref{bc:fortify-sca}-\ref{bc:fortify_on_demand}) and Veracode (battlecard~\ref{bc:veracode-sa}) to light real-time analyses~\cite{brown2016build}.
-Several resources exist to help compare different tools, such as the \gls{owasp} list of source code analysis tools \footurl{https://owasp.org/www-community/Source\_Code\_Analysis\_Tools} and list of vulnerability scanning tools \footurl{https://owasp.org/www-community/Vulnerability\_Scanning\_Tools}, as well as Kompar\footurl{https://kompar.tools/} that allows easy comparison between static analysis tools/
+Several resources exist to help compare different tools, such as the \gls{owasp} list of source code analysis tools \footurl{https://owasp.org/www-community/Source\_Code\_Analysis\_Tools} and list of vulnerability scanning tools \footurl{https://owasp.org/www-community/Vulnerability\_Scanning\_Tools}, as well as Kompar\footurl{https://kompar.tools/} which allows easy comparison between static analysis tools.
 In controlled experiments, static analysis tools proved to be more effective than penetration testing~\cite{Scandariato2013}.
 
 As explained in this work, frequent testing is useful, but analyses of traditional security tools often run too long to be well-integrated in developer workflows.
@@ -46,21 +46,20 @@ To mitigate this, a shift left movement is ongoing to apply them as early as pos
 However, static analysis tools require sufficient code to be completed in order to detect vulnerabilities, and hence can usually not be used in a proactive manner.
 By customizing the rules, some tools can be tailored to ignore context, which can speed up their analyses even if they were not designed with this in mind.
 But even if local versions of the analyses perform well, they often do not provide fixes to resolve the discovered issues and hence do not enforce a paved path.
-They can not be applied in a pro-active manner, like Sensei can.
-Examples of tools that provide fixes in the code review stage, are Tricorder~\cite{sadowski2015tricorder} (battlecard~\ref{bc:tricorder}), its open-source version Shipshape (battlecard~\ref{bc:shipshape}), or Reshift Security\footurl{https://www.reshiftsecurity.com/}.
-Research with this tool showed that most developers go back to their \gls{ide} rather than use the code review tool to resolve the issues~\cite{sadowski2015tricorder}.
+They cannot be applied in a pro-active manner, like Sensei can.
+Examples of tools that provide fixes in the code review stage are Tricorder~\cite{sadowski2015tricorder} (battlecard~\ref{bc:tricorder}), its open-source version Shipshape (battlecard~\ref{bc:shipshape}), Semgrep (battlecard~\ref{bc:semgrep}) or Reshift Security\footurl{https://www.reshiftsecurity.com/}.
+Research with Tricorder showed that most developers go back to their \gls{ide} rather than use the code review tool to resolve the issues~\cite{sadowski2015tricorder}.
 
 \subsection{IDE-based}
 Because developers prefer to remediate problems in their \gls{ide}, and as part of the shift left movement, many static analysis tools are now available as \gls{ide} plugins as well.
 For some tools no effort has been made to adapt them to better suit the developer.
 They still perform identical analyses to the original tool, either remotely or locally.
-Examples of plugins like this are Semgrep, FindBugs/Spotbugs
-\todo{examples: Semgrep, FindBugs/SpotBugs}
-Some tools even prevent the developer from making changes to the code while the scan is in progress.
-
+Examples of plugins like this are FindBugs (battlecard~\ref{bc:findbugs}) and Spotbugs (battlecard~\ref{bc:SpotBugs}).
+Some tools prevent the developer from making changes to the code while the scan is in progress.
+This is the case for the Fortify Security Assistant (battlecard~\ref{bc:fsa}).
 
 Performing the full scan, however, often takes too long and as a result these tools are not very usable.
-In an attempt to be more developer-friendly, other tools provide lightweight versions of the analyses, such as \gls{fsa} (battlecard~\ref{bc:fsa}) as a lightweight version of \gls{fod} (battlecard~\ref{bc:fortify_on_demand}), or Veracode Greenlight (battlecard~\ref{bc:veracode-gl}) as a lightweight version of Veracode Static Analysis (battlecard~\ref{bc:veracode-gl}).
+In an attempt to be more developer-friendly, other tools provide lightweight versions of the analyses, such as \gls{fsa} (battlecard~\ref{bc:fsa}) as a lightweight version of \gls{fod} (battlecard~\ref{bc:fortify_on_demand}), or Veracode Greenlight (battlecard~\ref{bc:veracode-gl}) as a lightweight version of Veracode Static Analysis (battlecard~\ref{bc:veracode-sa}).
 
 In this case, the plugin is often not able to detect the complete set of vulnerabilities that the original tool is capable of.
 The goal is to provide faster feedback loops to the developer, with the drawback that some of the vulnerabilities will go unnoticed.
@@ -69,15 +68,15 @@ All the other vulnerabilities are still caught when the fully capable tool is us
 
 \subsection{Rule customization}
 \label{sec:customization}
-For these tools to be most effective, their rules should be tailored specific to the organization's coding standards and target vulnerabilities relevant to the organization's history~\cite{bsimm9,bsimm11}.
+For these tools to be most effective, their rules should be tailored specifically to the organization's coding standards and target vulnerabilities relevant to the organization~\cite{bsimm9,bsimm11}.
 As described in this work, this also prevents false positives and \glspl{efp}, thus improving usability for developers and ensuring continued use of the tool.
 
-Some tools do not allow customization of the rules, such as Reshift security, and Veracode (battlecard~\ref{bc:veracode-sa},\ref{bc:veracode-gl}).
+Some tools do not allow customization of the rules, such as Reshift security, Snyk Code (battlecard~\ref{bc:snyk_code}), and Veracode (battlecard~\ref{bc:veracode-sa},\ref{bc:veracode-gl}).
 Among the tools that do, different approaches exist.
 In this section, these approaches will be demonstrated with a rule to detect the use of the deprecated cryptographic algorithm \gls{des} in Java.
 The insecure line of code that needs to be marked is shown in Listing~\ref{lst:useDES}.
 
-\begin{lstlisting}[language={Java},caption={Insecure use of a deprecated cryptographic algorithm},label={lst:useDES},abovecaptionskip=-0.0pt,xleftmargin=15pt]
+\begin{lstlisting}[language={Java},caption={Insecure use of a deprecated cryptographic algorithm},label={lst:useDES},float,abovecaptionskip=-0.0pt,xleftmargin=15pt]
 Cipher.getInstance("DES");
 \end{lstlisting}
 
@@ -87,7 +86,7 @@ These tools require the rule-writer to write code that extends the functionality
 The tool, or sometimes only the extension itself, then needs to be built into a new executable that can be used to analyse software products.
 For Shipshape it is even required to expose this executable as a service using a docker image\footurl{https://github.com/google/shipshape}.
 
-Creating detectors through an \gls{api} allows sufficient flexibility, but makes it more complex to develop and test custom rules.
+Creating detectors through an \gls{api} allows for sufficient flexibility, but makes it more complex to develop and test custom rules.
 SpotBugs (battlecard~\ref{bc:SpotBugs}) is an example of a tool that uses an \gls{api} for rule customization by creating so-called third party ``detectors"~\cite{spotbugsapi}.
 These detectors have to be implemented and compiled into a SpotBugs plugin.
 FindSecBugs~\cite{findsecbugs} is a popular security plugin for SpotBugs.
@@ -98,7 +97,7 @@ The class extends the abstract class \texttt{CipherDetector} that is also implem
 To create a detector for such a relatively simple example, multiple files and many lines of code are already needed that require sufficient knowledge of the \glspl{api}.
 While the creation of additional detectors is not as convenient as creating recipes with Sensei, at least the distribution of detectors through a plugin is convenient for users of the tool.
 
-\begin{lstlisting}[language={Java},caption={Rule customization of SpotBugs is done through java code using their API.},label={lst:detectDES-findbugs},abovecaptionskip=-0.0pt,xleftmargin=15pt]
+\begin{lstlisting}[language={Java},caption={Rule customization of SpotBugs is done through java code using their API.},label={lst:detectDES-findbugs},float,abovecaptionskip=-0.0pt,xleftmargin=15pt]
 public class DesUsageDetector extends CipherDetector {
     ...
     @Override
@@ -113,10 +112,10 @@ public class DesUsageDetector extends CipherDetector {
 }
 \end{lstlisting}
 
-Other examples of tools that use \glspl{api} are JavaParser\footurl{http://javaparser.org/}, Tricorder (battlecard~\ref{bc:tricorder}), Shipshape (battlecard~\ref{bc:shipshape}), \todo{finish list}
+Other examples of tools that use \glspl{api} for rule customization are JavaParser\footurl{http://javaparser.org/}, Tricorder (battlecard~\ref{bc:tricorder}), Shipshape (battlecard~\ref{bc:shipshape}), and Ruleguard (battlecard~\ref{bc:ruleguard}).
 
 \subsubsection{Custom query language}
-To make customisation of rules easier, some tools provide a custom query language that makes abstractions of their \gls{api}.
+To make customization of rules easier, some tools provide a custom query language that makes abstractions of their \gls{api}.
 They still require the rule-writer to write code, but they usually provide more specific syntax to make the development of rules easier.
 
 Code Query Language (CodeQL) is an example of such a query language.
@@ -131,7 +130,7 @@ With this console it is also possible to test the queries on several demo projec
 The available projects do not necessarily contain the code a rule-writer is targeting, as was the case for the example rule.
 None of the 7 available projects is using the \gls{des} encryption algorithm.
 
-\begin{lstlisting}[language={sql},caption={CodeQL query used by Semmle to find use of insecure algorithm DES.},label={lst:detectDES-semmle},abovecaptionskip=-0.0pt,xleftmargin=15pt]
+\begin{lstlisting}[language={sql},caption={CodeQL query used by Semmle to find use of insecure algorithm DES.},label={lst:detectDES-semmle},float,abovecaptionskip=-0.0pt,xleftmargin=15pt]
 import java
 from MethodAccess call, Method method
 where
@@ -147,16 +146,16 @@ It provides abstractions to iteratively filter results based on certain properti
 Some knowledge of the \gls{api} is required, but Checkmarx provides  clear and easy to understand documentation that contains lots of examples.
 The resulting query, shown in Listing~\ref{lst:detectDES-checkmarx}, is even shorter than the one for CodeQL and just as easy to understand.
 
-\begin{lstlisting}[language={Java},caption={CxQuery query used by Checkmarx to find use of insecure algorithm DES.},label={lst:detectDES-checkmarx},abovecaptionskip=-0.0pt,xleftmargin=15pt]
+\begin{lstlisting}[language={Java},caption={CxQuery query used by Checkmarx to find use of insecure algorithm DES.},label={lst:detectDES-checkmarx},float,abovecaptionskip=-0.0pt,xleftmargin=15pt]
 result = All.FindByName("*getInstance*",11,11);
 result = result.FindByParameterValue(0,"DES",BinaryOperator.IdentityEquality);
 \end{lstlisting}
 
-Other tools that are using a custom query language are jQAssistant\footurl{https://jqassistant.org/}, Neo4J\footurl{https://neo4j.com/},\todo{finish list}
+Other tools that are using a custom query language include jQAssistant\footurl{https://jqassistant.org/}, and Neo4J\footurl{https://neo4j.com/}.
 
 \subsubsection{Markup language}
-Some tools allow customization of the rules through existing markup languages such \gls{xml} and \gls{yaml}.
-SecureAssist~\cite{secureassist} is an example of such a tool~\cite{sastinide}. 
+Some tools allow customization of the rules through markup languages such \gls{xml} and \gls{yaml}.
+SecureAssist~\cite{secureassist} (battlecard~\ref{bc:SecureAssist}) is an example of such a tool~\cite{sastinide}. 
 Additional rules can be added through a rule pack configurator.
 Rules themselves are written in \gls{xml} format and the syntax is user-friendly and easily readable~\cite{secureassistruletutorial}.
 
@@ -166,7 +165,7 @@ However, creating the rules requires learning their exact syntax, as no editor i
 Sensei, on the other hand, provides a rule wizard, context-aware suggestions, and a \gls{gui} to edit the rules as well as live-previews in the \gls{ide}.
 Sensei rules also support more comprehensive features such as the concept of untrusted variables and support for libraries.
 
-\begin{lstlisting}[language={xml},caption={SecureAssist rule to discover use of DES},float,label={lst:SAexample},literate={\ \ }{{\ }}1,xleftmargin=12pt] 
+\begin{lstlisting}[language={xml},caption={SecureAssist rule to discover use of DES},float,label={lst:SAexample},literate={\ \ }{{\ }}1,float,abovecaptionskip=-0.0pt,xleftmargin=15pt] 
 <Match>
   <QualifiedName>javax.crypto.Cipher</QualifiedName>
   <Method>getInstance</Method>
@@ -183,7 +182,7 @@ Sensei rules also support more comprehensive features such as the concept of unt
 </Match>
 \end{lstlisting}
 
-\begin{lstlisting}[language={yaml},caption={Sensei recipe to discover use of DES},float,label={lst:DES-Sensei},literate={\ \ }{{\ }}1,xleftmargin=12pt]
+\begin{lstlisting}[language={yaml},caption={Sensei recipe to discover use of DES},float,label={lst:DES-Sensei},literate={\ \ }{{\ }}1,float,abovecaptionskip=-0.0pt,xleftmargin=15pt]
 search:
   methodcall:
     type: javax.crypto.Cipher
@@ -200,14 +199,15 @@ availableFixes:
 \end{lstlisting}
 
 Like Sensei, Semgrep (battlecard~\ref{bc:semgrep}) uses \gls{yaml} and its rule format is also similar to that of Sensei.
-While it is intended to be used as a testing tool, third-party plugins have been developed to use Semgrep in the \gls{ide}, making it potentially a great tool for supporting the paved path methodology.
+While it is intended to be used as a testing tool, third-party plugins have been developed to use Semgrep in the \gls{ide}, potentially making it a great tool for supporting the paved path methodology.
 A rule to detect and fix use of \gls{des} is shown in Listing~\ref{lst:Des-semgrep}.
 It is important to note that Semgrep is the first tool discussed in this section that provides quick-fixes.
 Besides the search pattern and the fix, the rule also includes metadata that is stored separately for Sensei recipes, such as the category, severity level, and descriptions.
 Semgrep rules have a few advanced features, such as the concept of metavariables, an abstraction made available to track variables such as method names across the search pattern.
-The metavariable \texttt{\$CIPHER} is used in the example to define the fix, this is more user-friendly than the templating language provided by Sensei where the rule-writer is required to know the appropriate name of the element in the \gls{ast}.
+The metavariable \texttt{\$CIPHER} is used in the example to define the fix.
+This is more user-friendly than the templating language provided by Sensei where the rule-writer is required to know the appropriate name of the element in the \gls{ast}.
 
-\begin{lstlisting}[language={yaml},caption={Semgrep rule to discover use of DES},float,label={lst:Des-semgrep},literate={\ \ }{{\ }}1,xleftmargin=12pt]
+\begin{lstlisting}[language={yaml},caption={Semgrep rule to discover use of DES},float,label={lst:Des-semgrep},literate={\ \ }{{\ }}1,float,abovecaptionskip=-0.0pt,xleftmargin=15pt]
 rules:
 - fix: $CIPHER.getInstance("AES/GCM/NoPadding");
     id: des-is-deprecated
@@ -274,4 +274,4 @@ search:
 \end{lstlisting}
 \end{minipage}
 
-Other tools that use formatting languages to customize rules are Fortify (battlecard~\ref{bc:fortify-sca}-\ref{bc:fsa}), \todo{finish list}
+Other tools that use formatting languages to customize rules are Fortify (battlecard~\ref{bc:fortify-sca}-\ref{bc:fsa}), OpenRewrite (battlecard~\ref{bc:openrewrite}), ASIDE (battlecard~\ref{bc:ASIDE}), and GoKart (battlecard~\ref{bc:gokart}).

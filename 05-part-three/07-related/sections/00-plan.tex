@@ -1,12 +1,12 @@
 \section{Governance}
 \label{sec:related-plan}
-Considering security begins before any code is being written.
+Considering security begins before any code is written.
 Priorities set by management and the business itself can have a big impact on the security practices deployed during the \gls{sdlc}.
 
 \subsection{Training}
 Training has always played a critical role in software development, because standard computer science and engineering education often neglects software security.
 
-Companies should first offer security awareness training to all employees involved in the software development life cycle.
+Companies should first offer security awareness training to all employees involved in the \gls{sdlc}.
 Security awareness training does not necessarily need to be tailored to a specific audience.
 Developers, \gls{qa} engineers, project managers, and operators can all partake in the same training.
 A generic introductory course like this however is insufficient, the next step is to provide role-specific individual training.
@@ -35,31 +35,31 @@ Two years after the implementation of the \gls{gdpr}, the \gls{ec} found that in
 
 Security is no longer just a necessary cost during development, but businesses are able to see a more direct \gls{roi} for high quality software security.
 Businesses put more effort into the appearance of having trustworthy data protections in place, a process called trust management~\cite{cassandra2021analysis, ashraf2020role}.
-In this discipline, consumer trust is the end-goal and good security practices are a mean to this goal.
+In this discipline, consumer trust is the end-goal and good security practices are a means to this end.
 To convince consumers and buyers of software to trust a product, businesses can acquire a seal of approval from a third party to prove they adhere to certain standards.
 One such widely known certification is the \gls{iso}/\gls{iec} 27000-series, or ISO27K for short.
-The series provides best practice recommendations on information security management, covering privacy, confidentiality, and other cybersecurity issues~\cite{iso27k}.
+This series provides best practice recommendations on information security management, covering privacy, confidentiality, and other cybersecurity issues~\cite{iso27k}.
 Other regimens that companies often aim to comply with are \gls{pci} and \gls{hipaa}.
 To add transparency, businesses can also provide a \gls{sbom}, that lists all components used in their software~\cite{sbomntia}.
 Such an \gls{sbom} is most easily produced using build tools as explained in Section~\ref{sec:related-build}.
 
 In the \gls{us} Biden \gls{eo} on Improving the Nation's Cybersecurity issued May 12, 2021 the \gls{nist} was ordered to publish guidelines regarding practices that enhance the security of the software supply chain.
-Besides providing the purchaser with such an \gls{sbom}, there are numerous other standards and procedures listed regarding trust, multi-factor authentication, encryption, and use of automated security tools.
+Besides providing the purchaser with such a \gls{sbom}, there are numerous other standards and procedures listed regarding trust, multi-factor authentication, encryption, and use of automated security tools.
 In this \gls{eo}, \gls{nist} is directed to solicit input from the private sector and academia to develop standards, tools, and best practices.
 Among the more than 150 position papers, dr. Matias Madou, dr. Brian Chess, and I have also submitted two.
 One position paper advises the creation of a certification framework for education in secure development practices.
 The second promotes the use of the paved path methodology.
-Time will tell if this \gls{eo} makes a similarly big impact as the \gls{gdpr}.
+Time will tell if this \gls{eo} makes as big of an impact as the \gls{gdpr}.
 
 Besides the \gls{gdpr} and the \gls{us} \gls{eo}, there are of course similar laws in other parts of the world such as the Data Protection Act in the United Kingdom, the Privacy Act in Canada, and the Personal Data Protection Bill in India.
 
 \subsubsection{Law enforcement access}
-Unfortunately, no discussion on laws and data privacy would be complete without mentioning laws on the collection and storage of electronic communication and their access by authorities.
+No discussion on laws and data privacy would be complete without mentioning laws on the collection and storage of electronic communication and their access by authorities.
 Many of these laws contain requirements that force operators of end-to-end encrypted systems to undermine this encryption, so that law enforcement can be provided access to user communications.
 One such example is the draft considered by the Belgian government at the end of September 2021\footnote{\url{https://ibpt.be/index.php/operateurs/publication/annexe-1-dispositif}}.
 Under this law, operators would have to be able to ``turn off" encryption for specific users, essentially creating so-called backdoor access.
-The consensus among cybersecruity experts is that there is no way to provide third party access like this to end-to-end encrypted communications, without also creating encryption backdoors and vulnerabilities that can be exploited by malicious third parties~\cite{bliss1996effective}.
+The consensus among cybersecruity experts is that there is no way to provide third-party access like this to end-to-end encrypted communications, without also creating encryption backdoors and vulnerabilities that can be exploited by malicious third parties~\cite{bliss1996effective}.
 Creating a backdoor like this, undermines the whole security of the system and puts its users at risk~\cite{encryptionmyths}.
 
 In other countries where similar legislations have passed, such as Australia, research has shown that this has discouraged companies from offering new end-to-end encrypted products~\cite{barker2021economic}.
-It is safe to say that policy makers and governments can have a big influence on the security of software products, for better or for worse.
+It is safe to say that policy makers and governments can have a significant influence on the security of software products, for better or for worse.

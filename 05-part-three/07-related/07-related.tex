@@ -1,0 +1,26 @@
+\chapter{Security in software development}
+\label{ch:related}
+
+Software security is a relatively new field~\cite{mcgraw2004software}, but many tools and practices have already been developed that have caused great advancements.
+Many guides exist to help you decide which tools are appropriate for your project.
+In this chapter, I want to extend these guides so that you are better equipped to estimate the strengths of a tool for use in the paved path methodology.
+I describe commonalities between tools in different phases of the \gls{sdlc} and how they can be deployed effectively.
+
+For future reference, Appendix~\ref{app:battlecards} contains a number of battlecards with my thoughts on a few more tools.
+
+\summarybox{
+Security begins even before code is written.
+Laws, legislations, and consumer demands all impact how much attention is given to security.
+Besides lightweight linter tools, developers can also find help to produce secure code from patterns, libraries, and frameworks.
+In the build phase, the use of new methodologies has driven the automation of building executables and installing dependencies, which has made it easier to test for use of vulnerable components.
+
+Most security practices, however, take place in the test phase.
+Many code review practices and tools exist, most of which allow customization of the rules through one of three methods: an \gls{api}, a custom query language, or a formatting language such as \gls{xml} or \gls{yaml}.
+Finally, in the release phase, recent advancements have made it easier to securely deploy applications and manage infrastructure.
+}
+
+\input{05-part-three/07-related/sections/00-plan}
+\input{05-part-three/07-related/sections/01-develop}
+\input{05-part-three/07-related/sections/02-build}
+\input{05-part-three/07-related/sections/03-test}
+\input{05-part-three/07-related/sections/04-release}

@@ -127,7 +127,7 @@ response.addCookie(myCookie);
 If this fix is applied at multiple locations in a project, it can result in code bloat.
 It might then be better for the company to provide a method that replaces the original \texttt{addCookie} method.
 In this method the cookies can be first configured properly before calling the original \texttt{addCookie} method.
-Such replacement wrapper methodcall is shown in Listing~\ref{lst:cookie3}.
+Such a replacement wrapper method is shown in Listing~\ref{lst:cookie3}.
 The new guideline for cookies is then to replace the \texttt{addCookie} method with the \texttt{safeAddCookie}, as shown in Listing~\ref{lst:cookie4}.
 The creation of such a wrapper library is strongly recommended by the paved path methodology, as the resulting guidelines are easy to understand for developers.
 At the same time any security bugs are confined to the \textit{implementation} of the wrapper library, and no new bugs can be introduced by \textit{using} the wrapper library. This makes the job of the security team easier as well.
@@ -181,7 +181,7 @@ It is crucial to log important security events, but too much logging can make it
 While enforcing guidelines can help with logging securely (e.g., not logging sensitive data, not logging unsanitized input, logging in proper format) it is difficult to monitor the frequency of the logging through local analyses.
 Other examples are the use of transport layer security, or whether authorization is needed or not.
 
-One scenario that, to the contrary, enables us to detect some design flaws, is when popular frameworks are used to handle security features.
+One scenario that, to the contrary, enables us to detect some design flaws, is when popular frameworks are used to implement security features.
 For example, enforcing the use of transport layer security in an Android app is as simple as adding a line to the Android manifest about clear text traffic.
 This can be seen in Listing~\ref{lst:manifest}, line 3.
 
@@ -222,12 +222,13 @@ They then apply the transformations and manually inspect the resulting changes.
 The recipe wizard helps speed up these tasks by providing preview panels during recipe creation.
 A recipe-writer at a company, however, cannot be asked to perform the manual checks again every time they install updates to our plugin (including its underlying analyses) or to the \gls{ide} itself.
 Such updates always risk altering the outcome of a recipe.
-Instead automated unit testing is needed.
+Instead automated testing is needed.
 
-The plugin developer has sufficient capabilities to automate unit tests to verify the behavior of the analyses.
-To do this they also create a few demo recipes and test the behavior of these recipes.
+Such testing is available to the plugin developers at \gls{scw}.
+They have sufficient capabilities to automate unit tests that verify the behavior of the analyses.
+To do this, they also create a few demo recipes and test the behavior of these recipes.
 Since they have access to the code of the plugin, they can simply write unit tests and (directly) call internal plugin and exported \gls{ide} methods to test the markings and transformations and to compare them to the expected results.
-In other words, they can write code snippets that check automatically whether or not updates to tools alter the deployment of existing recipes.
+In other words, they can write code snippets that verify whether or not updates to tools alter the deployment of existing recipes.
 Such testing is unavailable to the custom recipe-writers in a company, however, which do not have access to, and definitely do not want to learn, the internal plugin \glspl{api}.  
 
 A better testing framework is hence required, such that the recipe-writers in companies can indicate the expected outcomes of every recipe they wrote on a number of code samples.. 

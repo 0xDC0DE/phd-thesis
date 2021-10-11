@@ -4,7 +4,7 @@ Developer toolkits evolve over time, and many new technologies and frameworks ex
 As explained in Section~\ref{sec:traditionalsecurity}, security tools are handed to the developer as well because a shift left movement is ongoing to try and identify possible security problems as early as possible in the \gls{sdlc}.
 These tools, however, still use a reactive testing-based approach and can usually only identify security problems once sufficient code has been developed.
 These tools will be discussed in the section on testing, Section~\ref{sec:related-test}.
-In this section, I discuss tools and practices that help a developer securely produce code from the start.
+In this section, I discuss tools and practices that help a developer produce secure code from the start.
 
 \subsection{Lint}
 Linter tools are designed to allow the developer to concentrate solely on the algorithms, data structures, and correctness of the program, and only later, with the aid of lint, address non-functional aspects of the code.
@@ -16,7 +16,7 @@ Some examples of lint tools are Error Prone\footnote{\url{http://errorprone.info
 Lint tools are also often included by default in \glspl{ide} such as AndroidStudio\footnote{\url{https://developer.android.com/studio/write/lint}} and IntelliJ IDEA\footnote{\url{https://www.jetbrains.com/help/idea/code-inspection.html}}.
 Not many security rules are included in lint tools by default.
 Out of the tools above, SonarLint supports the most, with 29 rules targeting vulnerabilities in Java\footnote{\url{https://rules.sonarsource.com/java/type/Vulnerability}}.
-This is because lint tools require fast response times and scanning for vulnerabilities often takes longer-running analyses.
+This is because lint tools require fast response times, and scanning for vulnerabilities often takes longer-running analyses.
 Many lint tools are open-source which means their rules can be customized to enforce secure coding guidelines, but none are designed for easy and fast customization of the rules.
 
 \subsection{Security patterns}
@@ -39,12 +39,12 @@ Some efforts have also been made to automatically generate rules from code chang
 As mentioned in Section~\ref{sec:improvedrulecreation}, in the future we also want to develop such automatic recipe creation methods.
 
 \subsection{Security libraries and frameworks}
-Another solution to make developers adhere to coding guidelines, is by implementing them into frameworks or libraries.
+Another solution to make developers adhere to coding guidelines, is to implement them into frameworks or libraries.
 An example is the \gls{owasp} \gls{esapi}, an open-source application security control library that provides clear replacement \glspl{api} for insecure \gls{jdk} implementations~\cite{ESAPI}.
 As mentioned in this work, Sensei recipes have already been developed to support replacing banned methods with alternatives from the \gls{esapi} as a demonstration of library adoption recipes. 
 
 Popular web application frameworks provide methods for sanitizing inputs and escaping outputs to prevent common vulnerabilities.
-These frameworks are creating a paved path for developers to follow.
+These frameworks create a paved path for developers to follow.
 We have observed that these efforts result in useful code examples in the documentation of frameworks that are easy to understand for developers.
 They also make for easy development of Sensei recipes to adhere to these guidelines.
 However, the implementation details of these methods are sometimes lost to developers, and the results from this work show that this can sometimes lead to increased difficulty locating vulnerabilities.
@@ -55,22 +55,21 @@ In 2021 it is likely to merge with injection flaws, as shown in Figure~\ref{fig:
 %At \glsc{scw}, we have observed the similarity between these two categories based on the Sensei recipes targeting both these categories.
 After being the top category since 2013, injection flaws are likely to move down to the third position in the \gls{owasp} top 10 2021.
 
-\subsection{Artificial intelligence completion}
-Recently some tools have emerged to help a developer produce code more efficiently with the help of \gls{ai}.
-Some examples of \gls{ai} completions tools are Copilot\footurl{https://copilot.github.com/}, tabnine\footurl{https://www.tabnine.com/} (formerly codota\footurl{https://www.codota.com/}),and  kite\footurl{https://www.kite.com/}.
+\subsection{Artificial intelligence code completion}
+Recently some tools have emerged to help developers produce code more efficiently with the help of \gls{ai}.
+Some examples of \gls{ai} code completion tools are Copilot\footurl{https://copilot.github.com/}, tabnine\footurl{https://www.tabnine.com/} (formerly codota\footurl{https://www.codota.com/}), and  kite\footurl{https://www.kite.com/}.
 The most famous, Copilot, is a service created by GitHub and OpenAI described as ``Your AI pair programmer".
 It functions as a plugin for Visual Studio Code that generates code based on the current file formats.
 
 Copilot is trained on public code and text from the internet, including public repositories on GitHub.
 It uses context from the \gls{ide} to provide suggestions in the code that is being developed.
 
-Many developers have used Copilot and have found that it was accurate and often improved their productivity.
-Generally, if a developer does not know how to complete a feature, they will often Google it.
+Many developers that used Copilot found that it was accurate, and often improved their productivity.
+Generally, when developers struggle with the implementation of a feature, they will often Google it.
 In many cases they will either find documentation or a Stack Overflow post that will point them to a solution.
 It still requires judgement from the developer to decide if the solution is correct and secure.
 
 Similarly, the code suggestions Copilot provides are only as secure as the repositories it was trained on.
-When Copilot was used to complete 1,692 code scenarios with risk of introducing vulnerabilties. 
-Researchers found that in 40\% of the cases the suggested code was still vulnerable~\cite{copilot2021}.
-It is clear that it still requires judgement from the developer to ensure the produced code is secure.
-
+Copilot was used to complete 1,692 code scenarios with risk of introducing vulnerabilities.
+Researchers found that in 40\% of cases the suggested code was vulnerable~\cite{copilot2021}.
+It is clear that it the developer's judgment is still required to ensure the produced code is secure.

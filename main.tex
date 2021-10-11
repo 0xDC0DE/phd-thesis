@@ -391,7 +391,7 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \small{#3}
 \tcblower
 \small{
-\begin{tabular}{p{1.5cm}p{2cm}p{1.5cm}p{4cm}}
+\begin{tabular}{p{1.5cm}p{2.5cm}p{1.5cm}p{3.5cm}}
 \textbf{Type} & #4 & \textbf{SDLC} & #5\\
 \textbf{Speed} & #6 & \textbf{Fix} & #7\\ 
 \end{tabular}
@@ -401,7 +401,7 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 }
 
 
-\newcommand{\smallbattlecard}[3]
+\newcommand{\smallbattlecard}[5]
 {
 \begin{battlecardenviro}
 \begin{tcolorbox}[colback=scw-orange!5,colframe=scw-orange!70,
@@ -409,9 +409,16 @@ title={#1 \hfill\circled{\thebattlecardcounter}\\
 \footnotesize{#2}},
 coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \small{#3}
+\tcblower
+\small{
+\begin{tabular}{p{1.5cm}p{2.5cm}p{1.5cm}p{3.5cm}}
+\textbf{Type} & #4 & \textbf{SDLC} & #5\\
+\end{tabular}
+}
 \end{tcolorbox}
 \end{battlecardenviro}
 }
+
 % Colorful algorithms
 %\AtBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
 \SetNlSty{bfseries}{\color{scw-orange}}{}
@@ -526,6 +533,8 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \newacronym{fsa}{FSA}{Fortify Security Assistant}
 \newacronym{vsa}{VSA}{Veracode Static Analysis}
 \newacronym{vg}{VG}{Veracode Greenlight}
+\newacronym{esvd}{ESVD}{Early Security Vulnerability Detector}
+\newacronym{aside}{ASIDE}{Application Security plugin for Integrated Development Environment}
 
 % Glossary entries
 %%%%%%%%%%%%%%%%

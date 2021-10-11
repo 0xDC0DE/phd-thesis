@@ -1,16 +1,15 @@
 \section{Build}
 \label{sec:related-build}
-
 There is an evolution in software development towards increasingly iterative and feedback-driven strategies.
 Most noticeable is the Agile development model, formally introduced in 2001, where customer collaboration and responsiveness to change are key components~\cite{fowler2001agile}.
-The highest priority in this model is to satisfy the customer through continuous delivery of valuable software, by welcoming changing requirements, even late in development.
+The highest priority in this model is to satisfy the customer through continuous delivery of valuable software, by welcoming changing requirements, even late in the development process.
 Working software has to be delivered frequently, in a couple of weeks to a couple of months.
 Product management and developers have to work closely together to set priorities and iteratively deliver minimal viable products and improvements.
 In this process, individuals and interactions are prioritized over processes and tools, and working software is prioritized over comprehensive documentation.
 The Scrum framework is frequently used to implement this type of development strategy~\cite{schwaber2004agile}.
-Generally security benefits from things that hold still.
+Generally, security benefits from things that hold still.
 When the codebase remains the same for longer, the security team has more time to test and fix the security of the code.
-The increased rate of change has made the job of the security professional harder.
+The increased rate of change has made the job of the security professional more challenging.
 
 \subsection{Build tools}
 Building on agile practices, \gls{devops} aims for complete end-to-end automation of not only software development, but also delivery.
@@ -40,8 +39,8 @@ As remediation guidance, \gls{sca} tools often create automated pull requests th
 This process is intuitive and well integrated with existing developer workflows.
 
 However, some challenges remain in this field, as in some programming languages over 70\% of vulnerabilities are in transitive dependencies~\cite{snyk2020}.
-Transitive dependencies can not be easily updated since they are out of direct control of the developer.
-With some package managers (such as Maven) it is possible to exclude the transitive dependency and manually download the newest version.
+Transitive dependencies can not be easily updated since they are not in direct control of the developer.
+With some package managers (such as Maven) it is possible to exclude a transitive dependency and manually download the newest version.
 This comes with the risk of runtime errors if the newest version contains any breaking changes, since the developer has no control over the code in the direct dependency where these breaking changes may cause errors.
 It can also suffice to verify that the methods containing vulnerabilities are not used in the code.
 These methods can also be excluded or replaced with so-called monkey-patches\footnote{\url{https://docs.plone.org/appendices/glossary.html\#term-Monkey-patch}}.

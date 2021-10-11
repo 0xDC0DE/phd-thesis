@@ -32,7 +32,7 @@ It is the number of users needed to detect 85\% of the problems in an interface,
 In practice, \gls{ui} and \gls{ux} problems do not affect users in a predictable way, and the probability that a user encounters a problem can be significantly lower.
 In that case a larger number of subjects is needed.
 However, it is advised to use an iterative design and test strategy, where five subjects are brought in to find problems and these problems are fixed before bringing in five more~\cite{nielsen1993mathematical}.
-In order to guarantee successful tests for five subjects even in the case of a technical problem, each round six subjects were asked to participate.
+In order to guarantee successful tests for five subjects even in the case of a technical problem, each round six subjects were asked to participate, resulting in a total of 12 subjects.
 
 All subjects are hired by Haxor from the United States and speak English.
 They are recruited from the Haxor Developer Community, DevPort, and online freelancing websites.
@@ -44,16 +44,16 @@ An effort has been made by Haxor to choose subjects with varying backgrounds, an
 The task was prepared by a \gls{ux} design expert at \gls{scw} in cooperation with the product manager of Sensei and myself.
 
 The developers were given a project with a few fragments of example code.
-These code fragments contain various calls to desirable and undesirable methods, made clear through explicit method names, e.g. \texttt{errorTest} and \texttt{completeTest}.
+These code fragments contain various calls to desirable and undesirable methods.
 
 The subjects were tasked to create Sensei recipes and quick-fixes that transform the undesirable method calls into their desirable counterparts.
 
 The required Sensei recipes are of increasing difficulty:
 
 \begin{itemize}[noitemsep]
-    \item Recipe 1 is already developed, users are questioned about their understanding of the recipe
-    \item Recipe 2 replaces the undesired methodcall by a different methodcall with the same signature (arguments and return type)
-    \item Recipe 3 replaces the undesired methodcall by a different methodcall with a different signature (different arguments, same return type)
+    \item Recipe 1 is already developed, users are questioned about their understanding of the recipe.
+    \item Recipe 2 replaces the undesired methodcall by a different methodcall with the same signature (arguments and return type).
+    \item Recipe 3 replaces the undesired methodcall by a different methodcall with a different signature (different arguments, same return type).
 \end{itemize}
 
 \subsubsection{Experimental procedure}
@@ -62,7 +62,7 @@ All subjects were allowed to use their own devices, and any resources they would
 Paircast is desktop software that records a developer's screen, microphone, code changes, and open applications as they work.
 
 Developers were instructed to speak their thoughts out loud.
-In the first round of user testing, the subjects were regularly prompted questions after completing the assigned tasks.
+In the first round of user testing, the subjects were also prompted questions after completing each of the assigned tasks.
 This turned out to be unnecessary as the subject gave plenty feedback without being prompted, hence the questions were dropped in the second round.
 
 I reviewed all of the video recordings.
@@ -95,12 +95,13 @@ Many users used the context menu to open the recipe editor.
 However, in the context menu all of the users selected the option ``start from scratch".
 For some users this was because their caret was not in a relevant position, others simply did not use the context-aware options when given the opportunity.
 It is possible that the different options in the context menu need to be more descriptive.
+It is also possible that better training in the form of documentation or an improved quick-start guide can resolve this usability problem.
 
 When creating a new recipe in the recipe editor, some users were overwhelmed by the code view, all of them preferred to use the \gls{ui} view.
 One user refused to create a new recipe, saying they do not want to learn a new language to do so.
 
 Users who did not look at the documentation closely were more likely to be overwhelmed with the amount of options in the drop-down menus of the recipe editor.
-The options to choose from are not clearly enough described, not all users are familiar with the different syntactic components and their differences, e.g. method vs methodcall.
+The options to choose from are not clearly enough described, not all users are familiar with the different syntactic components and their differences, e.g., method vs. methodcall.
 None of the users noticed the hints that describe each of the elements in the drop-down menu when they hover over it, as shown in Figure~\ref{fig:dropdownhint}.
 
 \begin{figure}
@@ -111,7 +112,7 @@ None of the users noticed the hints that describe each of the elements in the dr
   \label{fig:dropdownhint} 
 \end{figure}
 
-In the fix menu it is possible to reuse arguments of the original code through a template language..
+In the fix menu it is possible to reuse arguments of the original code through a template language.
 All users who made use of these templates, did so by copying the template from a different recipe and adjusting it to their needs.
 None of the users used the suggestions available in the fix menu.
 

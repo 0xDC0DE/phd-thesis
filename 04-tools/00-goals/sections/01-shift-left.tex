@@ -41,7 +41,8 @@ This is achieved by laying out guidelines early in the process and enforcing the
 In code that does not take user input, and hence is not likely to result in vulnerabilities, the guidelines are still enforced.
 It is after all possible that in the future a calling context will be developed that does take user input.
 The code may become vulnerable at that point.
-Securing this code fragment from the start will protect it for future use and avoids the need to revisit and fix it when such a calling context exists. 
+Securing this code fragment from the start will protect it for future use and avoids the need to revisit and fix it when such a calling context exists.
+This practice is often called ``establishing secure defaults", and it is part of a ``security by design" approach in software engineering\footurl{https://wiki.owasp.org/index.php/Security\_by\_Design_Principles}
 
 \begin{figure}
     \centering
@@ -70,10 +71,12 @@ Easy customization of the guidelines enables security experts and developers to 
 %local analyses
 %quickfixes in the IDE 
 %make info available in the IDE
-Sensei is designed to be a developer tool in the first place, it is \textit{efficient} and improves developer productivity.
+Sensei is designed to be a developer tool in the first place.
+It is \textit{efficient} as it improves developer productivity instead of hurting it.
 Sensei enforces coding guidelines regardless of context.
 Since the context can be ignored, it only needs to perform local code analyses that can be completed in real time, similar to an as-you-type spell checker.
-Also similar to a spell checker, Sensei provides an easy way to remediate guideline violations in the form of quick-fixes. 
+Also similar to a spell checker, Sensei provides an easy way to remediate guideline violations in the form of quick-fixes.
+\todo{"These code transformations" refers to the quick-fixes}
 These code transformations are an existing \gls{ide} feature that the developer is familiar with.
 They are commonly used for marking syntax errors and general coding best practices.
 With quick-fixes it is possible to avoid the need for research and even automate the remediation of guideline violations, which greatly improves the productivity of the developer.

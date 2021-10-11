@@ -12,26 +12,26 @@ Most frequently these configuration files are declarative, focusing on what the 
 Two big components are required for automated infrastructure, those are application deployment and runtime orchestration.
 
 \paragraph{Application deployment}
-Modern software applications often consists of a variety of services, such as an \gls{api}, a web front-end, a back-end application, logging services, and services used for data analytics.
+Modern software applications often consist of a variety of services, such as an \gls{api}, a web front-end, a back-end application, logging services, and services used for data analytics.
 To ease the deployment, and to isolate services from each other, virtualization is used.
 In early virtualization, a \gls{vmi} was created that contains the service's code and any requirements to run it, such as the \gls{os} and the dependencies.
-A \gls{vmi} is a from of hardware virtualization, each is deployed as \textit{guests} on a \textit{host} machine, providing its own \gls{os} with its own kernel.
-Because of this, \glspl{vm} can be deployed anywhere without requiring modifications.
+A \gls{vmi} is a form of hardware virtualization, each is deployed as a \textit{guest} on a \textit{host} machine, providing its own \gls{os} with its own kernel.
+Because of this, a \gls{vm} can be deployed anywhere without requiring modifications to it.
 This also has the added benefit of isolation between different services, so that each one has a fixed amount of \gls{cpu} processing power and memory.
 However, they are large and take a lot of resources to store and run.
 
 More modern technology moves from hardware virtualization to \gls{os}-level virtualization.
 Here, the kernel of the host \gls{os} allows the existence of multiple isolated user space instances, called containers.
 The most popular container technology today is Docker\footurl{https://www.docker.com/}.
-With docker the application and its dependencies ara packaged in a virtual container that can run on any \gls{os}.
+With Docker, the application and its dependencies are packaged in a virtual container that can run on any \gls{os}.
 Docker containers are more lightweight, and a single server or \gls{vm} can run several containers simultaneously.
 A docker container image is built by reading instructions from a Dockerfile\footurl{https://docs.docker.com/engine/reference/builder/}.
 This file contains a selection of commands that a user could call on the command line interface to assemble the image.
 An example of a Dockerfile is shown in Listing~\ref{lst:Dockerfile}.
-The image is built from an ubuntu docker image. Then the contents from the \texttt{app} directory are copied to the image and the application is built using the make command. Finally the app is started.
-Containers make it easy to control data and software components and make frequent updates such as security patches.
+The image is built from an ubuntu docker image. Then the contents of the \texttt{app} directory are copied to the image and the application is built using the make command. Finally the app is started.
+Containers make it easy to control data and software components, and make frequent updates such as security patches.
 
-\begin{lstlisting}[language={Dockerfile},caption={Example of a Dockerfile to build and run a Python application.},label={lst:Dockerfile},xleftmargin=15pt]
+\begin{lstlisting}[language={Dockerfile},caption={Example of a Dockerfile to build and run a Python application.},label={lst:Dockerfile},xleftmargin=15pt,float]
 # syntax=docker/dockerfile:1
 FROM ubuntu:18.04
 COPY . /app
@@ -43,11 +43,10 @@ Docker promotes the use of multi-container applications, where each service in t
 This is done through a docker-compose file, as shown in Listing~\ref{lst:dockercompose}.
 This example, used during my research, sets up a mariaDB database and exposes it on port 3306. It also creates a web interface called Adminer, hosted on port 8080.
 
-Placing separate services in their own containers like this, improves security, as containers, by default, run in isolation.
-Each container can only access ports and files of other containers that are explicitly exposed by the other containers.
+Placing separate services in their own containers like this improves security, as containers run in isolation by default.
+Each container can only access ports and files of other containers that are explicitly exposed by them.
 
-\begin{minipage}[t]{0.9\linewidth}
-\begin{lstlisting}[language={YAML},caption={Example of a Dockerfile to build and run a Python application.},label={lst:dockercompose},xleftmargin=15pt]
+\begin{lstlisting}[language={YAML},caption={Example of a Dockerfile to build and run a Python application.},label={lst:dockercompose},xleftmargin=15pt,float]
 version: '3.1'
 services:
   maria:
@@ -64,13 +63,12 @@ volumes:
   mariadb:
 
 \end{lstlisting}
-\end{minipage}
 
 Docker increases the level of security in comparison to running applications directly on the host.
 It has features to more easily encrypt volumes, manage secrets, and encrypt communication between containers, all helping to avoid some of the top categories in the \gls{owasp} top 10.
 But some misconfigurations can still downgrade the level of security and even introduce new vulnerabilities.
-Many guides and training exist to help secure Dockerfiles and other container technology, including on the \gls{scw} portal, the \gls{owasp} website\footurl{https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html}, and even \gls{nist}\footurl{https://csrc.nist.gov/publications/detail/nistir/8176/final}.
-Some security tools, like Snyk, have adapted to scan for container misconfigurations, to detect, for example, use of containers with known vulnerabilities.
+Many guides and training exist help developers secure Dockerfiles and other container technology, including the \gls{scw} portal, the \gls{owasp} website\footurl{https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html}, and \gls{nist}\footurl{https://csrc.nist.gov/publications/detail/nistir/8176/final}.
+Some security tools, like Snyk, have adapted to scan for container misconfigurations, to detect, for example, use of open-source images with known vulnerabilities.
 
 \paragraph{Runtime orchestration}
 With runtime orchestration, the management of multiple physical servers is being abstracted as well.
@@ -83,16 +81,16 @@ Kubernetes is designed to be highly customizable and developers must turn on cer
 More information can be found on the \gls{owasp} website\footurl{https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html}.
 
 \subsubsection{Policy as code}
-With policy as code, isolation and decoupling is applied to some of the logic of the applications.
+With policy as code, isolation and decoupling are applied to some of the logic of the applications.
 A separate service is deployed that can be queried to make policy decisions.
 One framework to run such a service is \gls{opa}, backed up by the \gls{cncf}.
 
 To explain how policy decisions can be decoupled, I use the example of authorization.
 In a budgeting application, a manager may be able to access the salary of anyone who reports to them.
-To isolate the necessary decisions from the application itsel, the management chain can be stored in the policy agent.
-In Listing~\ref{lst:mgmt-chain}, an example is shown of such a management chain is stored in \gls{opa}.
+To isolate the necessary decisions from the application itself, the management chain can be stored in the policy agent.
+In Listing~\ref{lst:mgmt-chain}, an example is shown of how such a management chain can be stored in \gls{opa}.
 
-\begin{lstlisting}[language={json},caption={Management chain data example for use in OPA.},label={lst:mgmt-chain},xleftmargin=15pt]
+\begin{lstlisting}[language={json},caption={Management chain data example for use in OPA.},label={lst:mgmt-chain},xleftmargin=15pt,float]
 {
     "management_chain": {
         "bjorn": [
@@ -110,8 +108,7 @@ It is then possible to define rules and execute queries based on this data.
 In Listing~\ref{lst:opa-rule}, rules are shown that determine who is able to access a salary.
 Users are allowed to see their own salary and that of other users below them in the management chain.
 
-\begin{minipage}[t]{0.9\linewidth}
-\begin{lstlisting}[language={json},caption={OPA rules that define who has access to the salary of other users.},label={lst:opa-rule},xleftmargin=15pt]
+\begin{lstlisting}[language={json},caption={OPA rules that define who has access to the salary of other users.},label={lst:opa-rule},xleftmargin=15pt,float]
 default allow = false
 
 allow {
@@ -127,24 +124,21 @@ allow {
     input.user_id = managers[_]
 }
 \end{lstlisting}
-\end{minipage}
 
 The budgeting application can then make decisions by querying the \gls{opa} service as shown in Listing~\ref{lst:opa-query}.
 
-\begin{minipage}[t]{0.9\linewidth}
-\begin{lstlisting}[language={java},caption={Management chain data example for use in OPA.},label={lst:opa-query},xleftmargin=15pt]
+\begin{lstlisting}[language={java},caption={Management chain data example for use in OPA.},label={lst:opa-query},xleftmargin=15pt,float]
 > input := {"method": "GET", "path": ["salary", "alex"], "user_id": "gillis"}
 > allow
 false
 \end{lstlisting}
-\end{minipage}
 
 Decoupling policy decisions has many advantages.
 It provides a centralized overview of policies and avoids redundancy in implementations.
-In another application, for example, employees might able to request absence and these requests can be authorized by their manager, requiring the same management chain to make authorization decisions.
+In another application, for example, employees might be able to request absence and these requests can be authorized by their manager, requiring the same management chain to make authorization decisions.
 Instead of implementing these decisions in the second application and possibly even storing the data multiple times, the \gls{opa} service can be reused by adding new rules.
 
-Because of the declarative nature of the rules, they can be understood easily, causing reduced complexity and hence reduced chance for mistakes.
+Because of the declarative nature of the rules, they can be understood easily, causing reduced complexity and hence reduced chance of mistakes.
 The policy agent can be used to overcome several vulnerabilities in \gls{owasp} top 10, such as authentication and authorization flaws, as well as some business logic flaws.
 
 By using a policy as code service, logging of the policy decisions will also be done separately from application logs.

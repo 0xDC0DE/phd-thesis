@@ -85,7 +85,7 @@ The resulting \gls{gui} will have a similar user experience as the \gls{ui} prov
   %\includegraphics[width=0.75\textwidth]{slacktheme.png}
   \includegraphics[width=0.75\textwidth,page=16]{04-tools/figures/figures2.pdf}
   
-  \caption[Slack theme editor]{The theme editor in slack provides an intuitive \gls{ui} interface on top to edit the theme, but also adds an code view and a copy button to allow fast and easy copy-pasting of existing themes.}
+  \caption[Slack theme editor]{The theme editor in slack provides an intuitive \gls{ui} interface on top to edit the theme, but also adds a code view and a copy button to allow fast and easy copy-pasting of existing themes.}
   \label{fig:slacktheme} 
 \end{figure}
 
@@ -112,6 +112,7 @@ Currently, the variables are hidden by default and the ``Show variables" button 
 Scopes are used frequently in industry, almost exclusively to avoid creating \glspl{efp} and increase developer usability.
 Most of the comparable tools operate in later stages of the \gls{sdlc}.
 They perform scans during code review or testing phases.
+\todo[inline]{Strong, usability is still important}
 Usability issues for these tools are less critical as they do not create markings that can disturb a developer during development.
 Instead it is often a security expert who will analyze and prioritize the results of security scans by placing them into the bug tracking system.
 Common features for those tools are integrations with common bug tracking systems to allow them to publish bugs automatically.
@@ -123,7 +124,7 @@ With the exception of the Fortify Security Assistant that disables rules to spee
 
 \subsection{Feedback and remediation}
 Sensei is distributed as an \gls{ide} plugin.
-This allows it to reuse and extend existing \gls{ide} functionality, and naturally feel part of the existing tool kit of developers.
+This allows it to reuse and extend existing \gls{ide} functionality, and feel part of the existing tool kit of developers.
 When interviewed, subjects of the usability tests reported that the markings and quick-fixes felt similar to those provided by the \gls{ide} itself.
 They all indicated that they would use them frequently.
 
@@ -148,17 +149,19 @@ By comparison, for Tricorder and SpotBugs the time between writing the violating
 
 In the experiment with Sensei, only 1.6\% of code markings were ignored, which is a low \gls{efp} rate.
 After carefully improving their analyzers, Tricorder reached an \gls{efp} rate of around 5\%.
-Despite its great attention to developer usability, during an experiment with ASIDE, only 63 of 101 markings were addressed~\cite{xie2011aside}.
-When using SpotBugs, research reported that 58\% of the reported issues were never reviewed and out of the reviewed bugs, only 55\% were eventually fixed~\cite{ayewah2007using}.
-We observe a big gap in \gls{efp} rates with Sensei and Tricorder having a rate of 5\% or lower on one hand, and Aside and SpotBugs having 38\% and 77\% on the other hand.
-The reason for this might be the customization of rules.
+Despite its great attention to developer usability, during an experiment with \gls{aside}, 63 of 101 (62\%) markings were addressed~\cite{xie2011aside}.
+When using SpotBugs, research reports that 58\% of the found issues were never reviewed and out of the reviewed bugs, only 55\% were eventually fixed~\cite{ayewah2007using}.
+\Gls{esvd}, a tool with heavy focus on early detection of vulnerabilities, but without customized rules, found that the test group in their experiment only resolved 53\% of the markings~\cite{sampaio2016exploring}.
+
+We observe a big gap in \gls{efp} rates with Sensei (1.6\%) and Tricorder (5\%) on one hand, and \gls{aside} (38\%), \gls{esvd} (53\%), and SpotBugs (77\%) on the other hand.
+The reason for this is likely the customization of rules.
 Tricorder allows creating new analyzers and their quality is closely monitored.
 For Sensei, developers are given carefully tailored rules, often written by the engineers themselves, and relevant to their project.
-These efforts are clearly greatly improving the usability of the tool and hence the trust of the developers.
+These efforts improve the usability of the tool and hence result in increased trust by the developers.
 
 \subsubsection{Impact on security}
 The usability measurements presented so far suggest that when Sensei is used, the secure coding guidelines are applied most of the time.
-During the first undustry trial of the plugin, described in Section~\ref{sec:trial2018}, the client has tracked closely whether or not the enforced guidelines actually prevented the introduction of vulnerabilities early on.
+During the first industry trial of the plugin, described in Section~\ref{sec:trial2018}, the client has tracked closely whether or not the enforced guidelines actually prevented the introduction of vulnerabilities early on.
 The trial was done with five developers for the duration of three months.
 They reported a total of over 200 confirmed bugs being prevented.
 The most common issues involved sensitive information leakage and tapjacking vulnerabilities in their mobile application.
@@ -181,8 +184,11 @@ A better recommendation is to encode the database output when it is used, as the
 For example, a string value may be displayed on the \gls{html} page and also used in a JavaScript script on that same page, resulting in two different, but simultaneous escape requirements.
 We learn that data should always be sanitized before it is stored in the database and encoded before it is displayed in the web or mobile application.
 Since these are usually the ends of the data flow, no data needs to be sanitized or encoded twice.
+\todo[inline]{Not as trivial as implied}
 If the rules are co-designed with the secure application architecture, it becomes trivial to enforce the sanitization and encoding routines at the correct locations in code. 
 The above does not imply that Sensei is the one and only tool that solves all potential software development security issues.
+
+
 To detect issues as early as possible, i.e., in real-time as the developer is writing code, analyses have to be light-weight.
 This implies that all possible execution paths in the entire program cannot be exhaustively considered, and some types of vulnerabilities, including design flaws, can go undetected.
 This is a common trade-off, therefore tools that are used early in the \gls{sdlc} such as Sensei should be complemented with more complete scanning solutions deployed later in the \gls{sdlc}.
@@ -202,19 +208,20 @@ In the case, for example, where a large number of \gls{sql} injections is found,
 But it can also mean that there simply are a lot of database queries, with a large portion of them done securely.
 For coding guidelines a relative measure can be designed, by comparing the number of guideline violations to the number of times the code complies to guidelines. Since complying to strong coding guidelines leads to secure code~\cite{banerjee2009software,tabassum2017comparing}, we get a better indication of the security in the software product.
 
-While the plugin is useful as a tool to aid the developer, the option to measure guideline deployment also hints at its potential as a management tool.
-Like we did for the empirical experiment, management can track the changes developers makes to projects and log the guideline violations that they introduce and fix, with or without aid of the quick-fixes.
+The plugin is useful as a tool to aid the developer, but the option to measure guideline deployment also hints at its potential as a management tool.
+As demonstrated in the experiment, management can track the changes developers makes to projects and log the guideline violations that they introduce and fix, with or without aid of the quick-fixes.
 Currently, this data is collected in the events databases on the machine of each developer.
-In the future, these metrics will be collected and visualised on the \gls{scw} platform.
+In the future, these metrics should be collected and visualised on the \gls{scw} platform.
 This makes the return on investment clear to companies using the tool.
-Furthermore, this can be used to track the performance of individual developers, and then to give more targeted and individually tailored training.
+With this data available in the platform, more targeted and individually tailored training can be provided as well.
 This data can for example feed into the \gls{its} to improve its recommendations, as described in Section~\ref{sec:its-integration}.
 
 \subsubsection{Integration in other stages of the \gls{sdlc}}
 While individual performance can hence be measured and improved, with developers working in different branches, and hence different states of the project, it is hard to get a good overview that way.
 To resolve this, we also give managers the possibility to use the plugin technology as a headless scan that can be performed from the command line.
 However, in practice, we have noticed that the performance of this headless scan is lacking.
-Especially for large codebases, memory usage becomes exceedingly large.
+In the \gls{ide}, recipes are verified against the code in the current file of the editor, the code the developer is working on.
+In the headless scan such context is not available, so every file in the project needs to be inspected, this slows down analyses.
 Security professionals also indicated that better integration with \gls{cicd} tools is needed.
 This lack of automation in different stages of the \gls{sdlc} is critical for the security team.
 The security professionals in the second industry trial have spent time and effort to recreate Sensei recipes in different tools in the \gls{sdlc} to compensate for Sensei's lack of \gls{cicd} integration.
@@ -237,7 +244,7 @@ The recipe and fixed code are pushed to the codebase simultaneously.
 This typically leads to few \glspl{efp}.
 However, often the application security team of the company imposes recipes as well.
 At one point, the security expert at a client of ours created a large number of recipes and imposed them onto the developers without fixing any of the resulting violations.
-It did not come as a surprise that this resulted in a great number of \glspl{efp} and out of the 20 developers that had the tool installed, all of them had disabled its markings.
+It did not come as a surprise that this resulted in a great number of \glspl{efp} and out of the 20 developers that had the tool installed, all of them had disabled its markings out of frustration.
 To avoid such failures, we recommend two approaches to keep the \gls{efp} rate low for imposed cookbooks.
 
 Firstly, in the ideal scenario the security team creates a number of recipes and looks at their violations in the code to inspect their severity.
