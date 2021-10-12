@@ -33,7 +33,7 @@ A build server is usually set up for this purpose, which will build and test the
 This testing is done with automated tools, such as static analysis tools.
 
 \subsection{Static analysis}
-Static analysis tools are well researched~\cite{li2017static,jovanovic2006pixy,livshits2005finding} and commonly used to detect vulnerabilities~\cite{cruzes2017security,bsimm9,bsimm11}.
+Static analysis tools, often called \gls{sast} tools, are well researched~\cite{li2017static,jovanovic2006pixy,livshits2005finding} and commonly used to detect vulnerabilities~\cite{cruzes2017security,bsimm9,bsimm11}.
 Most tools can run automatically, and are easily adapted in modern development strategies as a result.
 Static analysis tools vary from robust and time-consuming analyses such as Fortify~\cite{chess2004static} (battlecard~\ref{bc:fortify-sca}-\ref{bc:fortify_on_demand}) and Veracode (battlecard~\ref{bc:veracode-sa}) to light real-time analyses~\cite{brown2016build}.
 Several resources exist to help compare different tools, such as the \gls{owasp} list of source code analysis tools \footurl{https://owasp.org/www-community/Source\_Code\_Analysis\_Tools} and list of vulnerability scanning tools \footurl{https://owasp.org/www-community/Vulnerability\_Scanning\_Tools}, as well as Kompar\footurl{https://kompar.tools/} which allows easy comparison between static analysis tools.

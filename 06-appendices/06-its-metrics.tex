@@ -3,7 +3,7 @@
 
 \begin{sidewaystable}
     \centering
-    \caption[Comparison of default configurations for all CF algorithms]{The \gls{mae} (smaller is better), \gls{rmse} (smaller is better), and \gls{fcp} (larger is better) for the default configuration of all available \gls{cf} algorithms. The baseline algorithm is the best performing benchmark. Among the memory-based algorithms, the k-NN baseline is the best performing. For the model-based algorithms SVD++ has the most accurate predictions.}
+    \caption[Comparison of default configurations for all CF algorithms]{The \gls{mae} (smaller is better), \gls{rmse} (smaller is better), and \gls{fcp} (larger is better) for the default configuration of all available \gls{cf} algorithms. The baseline algorithm is the best performing benchmark. Among the memory-based algorithms, the \gls{knn} baseline is the best performing. For the model-based algorithms SVD++ has the most accurate predictions.}
     %               1 23 4 56 7 89 
     \begin{tabular}{l ll l ll l ll}
                  & \multicolumn{2}{c}{MAE} &&
@@ -37,7 +37,7 @@
 
 \begin{sidewaystable}
     \centering
-    \caption[User-based versus item-based \gls{knn} algorithms]{Measurements for item-based versus user-based k-NN algorithms. Item-based configurations perform worse for all algorithms.}
+    \caption[User-based versus item-based \gls{knn} algorithms]{Measurements for item-based versus user-based \gls{knn} algorithms. Item-based configurations perform worse for all algorithms.}
     %               12 34 5 67 8 910
     \small
     \begin{tabular}{ll ll l ll l ll }
@@ -101,7 +101,7 @@ k-NN baseline     & Baseline& \textcolor{scw-teal-darker}{0.4514} & 0.002 && 0.5
 \begin{sidewaystable}
     
     \centering
-    \caption[Adapted collaborative filtering algorithms]{Measurements for all \gls{cf} algorithms adapted to learning systems. For each algorithm the improvement is computed in comparison to the best non-learning adapted configuration. All of the algorithms are improved by using the ability filter. The best performing algorithm overall is the k-NN baseline algorithm.}
+    \caption[Adapted collaborative filtering algorithms]{Measurements for all \gls{cf} algorithms adapted to learning systems. For each algorithm the improvement is computed in comparison to the best non-learning adapted configuration. All of the algorithms are improved by using the ability filter. The best performing algorithm overall is the \gls{knn} baseline algorithm.}
     %               1 23 4 56 7 89 
     \small
     \begin{tabular}{l ll l ll l ll}

@@ -10,3 +10,130 @@
 %Referring back to the literature review and showing how you have addressed a gap in knowledge.
 %Discussing how your findings confirm or challenge an existing theory or assumption.
 %Again, here, try to avoid simply repeating what you’ve already covered in the discussion. Pick out the most important points and sum them up with a succinct overview that situates your project in its broader context.
+
+Security lacking
+Increased collaboration
+
+Process, people, technology
+
+Paved path methodology
+Tools and training should be role-specific
+efficient, relevant, usable
+ITS, Sensei
+
+\section{Education}
+
+The SCW training platform provides training to hundreds of thousands of developers from reputable customers. It provides defensive exercises in a gamified and engaging way and offers a wide
+variety of programming languages and frameworks. It is suitable
+to be used in the paved path methodology as it is relevant and
+usable. However, there is room for improvement when it comes
+to the efficiency of the training. All users, regardless of skill
+level, are presented challenges of the same difficulty. This leads
+to boredom or frustration for some users and might cause them
+to disengage from the training.
+
+I designed an ITS that consists of three main algorithms, one for
+exercise selection, and one each for estimation of user ability and
+exercise difficulty. Exercise selection is achieved through a Collaborative Filtering (CF) algorithm adapted to learning systems. In
+such an algorithm, a target user’s preference for an exercise is predicted based on the preferences of like-minded users. Through the
+use of the psychometric model of Item Response Theory (IRT),
+estimation of both user ability and exercise difficulty can be done
+at once. A sanitized data set of over 9 million solved exercises is
+used to calibrate these algorithms making up the ITS.
+
+\subsection{Rasch model}
+shows a gap between knowledge and practice
+
+results can be useful in training platform for quality control, challenge difficulty measure and user ability measure
+
+\subsection{Recommendations}
+For use in the ITS, the k-NN baseline algorithm is the most accurate CF algorithm. Baselines have proven to be accurate for the
+data of the platform, most likely because many users show consistent bias in their ratings. This is related to the current item
+selection, that is often consistently right or consistently wrong,
+based on the ability level of the user. In literature, model-based
+algorithms are usually more accurate, but their advantages of dealing with data sparsity, scalability, synonyms, and implicit data
+are not applicable to the data set of the SCW training platform.
+
+The proposed adaptations to learning systems in this work is not specific
+to software security and could be applied to other domains. The adaptation based on processing of the data is especially easy to implement
+and can be applied to any CF algorithm. The biggest requirement is
+that sufficient data needs to be available to overcome problems caused
+by data scarcity which can be exaggerated by splitting the data even
+more. In learning systems more so than in movie or music recommendations, we can expect users to rate a significant portion of the items,
+which makes this requirement more likely to be met.
+The adaptation was less effective in model-based CF algorithms. One
+possible explanation is that the latent factors from the dimensionality
+reduction techniques already represented an ability estimate. However,
+estimating this through the ratings alone is likely less accurate, which is
+why adding it more explicitly as a filter still improved the accuracy of
+the predictions. It is possible to imagine a similar adaptation in other
+contexts where the latent factors might be doing a good job already,
+but small improvements can be made by computing an important factor
+explicitly.
+
+future work: ITS expanded with integrations
+
+\section{Tools}
+The goal of traditional security tools is automation of security
+testing. In order to keep up with the ever increasing speed of
+software development, they are shifting left in the SDLC, towards
+the development phase. As a result they are being integrated
+in developer tools. However, they are still fundamentally using
+a reactive approach, scanning (partly) completed code and its
+calling context for vulnerabilities. To fix detected vulnerabilities,
+developers often have to go back to the code (potentially long)
+after it was initially developed. With tools in the paved path
+methodology, the goal is a preventative approach. Guidelines are
+enforced regardless of context as the code is being written. This
+helps the developer write secure code from the start, improving
+their productivity. As a result, code fragments are being secured,
+even if no current calling context exists that leads to an exploit.
+The fragments are being secured for future use.
+
+\subsection{Sensei}
+The first iteration of the Sensei rule editor was a Graphical User
+Interface (GUI) containing many input fields to allow fast customization of rules. It was used by us to create hundreds of
+rules for customers and developer communities which frequently
+resulted in the need for extra features. Some of these features
+are useful for improving the context awareness of Sensei and its
+usability, other features fell out of use. Eventually, through the
+addition of these many features, the rule editor became too cluttered and unclear.
+As a more flexible alternative, Nathan Desmet, principal engineer
+at SCW, and I designed a new formatting language based on
+YAML Ain’t Markup Language (YAML) syntax that allows rulewriters to quickly and effectively create rules and quick-fixes. The
+rules include several features to improve their usability and add
+support for libraries and for design flaws.
+
+I conducted a controlled user experiment that showed Sensei
+markings are easy to understand and quick-fixes are applied frequently. Addressing security problems like this with Sensei, only
+caused an average increase in development time of about 11%.
+Interviews with security professionals showed that the tool can be
+used effectively in a professional setting to detect and remediate
+security problems. They describe the customization of recipes as
+being easier and faster compared to other security tools. Nonetheless, usability experiments showed that the YAML code used for
+recipes can be overwhelming and that all users prefer the User Interface (UI) view of the new recipe editor. Creating new recipes
+was more successful if the users followed along with documentation, or if they looked at example recipes first, creating recipes
+from scratch can still be difficult.
+The biggest disadvantages of Sensei compared to other tools are
+its lack of reported metrics and its poor integration in the Continuous Integration and Continuous Delivery (CICD) pipeline.
+
+Our findings and those of other research, show that customization
+of recipes can have a significant impact on the EFP rate, and
+hence the usability for the developer. Former research has shown
+that applying secure coding guidelines early in development has
+a positive impact on the codebase. As shown in the experiments
+of this work, customized recipes can improve adherence to such
+guidelines as quick-fixes are frequently used. If they are designed
+properly, applying the recipes regardless of context has minimal
+impact on performance, and helps improve code quality in many
+cases.
+Security professionals report that creating these customized
+recipes with the recipe editor is easier than customizing rules
+of comparable tools. Despite this, usability tests revealed that
+some features of the recipe editor can still be improved such as
+the templating language to reuse parts of the original code in a
+quick-fix.
+
+
+
+
