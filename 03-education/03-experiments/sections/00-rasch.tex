@@ -203,7 +203,8 @@ For example, to securely hash a password in standard Java, the developer has to 
 In Java Spring a \texttt{PasswordEncoder} interface is provided, the documentation of this interface is brief and informs developers that \texttt{BCryptPasswordEncoder} is the preferred implementation\footnote{\url{https://docs.spring.io/}}.
 
 Because frameworks often automate these commonly used features, some details of the implementations might be lost to developers.
-When the implementation is insufficient, or when the framework is used incorrectly, it is possible that even a security conscious developer can remain unaware of the consequences.
+This is also confirmed by previous research where 44\% of analyzed applications were shown to contain vulnerabilities caused by misunderstandings of the framework implementation details~\cite{votipka2020understanding}.
+When the implementation in such a framework is insufficient, or when the framework is used incorrectly, it is possible that even a security conscious developer can remain unaware of the consequences.
 On top of the standard language skills, and the security knowledge, a developer using a framework hence also needs an intimate knowledge of the framework itself to deliver secure code.
 
 \begin{figure}

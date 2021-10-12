@@ -1,139 +1,119 @@
 \chapter{Conclusion}
+\glsresetall
 
+In this work the focus is on improving the usability of the developer with more targeted, role-specific training and tools.
+I propose a methodology to improve collaboration between developers and security professionals, called the paved path methodology.
+In line with this methodology, I made improvements to both training and tools provided by \gls{scw}.
 
-% Avoid exaggerating the applicability of your research. If you’re making recommendations for policy, business or other practical implementation, it’s generally best to frame them as suggestions rather than imperatives – the purpose of academic research is to inform, explain and explore, not to instruct.
+\summarybox{
+In the first part of this book, I designed and implemented an \gls{its}.
+First, the trained Rasch model from the field of \gls{irt} offered some useful insights in the mental model of the developer.
+To speed up the slow estimation procedure for this model, I created an approximation method that remained sufficiently accurate long after initial calibration.
+This approximation enables an accurate and easy-to-implement way to adapt existing \gls{cf} algorithms to learning systems.
 
-%If you’re making recommendations for further research, be sure not to undermine your own work. Future studies might confirm, build on or enrich your conclusions, but they shouldn’t be required to complete them.
+In part~\ref{p:tools}, I evaluated the \gls{ide} plugin, called Sensei.
+The results from the experiments show that customized rules and real-time remediation guidance result in high engagement from the developers using the tool.
+To encourage this customization of rules, a \gls{yaml} based syntax and \gls{ui} were designed and evaluated.
+Security professionals reported that, through this \gls{ui}, customization of rules is easier than with comparable tools.
+}
 
-%Make sure your reader is left with a strong impression of what your research has contributed to knowledge in your field. Some strategies to achieve this include:
-%Returning to your problem statement to explain how your research helps solve the problem.
-%Referring back to the literature review and showing how you have addressed a gap in knowledge.
-%Discussing how your findings confirm or challenge an existing theory or assumption.
-%Again, here, try to avoid simply repeating what you’ve already covered in the discussion. Pick out the most important points and sum them up with a succinct overview that situates your project in its broader context.
+\section{Intelligent Tutoring System}
+The \gls{scw} training platform is usable and relevant to the needs of the developers.
+It provides defense training, teaching developers to recognize insecure code patterns and how to fix them.
+The training is available in a wide variety of programming languages and frameworks.
+However, there is still a significant part of users that only follow a minimal amount of training.
+It is likely that the pacing of the predetermined courses and tournaments does not fit their needs.
+This is confirmed through surveys, where a portion of the users indicates they feel bored due to too much repetition or frustrated because the content is moving too fast.
 
-Security lacking
-Increased collaboration
+In this work, I aimed to improve the efficiency of the training by adapting the learning pace to each individual user.
+To do this, I designed an \gls{its} consisting of three algorithmic components.
+These are exercise selection, user ability estimation, and exercise difficulty estimation.
 
-Process, people, technology
+The latter two are achieved through calibrating a \gls{2pl} Rasch model from the field of \gls{irt}.
+With the results of this model, I have contributed insights into the mental model of a developer.
+I have shown that both the vulnerability category and the language and framework have a medium-sized effect on the difficulty of an exercise.
+Some key findings are that languages that require memory management result in increased difficulty, as well as the use of frameworks.
+For the vulnerability category, results showed that the size of the related code fragments is a big indicator of the difficulty.
+Design flaws that generally require fixing of larger code fragments, showed a higher difficulty on average.
 
-Paved path methodology
-Tools and training should be role-specific
-efficient, relevant, usable
-ITS, Sensei
+Because the training of the Rasch model is slow, especially for large data sets, I developed an approximation procedure that outperformed several existing approximation methods from literature.
+This method could be useful in many situations where full calibration procedures are not appropriate.
 
-\section{Education}
+Finally, the recommendation system itself was developed and evaluated.
+In the set of \gls{cf} algorithms that were tested, model-based algorithms were outperformed by simpler memory-based algorithms.
+This is likely because the advantages of model-based algorithms such as improved capacity to deal with data sparsity, scalability, and synonyms are not very applicable to the data set of \gls{scw} training platform.
 
-The SCW training platform provides training to hundreds of thousands of developers from reputable customers. It provides defensive exercises in a gamified and engaging way and offers a wide
-variety of programming languages and frameworks. It is suitable
-to be used in the paved path methodology as it is relevant and
-usable. However, there is room for improvement when it comes
-to the efficiency of the training. All users, regardless of skill
-level, are presented challenges of the same difficulty. This leads
-to boredom or frustration for some users and might cause them
-to disengage from the training.
+One of the main contributions of this work to the state of the art, is the proposed adaptation of \gls{cf} algorithms to learning systems.
+These simple and easy-to-implement adaptions are applicable to many, if not all, \gls{cf} systems and have shown a significant increase in prediction performance for all algorithms that have been tested.
 
-I designed an ITS that consists of three main algorithms, one for
-exercise selection, and one each for estimation of user ability and
-exercise difficulty. Exercise selection is achieved through a Collaborative Filtering (CF) algorithm adapted to learning systems. In
-such an algorithm, a target user’s preference for an exercise is predicted based on the preferences of like-minded users. Through the
-use of the psychometric model of Item Response Theory (IRT),
-estimation of both user ability and exercise difficulty can be done
-at once. A sanitized data set of over 9 million solved exercises is
-used to calibrate these algorithms making up the ITS.
+Whether or not this recommendation system leads to increased engagement remains to be tested after the \gls{its} is implemented into the \gls{scw} platform.
+This process will be gradually completed in several distinct steps.
+In the future, it is also the intention to extend the \gls{its} so that it uses data from integrations with other developer tools to provide even more targeted training recommendations.
+Finally, the proposed adaptations to learning systems could be tested on more \gls{cf} algorithms and more datasets. 
 
-\subsection{Rasch model}
-shows a gap between knowledge and practice
+The results from the Rasch model, however, also indicate that a gap exists between knowledge and practice.
+Some of the most notorious vulnerability types in practice, such as injection vulnerabilities and \gls{xss}, are shown to be relatively easy to find and fix in training.
+This suggests that education alone is insufficient.
+It is evidently too hard for a developer to keep track of the security of the code at all times while they are focused on the functionality instead.
+With the right tools, such as Sensei, this burden can be alleviated and the developer can be timely reminded of the security implications of their work.
 
-results can be useful in training platform for quality control, challenge difficulty measure and user ability measure
+\section{Sensei}
+There have been great advancements in the field of software security, as explained in Chapter~\ref{ch:related}.
+Despite this, vulnerabilities still seem to be present in all types of software.
+This is because advancements in development methodologies have also greatly sped up development, resulting in fast iterative releases.
+This increased rate of change has made the job of security professionals more challenging.
+On top of that, security professionals are understaffed and cannot adequately assist each of the developers to fix their code.
 
-\subsection{Recommendations}
-For use in the ITS, the k-NN baseline algorithm is the most accurate CF algorithm. Baselines have proven to be accurate for the
-data of the platform, most likely because many users show consistent bias in their ratings. This is related to the current item
-selection, that is often consistently right or consistently wrong,
-based on the ability level of the user. In literature, model-based
-algorithms are usually more accurate, but their advantages of dealing with data sparsity, scalability, synonyms, and implicit data
-are not applicable to the data set of the SCW training platform.
+A shift left movement is ongoing to attempt to address this problem.
+In this movement, security becomes a shared responsibility among everyone involved in the \gls{sdlc}.
+To help developers secure their own code, they are given security training and handed security tools.
+However, security training and tools are often designed with security professionals in mind.
+They are using a reactive approach, and scan for vulnerabilities.
+This approach requires sufficient code and calling context to be completed, which means that developers often have to go back to the code, potentially long after it was initially developed.
+This clearly does not integrate well in developer workflows, and it is no surprise that developer dislike and often disable these tools.
+Instead, they should be handed role-specific tools, so that they can receive proactive guidance that helps them more effectively and efficiently produce secure code.
 
-The proposed adaptations to learning systems in this work is not specific
-to software security and could be applied to other domains. The adaptation based on processing of the data is especially easy to implement
-and can be applied to any CF algorithm. The biggest requirement is
-that sufficient data needs to be available to overcome problems caused
-by data scarcity which can be exaggerated by splitting the data even
-more. In learning systems more so than in movie or music recommendations, we can expect users to rate a significant portion of the items,
-which makes this requirement more likely to be met.
-The adaptation was less effective in model-based CF algorithms. One
-possible explanation is that the latent factors from the dimensionality
-reduction techniques already represented an ability estimate. However,
-estimating this through the ratings alone is likely less accurate, which is
-why adding it more explicitly as a filter still improved the accuracy of
-the predictions. It is possible to imagine a similar adaptation in other
-contexts where the latent factors might be doing a good job already,
-but small improvements can be made by computing an important factor
-explicitly.
+That is the intent of Sensei.
+In the related work, we have seen a distinct lack of such security tools designed with the developer in mind.
+With this work, we have created and evaluated such a tool.
+I helped with the design and requirements of this tool that is implemented by the engineering team at \gls{scw}.
+With Sensei, we take a fundamentally different approach, enforcing guidelines regardless of the context, as the code is being written.
+This will help developers produce secure code from the start.
 
-future work: ITS expanded with integrations
+The contributions of this work include an evaluation of this tool and some of its specific features.
+In the first experiment, I have evaluated the effect of highly customized rules and remedation guidance in the \gls{ide}.
+I was able to compare the results of this experiment to those of similar experiments with other tools.
+I found that the both the customization of rules as well as the quick-fixes in the \gls{ide} itself lead to increased engagement and trust from the developers.
 
-\section{Tools}
-The goal of traditional security tools is automation of security
-testing. In order to keep up with the ever increasing speed of
-software development, they are shifting left in the SDLC, towards
-the development phase. As a result they are being integrated
-in developer tools. However, they are still fundamentally using
-a reactive approach, scanning (partly) completed code and its
-calling context for vulnerabilities. To fix detected vulnerabilities,
-developers often have to go back to the code (potentially long)
-after it was initially developed. With tools in the paved path
-methodology, the goal is a preventative approach. Guidelines are
-enforced regardless of context as the code is being written. This
-helps the developer write secure code from the start, improving
-their productivity. As a result, code fragments are being secured,
-even if no current calling context exists that leads to an exploit.
-The fragments are being secured for future use.
+Sensei is not the only tool that offers an easy-to-read rule syntax, or features to more easily develop and test rules.
+However, usability tests indicate that a \gls{ui} that helps the rule-writer create rules without requiring intimate knowledge of the rule syntax could be an important feature.
+We are not currently aware of any other tools that provide such a \gls{ui}.
+Interviews with security professionals indicate that features in this \gls{ui}, such as the live preview, are useful and make development of rules for Sensei easier than for comparable tools.
+They also indicated that the requirement to create a quick-fix for a rule promotes closer cooperation with colleagues that have a development background.
 
-\subsection{Sensei}
-The first iteration of the Sensei rule editor was a Graphical User
-Interface (GUI) containing many input fields to allow fast customization of rules. It was used by us to create hundreds of
-rules for customers and developer communities which frequently
-resulted in the need for extra features. Some of these features
-are useful for improving the context awareness of Sensei and its
-usability, other features fell out of use. Eventually, through the
-addition of these many features, the rule editor became too cluttered and unclear.
-As a more flexible alternative, Nathan Desmet, principal engineer
-at SCW, and I designed a new formatting language based on
-YAML Ain’t Markup Language (YAML) syntax that allows rulewriters to quickly and effectively create rules and quick-fixes. The
-rules include several features to improve their usability and add
-support for libraries and for design flaws.
+Based on the results of this work and those of related research, I recommend businesses to consider developer usability more closely and to offer different role-specific tools to developers and security professionals in their teams.
 
-I conducted a controlled user experiment that showed Sensei
-markings are easy to understand and quick-fixes are applied frequently. Addressing security problems like this with Sensei, only
-caused an average increase in development time of about 11%.
-Interviews with security professionals showed that the tool can be
-used effectively in a professional setting to detect and remediate
-security problems. They describe the customization of recipes as
-being easier and faster compared to other security tools. Nonetheless, usability experiments showed that the YAML code used for
-recipes can be overwhelming and that all users prefer the User Interface (UI) view of the new recipe editor. Creating new recipes
-was more successful if the users followed along with documentation, or if they looked at example recipes first, creating recipes
-from scratch can still be difficult.
-The biggest disadvantages of Sensei compared to other tools are
-its lack of reported metrics and its poor integration in the Continuous Integration and Continuous Delivery (CICD) pipeline.
+Future research could further expand on the security outcome of a tool like Sensei.
+Previous work indicates that adhering to secure coding guidelines and best practices leads to more secure code~\cite{lipfordimpact,votipka2020understanding}.
+Other work has also shown that more vulnerabilities are eliminated if feedback cycles are shorter~\cite{sampaio2016exploring}.
+The contributions of this work indicate that when highly applicable remediation guidance is available, developers actively make use of it.
+In the future, the combination of these findings could be validated to confirm that real-time guidance and quick-fixes lead to more secure code.
 
-Our findings and those of other research, show that customization
-of recipes can have a significant impact on the EFP rate, and
-hence the usability for the developer. Former research has shown
-that applying secure coding guidelines early in development has
-a positive impact on the codebase. As shown in the experiments
-of this work, customized recipes can improve adherence to such
-guidelines as quick-fixes are frequently used. If they are designed
-properly, applying the recipes regardless of context has minimal
-impact on performance, and helps improve code quality in many
-cases.
-Security professionals report that creating these customized
-recipes with the recipe editor is easier than customizing rules
-of comparable tools. Despite this, usability tests revealed that
-some features of the recipe editor can still be improved such as
-the templating language to reuse parts of the original code in a
-quick-fix.
+\section{Paved path methodology}
+New technology on its own will not turn the tide, but the proposed solutions in this work will make it easier to make the required shift in culture.
+A shift towards more human-centered and empathy-driven software development processes and workflows.
 
+This work started with the introduction of such a process, called the paved path methodology.
+In his methodology, the security team should gradually build a paved path for developers to follow.
+Together with the developers, they should build standards and patterns that guide the rest of the development team to develop secure code from the start.
+The guidelines should be specific, \gls{api}-level instructions, that can be easily understood by developers, and avoid security jargon.
 
+By building a paved path, the security professionals can more easily provide a service to developers, instead of forcing security testing on them.
+A paved path approach like this can be encouraged with a tool like Sensei.
+Because the security professional that is creating the rules is now forced to also create a fix.
+To achieve this, they most likely need help from members of the development team or at the very least colleagues with a development background.
+Interactions like this result in closer collaboration among the teams and hence more mutual empathy.
 
-
+A shift like this does not happen overnight, and this work on its might not radically change software development.
+But with this method, I advocate to \textit{pave the path} towards secure development, and take a step in the right direction.
+A step in the journey towards a more human-centered future of software security.
