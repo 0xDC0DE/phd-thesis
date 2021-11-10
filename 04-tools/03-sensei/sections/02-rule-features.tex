@@ -28,7 +28,7 @@ Notice how this \gls{efp} depends on the knowledge and skill of the developer, m
 %A similar example leading to \glspl{efp} is when hard-coded \gls{sql} queries are created without using parameterized queries.
 %These queries would violate a guideline enforcing parameterized queries, but they would not be insecure, not even when this function is reused from a different context in the future.
 
-In order to keep the \gls{efp} rate sufficiently low we have introduced the concept of \emph{trusted input}.
+In order to keep the \gls{efp} rate sufficiently low, we have introduced the concept of \emph{trusted input}.
 Hard-coded input is automatically trusted, since a user can not influence it, and hence it can not lead to a vulnerability.
 However, function parameters and variables from other origins are considered untrusted by default.
 This is still in line with the philosophy to protect methods from future use, where we want to flag violations that can one day lead to vulnerabilities.
@@ -158,7 +158,7 @@ This type of recipe has a trigger in one library but their fix uses a different 
 
 As a proof of concept for library adoption recipes, support has been developed for the \gls{owasp} \gls{esapi} library.
 Among others, the \gls{owasp} \gls{esapi} contains replacement methods for commonly used insecure \gls{jdk} methods, the so-called \gls{owasp} \gls{esapi} banned \glspl{api}\footnote{\url{https://www.owasp.org/index.php/ESAPI\_Secure\_Coding\_Guideline}}.
-To support the \gls{owasp} \gls{esapi} in companies that adapt it, a recipe set was created to enforce the replacement of the banned \glspl{api} with their alternatives from the \gls{owasp} \gls{esapi}.
+To support the \gls{owasp} \gls{esapi} in companies that adopt it, a recipe set was created to enforce the replacement of the banned \glspl{api} with their alternatives from the \gls{owasp} \gls{esapi}.
 Feedback from these companies showed that this set of library adoption recipes was intuitive and easy to use for developers.
 Importantly, it increased the speed of the library's adoption.
 

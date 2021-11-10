@@ -8,11 +8,11 @@ These lists and taxonomies can be used as guidelines for security professionals 
 
 The results from the Rasch model sometimes contradict these lists.
 Injection and \gls{xxe}, for example, are typically rated high on prioritization lists because of their prevalence in production software.
-According to our data, however, they are not the most difficult challenges in training.
+According to our data, however, they are not the most difficult vulnerabilities in training.
 When the developer is aware such a vulnerability is present, they are able to detect and resolve it with relative ease.
 So while popular lists like \gls{owasp} Top 10 can be useful as baselines and guidelines for security teams to set their priorities, they might not be the right focus from an education perspective.
 Based on the results from the Rasch model, developer training should go further than these infamous security problems and focus more on security problems involving larger pieces of code.
-We can see this shift in priority in the newest draft of the \gls{owasp} Top 10\footnote{\url{https://owasp.org/Top10/}} as well.
+We can see this shift in priority in the newest version of the \gls{owasp} Top 10\footnote{\url{https://owasp.org/Top10/}} as well.
 In the new version, shown in Figure~\ref{fig:newowasptop10}, ``Injection" goes down in priority and ``\gls{xxe}" even merges with ``Security misconfiguration".
 New categories are introduced such as ``insecure design", proposed as the new number 4, shifting the focus towards security flaws.
 
@@ -20,7 +20,7 @@ New categories are introduced such as ``insecure design", proposed as the new nu
     \centering
     %\input{04-tools/plots/testing}
     \includegraphics[page=23, width=\textwidth]{03-education/figures/tikzfigures.pdf}
-  \caption[OWASP Top 10 2021 draft]{Some categories from the \gls{owasp} Top 10 2017 decrease in priority (marked in orange) in the new draft, other categories increase in priority (marked in blue). Three categories are merged with other categories (marked in gray). In the 2021 draft, three new categories are introduced (marked in blue).}
+  \caption[OWASP Top 10 2021]{Some categories from the \gls{owasp} Top 10 2017 decrease in priority (marked in orange) in 2021, other categories increase in priority (marked in blue). Three categories are merged with other categories (marked in gray). In the 2021 version, three new categories are introduced (marked in blue).}
   \label{fig:newowasptop10} 
 \end{sidewaysfigure}
 
@@ -96,7 +96,7 @@ In Netflix, for example, it can become apparent that a user constantly avoids wa
 On the \gls{scw} platform we also see an improvement, most likely because this allows the algorithm to better distinguish between users who follow the recommended courses, and those who do not.
 
 \subsection{Adaptation}
-The proposed adaptations to learning systems in this work is not specific to software security and could be applied to other domains.
+The proposed adaptations to learning systems in this work are not specific to software security and could be applied to other domains.
 The adaptation based on processing of the data is especially easy to implement and can be applied to any \gls{cf} algorithm.
 The biggest requirement is that sufficient data needs to be available to overcome problems caused by data scarcity which can be exaggerated by splitting the data even more.
 In learning systems more so than in movie or music recommendations, we can expect users to rate a significant portion of the items, which makes this requirement more likely to be met.

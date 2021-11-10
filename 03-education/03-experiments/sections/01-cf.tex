@@ -141,7 +141,7 @@ To avoid dividing by zero, a one is added to the denominator, as shown in Equati
 %\end{equation}
 
 The second metric, \textit{the cosine similarity}, requires the ratings of the common items between two users to be represented as vectors.
-The cosine is then defined as the cosine of the angle between these two vectors, which is the same as the inner product of the two vectors normalized to both have length one.
+The cosine similarity is then defined as the cosine of the angle between these two vectors, which is the same as the inner product of the two vectors normalized to both have length one.
 The resulting formula is shown in Equation~\ref{eq:cosine}.
 
 \begin{equation}
@@ -162,7 +162,7 @@ It can be seen as a mean-centered cosine similarity which is evident from simila
 \end{equation}
 
 
-\textit{Baseline}, the final similarity measure considered in this experiment, is similar to the Pearson correlation coefficient, but uses baselines for centering instead of means. This similarity metric is shown in Equation~\ref{eq:pearson-baseline}.
+\textit{Baseline}, the final similarity metric considered in this experiment, is similar to the Pearson correlation coefficient, but uses baselines for centering instead of means. This similarity metric is shown in Equation~\ref{eq:pearson-baseline}.
 
 \begin{equation}
   \label{eq:pearson-baseline}
@@ -342,7 +342,7 @@ Like the \gls{mae}, the \gls{rmse} is scale-dependent.
 It takes non-negative values and a lower value means better prediction performance.
 
 The \gls{rmse} has increased in popularity, partly because of its use in the Netflix competition for movie recommendations~\cite{su2009survey,zhou2008large}.
-In 2006 Netflix launched a competition to beat the current score of their recommendation algorithm, \emph{Cinematch}.
+In 2006, Netflix launched a competition to beat the current score of their recommendation algorithm, \emph{Cinematch}.
 At the time the algorithm achieved a \gls{rmse} of 0.9514~\cite{zhou2008large,bennett2007netflix}.
 With the competition, Netflix offered a \$1 million dollar prize to the team that could improve this benchmark by 10\%.
 The algorithm of the winners, one year later, reached a \gls{rmse} of 0.8567 and was put into production~\cite{zhou2008large,netflixprizeforum,netflixprizeleaderboard}.
@@ -360,7 +360,7 @@ This is shown in Equation~\ref{eq:concordantpairs}.
 
 The number of pairs that is ranked incorrectly is the number of discordant pairs $n_{d}^u$.
 
-The total number of concordant pairs $n_c$ and discordant pairs $n_d$ is then obtained by summing over all users as shown in Equation~\ref{eq:concordant2}.
+The total number of concordant pairs $n_c$ and discordant pairs $n_d$ is then obtained by summing over all users, as shown in Equation~\ref{eq:concordant2}.
 
 \begin{equation}
     \label{eq:concordant2}
@@ -426,7 +426,7 @@ The \gls{mae} of the best performing configuration for each memory-based algorit
 
 \begin{table}
     \centering
-    \caption[Prediction performance of memory-based algorithms]{All memory-based algorithms perform better than the benchmarks. \gls{knn} basic an Slope One perform significantly worse than the other algorithms.}
+    \caption[Prediction performance of memory-based algorithms]{All memory-based algorithms perform better than the benchmarks. \gls{knn} basic and Slope One perform significantly worse than the other algorithms.}
     \label{tab:memory-based}
     \small
     \begin{tabular}{l ll}
@@ -447,13 +447,13 @@ In the next test, these results are compared to those of the model-based algorit
 
 Surprisingly, none of the model-based algorithms was able to improve the prediction rate of the best performing memory-based algorithm.
 Changing parameters in the model-based algorithms had influence on the speed of convergence, but no real impact on the prediction accuracy.
-The \glspl{mae} for each algorithm is shown in Table~\ref{tab:model-based}, for other measurements consult Appendix~\ref{app:its-metrics}.
+The \gls{mae} for each algorithm is shown in Table~\ref{tab:model-based}, for other measurements consult Appendix~\ref{app:its-metrics}.
 
 SVD++, the best performing of the model-based algorithms, reaches a \gls{mae} of 0.4591, beating the default configurations of all memory-based algorithms.
 This is not surprising, as SVD++ also takes into account which items users have and have not rated.
 This algorithm can hence make a better distinction between users who followed the standard courses, and users who did not.
 
-Co-Clustering performs worst of the model-based algorithms and its \gls{mae} is not significantly better than that of the baseline benchmark.
+Co-Clustering performs the worst of the model-based algorithms and its \gls{mae} is not significantly better than that of the baseline benchmark.
 One of the strengths of the Co-Clustering algorithm is that it can handle synonyms rather well.
 In recommendation systems, synonyms are items that are (nearly) identical but are still labeled as different items.
 Movie databases often have genres like ``Children's movie" and ``Children's film", which are then clustered together by the algorithm.

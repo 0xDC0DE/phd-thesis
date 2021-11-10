@@ -11,7 +11,7 @@ For each challenge the language and framework are known, as well as the category
 The difficulty assigned to this challenge is also known but it is not an accurate representation.
 The way this difficulty is determined is explained in more detail in Appendix~\ref{app:challenges}.
 
-The multiple choice options for a identify and locate challenges are randomly generated each time it is presented to a user on the website.
+The multiple choice options for identify and locate challenges are randomly generated each time they are presented to a user on the website.
 For the fix challenges the multiple-choice options are fixed, and determined by the author of the challenge.
 There is no clear order to the multiple-choice options.
 There is only one correct option, and all others are incorrect, with no distinction between which incorrect option is the closest to the correct one, or the most misleading option.
@@ -43,7 +43,7 @@ Users who have completed at least 20 challenges will be called active users from
 Out of the 175,979 unique users who have completed at least one challenge on the platform, 95,591 are considered active users whose behaviour on the platform will be used to create the \gls{its}.
 
 A similar argument can be made for the challenges.
-To accurately calibrate the difficulty of a challenge, enough users of varying ability levels need to complete it.
+To accurately calibrate the difficulty of a challenge enough users of varying ability levels need to complete it.
 The ability level of these users needs to be known.
 To calibrate the difficulty of an exercise, \gls{irt} recommends a minimum of 500 responses to an item.
 As a result we are filtering out all challenges that are not completed by at least 500 active users.
@@ -57,13 +57,13 @@ In the rest of this book this will be implied when it is written that a challeng
 \subsection{Data annotation}
 \label{sec:utility}
 The exercise difficulties and user ability levels as estimated by the Rasch model can be used to determine the utility of an item for a user.
-A scale of 1 - 5 was chosen, and each item is assigned a neutral utility of 3 by default.
+A scale of 1 to 5 was chosen, and each item is assigned a neutral utility of 3 by default.
 This utility is updated based on the performance of the user on this item, and on related items later in time.
 
 \paragraph{Flow}
 The first influence on the utility of an item is user engagement.
-If the item is considered likely to keep the user in flow, its utility is decreased.
-If the item is likely to make users feel frustrated or bored, its utility is increased.
+If the item is considered likely to keep the user in flow, its utility is increased.
+If the item is likely to make users feel frustrated or bored, its utility is decreased.
 Whether or not an item is likely to keep a user in flow is calculated using the probability of a correct answer.
 Before each item is played, the difficulty of this item and the current ability level of the user are used to determine this probability through the \gls{irf}.
 The utility is then updated based on this probability as well as the actual outcome of the answer.

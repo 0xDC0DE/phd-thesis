@@ -1,7 +1,7 @@
 \chapter{Conclusion}
 \glsresetall
 
-In this work the focus is on improving the usability of the developer with more targeted, role-specific training and tools.
+In this work, the focus is on improving the usability of the developer with more targeted, role-specific training and tools.
 I propose a methodology to improve collaboration between developers and security professionals, called the paved path methodology.
 In line with this methodology, I made improvements to both training and tools provided by \gls{scw}.
 
@@ -29,7 +29,7 @@ In this work, I aimed to improve the efficiency of the training by adapting the 
 To do this, I designed an \gls{its} consisting of three algorithmic components.
 These are exercise selection, user ability estimation, and exercise difficulty estimation.
 
-The latter two are achieved through calibrating a \gls{2pl} Rasch model from the field of \gls{irt}.
+The latter two are achieved through calibrating a two parameter logistic (2PL) Rasch model from the field of \gls{irt}.
 With the results of this model, I have contributed insights into the mental model of a developer.
 I have shown that both the vulnerability category and the language and framework have a medium-sized effect on the difficulty of an exercise.
 Some key findings are that languages that require memory management result in increased difficulty, as well as the use of frameworks.
@@ -41,10 +41,10 @@ This method could be useful in many situations where full calibration procedures
 
 Finally, the recommendation system itself was developed and evaluated.
 In the set of \gls{cf} algorithms that were tested, model-based algorithms were outperformed by simpler memory-based algorithms.
-This is likely because the advantages of model-based algorithms such as improved capacity to deal with data sparsity, scalability, and synonyms are not very applicable to the data set of \gls{scw} training platform.
+This is likely because the advantages of model-based algorithms such as improved capacity to deal with data sparsity, scalability, and synonyms are not very applicable to the data set of the \gls{scw} training platform.
 
 One of the main contributions of this work to the state of the art, is the proposed adaptation of \gls{cf} algorithms to learning systems.
-These simple and easy-to-implement adaptions are applicable to many, if not all, \gls{cf} systems and have shown a significant increase in prediction performance for all algorithms that have been tested.
+These simple and easy-to-implement adaptations are applicable to many, if not all, \gls{cf} systems and have shown a significant increase in prediction performance for all algorithms that have been tested.
 
 Whether or not this recommendation system leads to increased engagement remains to be tested after the \gls{its} is implemented into the \gls{scw} platform.
 This process will be gradually completed in several distinct steps.
@@ -70,7 +70,7 @@ To help developers secure their own code, they are given security training and h
 However, security training and tools are often designed with security professionals in mind.
 They are using a reactive approach, and scan for vulnerabilities.
 This approach requires sufficient code and calling context to be completed, which means that developers often have to go back to the code, potentially long after it was initially developed.
-This clearly does not integrate well in developer workflows, and it is no surprise that developer dislike and often disable these tools.
+This clearly does not integrate well in developer workflows, and it is no surprise that developers dislike and often disable these tools.
 Instead, they should be handed role-specific tools, so that they can receive proactive guidance that helps them more effectively and efficiently produce secure code.
 
 That is the intent of Sensei.
@@ -81,9 +81,9 @@ With Sensei, we take a fundamentally different approach, enforcing guidelines re
 This will help developers produce secure code from the start.
 
 The contributions of this work include an evaluation of this tool and some of its specific features.
-In the first experiment, I have evaluated the effect of highly customized rules and remedation guidance in the \gls{ide}.
+In the first experiment, I have evaluated the effect of highly customized rules and remediation guidance in the \gls{ide}.
 I was able to compare the results of this experiment to those of similar experiments with other tools.
-I found that the both the customization of rules as well as the quick-fixes in the \gls{ide} itself lead to increased engagement and trust from the developers.
+I found that both the customization of rules as well as the quick-fixes in the \gls{ide} itself lead to increased engagement and trust from the developers.
 
 Sensei is not the only tool that offers an easy-to-read rule syntax, or features to more easily develop and test rules.
 However, usability tests indicate that a \gls{ui} that helps the rule-writer create rules without requiring intimate knowledge of the rule syntax could be an important feature.
@@ -114,6 +114,6 @@ Because the security professional that is creating the rules is now forced to al
 To achieve this, they most likely need help from members of the development team or at the very least colleagues with a development background.
 Interactions like this result in closer collaboration among the teams and hence more mutual empathy.
 
-A shift like this does not happen overnight, and this work on its might not radically change software development.
+A shift like this does not happen overnight, and this work on its own might not radically change software development.
 But with this method, I advocate to \textit{pave the path} towards secure development, and take a step in the right direction.
 A step in the journey towards a more human-centered future of software security.

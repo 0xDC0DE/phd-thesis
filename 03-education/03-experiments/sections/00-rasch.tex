@@ -28,7 +28,7 @@ It does not take into account the contents of the exercise, only the number of o
 While the amount of options is expected to have some influence on the actual difficulty, this effect is likely to be small compared to other characteristics of the exercise.
 
 \subsection{Experimental set-up}
-In Section~\ref{sec:calib} it was previously mentioned that calibration techniques for the Rasch model are mostly designed for item banks with several dozens of items.
+In Section~\ref{sec:calib}, it was previously mentioned that calibration techniques for the Rasch model are mostly designed for item banks with several dozens of items.
 The larger size of the item bank of \gls{scw} will cause longer execution times and more difficult convergence to stable estimates.
 I solved this problem by splitting the item bank into several smaller item banks and calibrating each of them separately.
 
@@ -92,7 +92,7 @@ Variable & df & F & $p$ & $\eta^2$ \\
     \label{tab:anova1}
 \end{table}
 
-In this \gls{anova} the eta-squared ($\eta^2$) metric was used to measure the effect size of each categorical variable on the estimated \gls{irt} difficulty.
+In this \gls{anova}, the eta-squared ($\eta^2$) metric was used to measure the effect size of each categorical variable on the estimated \gls{irt} difficulty.
 A medium effect was measured for the framework, category, and vulnerability of the exercise and a large effect was measured for the presentation.
 
 Pairwise Games-Howell post-hoc tests were then used to determine which of the values in each categorical variable are statistically different from each other~\cite{games1976pairwise}.
@@ -119,7 +119,7 @@ With the exception of the presentation, each of the categorical variables has a 
 If there is no statistical significant difference between two values, this is usually due to insufficient data for one of the values or because the data of one (or both) of the values is too widely spread and there is significant overlap between the data for the two values.
 %In the remainder of this section such values are not discussed or shown in any of the graphical displays.
 The remaining values show a statistically significant difference in mean difficulty with at least one other value.
-When mean difficulties are compared in the remainder of this section, only values are compared whose means show statistically significant differences as determined by the pairwise Games-Howell tests.
+When mean difficulties are compared in the remainder of this chapter, only values are compared whose means show statistically significant differences as determined by the pairwise Games-Howell tests.
 Each of the values that are compared explicitly, show statistically significant differences in mean difficulty with a $p$-value of at most 0.05.
 The exact $p$-values of these tests are reported in Appendix~\ref{app:pairups}.
 %Where appropriate, the $p$-values of the pairwise Games-Howell test for compared categories will be included.
@@ -152,7 +152,7 @@ To fix these vulnerabilities, only local changes to the code are necessary, iden
 
 Still, it is noteworthy that the categories near the bottom of the scale are some of the most infamous vulnerabilities.
 Injection for example is the top category of the \gls{owasp} top 10 in 2017 and receives high scores for exploitability, detectability, and technicality.
-It has currently dropped to the third position in the draft of the next iteration to be released in 2021\footnote{\url{https://owasp.org/Top10/}}.
+It has currently dropped to the third position in the next iteration to be released in 2021\footnote{\url{https://owasp.org/Top10/}}.
 Based on our training data, at least, it seems that these scores might be exaggerated.
 %To explain this, we have to consider the exercises on the \gls{scw} platform.
 %To locate a vulnerability in the code, the category of the vulnerability is given.
@@ -223,7 +223,7 @@ The more modern replacement for Objective C, Swift, that is inspired by both C\#
 
 Languages and frameworks have evolved to automate some of the tasks of the developer, such as memory management, and password encryption.
 The abstractions provided by these languages and frameworks does not always have a positive impact on security, as is evident from these results.
-It is likely that the developers has to sufficiently grasp the implementation details to fully understand the security impact of their code.
+It is likely that the developer has to sufficiently grasp the implementation details to fully understand the security impact of their code.
 
 \begin{figure}
     \centering

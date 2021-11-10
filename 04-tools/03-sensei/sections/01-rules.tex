@@ -17,7 +17,7 @@ A simple example of such a model is  the ``Replace method call model”.
 Figure~\ref{fig:recipeedit2} shows a recipe being created to replace the \texttt{addCookie} method with a safe alternative from the \gls{owasp} \gls{esapi}, an open-source, web application security control library designed to make secure development easier~\cite{ESAPI}; the organization also provides some commonly used security guidelines.
 The recipe-writer has to fill in some specifics about the method they want to be marked by Sensei, such as the package, class, and method names.
 Then they can write one or more quick-fixes.
-To create quick-fix, they have to write a quick-fix description and they have to define the code fragment that will be used to replace the original.
+To create a quick-fix, they have to write a quick-fix description and they have to define the code fragment that will be used to replace the original.
 For the replacement code, they can reuse arguments, method names, and more from the original code by means of a template language.
 In the field ``Rewrite to", the example quick-fix reuses the first argument of the original method call by using the template \texttt{arguments.0}. 
 
@@ -34,7 +34,7 @@ As of now the old recipe editor has over 40 different models.
 With this many models, it becomes overwhelming for recipe-writers that have to select a model to enforce their desired coding guideline.
 The described model-based recipe creation process is not flexible and intuitive enough, so in the next iteration Nathan Desmet and I designed a new approach.
 
-In this approach we split up the recipe in two parts: A trigger to identify the violation, plus an optional quick-fix to correct the vulnerability consistently according to company best practices.
+In this approach, we split up the recipe in two parts: A trigger to identify the violation, plus an optional quick-fix to correct the vulnerability consistently according to company best practices.
 Triggers are now specified by way of \gls{yaml}\footnote{\url{https://yaml.org/}} syntax, which provides more flexibility.
 To develop this \gls{yaml} syntax, all existing Sensei rules were analyzed and grouped based on which elements in the code are incorrect and which transformations are required to fix them.
 The resulting taxonomy of 10 bad code patterns is included in Appendix~\ref{app:patterns}.
@@ -150,7 +150,7 @@ Remote cookbooks are only recommended to distribute generally applicable cookboo
 Any updates to the remote cookbooks are automatically pushed to all the developers.
 Locally stored cookbooks are editable and can be specified by a local path (e.g., \texttt{/Users/dev/recipes}) for personal cookbooks or a path starting from the project root (by default \texttt{project://.sensei}) for default cookbooks for a project.
 Local cookbooks are editable which means they can also be enabled on a recipe-by-recipe basis.
-It is advised to store project specific recipes as part of the project.
+It is advised to store project-specific recipes as part of the project.
 This way, the recipes are always available, up-to-date with the code, and following the same flow as regular code (e.g., branch, review, merge).
 When recipes follow the same flow as the code, new \glspl{api} and the recipes needed to use them properly can be added to the project and reviewed as a whole. 
 
@@ -244,7 +244,7 @@ It should be just one line.
 The purpose of this description is to attract attention, inform the developer that something should be addressed, not to explain how to address it.
 
 We have learned through user feedback that it is most effective to attract the user's attention by starting with the “why”~\cite{RSAvideo}, the reason the code is marked and should be addressed.
-In the past the short description used to indicate the possible vulnerability class, for example “Could lead to SQL injection”. 
+In the past, the short description used to indicate the possible vulnerability class, for example “Could lead to SQL injection”. 
 We believed that starting with the potential consequences, makes the developers realize the severity of their mistake and encourages them to immediately address it.
 However, as explained in Section~\ref{sec:communication}, security jargon should be avoided when communicating to developers.
 The feedback in all of the descriptions should be targeted at developers, and hence the focus should be on the guidelines that were put in place, on the paved path.
@@ -258,7 +258,7 @@ A better short description is hence, “Violates a guideline on data retrieval�
   \label{fig:shortdescription} 
 \end{figure}
 
-Next to the short description a “read more” link is created by the \gls{ide} for the interested developer.
+Next to the short description, a “read more” link is created by the \gls{ide} for the interested developer.
 Upon clicking this link, a pop-up is opened to show a more elaborate \gls{html} page.
 This is the second description.
 Figure~\ref{fig:fulldescription} shows an example.

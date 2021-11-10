@@ -90,7 +90,7 @@ The resulting \gls{gui} will have a similar user experience as the \gls{ui} prov
 \end{figure}
 
 Security professionals report using the context-wizard to automatically generate recipes from context.
-However, in usability tests, none of the tested users have used this features.
+However, in usability tests, none of the tested users have used this feature.
 This indicates that the feature might not be clearly understood.
 Instead of “create recipe for similar methodcalls”, it might be more effective to make the option in the menu adapt to the context, for example “create recipe for Runtime.exec methodcalls”.
 
@@ -98,7 +98,7 @@ Quick-fixes are added to nearly every recipe.
 However, in some situations no fully functional quick-fix can be created and the developer is still required to make changes to the code after applying the quick-fix.
 The template language that allows reusing parts of the original code is often required to create a working quick-fix.
 However, the suggestion box in the quick-fix menu is not clearly visible to the users, and as a result these suggestions are rarely used.
-The recipe-writer can still find them in the documentation or by copy pasting from other rules, but using this menu should be more convenient.
+The recipe-writer can still find them in the documentation or by copy-pasting from other rules, but using this menu should be more convenient.
 Currently, the variables are hidden by default and the ``Show variables" button is not prominent enough, as shown in Figure~\ref{fig:showvariables}.
 
 \begin{figure}
@@ -118,7 +118,7 @@ Features for those tools often include integrations with common bug tracking sys
 We observed that many tools provide functionality to disable certain rule reports through configuring security policies.
 This is a necessary feature to remove or hide classic false positives.
 However, this disabling of reports is designed to help security experts keep a good overview of the application state and to help prioritize more severe issues.
-With the exception of the Fortify Security Assistant that disables rules to speed up the scans, disabling rules themselves is rarely supported with he goal to improve the usability of the developers.
+With the exception of the Fortify Security Assistant that disables rules to speed up the scans, disabling rules themselves is rarely supported with the goal to improve the usability of the developers.
 
 \subsection{Feedback and remediation}
 Sensei is distributed as an \gls{ide} plugin.
@@ -206,10 +206,10 @@ But it can also mean that there simply are a lot of database queries, with a lar
 For coding guidelines a relative measure can be designed, by comparing the number of guideline violations to the number of times the code complies to guidelines. Since complying to strong coding guidelines leads to secure code~\cite{banerjee2009software,tabassum2017comparing}, we get a better indication of the security in the software product.
 
 The plugin is useful as a tool to aid the developer, but the option to measure guideline deployment also hints at its potential as a management tool.
-As demonstrated in the experiment, management can track the changes developers makes to projects and log the guideline violations that they introduce and fix, with or without aid of the quick-fixes.
+As demonstrated in the experiments, management can track the changes developers makes to projects and log the guideline violations that they introduce and fix, with or without aid of the quick-fixes.
 Currently, this data is collected in the events databases on the machine of each developer.
 In the future, these metrics should be collected and visualised on the \gls{scw} platform.
-This makes the return on investment clear to companies using the tool.
+This makes the \gls{roi} clear to companies using the tool.
 With this data available in the platform, more targeted and individually tailored training can be provided as well.
 This data can for example feed into the \gls{its} to improve its recommendations, as described in Section~\ref{sec:its-integration}.
 

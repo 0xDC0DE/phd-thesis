@@ -34,7 +34,7 @@ To support the paved path methodology better education and tools should be provi
 %(CONTEXT)
 % Background for non-specialized readers
 % Establish the importance of the NEED
-Security issues still exist in all software products: 100\% of the applications tested by Trustwave in 2017 displayed at least one \gls{vulnerability}~\cite{trustwave}. 90 percent of these \glspl{vulnerability} are caused by problems or oversights in underlying code~\cite{softwareassurance}. They are the results of mistakes made by the programmers during development. These are not new problems, the same type of \glspl{vulnerability} have been widely present in software for decades.
+Security issues still exist in all software products: 100\% of the applications tested by Trustwave in 2017 displayed at least one \gls{vulnerability}~\cite{trustwave}. 90\% of these \glspl{vulnerability} are caused by problems or oversights in underlying code~\cite{softwareassurance}. They are the results of mistakes made by the programmers during development. These are not new problems, the same types of \glspl{vulnerability} have been widely present in software for decades.
 
 The (application) security team (\Gls{sec} or \Gls{appsec}) at these companies is responsible for evaluating the software and finding all the \glspl{vulnerability}. With the use of security tools much of this process is automated and so they have become quite competent at finding problems in the code. In fact, many of the reported numbers are collected through security tools used by these very teams~\cite{owasptop10data}. 
 
@@ -121,7 +121,7 @@ It then becomes clear that improving one at the detriment of the other, is not r
 \subsection{Aligning communication}
 \label{sec:communication}
 The culture of mutual empathy is also improved with more deliberate and conscious communication.
-Instead of shaming or even punishing developers when problems are introduced in the code, the security team should try to understand the the developer's challenges, and offer help.
+Instead of shaming or even punishing developers when problems are introduced in the code, the security team should try to understand the developer's challenges, and offer help.
 When the paved path has been build through collaboration, this implies the guidelines for the project have been mutually agreed upon.
 When such guidelines are violated, it becomes easier to demonstrate empathy and to show good intent.
 The security team can ask developers if the guidelines are insufficiently clear, if they lack recommendations for specific edge cases, or if there is any other valid reason the developer did not adhere to the guideline.
@@ -134,7 +134,7 @@ So instead of warning of a potential \gls{xss} \gls{vulnerability}, the security
 
 By improving culture, and creating more empathy between the security team and developers, the security team should be better equipped to integrate security and development workflows without hurting productivity.
 The integration of these processes can be facilitated with appropriate technology that is more suited to developers.
-Instead of forcing re-purposed security and tools designed for security professionals onto developers, new technology should be used that is built with the developer experience in mind.
+Instead of forcing re-purposed security tools designed for security professionals onto developers, new technology should be used that is built with the developer experience in mind.
 
 \section{Developer-minded security education}
 
@@ -145,7 +145,7 @@ Deliberate security education that keeps the developer experience in mind should
     \item \emph{usable}, engaging, fun.
 \end{itemize}
 
-The goal of security education is to teach developers the knowledge and skills necessary to produce secure code. To achieve this goal we want the acquired information to be stored in long-term memory. Every piece of knowledge in long-term memory is stored as a series of associations~\citep{dirksen2015design}. 
+The goal of security education is to teach developers the knowledge and skills necessary to produce secure code. To achieve this goal, we want the acquired information to be stored in long-term memory. Every piece of knowledge in long-term memory is stored as a series of associations~\citep{dirksen2015design}. 
 
 If a developer learns about the programming language Kotlin, this can be encoded in their memory under the following associations:
 \begin{itemize}[noitemsep]
@@ -256,7 +256,7 @@ Such a tool helps developers share their knowledge and guide each other to impro
 To assert that the developer is adhering to the guidelines, only local analyses are required. There is no need for complex data flow or control flow analyses. The required local analyses can be done in real time, as the developer types. 
 A tool that supports the paved path methodology is hence efficient and actively improves the productivity of the developer instead of hurting it.
 
-In contrast, traditional security tools will try to assert the absence of certain bugs in the application. To do this they have to analyse all possible data flows. Even moderately complex applications contain complex data flows that are difficult to reason about~\cite{kern2014securing}. This complexity leads to slow scanning speed and, to the developer's standards, insufficient quality of results. 
+In contrast, traditional security tools will try to assert the absence of certain bugs in the application. To do this, they have to analyse all possible data flows. Even moderately complex applications contain complex data flows that are difficult to reason about~\cite{kern2014securing}. This complexity leads to slow scanning speed and, to the developer's standards, insufficient quality of results. 
 
 When using traditional security tools, developers report this poor quality of feedback and slow scanning speed as big inhibitors of their productivity~\cite{shiftleftsurvey}.
 These security tools are of course still valuable to the security team to help them create and maintain libraries, but they are not the right tool to provide to developers.
@@ -405,7 +405,7 @@ Markings and remediation guidance should depend on the knowledge of the develope
 But not only Sensei can benefit from this blended border with education.
 Education can also be more targeted if it can integrate with Sensei and other developer tools. By observing which errors developers make in practice, a better picture of their understanding can be created.
 By integrating with issue trackers, it is possible to keep track of the issues that developers are assigned to, and to design individual learning goals for each developer.
-Integration with developer tools enables education to become even more relevant, efficient and usable.
+Integration with developer tools enables education to become even more relevant, efficient, and usable.
 
 Another challenge that remains for the paved path methodology is applying it to existing, potentially large, legacy codebases. While the security team can still lay out a paved path for developers to follow, it is no easy task to refactor the existing code so that it adheres to this path. 
 Extra care should be taken when designing the inherently safe wrapper library so that its uses match one to one as much as possible with the existing library. 

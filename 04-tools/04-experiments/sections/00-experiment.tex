@@ -114,7 +114,7 @@ All subjects were allowed to use their own devices, and any resources they would
 We did not allow communication with other subjects.
 Subjects were allowed to take breaks and leave the room.
 However, as to not give incentive to finish hastily and without care, all subjects were required to be present during debriefing.
-The subjects installed Sensei by adding custom repository instead of the JetBrains Marketplace as this allowed us to customize the features of the plugin for this experiment.
+The subjects installed Sensei by adding a custom repository instead of through the JetBrains Marketplace, as this allowed us to customize the features of the plugin for this experiment.
 
 The subjects were given:
 \begin{itemize}[noitemsep]
@@ -148,13 +148,13 @@ Indeed, despite testing on several operating systems and \gls{ide} versions ther
 When the task had been completed or the allocated time ended, the subjects were instructed to:
 
 \begin{enumerate}[noitemsep]
-    \item navigate to the Sensei installation folder and find the Sensei events file, which contains a log of all the action monitored by the Sensei plugin
+    \item navigate to the Sensei installation folder and find the Sensei events file, which contains a log of all the actions monitored by the Sensei plugin
     \item archive both the events file and the source files into one archive
     \item submit the archive to the teaching staff
 \end{enumerate}
 
 The events file contains timestamps and guidelines for all logged events.
-Example snippets of event files are shown in Table~\ref{tab:recipe1}, and Table~\ref{tab:recipe2}.
+Examples of event files are shown in Table~\ref{tab:recipe1}, and Table~\ref{tab:recipe2}.
 The events in these tables include newly introduced guideline violations (ADD) that are later in time removed (DELETE).
 In Table~\ref{tab:recipe2} violations are removed using quick fixes (FIX).
 The removal of a guideline violation leads to compliant code.
@@ -242,7 +242,7 @@ With the data from the 32 subjects who handed in their events file, I can still 
 \subsubsection{Analysis method}
 \label{sec:analysis}
 Since the logs in the events file do not include file locations, we sometimes have to make assumptions on which ADD and DELETE events should be paired.
-On occasion there are multiple guideline violations with the same recipe ID present in the code at a certain time, as is the case in Table~\ref{tab:recipe2}. 
+On occasion, there are multiple guideline violations with the same recipe ID present in the code at a certain time, as is the case in Table~\ref{tab:recipe2}. 
 In this case, we cannot know for certain which of the two violations is fixed first.
 During our experiment, this was the case for 8\% guideline violations, with the two ADD events on average 37.75 s (s = 44.05 s) apart.
 For the measurements of the time between adding the violation and removing it, we assumed that the violations were removed in the same order as they were introduced.
@@ -299,7 +299,7 @@ This large standard deviation is explained by a large difference in removal time
 
 On average more commonly known vulnerabilities such as \gls{sql} injection and \gls{xss} are resolved within less than 10 seconds, while the guidelines regarding file upload vulnerabilities take significantly longer.
 This is in line with general results from the trained Rasch model in the experiment of Section~\ref{sec:eval-rasch}.
-The model showed that exercises about known vulnerabilities such as \gls{sql} injection and \gls{xss} have a lower mean difficulty on the \gls{scw} training platform.
+The model showed that exercises about commonly known vulnerabilities such as \gls{sql} injection and \gls{xss} have a lower mean difficulty on the \gls{scw} training platform.
 Both these results indicate that understanding and fixing these common vulnerabilities is relatively easy.
 But in this experiment, as well as in practice, many developers still make those mistakes.
 This gap between knowledge and practice shows that when developers are focused on the functionality of their code, they can easily lose track of the security.

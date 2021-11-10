@@ -59,7 +59,7 @@ It could hence be beneficial to keep track of the ability level around which a r
 The \gls{cf} algorithm can then only consider users to be like-minded, if they experienced the same utility as the target user within a certain ability range.
 Users who experienced the same utility for an item but at a sufficiently dissimilar ability level will not be considered like-minded users.
 
-In Figure~\ref{fig:3d-cf} illustrates how this adaptation could be achieved on the example algorithm from before.
+Figure~\ref{fig:3d-cf} illustrates how this adaptation could be achieved on the example algorithm from before.
 In this figure, the recorded utility that the users $i$ $(i = 0,\dots,5)$ experienced from challenges $j$ $(j = A,\dots,J)$ is depicted in a two dimensional grid for three sufficiently distinct ability levels $\bm\theta$.
 A green check mark means that this challenge was useful to the user around that ability level.
 A red cross means it was not useful, and the user either did not learn anything, or the challenge caused the user to disengage from the training.
@@ -116,7 +116,7 @@ In a learning system, the need for an initial calibration phase can not be avoid
 
 Five different memory-based \gls{cf} algorithms are considered in this work. 
 They will be described in more detail in the experiments in Section~\ref{sec:eval-cf}.
-Four of these algorithms are \gls{knn} algorithms, they first determine the k nearest neighbours and use the ratings of these neighbours to compute a prediction.
+Four of these algorithms are \gls{knn} algorithms, they first determine the k nearest neighbours and then use the ratings of these neighbours to compute a prediction.
 Because these algorithms use an explicit definition of similarity between users, they can be easily adapted to learning systems by changing this definition to take into account the ability of the users.
 The remaining memory-based algorithm uses the ratings of all users to make a prediction, adapting it to learning systems will be harder, but can still be achieved by processing the data, as will be explained in the description of the experiments.
 
@@ -189,7 +189,7 @@ This is likely not a good approach for learning systems, where diverse content s
 Systems that make use of the organisation of learning material are called knowledge-based, or semantics-based recommendation systems.
 They create a structured knowledge graph or ontology to organise the learning material.
 
-Existing ontologies in software security attempt to organize different security concepts in a broader knowledge graph of software science.
+Existing ontologies in software security attempt to organize different security concepts in a broader knowledge graph of computer science.
 For example, they classify \gls{sql} injection as a type of injection attack, \gls{sql} security as a type of data integrity, and a \gls{dos} attack is linked the availability of the product~\cite{kang2013security, jia2018practical}.
 While this information can be useful to a developer learning about different security concepts, it can not be used to organise the learning material on the \gls{scw} training platform.
 

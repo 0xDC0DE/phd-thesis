@@ -69,7 +69,8 @@ This relationship can be written down as a mathematical function, called the \gl
 In Equation \ref{eq:irf} the ability level of a person $i$ $(i = 1,\dots,I)$ is represented by a multivariate vector of latent traits $\bm{\theta}_i$. $\bm{p}_j$ is the set of parameters of exercise $j$ $(j = 1,\dots,J)$. $X_{ij}$ is the answer of person $i$ for exercise $j$, with $k$ representing one possible answer. 
 For dichotomously scored exercises (e.g. true/false) $k \in \{0,1\}$, for polytomously scored exercises (e.g. multiple choice) $k \in \{0,\dots,K_j\}$. 
 There are many mathematical functions that can be used to describe the \gls{irf}, each resulting in a different \gls{irt} model.
-The most common, and the one used in the \gls{its}, is called the Rasch model, and will be explained in the next Section.
+The most common, and the one used in the \gls{its}, is called the Rasch model.
+This model will be explained in the next section.
 
 The Rasch model is a dichotomous model.
 It is necessary to use a dichotomous model in the \gls{its} because some important data is missing to use polytomous models effectively.
@@ -145,9 +146,9 @@ This second parameter $a_j$ of an item is a multiplicative parameter, as shown i
 In Figure~\ref{fig:2pl} the \glspl{irf} are plotted for three exercises with the same difficulty $b_j = 0$ but various discriminative abilities. 
 For all three \glspl{irf} the probability of a correct answer is still 0.5 for users with an ability level equal to the exercise difficulty.
 However, the second parameter influences the steepness of the curve.
-For larger discrimination parameters such as $a_3 = 4$, a smaller increase in ability $\bm\theta$ around the exercise difficulty level $b_j = 0$ leads to a more notable increase in probability of a correct answer $P_j$.
+For larger discrimination parameters such as $a_j = 2$, a smaller increase in ability $\bm\theta$ around the exercise difficulty level $b_j = 0$ leads to a more notable increase in probability of a correct answer $P_j$.
 Such an exercise discriminates better between low and high ability users.
-On the other hand, exercises with lower discrimination values, like $a_1 = 0.25$ result in flatter \glspl{irf} and do not allow as easily for such discrimination.
+On the other hand, exercises with lower discrimination values, like $a_j = 0.5$ result in flatter \glspl{irf} and do not allow as easily for such discrimination.
 
 \begin{figure}
     \centering
@@ -236,11 +237,11 @@ The method applied in this work is the \gls{wle}~\cite{magis2017computerized}.
 \subsection{Alternative approaches}
 \gls{irt} is often used to adapt the learning material to the ability level of the student in e-learning systems~\cite{chen2005personalized,yarandi2011personalised}.
 Often the \gls{irt} ability level is used to determine the appropriate difficulty level of the exercises that should be presented to the user~\cite{chen2005personalized,yarandi2011personalised,khanal2020systematic}.
-In another approach the \gls{irt} ability level was used as a weight in \gls{cf} algorithms so that that the users with greater ability level have greater weight in the calculation of the recommendations than the users with less knowledge.
+In another approach, the \gls{irt} ability level was used as a weight in \gls{cf} algorithms so that that the users with greater ability level have greater weight in the calculation of the recommendations than the users with less knowledge.
 This approach assumes that users of greater ability level, such as teachers, are more able to assess the utility of an item than users of lower ability level.
 In this work, however, users do not rate the items explicitly but instead the utility is determined from learning outcome and engagement, as will be explained in Section~\ref{sec:utility}.
 
-Despite the popularity of \gls{irt} some alternative approaches exist to determine the ability level of a user.
+Despite the popularity of \gls{irt}, some alternative approaches exist to determine the ability level of a user.
 
 \subsubsection{Classical Test Theory}
 In \gls{ctt}, all users have to complete the same exercises and their accuracy on the questions is used as an indicator for the ability level.
@@ -316,11 +317,11 @@ This is the intent of polytomous \gls{irt} models.
 There are many polytomous models available but they generally require scoring in a way that partial credit can be given for incorrect answers~\cite{dodd1995computerized}.
 This makes sense if one considers scoring essays based on quality, or giving partial credit in mathematical questions for completing some of the steps.
 
-On the \gls{scw} portal this could be achieved by ranking the options in the multiple choice question from the most incorrect to the most correct.
+On the \gls{scw} portal this could be achieved by ranking the options in the multiple choice questions from the most incorrect to the most correct.
 However, currently this is not the case, so we have no indication of which incorrect answer is closest to correct.
 Furthermore, historically the incorrect answers have not been logged in the data collection, only the amount of incorrect guesses before a correct answer is given.
 In case the user gave up before finding the correct answer (or in assessments where only one guess is available), the last guess is logged.
-Polytomous models could result in more accurate results, however, currently they can not be used to the available data set.
+Polytomous models could result in more accurate results, but currently they cannot be used with the available data.
 
 \paragraph{Multidimensional IRT models}
 While the ability level has been introduced as a multivariate vector of latent traits $\bm{\theta}_i$, in Section~\ref{sec:irt-intro}, in the current implementation this has been implemented as a scalar.
