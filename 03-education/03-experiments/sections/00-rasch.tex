@@ -54,6 +54,11 @@ However, for this experiment it is necessary to compare the difficulty of challe
 To be able to do this, the entire item bank has to be calibrated at once. 
 The necessary computations took over 73 hours to complete, confirming once more that it would not be feasible to use in the \gls{its}.
 
+% TODO:
+% MacBook Pro (16-inch 2019)
+% Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+% 32 GB DDR4 dual channel memory @ 2667 MHz
+
 \subsubsection{Statistical significance}
 With this single Rasch model calibrated, there is a difficulty estimate for every challenge on the platform.
 It is now possible to group these challenges according to different characteristics and compute the mean difficulty of each group.
@@ -74,7 +79,7 @@ The one-way \gls{anova} compares the mean difficulty for each of those values an
 If the one-way \gls{anova} returns a statistically significant result, that means there are at least two values that are statistically different from each other.
 
 The variables were found to have unequal variances across the possible values, a property called heterogeneity of variances.
-A Welch \gls{anova} should hence be used, as this \gls{anova} can better control for type I errors~\cite{liu2015comparing}.
+A Welch \gls{anova} should hence be used, as this \gls{anova} can account for type I errors~\cite{liu2015comparing}.
 The results of the Welch \glspl{anova} are shown in Table~\ref{tab:anova1} and show that a statistically significant difference exists between values for each of the categorical variables.
 
 \begin{table}
@@ -152,7 +157,7 @@ To fix these vulnerabilities, only local changes to the code are necessary, iden
 
 Still, it is noteworthy that the categories near the bottom of the scale are some of the most infamous vulnerabilities.
 Injection for example is the top category of the \gls{owasp} top 10 in 2017 and receives high scores for exploitability, detectability, and technicality.
-It has currently dropped to the third position in the next iteration to be released in 2021\footnote{\url{https://owasp.org/Top10/}}.
+It has currently dropped to the third position in the iteration released in 2021\footnote{\url{https://owasp.org/Top10/}}.
 Based on our training data, at least, it seems that these scores might be exaggerated.
 %To explain this, we have to consider the exercises on the \gls{scw} platform.
 %To locate a vulnerability in the code, the category of the vulnerability is given.
@@ -222,7 +227,7 @@ Unfortunately, Objective C, an extension of C that can be used for mobile develo
 The more modern replacement for Objective C, Swift, that is inspired by both C\# (.NET) and Python does show a statistically significant higher mean difficulty than both these languages~\cite{nondot}.
 
 Languages and frameworks have evolved to automate some of the tasks of the developer, such as memory management, and password encryption.
-The abstractions provided by these languages and frameworks does not always have a positive impact on security, as is evident from these results.
+The abstractions provided by these languages and frameworks do not always have a positive impact on security, as is evident from these results.
 It is likely that the developer has to sufficiently grasp the implementation details to fully understand the security impact of their code.
 
 \begin{figure}

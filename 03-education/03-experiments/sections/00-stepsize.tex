@@ -3,7 +3,7 @@
 
 From the previous experiment in Section~\ref{sec:eval-rasch}, it is evident that calibrating the entire item bank takes a long time.
 Similarly, computing the ability estimate based on the entire response pattern of a user takes too long.
-Currently, about 15,000 challenges are completed every day, that is about one challenge every five seconds and this number is only expected to go up.
+Currently, about 15,000 challenges are completed every day, that is about one challenge every six seconds and this number is only expected to go up.
 The computations to estimate the ability of a single user frequently exceed that.
 For a procedure that has to be executed this often, even a minute is too long.
 
@@ -69,7 +69,7 @@ From that point forward, the approximation methods are applied to the outcome of
 The resulting approximations are compared to the \gls{irt} ability after every 5 challenges.
 
 \subsection{Findings}
-For each approximation method, the evolution of the mean error as a percent of the full ability scale, is shown Figure~\ref{fig:stepsize}.
+For each approximation method, the evolution of the mean error as a percent of the full ability scale, is shown in Figure~\ref{fig:stepsize}.
 The fixed step size adjustment becomes excessively inaccurate after only 15 to 20 challenges following the initial calibration.
 After 200 challenges, the mean error of this approximation is up to 300\%.
 While the adaptive step size procedure with a fixed reward is significantly better, its error still becomes excessively large and rises indefinitely.

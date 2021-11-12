@@ -249,15 +249,15 @@ Listing~\ref{lst:metavariable} shows a rule to detect potential \gls{os} command
 rules:
 - id: os-command
   patterns:
-    - pattern: $RUNTIME.exec($COMMAND)
+    - pattern: (Runtime $RUNTIME).exec($COMMAND)
+    - pattern-not: $RUNTIME.exec("$HARDCODED")
     - pattern-not-inside: |
         $COMMAND = getSafeCommand();
         ...
         $RUNTIME.exec($COMMAND);
-  message: "Could lead to OS Command injection"
+  message: OS Command test
   languages: [java]
   severity: ERROR
-
 \end{lstlisting}
 
 \begin{lstlisting}[language={yaml},caption={Sensei recipe to detect OS command injection. Any input is untrusted by default except input retrieved through \texttt{getSafeCommand}. Untrusted input passed on to the \texttt{exec} methodcall will be marked.},label={lst:oscommand-sensei},xleftmargin=15pt]

@@ -26,7 +26,7 @@ The difficulty $D \in \{1,2,\dots,100\}$ of a challenge determines how many inse
 \end{align}
 \end{subequations}
 
-This difficulty value $D$ is split up in three tiers, a challenge is considered easy if $D \in [0-35[$, medium if $D \in [35-70[$ and hard if $D \in [70-100]$. For any challenge (L1-L5), $D$ is an indication of the probability of a correct blind guess when it this challenge is presented as a locate exercise (L2). This is likely not an accurate indication of the actual difficulty, which is dependent on many more factors, among which the vulnerability type, code quality, and code complexity.
+This difficulty value $D$ is split up in three tiers, a challenge is considered easy if $D \in [0-35[$, medium if $D \in [35-70[$ and hard if $D \in [70-100]$. For any challenge (L1-L5), $D$ is an indication of the probability of a correct blind guess when this challenge is presented as a locate exercise (L2). This is likely not an accurate indication of the actual difficulty, which is dependent on many more factors, among which the vulnerability type, code quality, and code complexity.
 
 \section{Scoring}
 \label{sec:scoring}
@@ -54,7 +54,8 @@ The amount of points actually awarded depends on the performance of the player. 
 Using hints comes with a penalty that decreases the maximum number of points that can still be gained. This penalty stacks for each hint until all hints are used, and the total penalty reaches 100\%, which means that no more points can be scored. 
 This is because, ultimately, in every type of challenge the hints start to remove incorrect options until only the correct option is left. 
 No points should be awarded when only the correct option is left.
-The penalty for using a hint depends on which type of challenge is faced. The reasoning behind this is that some challenge types have more hint available then others. 
+The penalty for using a hint depends on which type of challenge is faced.
+The reasoning behind this is that some challenge types have more hints available then others. 
 For an identify exercise, for example, it impossible to provide a hint containing a video that explains the vulnerability type in detail, as this would give away the correct answer.
 An overview of the penalty for each hint in each type of exercise is shown in Table~\ref{tb:hints-scoring}.
 
