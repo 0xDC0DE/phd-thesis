@@ -33,7 +33,7 @@ Use of vulnerable components is a vulnerability that can be introduced \textit{a
 It makes sense to integrate this type of security tool in the code repository rather than development tools.
 In the development tool, many developers would get notified of an outdated dependency at the same time, while likely few of them would be working on the build file.
 This would either result in many \glspl{efp}, or in the same fix being applied by multiple developers.
-Remediation for these vulnerabilities is often simply bumping the dependency to the newest version, and results from the Rasch model show that developers have no difficulty fixing this type of vulnerability.
+Remediation for these vulnerabilities is often simply bumping the dependency to the newest version, and results from the \gls{2pl} model show that developers have no difficulty fixing this type of vulnerability.
 %Some \gls{sca} tools will calculate the minimal upgrade path so as not to risk any breaking changes in the code base.
 As remediation guidance, \gls{sca} tools often create automated pull requests that update dependencies to a secure version.
 This process is intuitive and well integrated with existing developer workflows.

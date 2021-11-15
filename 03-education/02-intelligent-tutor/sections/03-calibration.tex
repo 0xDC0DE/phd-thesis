@@ -67,18 +67,20 @@ This relationship can be written down as a mathematical function, called the \gl
 \end{equation}
 
 In Equation \ref{eq:irf} the ability level of a person $i$ $(i = 1,\dots,I)$ is represented by a multivariate vector of latent traits $\bm{\theta}_i$. $\bm{p}_j$ is the set of parameters of exercise $j$ $(j = 1,\dots,J)$. $X_{ij}$ is the answer of person $i$ for exercise $j$, with $k$ representing one possible answer. 
-For dichotomously scored exercises (e.g. true/false) $k \in \{0,1\}$, for polytomously scored exercises (e.g. multiple choice) $k \in \{0,\dots,K_j\}$. 
+For dichotomously scored exercises, meaning there are only two possible answers (e.g. true/false), $k \in \{0,1\}$.
+Exercises with more than two options are called polytomously scored exercises (e.g. multiple choice).
+For these exercises $k \in \{0,\dots,K_j\}$. 
 There are many mathematical functions that can be used to describe the \gls{irf}, each resulting in a different \gls{irt} model.
-The most common, and the one used in the \gls{its}, is called the Rasch model.
-This model will be explained in the next section.
+The most common is called the Rasch model, an extension of this model, called the \gls{2pl} is used in the \gls{its}.
+These models will be explained in the next section.
 
-The Rasch model is a dichotomous model.
+The Rasch model and \gls{2pl} model are dichotomous models, which means the items are scored as only having two possible outcomes, correct or incorrect.
 It is necessary to use a dichotomous model in the \gls{its} because some important data is missing to use polytomous models effectively.
 Polytomous models are most effective when the number of possible options for the multiple choice question is limited to three or four. 
 The incorrect options need to be deliberate and able to mislead a person with a lower ability level. 
 
 On the \gls{scw} training platform, this is not the case as will be explained in Section~\ref{sec:data}.
-Because of this lack of useful polytomous information, I decided to use the dichotomous Rasch model.
+Because of this lack of useful polytomous information, I decided to use the dichotomous \gls{2pl} model.
 For dichotomous models, there are only two outcomes, $k \in \{0,1\}$, representing correct and incorrect.
 That means the \gls{irf} in Equation \ref{eq:irf} can be reduced to
 
@@ -255,7 +257,7 @@ By doing this, some users are guaranteed to feel bored or frustrated since it is
 
 \subsubsection{Other IRT models}
 \paragraph{Three- and four-parameter logistic models}
-In this work we are using the \gls{2pl} Rasch model of \gls{irt}.
+In this work we are using the \gls{2pl} model of \gls{irt}.
 However, further extensions exist on the \gls{2pl} model that add additional parameters.
 The \gls{3pl} and \gls{4pl} add parameters that influence the lower and upper asymptotic behaviour of the \gls{irf}~\cite{magis2017computerized}.
 The lower asymptote parameter $c_j$ is sometimes called the pseudo-guessing parameter. 

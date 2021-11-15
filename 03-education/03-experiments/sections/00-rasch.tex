@@ -2,7 +2,7 @@
 \label{sec:eval-rasch}
 
 \subsection{Goals and research questions}
-The main \textit{goal} of the first experiment is to discover correlations between the difficulty of an exercise as estimated by the Rasch model, and characteristics of that exercise.
+The main \textit{goal} of the first experiment is to discover correlations between the difficulty of an exercise as estimated by the \gls{2pl} model, and characteristics of that exercise.
 The \textit{purpose} is to gain insights in the mental model of the developer, and discover which languages, frameworks, or vulnerability types are typically more difficult.
 The results of this experiment can be used in the \gls{its} to approximate the difficulty of an exercise when there is no sufficient data available to obtain an estimate with \gls{irt}.
 
@@ -28,11 +28,11 @@ It does not take into account the contents of the exercise, only the number of o
 While the amount of options is expected to have some influence on the actual difficulty, this effect is likely to be small compared to other characteristics of the exercise.
 
 \subsection{Experimental set-up}
-In Section~\ref{sec:calib}, it was previously mentioned that calibration techniques for the Rasch model are mostly designed for item banks with several dozens of items.
+In Section~\ref{sec:calib}, it was previously mentioned that calibration techniques for the \gls{2pl} model are mostly designed for item banks with several dozens of items.
 The larger size of the item bank of \gls{scw} will cause longer execution times and more difficult convergence to stable estimates.
 I solved this problem by splitting the item bank into several smaller item banks and calibrating each of them separately.
 
-The downside to this approach is that the Rasch model does not use an absolute scale.
+The downside to this approach is that the \gls{2pl} model does not use an absolute scale.
 This is evident from the equation for the \gls{1pl} model in Equation~\ref{eq:1pl}, repeated here for convenience in Equation~\ref{eq:1pl-2}.
 
 \begin{equation}
@@ -60,7 +60,7 @@ The necessary computations took over 73 hours to complete, confirming once more 
 % 32 GB DDR4 dual channel memory @ 2667 MHz
 
 \subsubsection{Statistical significance}
-With this single Rasch model calibrated, there is a difficulty estimate for every challenge on the platform.
+With this single \gls{2pl} model calibrated, there is a difficulty estimate for every challenge on the platform.
 It is now possible to group these challenges according to different characteristics and compute the mean difficulty of each group.
 Before we can compare the mean difficulties for each characteristic, however, the results have to be tested for statistical significance.
 
@@ -84,7 +84,7 @@ The results of the Welch \glspl{anova} are shown in Table~\ref{tab:anova1} and s
 
 \begin{table}
     \centering
-    \caption[\Gls{anova} test results for Rasch model]{The results of one-way \gls{anova} tests between variables of the exercises and the estimated difficulty. For each variable, the degrees of freedom (df) are shown, as well as the F-statistic, the $p$-value, and the eta-squared ($\eta^2$). All four categorical variables have statistically significant correlations with the estimated difficulty of the exercise. The presentation has a large effect on the estimated difficulty. The category, vulnerability, and framework each have a medium effect.}
+    \caption[\Gls{anova} test results for 2PL model]{The results of one-way \gls{anova} tests between variables of the exercises and the estimated difficulty. For each variable, the degrees of freedom (df) are shown, as well as the F-statistic, the $p$-value, and the eta-squared ($\eta^2$). All four categorical variables have statistically significant correlations with the estimated difficulty of the exercise. The presentation has a large effect on the estimated difficulty. The category, vulnerability, and framework each have a medium effect.}
     \setcellgapes{4pt}\makegapedcells
     \begin{tabular}{l l S[table-format=3.3] l l}
 Variable & df & F & $p$ & $\eta^2$ \\
@@ -222,7 +222,7 @@ On top of the standard language skills, and the security knowledge, a developer 
 
 The mobile framework Java Android is more difficult than web frameworks for the same language (Java \gls{jsf}, Java Spring), as shown in Figure~\ref{fig:frames3}.
 This can be explained through the increased attack vectors of mobile applications that are installed on the device of the user.
-Because the device and operating system cannot be trusted, the developer has to be aware of other threats, such as restoring backups that are tampered with, detecting root access, and tapjacking.
+Because the device and operating system cannot be trusted, the developer has to be aware of other threats, such as restoring backups that are tampered with, detecting root access, and tapjacking, a vulnerability where the attacker can trick the user to perform unintended actions by drawing overlays.
 Unfortunately, Objective C, an extension of C that can be used for mobile development, does not show a statistically significant difference with C itself to confirm this correlation.
 The more modern replacement for Objective C, Swift, that is inspired by both C\# (.NET) and Python does show a statistically significant higher mean difficulty than both these languages~\cite{nondot}.
 
@@ -251,5 +251,5 @@ On the platform this type of exercise is usually the first stage of a two-stage 
     \label{fig:presentation}
 \end{figure}
 
-According to the Rasch model, locating vulnerabilities in the code is the most difficult task.
+According to the \gls{2pl} model, locating vulnerabilities in the code is the most difficult task.
 This is in line with observations made in practice, where many vulnerabilities go unnoticed by developers and are detected by automated tools at later stages in the \gls{sdlc}.

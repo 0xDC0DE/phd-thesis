@@ -2,17 +2,17 @@
 \label{sec:its-perspectives}
 
 \subsection{Implementation into the training platform}
-Results from the Rasch model can be used to improve the \gls{scw} training platform.
+Results from the \gls{2pl} model can be used to improve the \gls{scw} training platform.
 This is a step by step process that has already started.
 
 \paragraph{Quality control of the exercises}
-The results of a Rasch model for the use in tests are used to remove items with a low discrimination parameter from the item bank. 
+The results of a \gls{2pl} model for the use in tests are used to remove items with a low discrimination parameter from the item bank. 
 A low discrimination parameter means that this item it cannot differentiate well between users of high and low ability levels.
 Items like this are not useful in a test, where discriminating between users of different ability levels is exactly the goal.
 Before removing items with a low discriminative ability, the examiner often manually checks items that are only slightly below the predetermined threshold.
 If they are deemed important enough to be included in the tests despite their low discriminative ability, they are not removed from the item bank.
 
-As a first step to use the results of the Rasch models in the \gls{scw} platform, we can use a similar procedure for quality control of the challenges.
+As a first step to use the results of the \gls{2pl} models in the \gls{scw} platform, we can use a similar procedure for quality control of the challenges.
 In contrast with tests, estimating ability is not the main goal of the \gls{its}.
 Items with a low discrimination parameter might have little influence on the accuracy of ability estimates, but these items could still provide meaningful learning opportunities.
 A low discriminative ability can be explained by an extreme difficulty, or by a defect.
@@ -24,7 +24,7 @@ Challenges like this have been manually checked, and many of them have indeed sh
 \paragraph{Improved challenge difficulty measure}
 As explained in Appendix~\ref{app:challenges}, currently the difficulty of the challenges is only determined by the number of options to choose from.
 It is a probability of answering correctly in case of a blind guess.
-The results of the Rasch model experiment in Section~\ref{sec:eval-rasch} show that there is no statistically significant correlation between this difficulty and the probability of users answering the challenge correctly.
+The results of the \gls{2pl} model experiment in Section~\ref{sec:eval-rasch} show that there is no statistically significant correlation between this difficulty and the probability of users answering the challenge correctly.
 It is not an accurate difficulty measure.
 
 Nonetheless, this difficulty measure is used in tournaments and other gamification features to decide the amount of points that are awarded to a user after answering correctly.
@@ -43,8 +43,8 @@ It is easy to reach a high maturity level for any user, if they spend enough tim
 
 The \gls{irt} ability estimate can be used to make this maturity score more meaningful.
 However, it currently only provides a global ability estimate and lacks the granularity required for the metrics dashboard.
-A multidimensional Rasch model can be used to achieve this.
-It remains future work to train and evaluate such a multidimensional Rasch model with, for example, one dimension for each vulnerability category on the platform.
+A multidimensional \gls{irt} model can be used to achieve this.
+It remains future work to train and evaluate such a multidimensional \gls{irt} model with, for example, one dimension for each vulnerability category on the platform.
 
 \paragraph{Improved assessments}
 The past few months, assessments have been the most used play mode on the platform.
@@ -64,7 +64,7 @@ This means, serving new challenges based on the temporary ability estimate durin
 Not only will this improve accuracy of the ability estimate, it will also reduce the amount of challenges needed to complete an assessment.
 
 \paragraph{Recommendations in training}
-Once all other implementation related to the Rasch model have been completed, the \gls{cf} algorithm can be integrated in the platform to dynamically recommend challenges to each user in the training mode.
+Once all other implementation related to the \gls{2pl} model have been completed, the \gls{cf} algorithm can be integrated in the platform to dynamically recommend challenges to each user in the training mode.
 
 \subsection{Integrating with developer tools}
 \label{sec:its-integration}
@@ -82,7 +82,7 @@ It would be more beneficial to let these integrations insert project-specific re
 Most of the integrations are still in development, and are only used by a select few customers.
 In the future, when more data is available, it will be interesting to analyse which of these inserted links are clicked most frequently.
 This data can give an indication for which vulnerabilities developers seek out training, and hence which vulnerabilities are likely more difficult to understand and solve in practice.
-It would be interesting to compare these results to those of the Rasch and priority lists such as the \gls{owasp} Top 10.
+It would be interesting to compare these results to those of the \gls{2pl} model and priority lists such as the \gls{owasp} Top 10.
 
 \paragraph{Adaptive Security Guidance}
 Instead of forcing a developer to make a context switch to follow this contextual training, I have invented an alternative solution.

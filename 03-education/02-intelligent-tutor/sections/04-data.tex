@@ -11,7 +11,7 @@ For each challenge the language and framework are known, as well as the category
 The difficulty assigned to this challenge is also known but it is not an accurate representation.
 The way this difficulty is determined is explained in more detail in Appendix~\ref{app:challenges}.
 
-The multiple choice options for identify and locate challenges are randomly generated each time they are presented to a user on the website.
+The multiple choice options for identify challenges are randomly generated each time they are presented to a user on the website.
 For the fix challenges the multiple-choice options are fixed, and determined by the author of the challenge.
 There is no clear order to the multiple-choice options.
 There is only one correct option, and all others are incorrect, with no distinction between which incorrect option is the closest to the correct one, or the most misleading option.
@@ -37,8 +37,8 @@ More than 12 million challenge attempts have been written to the developer log.
 \subsection{Data pre-processing}
 This vast collection of data includes users who only completed a small number of challenges, such as during the free trial.
 For these users, we cannot accurately predict their ability level, nor can we learn much about their preferences.
-Both the \gls{cf} algorithm and the Rasch model are only successful when the user has a sufficiently long history on the platform.
-For this reason, we are only using challenge attempts done by users who completed at least 20 challenges, a recommended minimum length to achieve reasonable accuracy for the Rasch model.
+Both the \gls{cf} algorithm and the \gls{2pl} model are only successful when the user has a sufficiently long history on the platform.
+For this reason, we are only using challenge attempts done by users who completed at least 20 challenges, a recommended minimum length to achieve reasonable accuracy for the \gls{2pl} model.
 Users who have completed at least 20 challenges will be called active users from here on.
 Out of the 175,979 unique users who have completed at least one challenge on the platform, 95,591 are considered active users whose behaviour on the platform will be used to create the \gls{its}.
 
@@ -50,13 +50,13 @@ As a result we are filtering out all challenges that are not completed by at lea
 Out of the 19,782 exercises 9,144 remain, 40 of the 50 frameworks are still represented in this data set.
 On the \gls{scw} training platform, there are multiple modes, each with their own rules.
 In training and tournament, hints are available and multiple attempts are allowed, while in assessments there is only one attempt possible.
-The Rasch model, on the other hand, expects dichotomous responses.
+The \gls{2pl} model, on the other hand, expects dichotomous responses.
 To map challenge attempts of all modes fairly to this binary outcome, any challenge attempt is only considered correct if it was answered correctly without use of any hints on the first attempt.
 In the rest of this book this will be implied when it is written that a challenge is answered correctly.
 
 \subsection{Data annotation}
 \label{sec:utility}
-The exercise difficulties and user ability levels as estimated by the Rasch model can be used to determine the utility of an item for a user.
+The exercise difficulties and user ability levels as estimated by the \gls{2pl} model can be used to determine the utility of an item for a user.
 A scale of 1 to 5 was chosen, and each item is assigned a neutral utility of 3 by default.
 This utility is updated based on the performance of the user on this item, and on related items later in time.
 
@@ -97,6 +97,7 @@ The \texttt{min} and \texttt{max} functions are added to ensure utility ratings 
 \Input{current item $i$\\ probability of correct answer $p$}
 \Output{utility $u_j$, for items $j \leq i$}
 $u_i \leftarrow 3$\\
+$u_j \leftarrow$ previous item about same vulnerability category\\
 \lIf{$i-1$ played less than 40 minutes ago}{$u_{i-1} = u_{i-1} + 1$}
 \uIf{$i$ answered correctly}
     {

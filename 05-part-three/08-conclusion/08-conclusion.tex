@@ -7,7 +7,7 @@ In line with this methodology, I made improvements to both training and tools pr
 
 \summarybox{
 In the first part of this book, I designed and implemented an \gls{its}.
-First, the trained Rasch model from the field of \gls{irt} offered some useful insights in the mental model of the developer.
+First, the trained \gls{2pl} model from the field of \gls{irt} offered some useful insights in the mental model of the developer.
 To speed up the slow estimation procedure for this model, I created an approximation method that remained sufficiently accurate long after initial calibration.
 This approximation enables an accurate and easy-to-implement way to adapt existing \gls{cf} algorithms to learning systems.
 
@@ -29,14 +29,14 @@ In this work, I aimed to improve the efficiency of the training by adapting the 
 To do this, I designed an \gls{its} consisting of three algorithmic components.
 These are exercise selection, user ability estimation, and exercise difficulty estimation.
 
-The latter two are achieved through calibrating a two parameter logistic (2PL) Rasch model from the field of \gls{irt}.
+The latter two are achieved through calibrating a two parameter logistic (2PL) model from the field of \gls{irt}.
 With the results of this model, I have contributed insights into the mental model of a developer.
 I have shown that both the vulnerability category and the language and framework have a medium-sized effect on the difficulty of an exercise.
 Some key findings are that languages that require memory management result in increased difficulty, as well as the use of frameworks.
 For the vulnerability category, results showed that the size of the related code fragments is a big indicator of the difficulty.
 Design flaws that generally require fixing of larger code fragments, showed a higher difficulty on average.
 
-Because the training of the Rasch model is slow, especially for large data sets, I developed an approximation procedure that outperformed several existing approximation methods from literature.
+Because the training of the \gls{2pl} model is slow, especially for large data sets, I developed an approximation procedure that outperformed several existing approximation methods from literature.
 This method could be useful in many situations where full calibration procedures are not appropriate.
 
 Finally, the recommendation system itself was developed and evaluated.
@@ -51,7 +51,7 @@ This process will be gradually completed in several distinct steps.
 In the future, it is also the intention to extend the \gls{its} so that it uses data from integrations with other developer tools to provide even more targeted training recommendations.
 Finally, the proposed adaptations to learning systems could be tested on more \gls{cf} algorithms and more datasets. 
 
-The results from the Rasch model, however, also indicate that a gap exists between knowledge and practice.
+The results from the \gls{2pl} model, however, also indicate that a gap exists between knowledge and practice.
 Some of the most notorious vulnerability types in practice, such as injection vulnerabilities and \gls{xss}, are shown to be relatively easy to find and fix in training.
 This suggests that education alone is insufficient.
 It is evidently too hard for a developer to keep track of the security of the code at all times while they are focused on the functionality instead.

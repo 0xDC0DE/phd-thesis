@@ -298,7 +298,7 @@ On average the subjects took 19.10 s (s = 25.22 s) to resolve an issue.
 This large standard deviation is explained by a large difference in removal time for certain guidelines, as can be seen in Figure~\ref{fig:fixtimes}.
 
 On average more commonly known vulnerabilities such as \gls{sql} injection and \gls{xss} are resolved within less than 10 seconds, while the guidelines regarding file upload vulnerabilities take significantly longer.
-This is in line with general results from the trained Rasch model in the experiment of Section~\ref{sec:eval-rasch}.
+This is in line with general results from the trained \gls{2pl} model in the experiment of Section~\ref{sec:eval-rasch}.
 The model showed that exercises about commonly known vulnerabilities such as \gls{sql} injection and \gls{xss} have a lower mean difficulty on the \gls{scw} training platform.
 Both these results indicate that understanding and fixing these common vulnerabilities is relatively easy.
 But in this experiment, as well as in practice, many developers still make those mistakes.
@@ -308,7 +308,7 @@ Besides familiarity with the vulnerability, the difference in speed for resolvin
 This was often the case for the file upload guidelines, the naive implementation without any security checks violates guidelines regarding file path, file size, and file extension.
 The developers violating these guidelines receive a lot of simultaneous feedback, which takes longer to process.
 Fixing these vulnerabilities then also involves slightly larger pieces of code, as opposed to the often single line of code that needs to be fixed for the other guidelines.
-This is also in line with observations of the Rasch model, where the locality of the fix has a big influence on the mean difficulty of exercises.
+This is also in line with observations of the \gls{2pl} model, where the locality of the fix has a big influence on the mean difficulty of exercises.
 
 \begin{figure}
   \centering

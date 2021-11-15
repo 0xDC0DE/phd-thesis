@@ -45,7 +45,7 @@ Users get bored due to too much repetition, or frustrated because the content is
 I created an Intelligent Tutoring System (ITS) to recommend exercises to each individual at any point in time.
 This ITS uses a Collaborative Filtering (CF) algorithm to make a recommendation based on the preferences of the most like-minded users.
 To adapt this algorithm to learning systems, users are only considered like-minded if they find an exercise similarly useful around the same ability level.
-This ability level cannot be observed directly, but is regularly estimated by using the Rasch model from Item Response Theory.
+This ability level cannot be observed directly, but is regularly estimated by using the two-parameter logistic (2PL) model from Item Response Theory.
 This model describes the relation between the observed answers of a user, and their ability level.
 By using this adaptation to learning systems, the performance of a CF algorithm can be significantly improved, by more than 13\%.
 The final design of the ITS uses a k-nearest neighbours baseline algorithm and reaches a mean absolute error of 0.4206 on a rating scale from 1-5.
