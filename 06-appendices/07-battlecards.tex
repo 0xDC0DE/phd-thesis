@@ -1,6 +1,12 @@
 \chapter{Security battlecards}
 \label{app:battlecards}
 
+In this appendix, I discuss a number of related tools in more depth and give my opinion on them.
+Some of these tools are no longer supported, and hence can not be actively endorsed, but they are interesting to discuss nonetheless.
+These tools are indicated by an orange box.
+I also discuss one tool that is an in-house tool used by Google, and is hence not publicly available, this tool is marked by a gray box.
+All remaining tools are still actively updated at the time of writing this thesis and have a significant userbase, they are marked in green.
+
 \battlecard{SonarLint by SonarSource}{\url{https://www.sonarlint.org/}}{
 \label{bc:sonarlint}
 SonarLint is a free \gls{ide} plugin that focuses on code quality. As explained in this work, code quality and code security are often related and hence some rules exist in SonarLint that target security rules. SonarLint is developer-friendly as it provides quick-fixes and clear descriptions with small code examples. However, it only provides a small number of security rules and the rules are not easily customized.
@@ -10,7 +16,8 @@ I definitely recommend SonarLint, but also recommend supplementing it with a mor
 \battlecard{Snyk Open Source}{\url{https://snyk.io/product/open-source-security-management/}}{
 \label{bc:snyk_open_source}
 Snyk Open Source tests for vulnerabilities in open-source dependencies. It is available in several \glspl{ide} but its web view is the most useful. Snyk Open Source provides remediation through automated pull requests to bump the dependency to the latest version.
-Both GitHub and GitLab have built-in alternatives and I highly recommend using a tool like this.}{\gls{sca}}
+Both GitHub and GitLab have built-in alternatives and I highly recommend using a tool like this.
+}{\gls{sca}}
 {Build}{Seconds}{Pull request}
 
 \battlecard{Snyk Code}{\url{https://snyk.io/product/snyk-code/}}{
@@ -37,7 +44,7 @@ Dependabot creates pull requests to keep your dependencies secure and up-to-date
 GitLab's integrated dependency scanner supports many languages and package managers. It provides remediation through automated merge requests, GitLab's term for pull requests.
 }{\gls{sca}}{Build}{Seconds}{Merge request}
 
-\battlecard{FindBugs}{\url{http://findbugs.sourceforge.net/}}{
+\orangebattlecard{FindBugs}{\url{http://findbugs.sourceforge.net/}}{
 \label{bc:findbugs}
 FindBugs is a static analysis tool that looks for bugs in Java code. It has not been updated since 2017 and its spiritual successor is SpotBugs.
 Its \gls{ide} plugin is not compatible with newer versions of IntelliJ.
@@ -114,7 +121,7 @@ It seems that the rules in CxQL can be built to ignore context and enforce secur
 It is also possible to tune CxSAST so that it uses more lightweight analyses, resulting in faster feedback.
 }{\gls{sast}}{Test}{Minutes}{Guidance}
 
-\battlecard{Tricorder}{\url{https://research.google/pubs/pub43322/}}{
+\graybattlecard{Tricorder}{\url{https://research.google/pubs/pub43322/}}{
 \label{bc:tricorder}
 Tricorder~\cite{sadowski2015tricorder} is a data-driven program analysis platform integrated into the workflow of developers at Google. Tricorder's design philosophy closely resembles that of Sensei where they put developer usability first. Custom analyzers are written in Java, C++, Python, or Go, and also require setting up a service in a docker file. 
 
@@ -197,7 +204,7 @@ There is no ``Change method argument" model available, which would be required t
 The documentation describes how a new model can be developed using their \gls{api}.
 }{Refactor}{Develop}{Seconds}{Quick-fix}
 
-\battlecard{OWASP ASIDE}{\url{https://wiki.owasp.org/index.php/OWASP\_ASIDE\_Project}}
+\orangebattlecard{OWASP ASIDE}{\url{https://wiki.owasp.org/index.php/OWASP\_ASIDE\_Project}}
 {
 \label{bc:ASIDE}
 The OWASP ASIDE/ESIDE~\cite{aside} project consist of two branches, the ASIDE branch that focuses on detecting software vulnerabilities and helping developer write secure code, and the ESIDE branch that focuses on helping students in acquiring secure programming knowledge and practices.
@@ -238,10 +245,3 @@ The analyzers can be easily extended using a \gls{yaml} format.
 However, there is no \gls{ide} integration and the tool does not offer any form of remediation guidance, so it is not the best suited to give to the developer.
 }{\gls{sast}}{Test}{Minutes}{None}
 
-%\smallbattlecard{Pluralsight}{\url{https://www.pluralsight.com/}}{
-%\label{bc:pluralsight}
-%Pluralsight is a website that hosts training and courses for developers, among which some security courses.
-%One of the features of the site is called Iris.
-%This feature uses machine learning, statistics, and \gls{irt} to measure the skill of a developer and recommend a skill development journey.
-%This does not tailor courses to the individual, but recommends the most appropriate course for the user.
-%}{Training}{Plan}

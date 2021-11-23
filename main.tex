@@ -387,6 +387,26 @@
 \newcommand{\battlecard}[7]
 {
 \begin{battlecardenviro}
+\begin{tcolorbox}[colback=scw-sky-blue!5,colframe=scw-teal,
+title={#1 \hfill\circled{\thebattlecardcounter}\\
+\footnotesize{#2}},
+coltitle=scw-charcoal,fonttitle=\sffamily\large]
+\small{#3}
+\tcblower
+\small{
+\begin{tabular}{p{1.5cm}p{2.5cm}p{1.5cm}p{3.5cm}}
+\textbf{Type} & #4 & \textbf{\gls{sdlc}} & #5\\
+\textbf{Speed} & #6 & \textbf{Fix} & #7\\ 
+\end{tabular}
+}
+\end{tcolorbox}
+\end{battlecardenviro}
+}
+
+
+\newcommand{\orangebattlecard}[7]
+{
+\begin{battlecardenviro}
 \begin{tcolorbox}[colback=scw-orange!5,colframe=scw-orange!70,
 title={#1 \hfill\circled{\thebattlecardcounter}\\
 \footnotesize{#2}},
@@ -403,6 +423,25 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \end{battlecardenviro}
 }
 
+
+\newcommand{\graybattlecard}[7]
+{
+\begin{battlecardenviro}
+\begin{tcolorbox}[colback=scw-ivory!5,colframe=scw-ivory,
+title={#1 \hfill\circled{\thebattlecardcounter}\\
+\footnotesize{#2}},
+coltitle=scw-charcoal,fonttitle=\sffamily\large]
+\small{#3}
+\tcblower
+\small{
+\begin{tabular}{p{1.5cm}p{2.5cm}p{1.5cm}p{3.5cm}}
+\textbf{Type} & #4 & \textbf{\gls{sdlc}} & #5\\
+\textbf{Speed} & #6 & \textbf{Fix} & #7\\ 
+\end{tabular}
+}
+\end{tcolorbox}
+\end{battlecardenviro}
+}
 
 \newcommand{\smallbattlecard}[5]
 {
