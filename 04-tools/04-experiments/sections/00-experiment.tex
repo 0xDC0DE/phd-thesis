@@ -4,6 +4,9 @@
 In November 2018, I conducted an experiment with students to evaluate some features of the Sensei \gls{ide} plugin.
 This experiment has been well designed with the help of my supervisors and prof. Riccardo Scandariato who has practical experience with similar experiments.
 It was conducted with the help of the lecturer, dr.\ Mattias De Wael, and two of my colleagues at \gls{scw}, Downey Robersscheuten and Tim Dekiere.
+%Due to complications during the hand-in procedure, the results of this experiment are mostly focused on the usability of the tool.
+%We are able to make observations regarding the amount of violations that are resolved and how fast they are resolved.
+%However, we cannot make any claims on the resulting security implications.
 
 \subsection{Goals and research questions}
 The main \textit{goal} of the experiment is to observe the impact of the Sensei \gls{ide} plugin on developers and their code.
@@ -276,7 +279,7 @@ In between the ADD and DELETE events of the third case there were a number of DE
 
 \subsection{Findings}
 \subsubsection{Guideline violations}
-On average, the subjects introduced 17.64 (s = 10.27) guideline violations.
+On average, the subjects in the test group introduced 17.64 guideline violations, as shown in the top right of Figure~\ref{fig:hist-test-control}.
 The best performing subject (in this regard) introduced 2 guideline violations.
 For this subject, the events log showed enough C\_ADD events to assume that the subject completed at least the majority of the programming exercise.
 The worst performing subject added 37 guideline violations.
@@ -284,8 +287,48 @@ In this case the events log showed a large number of ADD and DELETE events for t
 This can result from attempting to implement the code functionally correctly or from attempting to resolve the guideline violation.
 The absence of DESCRIPTION events in the log is strong evidence for the former. 
 
+In the control group the average number of violations introduced is 24.7, as shown in the bottom left of Figure~\ref{fig:hist-control-test}.
+The amount of violations introduced in this group is between 2 and 54, however this distribution is not statistically significantly different from the test group as determined by a Games-Howell post-hoc test (p = 0.11).
+
+After completion of the assignment, the test group had 0.22 remaining guidelines on average, as shown in the top right in Figure~\ref{fig:hist-control-test}.
+Out of these subjects, 79\% (n = 12) finished the assignment free of violations.
+The average number of violations left at the end of the assignment in the control group was 8.8 and only 6\% (n = 1) of the subjects finished the assignment without any remaining violations.
+This difference in remaining violations between the two groups is statistically significant (p = 0.00015).
+
+\begin{figure}
+  \begin{subfigure}[t]{.49\textwidth}
+    \centering
+     \includegraphics[page=24,width=\linewidth]{03-education/figures/tikzfigures.pdf}
+  %\caption[Histogram of violations added by the test group]{The amount of violations added by each subject in the test group is between 2 and 37. On average 17.6 violations have been added.}
+  %\label{fig:hist-added-test} 
+  \end{subfigure}
+  \hfill
+    \begin{subfigure}[t]{.49\textwidth}
+    \centering
+   \includegraphics[page=26,width=\linewidth]{03-education/figures/tikzfigures.pdf}
+  %\caption[Histogram of violations left by the test group]{left test}
+  %\label{fig:hist-left-test} 
+  \end{subfigure}
+  
+  \begin{subfigure}[t]{.49\textwidth}
+    \centering
+    \includegraphics[page=25,width=\linewidth]{03-education/figures/tikzfigures.pdf}
+  %\caption[Histogram of violations added by the control group]{The amount of violations added by each subject in the control group lays between 2 and 54. On average 24.7 violations have been added.}
+  %\label{fig:hist-added-control} 
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{.49\textwidth}
+    \centering
+   \includegraphics[page=27,width=\linewidth]{03-education/figures/tikzfigures.pdf}
+  %\caption[Histogram of violations left by the control group]{left control}
+  %\label{fig:hist-left-control} 
+  \end{subfigure}
+  \label{fig:hist-test-control}
+  \caption[]{The amount of violations introduced during the assignment (left column) and remaining at the end of the assignment (right column) by the test group (in orange) and the control group (in blue). The amount of violations introduced by the two groups are not statistically significantly different. The amount of violations left at the end of the assignment is significantly more for the control group.}
+\end{figure}
+
 \subsubsection{Resolving guideline violations}
-Out of all the coding guideline violations, 98.4\% have been removed eventually.
+Out of all the coding guideline violations in the test group, 98.4\% have been removed eventually.
 Out of the removed violations, 73.3\% have been removed with a quick-fix.
 For the remaining removals, it is not possible to know the intention of the subject, i.e., whether the violations were resolved manually as the subject spotted them as violations or whether the removal was part of rewriting (or removing) the code for another reason, such as simply meeting the functional requirements of the assignment.
 The four unresolved guideline violations each violated one different guideline, so there was no particular guideline causing the majority of usability problems.
@@ -294,8 +337,15 @@ One was violating a \gls{sql} query guideline and the others were violations of 
 Out of the violations that were resolved, 89.3\% were resolved within one minute, and 99.5\% were resolved within three minutes.
 Only one case, previously discussed in Section~\ref{sec:analysis}, took 3.54 min to resolve.
 This subject did eventually not use the quick-fix to resolve the issue.
-On average the subjects took 19.10 s (s = 25.22 s) to resolve an issue.
+There is no pattern in the guidelines of the 10.7 \% of violations that were not resolved within 1 minute.
+These violations are distributed evenly over the 7 guidelines that have the longest mean remediation time.
+
+On average the subjects of the test group took 19.10 s (s = 25.22 s) to resolve an issue.
 This large standard deviation is explained by a large difference in removal time for certain guidelines, as can be seen in Figure~\ref{fig:fixtimes}.
+The mean remedation time when a quick-fix was used was 17.36 s.
+The violations that were removed by the subjects of the test group without a quick-fix were resolved in 21.73 s on average.
+The influence of the quick-fix on the remediation time is not statistically significant (p = 0.7).
+The average remediation time in the control group was 129.21 s (s = 422.26 s), and this is significantly different from the remedation time in the test group (p = 0.001).
 
 On average more commonly known vulnerabilities such as \gls{sql} injection and \gls{xss} are resolved within less than 10 seconds, while the guidelines regarding file upload vulnerabilities take significantly longer.
 This is in line with general results from the trained \gls{2pl} model in the experiment of Section~\ref{sec:eval-rasch}.
