@@ -10,7 +10,7 @@ It was conducted with the help of the lecturer, dr.\ ir.\ Mattias De Wael, and t
 
 \subsection{Goals and research questions}
 The main \textit{goal} of the experiment is to observe the impact of the Sensei \gls{ide} plugin on developers and their code.
-The \textit{purpose} is evaluating the usability and effectiveness of Sensei in supporting the paved path methodology.
+The \textit{purpose} is evaluating the usability and effectiveness of several of the features offered by Sensei during development, such as customized guidelines and quick-fixes in the \gls{ide}.
 The \textit{quality focus} is the ability of the plugin to help developers adhere to secure coding guidelines without causing a significant cognitive burden.
 The study evaluates the behaviour of a developer.
 We aim at measuring the increase in cognitive burden when developers use the plugin, by measuring the impact on development time.
@@ -279,7 +279,7 @@ In between the ADD and DELETE events of the third case there were a number of DE
 
 \subsection{Findings}
 \subsubsection{Guideline violations}
-On average, the subjects in the test group introduced 17.64 guideline violations, as shown in the top right of Figure~\ref{fig:hist-test-control}.
+On average, the subjects in the test group introduced 17.64 guideline violations, as shown in the top right of Figure~\ref{fig:hist-control-test}.
 The best performing subject (in this regard) introduced 2 guideline violations.
 For this subject, the events log showed enough C\_ADD events to assume that the subject completed at least the majority of the programming exercise.
 The worst performing subject added 37 guideline violations.
@@ -293,6 +293,7 @@ The amount of violations introduced in this group is between 2 and 54, however t
 After completion of the assignment, the test group had 0.22 remaining guidelines on average, as shown in the top right in Figure~\ref{fig:hist-control-test}.
 Out of these subjects, 79\% (n = 12) finished the assignment free of violations.
 The average number of violations left at the end of the assignment in the control group was 8.8 and only 6\% (n = 1) of the subjects finished the assignment without any remaining violations.
+This is shown in Figure~\ref{fig:hist-control-test} in the bottom right.
 This difference in remaining violations between the two groups is statistically significant (p = 0.00015).
 
 \begin{figure}
@@ -323,8 +324,9 @@ This difference in remaining violations between the two groups is statistically 
   %\caption[Histogram of violations left by the control group]{left control}
   %\label{fig:hist-left-control} 
   \end{subfigure}
-  \label{fig:hist-control-test}
+  
   \caption[]{Histograms of the amount of violations introduced during the assignment (left column) and remaining at the end of the assignment (right column) by users in the test group (in orange) and the control group (in blue). The amount of violations introduced by the two groups is not statistically significantly different. The amount of violations left at the end of the assignment is significantly more for the control group.}
+  \label{fig:hist-control-test}
 \end{figure}
 
 \subsubsection{Resolving guideline violations}
