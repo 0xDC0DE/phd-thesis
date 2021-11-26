@@ -14,12 +14,13 @@
 \newboolean{ForPrint}
 \setboolean{ForPrint}{false}
 
+%include title pages provided by dean's office
+\usepackage{pdfpages}
+
 \usepackage{00-setup/phd}
 
 % to mark changes to the examination board
-\usepackage{soul}
-
-% speed up compile time
+\newcommand{\changed}[1]{\textcolor{scw-teal-darker}{#1}}
 
 % page size according to UGent/FEA requirements
 \usepackage[papersize={16cm,24cm},%
@@ -711,9 +712,17 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 % 1. COVER PAGE                                                 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% first page should be blank
+\pagestyle{empty}
+\pagenumbering{gobble}
+\ifthenelse{\boolean{ForPrint}}{%
+   ~
+   \cleardoublepage
+}{}
+
 \pagenumbering{alph}
 % Cover page provided by the decanate
-%\inputpdf[pages=-]{01-cover/final.pdf}
+\includepdf[pages=1-2]{01-frontmatter/titel-01002309.pdf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1. FRONTMATTER                                                
@@ -724,13 +733,12 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 
 \cleardoublepage
 
-% Remove for initial version
-%\parskip 1mm
-%\input{01-frontmatter/jury}
-%\parskip 0mm
-%\newpage
-%
-%\cleardoublepage
+\parskip 1mm
+\input{01-frontmatter/jury}
+\parskip 0mm
+\newpage
+
+\cleardoublepage
 
 \parskip 1mm
 \input{01-frontmatter/ack}
@@ -815,6 +823,9 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \backmatter
 \bibliographystyle{unsrt}
 \bibliography{references}
+
+% last page should be blank
+\cleardoublepage
 
 \end{document}
 

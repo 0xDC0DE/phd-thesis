@@ -54,74 +54,106 @@ Adapting \glspl{ui} is most often based on the experience of the user with the i
 This research indicates that optimizing \gls{ui} design based on novice learning rather than long-term efficiency by experienced users can be counterproductive.
 It remains future work to assess whether or not a more optimised \gls{ui} will be required for advanced Sensei users.
 
-\subsection{\hl{Controlled experiment in industry environment}}
+\changed{
+\subsection{Controlled experiment in industry environment}}
 
-The experiments in this part of the book mostly contain second-hand information from industry trials, as well as a controlled experiment with students that focuses on validating some of the features contributing to the usability of Sensei.
-In contrast to the first part of this book, no strong empirical evidence is presented that validates the efficacy of a tool like Sensei, or the paved path methodology in general.
+\changed{
+The experiments described earlier in Part~\ref{p:tools} of this book mostly contain second-hand information from industry trials, as well as a controlled experiment with students that focuses on validating some of the features contributing to the usability of Sensei.
+In contrast to the first part of this book, no strong empirical evidence is presented that validates the efficacy of a tool like Sensei, or the paved path methodology in general.}
 
-In this section, I discuss the design of future experiments that could be conducted to gather stronger evidence for the proposed solution.
+\changed{In this section, I discuss the design of future experiments that could be conducted to gather stronger evidence for the proposed solution.
+}
 
+\changed{
 \subsubsection{Subjects}
-In an industry setting, it is not practical to divide the subjects into a control group and test group of similar skill level.
-Instead it might be feasible to compare two teams, and allow the use of Sensei on one of the teams.
+In an industry setting, it is not practical to divide a team's members into a control group and test group of similar skill level.
+Instead, it might be feasible to compare two teams and allow the use of Sensei by only one of the teams.
 Alternatively, the same team could first be observed for a duration of several days or weeks without use of Sensei and then Sensei can be introduced and results can be compared over time.
+These approaches can be applied to evaluate several research questions depending on the goal of the experiment.
+In the remainder of this section, the research goals of three possible experiments are outlined.}
 
+\changed{
 \subsubsection{Research questions}
 In the controlled empirical experiment of Section~\ref{sec:experiment}, the focus was on validating the effectiveness of several Sensei features at helping developers adhere to secure coding guidelines during development.
 The results showed that Sensei code markings were addressed often, and were addressed fast. 
-Of the guidelines violations introduced by subjects of the test group, 98.4\% were resolved with a mean remediation time of 19.10 s.
+Of the guidelines violations introduced by subjects of the test group, 98.4\% were resolved with a mean remediation time of 19.10~s.
+}
 
+\changed{
 However, developers in an industry environment are likely to use Sensei differently to the subjects of this experiment.
-Not only because they are more experienced, and are likely more familiar with alternative tools, but also because they work in larger teams and with stricter deadlines.
+Not only because they are more experienced, and are likely more familiar with alternative tools, but also because they work in larger teams and with stricter deadlines.}
 
+\changed{
 \paragraph{Feature validation}
 In one experiment that can be conducted in the future, the same features can be evaluated in an industry environment.
 The \textit{goal} of this experiment would be to observe the impact of the Sensei plugin on the developers in an industry setting.
 The \textit{purpose} would be to evaluate the usability and effectiveness of some of the features of Sensei.
-The \textit{quality focus} is the ability of the plugin to help developers adhere to the secure coding guidelines that are in place and the impact on their cognitive burden while doing so.
+The \textit{quality focus} is the ability of the plugin to help developers adhere to the secure coding guidelines that are in place and the impact on their cognitive burden while doing so.}
 
+\changed{
 The following research questions can be answered in this experiment:
 \begin{itemize}
     \item \textbf{Q1} What is the effective false positive rate in an industry environment?
     \item \textbf{Q2} What is the mean remediation time of markings in an industry environment?
     \item \textbf{Q3} Do developers in an industry environment often use the provided quick-fixes to resolve code markings?
 \end{itemize}
+}
 
+\changed{
 This data could be analyzed and compared to the findings of the experiment with students.
 This could both evaluate the Sensei features more thoroughly as well as give us insights into the differences between developers in educational institutions and developers in industry environments.
-Experiments like this can help researchers and businesses of security tools improve the usability and effectiveness of their tools.
-However, in order for organizations to adopt these tools more widely, it would be more impactful to study their effect in a development environment.
+Experiments like this can help researchers and enterprises that design security tools improve the usability and effectiveness of their tools.
+However, to convince organizations to adopt role-specific tools more widely, we should evaluate their impact on speed and security during development.
+}
 
-\paragraph{Effect on development}
+\changed{
+\paragraph{Efficacy of the paved path methodology}
+The \textit{goal} of the experiment is to measure the impact of the paved path methodology on development and delivery of software.
+The \textit{purpose} is to evaluate the \gls{roi} for organizations that consider using this approach.
+The \textit{quality focus} is the impact of the methodology on the delivery speed as well as the security of the delivered code.
 In industry environments, a trade-off exists between fast delivery of new software features and the security of the software.
-Improving one at the detriment of the other is not real improvement, and so in this experiment, both these metrics have to be taken into account.
-In this experiment, the \textit{goal} is to measure the impact of role-specific security tools for developers on development and delivery of software.
-The \textit{purpose} is to evaluate the \gls{roi} for organizations that consider using such a tool during development.
-The \textit{quality focus} is the impact of the tool on the delivery speed as well as the security of the delivered code.
+Improving one at the detriment of the other is not real improvement. 
+In this experiment, it is hence crucial that both these metrics are taken into account.
+By using the paved path methodology, we expect that security problems are addressed earlier in the \gls{sdlc}, and this will positively impact the security of the code.
+We also expect that because of this early intervention, time will be saved in later stages of the \gls{sdlc} as less markings will be found.
+It is expected that remediating potential issues during development will require less time investment compared to remediating them in later stages, resulting in an overall increased speed of delivery.
+}
 
+\changed{
 The above goal can be achieved by means of an experiment aimed at answering the following questions:
 \begin{itemize}
-    \item \textbf{Q1} Is the speed of delivery impacted meaningfully when developers start using Sensei?
-    \item \textbf{Q2} Is the number of findings by security tools deployed later in the \gls{sdlc} impacted meaningfully when developers start using Sensei?
+    \item \textbf{Q1} Is the speed of delivery impacted meaningfully when developers use the paved path methodology?
+    \item \textbf{Q2} Is the number of findings by security tools deployed later in the \gls{sdlc} impacted meaningfully when developers use the paved path methodology?
+    \item \textbf{Q3} Related to \textbf{Q2}, is the time and resources invested in finding and remediating vulnerabilities in later stages of the \gls{sdlc} reduced when developers use the paved path methodology?
 \end{itemize}
+}
 
+\changed{
 Delivery speed can be measured through several metrics~\cite{software-delivery-performance}.
 \begin{itemize}
     \item \textit{Lead time for change} is the time it takes between a customer request and the request being satisfied.
-    \item \textit{Deployment frequency} is the frequency with which working software is deployed to production or distributed to the customers
-    \item \textit{Change failure rate} is the frequency with which deployments require rollback or other measures to amend failures
-    \item \textit{Time to restore service} is the time it takes to restore service after an incident
+    \item \textit{Deployment frequency} is the frequency with which working software is deployed to production or distributed to the customers.
+    \item \textit{Change failure rate} is the frequency with which deployments require rollback or other measures to amend failures.
+    \item \textit{Time to restore service} is the time it takes to restore service after an incident or failure.
 \end{itemize}
+}
 
-\paragraph{Efficacy in supporting the paved path methodology}
-Finally, an experiment could be set up to evaluate if the use of Sensei help development and security teams to adopt practices in line with the paved path methodology.
+\changed{
+While the goal of this experiment is to evaluate the paved path methodology, this methodology is inherently tied to the use of role-specific developer tools.
+The evaluation is hence closely related to the efficacy of the tool itself and it is possible that the outcome of this experiment underestimates the efficacy of the paved path methodology due to imperfect design and implementation of the used tool.
+}
+
+\changed{
+\paragraph{Efficacy of Sensei in supporting the paved path methodology}
+Finally, an experiment could be set up to evaluate to which extent Sensei helps development and security teams adopt practices in line with the paved path methodology.
 The \textit{goal} of this experiment is to observe the impact of Sensei on the processes and interactions between security professionals and developers.
 The \textit{purpose} is to evaluate if Sensei is effective at supporting the paved path methodology.
-The \textit{quality focus} is on the interactions between different team members and the purpose of the Sensei rules that are being developed.
+The \textit{quality focus} is on the interactions between different team members and the purpose of the Sensei recipes that are being developed.}
 
+\changed{
 The above goal can be achieved by means of an experiment aimed at answering the following questions:
 \begin{itemize}
     \item \textbf{Q1} Do security professionals frequently need to consult developers to create quick-fixes?
-    \item \textbf{Q2} Do developers frequently write rules for other purposes than security?
+    \item \textbf{Q2} Do developers frequently write recipes for other purposes than security?
 \end{itemize}
-
+}
