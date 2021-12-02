@@ -131,11 +131,13 @@ This is far below the threshold of 125 ms to be considered real time.
 A developer is hence not hindered during development unless they are violating a coding guideline and need to use remediation.
 
 When code is marked, the developer needs to spend some extra time understanding the issue and fixing it.
-During the empirical experiment of Section~\ref{sec:experiment}, the mean observed remediation time of a guideline violation is 19 seconds \changed{for users of the test group and 129 s for users of the control group}.
+During the empirical experiment of Section~\ref{sec:experiment}, the mean observed remediation time of a guideline violation is 19 seconds for users of the test group and 129 seconds for users of the control group.
 
 On average, the use of Sensei increased the total development time with 11\%.
 This is a relatively low increase considering the programming assignment was to complete security-critical features and hence the subjects were frequently confronted with feedback from the tool.
 It is also important to note that for all of the subjects, the experiment was the first time they were making use of the tool.
+In the control group, an average of 8.8 violations were left at the end of the assignment, whereas only 0.22 violations were remaining on average in the test group.
+If the subjects of the control group had addressed all remaining violations and maintained the mean remediation time, this group would have a mean development time 17\% longer than that of the test group.
 
 During the experiment, 98.4\% of code markings shown by Sensei (n = 247) were resolved by the developers.
 Out of the resolved code markings, 73.3\% were fixed using the quick-fixes.

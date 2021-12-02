@@ -10,7 +10,7 @@ It was conducted with the help of the lecturer, dr.\ ir.\ Mattias De Wael, and t
 
 \subsection{Goals and research questions}
 The main \textit{goal} of the experiment is to observe the impact of the Sensei \gls{ide} plugin on developers and their code.
-The \textit{purpose} is evaluating the usability and effectiveness of \changed{several of the features offered by Sensei during development, such as customized guidelines and quick-fixes in the \gls{ide}.}
+The \textit{purpose} is evaluating the usability and effectiveness of several of the features offered by Sensei during development, such as customized guidelines and quick-fixes in the \gls{ide}.
 The \textit{quality focus} is the ability of the plugin to help developers adhere to secure coding guidelines without causing a significant cognitive burden.
 The study evaluates the behaviour of a developer.
 We aim at measuring the increase in cognitive burden when developers use the plugin, by measuring the impact on development time.
@@ -174,16 +174,16 @@ The events file does not include code or code locations, as our clients do not w
     \centering
     \begin{tabular}{|l|}
       \hline
-      \cellcolor{scw-orange!30}
-      ADD\\
-      \cellcolor{scw-teal!30}
-      DELETE\\
+      {\cellcolor{scw-orange!30}
+      ADD}\\
+      {\cellcolor{scw-teal!30}
+      DELETE}\\
       C\_ADD\\
-      \cellcolor{scw-orange!30}
-      ADD\\
+      {\cellcolor{scw-orange!30}
+      ADD}\\
       DESCRIPTION\\
-      \cellcolor{scw-teal!30}
-      DELETE\\
+      {\cellcolor{scw-teal!30}
+      DELETE}\\
       C\_ADD\\
       \hline
     \end{tabular}
@@ -256,16 +256,16 @@ The aforementioned assumption hence has no influence on the mean removal time an
     \centering
     \begin{tabular}{|l|}
       \hline
-      \cellcolor{scw-orange!30}
-      ADD \\
-      \cellcolor{scw-orange!30}
-      ADD \\
+      {\cellcolor{scw-orange!30}
+      ADD}\\
+      {\cellcolor{scw-orange!30}
+      ADD}\\
       FIX \\
-      \cellcolor{scw-teal!30}
-      DELETE \\
+      {\cellcolor{scw-teal!30}
+      DELETE}\\
       FIX \\
-      \cellcolor{scw-teal!30}
-      DELETE \\
+      {\cellcolor{scw-teal!30}
+      DELETE}\\
       \hline
     \end{tabular}
     \caption[Sensei events file with multiple violations at the same time]{In this Sensei events file the recipe was first violated twice and then both instances were fixed using the quick fixes (FIX), no compliant counterpart exists for this recipe. From this information it is impossible to assert which of the recipe violations was removed first.}
@@ -285,16 +285,14 @@ For this subject, the events log showed enough C\_ADD events to assume that the 
 The worst performing subject added 37 guideline violations.
 In this case the events log showed a large number of ADD and DELETE events for the same recipe ID, making us believe that the subject was rewriting the code a number of times.
 This can result from attempting to implement the code functionally correctly or from attempting to resolve the guideline violation.
-The absence of DESCRIPTION events in the log is strong evidence for the former. 
+The absence of DESCRIPTION events in the log is strong evidence for the former.In the control group the average number of violations introduced is 24.7, as shown in the bottom left of Figure~\ref{fig:hist-control-test}.
+The amount of violations introduced in this group is between 2 and 54, however this distribution is not statistically significantly different from the test group (p = 0.11).
 
-\changed{In the control group the average number of violations introduced is 24.7, as shown in the bottom left of Figure~\ref{fig:hist-control-test}.
-The amount of violations introduced in this group is between 2 and 54, however this distribution is not statistically significantly different from the test group as determined by a Games-Howell post-hoc test (p = 0.11).}
-
-\changed{After completion of the assignment, the test group had 0.22 remaining guidelines on average, as shown in the top right in Figure~\ref{fig:hist-control-test}.
+After completion of the assignment, the test group had 0.22 remaining guidelines on average, as shown in the top right in Figure~\ref{fig:hist-control-test}.
 Out of these subjects, 79\% (n = 12) finished the assignment free of violations.
 The average number of violations left at the end of the assignment in the control group was 8.8 and only 6\% (n = 1) of the subjects finished the assignment without any remaining violations.
 This is shown in Figure~\ref{fig:hist-control-test} in the bottom right.
-This difference in remaining violations between the two groups is statistically significant (p = 0.00015).}
+This difference in remaining violations between the two groups is statistically significant (p = 0.00015).
 
 \begin{figure}
   \begin{subfigure}[t]{.49\textwidth}
@@ -330,7 +328,7 @@ This difference in remaining violations between the two groups is statistically 
 \end{figure}
 
 \subsubsection{Resolving guideline violations}
-Out of all the coding guideline violations \changed{in the test group}, 98.4\% have been removed eventually.
+Out of all the coding guideline violations in the test group, 98.4\% have been removed eventually.
 Out of the removed violations, 73.3\% have been removed with a quick-fix.
 For the remaining removals, it is not possible to know the intention of the subject, i.e., whether the violations were resolved manually as the subject spotted them as violations or whether the removal was part of rewriting (or removing) the code for another reason, such as simply meeting the functional requirements of the assignment.
 The four unresolved guideline violations each violated one different guideline, so there was no particular guideline causing the majority of usability problems.
@@ -342,10 +340,10 @@ This subject did eventually not use the quick-fix to resolve the issue.
 
 On average the subjects of the test group took 19.10 s (s = 25.22 s) to resolve an issue.
 This large standard deviation is explained by a large difference in removal time for certain guidelines, as can be seen in Figure~\ref{fig:fixtimes}.
-\changed{The mean remedation time when a quick-fix was used was 17.36 s.
+The mean remedation time when a quick-fix was used was 17.36 s.
 The violations that were removed by the subjects of the test group without a quick-fix were resolved in 21.73 s on average.
 The influence of the quick-fix on the remediation time is not statistically significant (p = 0.7).
-The average remediation time in the control group was 129.21 s (s = 422.26 s), and this is significantly different from the remedation time in the test group (p = 0.001).}
+The average remediation time in the control group was 129.21 s (s = 422.26 s), and this is significantly different from the remedation time in the test group (p = 0.001).
 
 On average more commonly known vulnerabilities such as \gls{sql} injection and \gls{xss} are resolved within less than 10 seconds, while the guidelines regarding file upload vulnerabilities take significantly longer.
 This is in line with general results from the trained \gls{2pl} model in the experiment of Section~\ref{sec:eval-rasch}.
@@ -383,13 +381,11 @@ Users of the test group (n = 15) spent on average 68.75 min (s = 14.42 min).
 This is an increase of 11.72\% in development time when using the plugin.
 The time spent by the test group addressing coding guideline violations was on average 8.42 min (s = 10.06 min).
 The average share of total development time that is spent addressing guideline violations is 11.28\% (s = 12.25\%).
-This is consistent with the previously measured 11.72\% increase in development time.
-
-\changed{This increase in development time is explained by the large number of coding guideline violations that are not addressed by users in the control group.
-On average 8.8 violations were remaining in the control group, and the mean remediation time in this group was 129 s.
-Resolving all guideline violations would on then lead to an average development time of 80.46 minutes, which is 17\% more than the test group.
+This is consistent with the previously measured 11.72\% increase in development time. This increase in development time is explained by the large number of coding guideline violations that are not addressed by users in the control group.
+On average 8.8 violations were remaining in the control group, and the mean remediation time in this group was 129~s.
+Resolving all guideline violations would on then lead to an average development time of 80.46 minutes, which is 17\% longer than the test group.
 This is a conservative estimate, as vulnerabilities that are detected and resolved in later stages of development are typically more costly and time-consuming to fix, compared to remediating guideline violations during development~\cite{ben2015factors,sdlc-cost}.
-}
+In the perspectives in Section~\ref{sec:design-future-experiments}, I propose some designs for future experiments that could explore these results more thoroughly.
 
 \subsection{Threats to validity}
 In this section, I check the experiment against the possible threats to validity as proposed by Wohlin et al.~\cite{wohlin2012experimentation}. 

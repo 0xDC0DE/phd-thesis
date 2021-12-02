@@ -10,9 +10,9 @@
 % Differences between digital and print versions
 \usepackage{ifthen}
 \newboolean{ForDigital}
-\setboolean{ForDigital}{true}
+\setboolean{ForDigital}{false}
 \newboolean{ForPrint}
-\setboolean{ForPrint}{false}
+\setboolean{ForPrint}{true}
 
 %include title pages provided by dean's office
 \usepackage{pdfpages}
@@ -20,7 +20,7 @@
 \usepackage{00-setup/phd}
 
 % to mark changes to the examination board
-\newcommand{\changed}[1]{\textcolor{scw-teal-darker}{#1}}
+%\newcommand{\changed}[1]{\textcolor{scw-teal-darker}{#1}}
 
 % page size according to UGent/FEA requirements
 \usepackage[papersize={16cm,24cm},%
@@ -140,6 +140,7 @@
 \end{minipage}%
 }
 
+% Colored cells in tables
 \usepackage{colortbl}
 
 % align column in table on decimal point
@@ -715,14 +716,12 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 % first page should be blank
 \pagestyle{empty}
 \pagenumbering{gobble}
-\ifthenelse{\boolean{ForPrint}}{%
-   ~
-   \cleardoublepage
-}{}
+~
+\cleardoublepage
 
 \pagenumbering{alph}
 % Cover page provided by the decanate
-\includepdf[pages=1-2]{01-frontmatter/titel-01002309.pdf}
+\includepdf[pages=1-4]{01-frontmatter/titel-01002309.pdf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1. FRONTMATTER                                                
@@ -731,12 +730,12 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \pagestyle{fancyplain}
 \pagenumbering{Roman}
 
-\cleardoublepage
+%\cleardoublepage
 
-\parskip 1mm
-\input{01-frontmatter/jury}
-\parskip 0mm
-\newpage
+%\parskip 1mm
+%\input{01-frontmatter/jury}
+%\parskip 0mm
+%\newpage
 
 \cleardoublepage
 
@@ -825,6 +824,10 @@ coltitle=scw-charcoal,fonttitle=\sffamily\large]
 \bibliography{references}
 
 % last page should be blank
+\cleardoublepage
+\pagestyle{empty}
+\pagenumbering{gobble}
+~
 \cleardoublepage
 
 \end{document}

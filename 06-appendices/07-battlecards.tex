@@ -1,11 +1,11 @@
 \chapter{Security battlecards}
 \label{app:battlecards}
 
-\changed{In this appendix, I discuss a number of related tools in more depth and give my opinion on them.
+In this appendix, I discuss a number of related tools in more depth and give my opinion on them.
 Some of these tools are no longer supported, and hence can not be actively endorsed, but they are interesting to discuss nonetheless.
 These tools are indicated by an orange box.
 I also discuss one tool that is an in-house tool used by Google, and is hence not publicly available, this tool is marked by a gray box.
-All remaining tools are still actively updated at the time of writing this thesis and have a significant userbase, they are marked in green.}
+All remaining tools are still actively updated at the time of writing this thesis and have a significant userbase, they are marked in green.
 
 \battlecard{SonarLint by SonarSource}{\url{https://www.sonarlint.org/}}{
 \label{bc:sonarlint}
@@ -96,11 +96,11 @@ A large set of default and community rules are available, most of which target s
 No real, fleshed-out \gls{ui} is available to create rules, and the rule-writer is required to read documentation to fully understand the rule syntax.
 In our research, this has shown to be a hurdle for developers who can be thrown of by learning a new syntax for this purpose.
 Security professionals, on the other hand, will find that this format is already a big improvement over many other security tools.
-It also took me a while to get more complex rules working, but I found great community support on the r2c slack channel.
+I found myself able to create moderately complex rules reasonably fast, and I found great community support on the r2c community slack channel.
 
-Despite marketing material using the term ``paving the road", Semgrep is somewhat lacking as a developer tool supporting the paved path methodology, as it is mostly intended as a \gls{ci} tool.
+Despite marketing material using the term ``paving the road", Semgrep is still lacking as a developer tool to support the paved path methodology outlined in this work, as it is mostly intended as a \gls{ci} tool and is hence not a role-specific tool targeted at developers.
 Third party plugins are available for some \glspl{ide}, but they are not officially supported.
-At the time of writing, the IntelliJ IDEA plugin neither support the newest version of IntelliJ nor the newest version of Semgrep.
+At the time of writing, the IntelliJ IDEA plugin neither supports the newest version of IntelliJ nor the newest version of Semgrep.
 }{\gls{sast}}
 {Test}{Seconds}{Quick-fix}
 
